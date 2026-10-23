@@ -3188,6 +3188,1093 @@
             justify-content: center;
         }
 
+        /* ==================== AUTHENTIC MAGIC MATRIX SCREEN (media_1792748840863_d3f60555.jpg) ==================== */
+        #screen-magic {
+            position: absolute;
+            inset: 0;
+            width: 960px;
+            height: 640px;
+            background: radial-gradient(circle at 50% 45%, #2a2d34 0%, #16181c 65%, #0d0e11 100%);
+            display: none;
+            flex-direction: column;
+            z-index: 20;
+            overflow: hidden;
+            user-select: none;
+        }
+        #screen-magic.active {
+            display: flex;
+        }
+
+        /* Top Stone Bar */
+        .magic-top-bar {
+            width: 100%;
+            height: 62px;
+            background: url('res/drawable-mdpi/haypitown_topbar.png') center / 100% 100% no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.75);
+            z-index: 5;
+        }
+        .magic-title-txt {
+            font-family: 'HaypiFont', Impact, sans-serif;
+            font-size: 26px;
+            font-weight: 900;
+            color: #ffd84d;
+            text-shadow: 2px 2px 0 #522700, -1.5px -1.5px 0 #000, 1.5px -1.5px 0 #000, -1.5px 1.5px 0 #000, 0 3px 6px rgba(0,0,0,0.9);
+            letter-spacing: 2px;
+        }
+        .magic-back-btn {
+            width: 60px;
+            height: 44px;
+            background: url('res/drawable-mdpi/channel_butten_back_a.png') center / contain no-repeat;
+            border: none;
+            cursor: pointer;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.85));
+            transition: transform 0.1s;
+        }
+        .magic-back-btn:active {
+            transform: scale(0.92);
+        }
+
+        /* 3-Column Main Area */
+        .magic-main-body {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 24px;
+            gap: 16px;
+        }
+
+        /* Left Column: Dragon Card & Stats Plaque */
+        .magic-left-col {
+            width: 220px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            flex-shrink: 0;
+        }
+        .magic-dragon-card {
+            width: 190px;
+            height: 250px;
+            background: url('res/drawable-mdpi/magic_dragonbg.png') center / 100% 100% no-repeat;
+            position: relative;
+            box-shadow: 0 8px 18px rgba(0,0,0,0.85);
+            cursor: pointer;
+        }
+        .magic-dragon-lvl {
+            position: absolute;
+            top: 14px;
+            right: 18px;
+            font-family: 'HaypiFont', Impact, sans-serif;
+            font-size: 20px;
+            font-weight: 900;
+            color: #55ff00;
+            text-shadow: 1.5px 1.5px 0 #000;
+        }
+        .magic-dragon-avatar-wrap {
+            position: absolute;
+            top: 42px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 110px;
+            height: 110px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .magic-dragon-avatar {
+            max-width: 100px;
+            max-height: 100px;
+            object-fit: contain;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.85));
+        }
+        .magic-dragon-name {
+            position: absolute;
+            bottom: 34px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-family: 'HaypiFont', Impact, sans-serif;
+            font-size: 19px;
+            font-weight: 900;
+            color: #ffd84d;
+            text-shadow: 2px 2px 0 #522700, -1px -1px 0 #000;
+        }
+        .magic-dragon-select-btn {
+            position: absolute;
+            bottom: 8px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-family: 'HaypiFont', Impact, sans-serif;
+            font-size: 17px;
+            font-weight: 900;
+            color: #55ff00;
+            text-shadow: 1.5px 1.5px 0 #000;
+            letter-spacing: 1.5px;
+            cursor: pointer;
+        }
+
+        /* 6-Row Stats Plaque */
+        .magic-stats-box {
+            width: 190px;
+            background: linear-gradient(180deg, #24272e 0%, #17181c 100%);
+            border: 2px solid #3c424f;
+            border-radius: 8px;
+            padding: 8px 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.7), inset 0 1px 2px rgba(255,255,255,0.1);
+        }
+        .magic-stat-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 22px;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            padding-bottom: 2px;
+        }
+        .magic-stat-row:last-child {
+            border-bottom: none;
+        }
+        .magic-stat-label {
+            font-family: 'HaypiFont', Impact, sans-serif;
+            font-size: 16px;
+            font-weight: 900;
+            letter-spacing: 1px;
+            text-shadow: 1px 1px 0 #000;
+        }
+        .magic-stat-label.hp { color: #ff3333; }
+        .magic-stat-label.mp { color: #3399ff; }
+        .magic-stat-label.atk { color: #55ff00; }
+        .magic-stat-label.def { color: #55ff00; }
+        .magic-stat-label.cri { color: #55ff00; }
+        .magic-stat-label.act { color: #55ff00; }
+
+        .magic-stat-val {
+            font-family: 'HaypiFont', Impact, monospace;
+            font-size: 16.5px;
+            font-weight: 900;
+            color: #ffffff;
+            text-shadow: 1px 1px 2px #000;
+            text-align: right;
+        }
+
+        /* Center Column: Matrix Board */
+        .magic-center-col {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        .magic-matrix-board {
+            width: 440px;
+            height: 450px;
+            background: url('res/drawable-mdpi/magic_matrix.png') center / contain no-repeat;
+            position: relative;
+            filter: drop-shadow(0 10px 24px rgba(0,0,0,0.9));
+        }
+
+        /* 9 Sockets on Matrix */
+        .magic-hole {
+            position: absolute;
+            width: 66px;
+            height: 66px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: transform 0.15s ease, filter 0.15s ease;
+            z-index: 2;
+        }
+        .magic-hole:hover {
+            transform: scale(1.12);
+        }
+        .magic-hole.selected {
+            transform: scale(1.15);
+            filter: drop-shadow(0 0 10px #ffd800);
+        }
+        .magic-hole img {
+            width: 54px;
+            height: 54px;
+            object-fit: contain;
+            filter: drop-shadow(0 3px 6px rgba(0,0,0,0.85));
+        }
+
+        /* Coordinates of 9 Sockets */
+        .hole-0 { top: 12px; left: 50%; transform: translateX(-50%); } /* Top 12h */
+        .hole-1 { top: 132px; left: 50%; transform: translateX(-50%); } /* Center */
+        .hole-2 { top: 132px; left: 88px; } /* Mid Left */
+        .hole-3 { top: 132px; right: 88px; } /* Mid Right */
+        .hole-4 { top: 228px; left: 154px; } /* Below Left */
+        .hole-5 { top: 228px; right: 154px; } /* Below Right */
+        .hole-6 { bottom: 54px; left: 50%; transform: translateX(-50%); } /* Bottom Center */
+        .hole-7 { top: 300px; left: 24px; } /* Far Left */
+        .hole-8 { top: 300px; right: 24px; } /* Far Right */
+
+        /* Right Column: Gem Inventory List */
+        .magic-right-col {
+            width: 270px;
+            height: 510px;
+            background: linear-gradient(180deg, #24272e 0%, #17181c 100%);
+            border: 2px solid #3c424f;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.8), inset 0 1px 2px rgba(255,255,255,0.1);
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+        .magic-gem-list-header {
+            padding: 8px 14px;
+            background: rgba(0,0,0,0.3);
+            border-bottom: 1.5px solid #3c424f;
+            font-family: 'HaypiFont', Impact, sans-serif;
+            font-size: 15px;
+            font-weight: 900;
+            color: #ffd84d;
+            text-align: center;
+            letter-spacing: 1px;
+        }
+        .magic-gem-list {
+            flex: 1;
+            overflow-y: auto;
+            padding: 6px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .magic-gem-item {
+            background: rgba(14, 16, 20, 0.85);
+            border: 1.5px solid #3c424f;
+            border-radius: 6px;
+            padding: 6px 10px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            transition: transform 0.1s, border-color 0.1s, background 0.1s;
+        }
+        .magic-gem-item:hover {
+            transform: translateX(4px);
+            border-color: #55ff00;
+            background: rgba(85, 255, 0, 0.08);
+        }
+        .magic-gem-icon-box {
+            position: relative;
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .magic-gem-icon-box img {
+            width: 42px;
+            height: 42px;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.8));
+        }
+        .magic-gem-count {
+            position: absolute;
+            bottom: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'HaypiFont', Impact, sans-serif;
+            font-size: 12px;
+            font-weight: 900;
+            color: #ffd800;
+            text-shadow: 1px 1px 1px #000;
+        }
+        .magic-gem-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+        .magic-gem-name {
+            font-family: 'HaypiFont', Impact, sans-serif;
+            font-size: 13.5px;
+            font-weight: 900;
+            color: #55ff00;
+            letter-spacing: 0.5px;
+            text-shadow: 1px 1px 1px #000;
+            line-height: 1.2;
+        }
+        .magic-gem-lvl {
+            font-family: 'HaypiFont', Impact, sans-serif;
+            font-size: 13px;
+            font-weight: 900;
+            color: #55ff00;
+            text-shadow: 1px 1px 1px #000;
+        }
+        .magic-gem-bonus {
+            font-size: 11px;
+            color: #e0e0e0;
+            font-weight: bold;
+        }
+
+        /* ==================== AUTHENTIC PVE RESULT / ROULETTE WHEEL SCREEN (media_1792748883084_8eec11f3.jpg) ==================== */
+        #screen-pve-result {
+            position: absolute;
+            inset: 0;
+            width: 960px;
+            height: 640px;
+            background: url('res/drawable-mdpi/channel_bg.jpg') center / 100% 100% no-repeat;
+            display: none;
+            flex-direction: column;
+            z-index: 25;
+            overflow: hidden;
+            user-select: none;
+        }
+        #screen-pve-result.active {
+            display: flex;
+        }
+
+        /* Top Stone Bar */
+        .pve-res-topbar {
+            width: 100%;
+            height: 52px;
+            background: url('res/drawable-mdpi/channel_bar1.png') center / 100% 100% no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 16px;
+            box-sizing: border-box;
+            position: relative;
+            z-index: 5;
+        }
+        .pve-res-title-badge {
+            width: 136px;
+            height: 38px;
+            background: url('res/drawable-mdpi/channel_titlebg.png') center / 100% 100% no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'HaypiFont', Impact, sans-serif;
+            font-size: 21px;
+            font-weight: 900;
+            color: #ffde59;
+            text-shadow: 2px 2px 0 #522700, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000;
+            letter-spacing: 2px;
+        }
+        .pve-res-best-score {
+            font-family: 'HaypiFont', Impact, sans-serif;
+            font-size: 20px;
+            font-weight: 900;
+            color: #76ff03;
+            text-shadow: 1.5px 1.5px 0 #000, 0 2px 4px rgba(0,0,0,0.8);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Center Arena */
+        .pve-res-main {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 40px;
+            position: relative;
+        }
+
+        /* Left: Dragon mascot with orange arrow */
+        .pve-res-mascot-wrap {
+            position: relative;
+            width: 160px;
+            height: 280px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 3;
+        }
+        .pve-res-mascot-img {
+            height: 250px;
+            object-fit: contain;
+            filter: drop-shadow(0 6px 12px rgba(0,0,0,0.85));
+            transform: translateX(18px);
+        }
+
+        /* Center: Wheel */
+        .pve-res-wheel-container {
+            position: relative;
+            width: 320px;
+            height: 320px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-left: -20px;
+        }
+        .pve-res-wheel-rim {
+            position: absolute;
+            width: 320px;
+            height: 320px;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 2;
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.9));
+        }
+        .pve-res-wheel-disc-wrap {
+            position: absolute;
+            width: 260px;
+            height: 260px;
+            top: 30px;
+            left: 30px;
+            border-radius: 50%;
+            z-index: 1;
+            transition: transform 3.8s cubic-bezier(0.12, 0.88, 0.18, 1);
+        }
+        .pve-res-wheel-disc {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            display: block;
+        }
+        .pve-res-slot {
+            position: absolute;
+            width: 52px;
+            height: 52px;
+            transform: translate(-50%, -50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            pointer-events: none;
+        }
+        .pve-res-slot-img {
+            width: 44px;
+            height: 44px;
+            object-fit: contain;
+            filter: drop-shadow(0 3px 5px rgba(0,0,0,0.85));
+        }
+        .pve-res-slot-qty {
+            font-family: 'HaypiFont', Impact, sans-serif;
+            font-size: 15px;
+            font-weight: 900;
+            color: #ffea00;
+            text-shadow: 1.5px 1.5px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000;
+            margin-top: -6px;
+            z-index: 2;
+        }
+
+        /* Right Panel */
+        .pve-res-right-panel {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 22px;
+            min-width: 280px;
+        }
+        .pve-res-score-box {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .pve-res-score-label {
+            font-family: 'HaypiFont', Impact, sans-serif;
+            font-size: 26px;
+            font-weight: 900;
+            color: #ffd84d;
+            text-shadow: 2px 2px 0 #522700, -1.5px -1.5px 0 #000;
+            letter-spacing: 1px;
+        }
+        .pve-res-score-val {
+            font-family: 'HaypiFont', Impact, sans-serif;
+            font-size: 34px;
+            font-weight: 900;
+            color: #ffeb3b;
+            text-shadow: 2.5px 2.5px 0 #7f3900, -1.5px -1.5px 0 #000, 1.5px -1.5px 0 #000, -1.5px 1.5px 0 #000;
+        }
+        .pve-res-stars-row {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .pve-res-star-img {
+            width: 64px;
+            height: 64px;
+            object-fit: contain;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.8));
+            transition: transform 0.3s;
+        }
+        .pve-res-star-img.lit {
+            animation: starPulse 1.2s infinite alternate ease-in-out;
+        }
+
+        /* Auto Spin Button */
+        .pve-res-btn-spin {
+            min-width: 190px;
+            height: 52px;
+            background: url('res/drawable-mdpi/title_butten_start_a.png') center / 100% 100% no-repeat;
+            border: none;
+            cursor: pointer;
+            font-family: 'HaypiFont', Impact, sans-serif;
+            font-size: 22px;
+            font-weight: 900;
+            color: #69f0ae;
+            text-shadow: 1.5px 1.5px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 0 0 10px rgba(105,240,174,0.6);
+            letter-spacing: 2px;
+            box-shadow: 0 6px 14px rgba(0,0,0,0.7);
+            transition: transform 0.1s, filter 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .pve-res-btn-spin:active {
+            transform: scale(0.94);
+            filter: brightness(0.85);
+        }
+        .pve-res-btn-spin:disabled {
+            filter: grayscale(0.8) opacity(0.6);
+            cursor: not-allowed;
+        }
+
+        /* Bottom Bar */
+        .pve-res-bottombar {
+            width: 100%;
+            height: 48px;
+            background: url('res/drawable-mdpi/result_bar.png') center / 100% 100% no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding: 0 24px;
+            box-sizing: border-box;
+            gap: 20px;
+            position: relative;
+            z-index: 5;
+        }
+        .pve-res-coin-capsule {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            position: relative;
+        }
+        .pve-res-coin-icon {
+            width: 30px;
+            height: 30px;
+            object-fit: contain;
+            z-index: 2;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.8));
+        }
+        .pve-res-coin-val {
+            min-width: 90px;
+            height: 24px;
+            background: url('res/drawable-mdpi/info_goldbg.png') center / 100% 100% no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 12px;
+            font-family: 'HaypiFont', Impact, sans-serif;
+            font-size: 15px;
+            font-weight: 900;
+            color: #fff;
+            text-shadow: 1px 1px 0 #000;
+            margin-left: -12px;
+            box-sizing: border-box;
+        }
+
+        /* Reward Dialog */
+        .pve-res-dialog-backdrop {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.72);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+            animation: fadeIn 0.25s ease-out;
+        }
+        .pve-res-dialog-box {
+            width: 380px;
+            min-height: 260px;
+            background: url('res/drawable-mdpi/message_bar.png') center top / 100% 210px no-repeat;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: 0 16px 36px rgba(0,0,0,0.9);
+        }
+        .pve-res-dialog-title {
+            margin-top: 32px;
+            font-family: 'HaypiFont', Impact, sans-serif;
+            font-size: 20px;
+            font-weight: 900;
+            color: #ffd84d;
+            text-shadow: 1.5px 1.5px 0 #522700, -1px -1px 0 #000;
+            letter-spacing: 1px;
+        }
+        .pve-res-dialog-desc {
+            padding: 10px 24px;
+            font-size: 13.5px;
+            font-weight: 700;
+            color: #ffffff;
+            text-align: center;
+            text-shadow: 1px 1px 2px #000;
+            line-height: 1.35;
+            min-height: 42px;
+        }
+        .pve-res-dialog-item-box {
+            position: relative;
+            width: 72px;
+            height: 72px;
+            background: url('res/drawable-mdpi/sack_iconbg.png') center / 100% 100% no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+        }
+        .pve-res-dialog-item-img {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 6px rgba(0,0,0,0.7));
+        }
+        .pve-res-dialog-item-num {
+            position: absolute;
+            bottom: 4px;
+            right: 8px;
+            font-family: 'HaypiFont', Impact, sans-serif;
+            font-size: 16px;
+            font-weight: 900;
+            color: #ffea00;
+            text-shadow: 1.5px 1.5px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000;
+        }
+        .pve-res-dialog-btn-bar {
+            width: 100%;
+            height: 54px;
+            background: url('res/drawable-mdpi/message_bar2.png') center / 100% 100% no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            padding: 0 16px;
+            box-sizing: border-box;
+            margin-top: auto;
+        }
+        .pve-res-dialog-btn {
+            min-width: 130px;
+            height: 38px;
+            background: url('res/drawable-mdpi/title_butten_start_a.png') center / 100% 100% no-repeat;
+            border: none;
+            cursor: pointer;
+            font-family: 'HaypiFont', Impact, sans-serif;
+            font-size: 15px;
+            font-weight: 900;
+            color: #76ff03;
+            text-shadow: 1px 1px 0 #000;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.1s;
+        }
+        .pve-res-dialog-btn:active {
+            transform: scale(0.93);
+        }
+        .pve-res-dialog-btn.claim {
+            color: #ffeb3b;
+        }
+
+        /* ==================== AUTHENTIC CO-OP BOSS WAITING ROOM SCREEN (media_1792748932225_ef562e77.jpg) ==================== */
+        #screen-waiting-room {
+            position: absolute;
+            inset: 0;
+            width: 960px;
+            height: 640px;
+            background: url('res/drawable-mdpi/channel_bg.jpg') center / 100% 100% no-repeat;
+            display: none;
+            flex-direction: column;
+            z-index: 25;
+            overflow: hidden;
+            user-select: none;
+        }
+        #screen-waiting-room.active {
+            display: flex;
+        }
+
+        /* Top Bar */
+        .room-topbar {
+            width: 100%;
+            height: 52px;
+            background: url('res/drawable-mdpi/channel_bar1.png') center / 100% 100% no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 16px;
+            box-sizing: border-box;
+            position: relative;
+            z-index: 5;
+        }
+        .room-top-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .room-title-badge {
+            width: 160px;
+            height: 38px;
+            background: url('res/drawable-mdpi/channel_titlebg.png') center / 100% 100% no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'HaypiFont', Impact, sans-serif;
+            font-size: 20px;
+            font-weight: 900;
+            color: #ffd84d;
+            text-shadow: 2px 2px 0 #522700, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000;
+            letter-spacing: 1.5px;
+        }
+        .room-name-box {
+            min-width: 130px;
+            height: 28px;
+            background: url('res/drawable-mdpi/createroom_textbg1.png') center / 100% 100% no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'HaypiFont', Impact, sans-serif;
+            font-size: 16px;
+            font-weight: 900;
+            color: #ffffff;
+            text-shadow: 1.5px 1.5px 0 #000;
+            letter-spacing: 1px;
+            padding: 0 12px;
+            box-sizing: border-box;
+        }
+        .room-back-btn {
+            width: 52px;
+            height: 42px;
+            background: url('res/drawable-mdpi/channel_butten_back_a.png') center / contain no-repeat;
+            border: none;
+            cursor: pointer;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.85));
+            transition: transform 0.1s;
+        }
+        .room-back-btn:active {
+            transform: scale(0.92);
+        }
+
+        /* Main Arena (2 Columns) */
+        .room-main-body {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 28px;
+            gap: 20px;
+            box-sizing: border-box;
+        }
+
+        /* Left Column: 4 Player Slots (2x2 Grid) */
+        .room-slots-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 210px);
+            grid-template-rows: repeat(2, 175px);
+            gap: 16px 20px;
+        }
+        .room-slot {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+        }
+        .room-slot-box {
+            width: 200px;
+            height: 145px;
+            background: url('res/drawable-mdpi/room_status.png') center / 100% 100% no-repeat;
+            position: relative;
+            box-sizing: border-box;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.15s;
+        }
+        .room-slot-box:hover {
+            transform: scale(1.02);
+        }
+        .room-slot-box.selected {
+            background: url('res/drawable-mdpi/room_select.png') center / 100% 100% no-repeat;
+            border: 2px solid #76ff03;
+            border-radius: 12px;
+            box-shadow: 0 0 12px rgba(118, 255, 3, 0.5);
+        }
+        .room-slot-box.empty {
+            opacity: 0.75;
+            background: rgba(0, 0, 0, 0.45);
+            border: 2px dashed #4e5561;
+            border-radius: 12px;
+        }
+        .room-slot-box.empty:hover {
+            opacity: 1;
+            border-color: #ffd84d;
+        }
+        .room-empty-txt {
+            font-family: 'HaypiFont', Impact, sans-serif;
+            font-size: 15px;
+            font-weight: 900;
+            color: #8fa0b5;
+            text-shadow: 1px 1px 0 #000;
+            letter-spacing: 1px;
+        }
+
+        /* Slot Content: Level & Win Rate */
+        .room-slot-stats {
+            position: absolute;
+            top: 10px;
+            left: 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            z-index: 3;
+        }
+        .room-slot-lvl {
+            font-family: 'HaypiFont', Impact, sans-serif;
+            font-size: 20px;
+            font-weight: 900;
+            color: #76ff03;
+            text-shadow: 1.5px 1.5px 0 #000, -1px -1px 0 #000;
+        }
+        .room-slot-rate {
+            font-family: 'HaypiFont', Impact, sans-serif;
+            font-size: 16px;
+            font-weight: 900;
+            color: #00e5ff;
+            text-shadow: 1.5px 1.5px 0 #000, -1px -1px 0 #000;
+        }
+
+        /* Dragon Avatar / Sprite */
+        .room-slot-avatar-wrap {
+            width: 110px;
+            height: 110px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+        }
+        .room-slot-dragon-img {
+            max-width: 95px;
+            max-height: 95px;
+            object-fit: contain;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.8));
+        }
+
+        /* Diagonal Status Stamp: MASTER / READY */
+        .room-slot-stamp {
+            position: absolute;
+            right: 8px;
+            bottom: 8px;
+            width: 88px;
+            height: 40px;
+            object-fit: contain;
+            z-index: 4;
+            filter: drop-shadow(0 2px 5px rgba(0,0,0,0.9));
+        }
+
+        /* Player Name under slot */
+        .room-slot-name {
+            font-family: 'HaypiFont', Impact, sans-serif;
+            font-size: 16px;
+            font-weight: 900;
+            color: #ffd84d;
+            text-shadow: 1.5px 1.5px 0 #422000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000;
+            margin-top: 4px;
+            letter-spacing: 0.5px;
+        }
+
+        /* Right Column: Boss Map Preview & Difficulty Panel */
+        .room-map-panel {
+            width: 250px;
+            height: 380px;
+            background: url('res/drawable-mdpi/room_mapbg.png') center / 100% 100% no-repeat;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 24px 16px;
+            box-sizing: border-box;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.85);
+            position: relative;
+        }
+        .room-map-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .room-map-arrow {
+            width: 22px;
+            height: 28px;
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.1s;
+        }
+        .room-map-arrow.left {
+            background-image: url('res/drawable-mdpi/createroom_butten_arrowl_a1.png');
+        }
+        .room-map-arrow.right {
+            background-image: url('res/drawable-mdpi/createroom_butten_arrowr_a1.png');
+        }
+        .room-map-arrow:active {
+            transform: scale(0.85);
+        }
+        .room-map-preview-wrap {
+            width: 140px;
+            height: 140px;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 3px solid #23272d;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.8), 0 4px 10px rgba(0,0,0,0.7);
+            background: #111;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .room-map-preview-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .room-diff-label {
+            margin-top: 24px;
+            font-family: 'HaypiFont', Impact, sans-serif;
+            font-size: 19px;
+            font-weight: 900;
+            color: #ffd84d;
+            text-shadow: 1.5px 1.5px 0 #522700, -1px -1px 0 #000;
+            letter-spacing: 1px;
+        }
+        .room-diff-select-box {
+            width: 160px;
+            height: 32px;
+            background: #14161a;
+            border: 2px solid #3d434d;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 8px;
+            cursor: pointer;
+            box-shadow: inset 0 2px 6px rgba(0,0,0,0.8);
+            transition: border-color 0.2s;
+        }
+        .room-diff-select-box:hover {
+            border-color: #ffd84d;
+        }
+        .room-diff-select-box span {
+            font-family: 'HaypiFont', Impact, sans-serif;
+            font-size: 16px;
+            font-weight: 900;
+            color: #76ff03;
+            letter-spacing: 1px;
+            text-shadow: 1px 1px 0 #000;
+        }
+        .room-boss-target-name {
+            margin-top: 14px;
+            font-size: 12px;
+            font-weight: 800;
+            color: #ffffff;
+            text-align: center;
+            text-shadow: 1px 1px 2px #000;
+            line-height: 1.3;
+        }
+
+        /* Bottom Bar */
+        .room-bottombar {
+            width: 100%;
+            height: 54px;
+            background: url('res/drawable-mdpi/chat_bar_1.png') center / 100% 100% no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            box-sizing: border-box;
+            position: relative;
+            z-index: 5;
+        }
+        .room-chat-preview {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            font-weight: bold;
+            color: #ffffff;
+            text-shadow: 1px 1px 2px #000;
+            max-width: 380px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .room-bottom-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .room-btn-chat {
+            width: 53px;
+            height: 41px;
+            background: url('res/drawable-mdpi/haypitown_buttenchat_a.png') center / 100% 100% no-repeat;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.1s;
+        }
+        .room-btn-chat:active {
+            transform: scale(0.92);
+        }
+        .room-btn-sub {
+            min-width: 88px;
+            height: 40px;
+            background: url('res/drawable-mdpi/title_butten_start_a.png') center / 100% 100% no-repeat;
+            border: none;
+            cursor: pointer;
+            font-family: 'HaypiFont', Impact, sans-serif;
+            font-size: 15px;
+            font-weight: 900;
+            color: #76ff03;
+            text-shadow: 1px 1px 0 #000;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.1s;
+        }
+        .room-btn-sub:active {
+            transform: scale(0.92);
+        }
+        .room-btn-main {
+            min-width: 140px;
+            height: 48px;
+            background: url('res/drawable-mdpi/room_butten_start_a.png') center / 100% 100% no-repeat;
+            border: none;
+            cursor: pointer;
+            font-family: 'HaypiFont', Impact, sans-serif;
+            font-size: 22px;
+            font-weight: 900;
+            color: #76ff03;
+            text-shadow: 1.5px 1.5px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, 0 0 10px rgba(118,255,3,0.5);
+            letter-spacing: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.1s, filter 0.2s;
+        }
+        .room-btn-main:active {
+            transform: scale(0.94);
+        }
+        .room-btn-main.cancel {
+            color: #ff5252;
+            text-shadow: 1.5px 1.5px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, 0 0 10px rgba(255,82,82,0.5);
+        }
+
 </style>
 </head>
 <body>
@@ -3285,7 +4372,7 @@
 
             <!-- 5. Magic Matrix -->
             <div class="city-building" style="left:592px; top:405px; width:251px; height:214px; background-image:url('res/drawable-mdpi/zhucheng_magic_a.png');"
-                 onclick="openModal('magic')">
+                 onclick="showMagicMatrixScreen()" title="Ma Trận Phép Thuật Khảm Đá Tăng Chỉ Số">
                 <div class="city-building-tag">MAGIC</div>
             </div>
 
@@ -3336,6 +4423,12 @@
             </div>
             <div class="city-event-btn" onclick="openModal('shop')" title="Cửa Hàng">
                 <img src="res/drawable-mdpi/buycoins_coins_5.png" alt="Shop">
+            </div>
+            <div class="city-event-btn" onclick="showPveResultScreen(true, 3, 12850)" title="Vòng Quay Thưởng (Roulette)">
+                <img src="res/drawable-mdpi/result_turntable1.png" alt="Roulette Wheel" style="border-radius:50%; animation: spin 8s linear infinite;">
+            </div>
+            <div class="city-event-btn" onclick="showWaitingRoomScreen(2)" title="Phòng Chờ Co-op Đánh Boss (Waiting Room)">
+                <img src="res/drawable-mdpi/room_master.png" alt="Co-op Waiting Room" style="object-fit:contain;">
             </div>
             <div class="city-event-btn" onclick="openModal('notice')" title="Tin Tức & Sự Kiện">
                 <img src="res/drawable-mdpi/myinfo_icon_vip.png" alt="VIP">
@@ -3526,6 +4619,232 @@
         </div>
     </div>
 
+    <!-- ==================== 2.7 AUTHENTIC MAGIC MATRIX SCREEN (media_1792748840863_d3f60555.jpg) ==================== -->
+    <div id="screen-magic" class="screen">
+        <!-- Top Stone Bar with MAGIC MATRIX Title and Back Button on Right -->
+        <div class="magic-top-bar">
+            <div class="magic-title-txt">MAGIC MATRIX</div>
+            <button class="magic-back-btn" onclick="showScreen('screen-city'); playSfx('btn');" title="Trở về Thành Phố"></button>
+        </div>
+
+        <!-- 3-Column Body -->
+        <div class="magic-main-body">
+            <!-- Left Column: Dragon Card & 6-Row Embedded Stats -->
+            <div class="magic-left-col">
+                <div class="magic-dragon-card" onclick="openMagicDragonPicker()" title="Nhấp để đổi rồng khảm ngọc">
+                    <div class="magic-dragon-lvl" id="magic-dragon-lvl">LV30</div>
+                    <div class="magic-dragon-avatar-wrap">
+                        <img id="magic-dragon-avatar" src="res/drawable-mdpi/icon108.png" class="magic-dragon-avatar" alt="Dragon">
+                    </div>
+                    <div class="magic-dragon-name" id="magic-dragon-name">ROCO</div>
+                    <div class="magic-dragon-select-btn">SELECT</div>
+                </div>
+
+                <!-- 6-Row Stats Plaque (HP, MP, ATK, DEF, CRI, ACT) -->
+                <div class="magic-stats-box">
+                    <div class="magic-stat-row">
+                        <span class="magic-stat-label hp">HP</span>
+                        <span class="magic-stat-val" id="magic-val-hp">2453</span>
+                    </div>
+                    <div class="magic-stat-row">
+                        <span class="magic-stat-label mp">MP</span>
+                        <span class="magic-stat-val" id="magic-val-mp">186</span>
+                    </div>
+                    <div class="magic-stat-row">
+                        <span class="magic-stat-label atk">ATK</span>
+                        <span class="magic-stat-val" id="magic-val-atk">377</span>
+                    </div>
+                    <div class="magic-stat-row">
+                        <span class="magic-stat-label def">DEF</span>
+                        <span class="magic-stat-val" id="magic-val-def">169</span>
+                    </div>
+                    <div class="magic-stat-row">
+                        <span class="magic-stat-label cri">CRI</span>
+                        <span class="magic-stat-val" id="magic-val-cri">25%</span>
+                    </div>
+                    <div class="magic-stat-row">
+                        <span class="magic-stat-label act">ACT</span>
+                        <span class="magic-stat-val" id="magic-val-act">142</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Center Column: Magic Matrix Board with 9 Sockets -->
+            <div class="magic-center-col">
+                <div class="magic-matrix-board" id="magic-matrix-board">
+                    <!-- 9 Sockets positioned authentically -->
+                    <div class="magic-hole hole-0" id="magic-hole-0" onclick="clickMagicHole(0)"></div>
+                    <div class="magic-hole hole-1" id="magic-hole-1" onclick="clickMagicHole(1)"></div>
+                    <div class="magic-hole hole-2" id="magic-hole-2" onclick="clickMagicHole(2)"></div>
+                    <div class="magic-hole hole-3" id="magic-hole-3" onclick="clickMagicHole(3)"></div>
+                    <div class="magic-hole hole-4" id="magic-hole-4" onclick="clickMagicHole(4)"></div>
+                    <div class="magic-hole hole-5" id="magic-hole-5" onclick="clickMagicHole(5)"></div>
+                    <div class="magic-hole hole-6" id="magic-hole-6" onclick="clickMagicHole(6)"></div>
+                    <div class="magic-hole hole-7" id="magic-hole-7" onclick="clickMagicHole(7)"></div>
+                    <div class="magic-hole hole-8" id="magic-hole-8" onclick="clickMagicHole(8)"></div>
+                </div>
+            </div>
+
+            <!-- Right Column: Gem Inventory List -->
+            <div class="magic-right-col">
+                <div class="magic-gem-list-header">KHO ĐÁ MA THUẬT</div>
+                <div class="magic-gem-list" id="magic-gem-list">
+                    <!-- Populated dynamically with owned gems -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== 2.8 AUTHENTIC PVE RESULT / ROULETTE WHEEL SCREEN (media_1792748883084_8eec11f3.jpg) ==================== -->
+    <div id="screen-pve-result" class="screen">
+        <!-- Top Stone Bar -->
+        <div class="pve-res-topbar">
+            <div class="pve-res-title-badge">RESULT</div>
+            <div class="pve-res-best-score">
+                <span>BEST SCORE:</span>
+                <span id="pve-res-best-num">16000</span>
+                <span id="pve-res-best-user" style="color:#a7ffeb;">8003669</span>
+            </div>
+        </div>
+
+        <!-- Center Arena -->
+        <div class="pve-res-main">
+            <!-- Left Mascot Dragon holding orange arrow pointer -->
+            <div class="pve-res-mascot-wrap">
+                <img src="res/drawable-mdpi/result_characters2.png" class="pve-res-mascot-img" alt="Dragon Mascot">
+            </div>
+
+            <!-- Center Wheel Container -->
+            <div class="pve-res-wheel-container">
+                <!-- Outer Wheel Rim -->
+                <img src="res/drawable-mdpi/result_turntable2.png" class="pve-res-wheel-rim" alt="Wheel Rim">
+                <!-- Inner Rotating Disc -->
+                <div id="pve-res-wheel-disc-wrap" class="pve-res-wheel-disc-wrap">
+                    <img src="res/drawable-mdpi/result_turntable1.png" class="pve-res-wheel-disc" alt="Turntable Disc">
+                    <!-- 6 Item Slots dynamically populated -->
+                    <div id="pve-res-wheel-slots"></div>
+                </div>
+            </div>
+
+            <!-- Right Panel: Score, Stars, Auto Spin Button -->
+            <div class="pve-res-right-panel">
+                <div class="pve-res-score-box">
+                    <span class="pve-res-score-label">SCORE:</span>
+                    <span id="pve-res-score-val" class="pve-res-score-val">12850</span>
+                </div>
+                <!-- 3 Stars Row -->
+                <div class="pve-res-stars-row">
+                    <img id="pve-res-star-1" src="res/drawable-mdpi/result_star_1.png" class="pve-res-star-img lit" alt="Star 1">
+                    <img id="pve-res-star-2" src="res/drawable-mdpi/result_star_1.png" class="pve-res-star-img lit" alt="Star 2">
+                    <img id="pve-res-star-3" src="res/drawable-mdpi/result_star_1.png" class="pve-res-star-img lit" alt="Star 3">
+                </div>
+                <!-- Auto Spin Button -->
+                <button id="pve-res-btn-spin" class="pve-res-btn-spin" onclick="startWheelSpin()">AUTO SPIN</button>
+            </div>
+        </div>
+
+        <!-- Bottom Bar -->
+        <div class="pve-res-bottombar">
+            <!-- Silver Currency -->
+            <div class="pve-res-coin-capsule">
+                <img src="res/drawable-mdpi/info_icon2.png" class="pve-res-coin-icon" alt="Silver">
+                <div id="pve-res-bottom-silver" class="pve-res-coin-val">4367957</div>
+            </div>
+            <!-- Gold Currency -->
+            <div class="pve-res-coin-capsule">
+                <img src="res/drawable-mdpi/info_icon1.png" class="pve-res-coin-icon" alt="Gold">
+                <div id="pve-res-bottom-gold" class="pve-res-coin-val">45</div>
+            </div>
+        </div>
+
+        <!-- Reward Dialog (message_bar.png + message_bar2.png with dragon peeking) -->
+        <div id="pve-res-dialog-backdrop" class="pve-res-dialog-backdrop" style="display:none;">
+            <div class="pve-res-dialog-box">
+                <div class="pve-res-dialog-title">Thông Tin</div>
+                <div id="pve-res-dialog-desc" class="pve-res-dialog-desc">Ha conseguido el objeto Piedra de síntesis, si quiere girar otra vez con la moneda</div>
+                <div class="pve-res-dialog-item-box">
+                    <img id="pve-res-dialog-item-img" src="res/drawable-mdpi/icon801601.png" class="pve-res-dialog-item-img" alt="Reward Item">
+                    <span id="pve-res-dialog-item-num" class="pve-res-dialog-item-num">1</span>
+                </div>
+                <div class="pve-res-dialog-btn-bar">
+                    <button class="pve-res-dialog-btn" onclick="respinWheel()">Quay lại (-2 Vàng)</button>
+                    <button class="pve-res-dialog-btn claim" onclick="claimWheelReward()">Nhận Thưởng</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== 2.9 AUTHENTIC CO-OP BOSS WAITING ROOM SCREEN (media_1792748932225_ef562e77.jpg) ==================== -->
+    <div id="screen-waiting-room" class="screen">
+        <!-- Top Stone Bar -->
+        <div class="room-topbar">
+            <div class="room-top-left">
+                <div class="room-title-badge">WAITING ROOM</div>
+                <div class="room-name-box" id="room-name-txt">PVE Room 24</div>
+            </div>
+            <button class="room-back-btn" onclick="leaveWaitingRoom()" title="Rời Phòng"></button>
+        </div>
+
+        <!-- Main Body: 2 Columns -->
+        <div class="room-main-body">
+            <!-- Left: 4 Player Slots (2x2 Grid) -->
+            <div class="room-slots-grid">
+                <!-- Slot 0: Host -->
+                <div class="room-slot" id="room-slot-0" onclick="clickRoomSlot(0)" title="Ô Chủ Phòng (Master)">
+                    <div class="room-slot-box" id="room-slot-box-0"></div>
+                    <div class="room-slot-name" id="room-name-0">DragonPenis[3]</div>
+                </div>
+
+                <!-- Slot 1: Player 2 / Ally -->
+                <div class="room-slot" id="room-slot-1" onclick="clickRoomSlot(1)" title="Ô Đồng Đội 2">
+                    <div class="room-slot-box selected" id="room-slot-box-1"></div>
+                    <div class="room-slot-name" id="room-name-1">trollzor[8]</div>
+                </div>
+
+                <!-- Slot 2: Empty Ally 3 -->
+                <div class="room-slot" id="room-slot-2" onclick="clickRoomSlot(2)" title="Nhấp để Mời Đồng Đội 3">
+                    <div class="room-slot-box empty" id="room-slot-box-2"></div>
+                    <div class="room-slot-name" id="room-name-2">Trống</div>
+                </div>
+
+                <!-- Slot 3: Empty Ally 4 -->
+                <div class="room-slot" id="room-slot-3" onclick="clickRoomSlot(3)" title="Nhấp để Mời Đồng Đội 4">
+                    <div class="room-slot-box empty" id="room-slot-box-3"></div>
+                    <div class="room-slot-name" id="room-name-3">Trống</div>
+                </div>
+            </div>
+
+            <!-- Right Column: Boss Map Preview & Difficulty Panel -->
+            <div class="room-map-panel">
+                <div class="room-map-header">
+                    <button class="room-map-arrow left" onclick="changeBossMap(-1)" title="Map trước"></button>
+                    <div class="room-map-preview-wrap">
+                        <img id="room-map-img" src="res/drawable-mdpi/room_map2.png" class="room-map-preview-img" alt="Map Preview">
+                    </div>
+                    <button class="room-map-arrow right" onclick="changeBossMap(1)" title="Map sau"></button>
+                </div>
+                <div class="room-diff-label">DIFFICULTY</div>
+                <div class="room-diff-select-box" onclick="toggleDifficulty()" title="Đổi Độ Khó">
+                    <span id="room-diff-val">NORMAL</span>
+                </div>
+                <div class="room-boss-target-name" id="room-boss-target-name">👑 TRÙM: MỘC LONG LESHY (BOSS 1-15)</div>
+            </div>
+        </div>
+
+        <!-- Bottom Bar: Chat preview, Help, Invite, Main Action Button -->
+        <div class="room-bottombar">
+            <div class="room-chat-preview">
+                <span id="room-chat-latest">cinsen: sorry</span>
+            </div>
+            <div class="room-bottom-actions">
+                <button class="room-btn-chat" onclick="openRoomChatModal()" title="Mở Chat Phòng"></button>
+                <button class="room-btn-sub" onclick="openRoomHelpModal()" title="Hướng Dẫn">HELP</button>
+                <button class="room-btn-sub" onclick="openRoomInviteModal()" title="Mời Bạn Bè">INVITE</button>
+                <button id="room-btn-main" class="room-btn-main" onclick="handleRoomMainAction()">START</button>
+            </div>
+        </div>
+    </div>
+
     <!-- ==================== 3. ORIGINAL 2-PAGE WORLD MAP (SEQUENTIAL CHAPTER UNLOCK) ==================== -->
     <div id="screen-worldmap" class="screen">
         <div class="wmap-top-banner">
@@ -3586,6 +4905,7 @@
                 <div id="stage-current-marker"></div>
             </div>
         </div>
+        <button class="chapter-coop-btn" onclick="showWaitingRoomScreen(STATE.currentChapter || 1)" style="position:absolute; right:76px; top:12px; background:url('res/drawable-mdpi/room_master.png') center / 100% 100% no-repeat; width:92px; height:38px; border:none; cursor:pointer; filter:drop-shadow(0 2px 5px rgba(0,0,0,0.85)); z-index:10;" title="Phòng Chờ Co-op Đánh Boss"></button>
         <button class="btn-back-corner" onclick="openWorldMap()" title="Quay lại Bản Đồ Thế Giới"></button>
     </div>
 
@@ -4724,6 +6044,12 @@ function showScreen(screenId) {
         if (typeof updateEyrieView === 'function') updateEyrieView();
     } else if (screenId === 'screen-dragon') {
         if (typeof renderDragonDeck === 'function') renderDragonDeck();
+    } else if (screenId === 'screen-magic') {
+        if (typeof renderMagicMatrix === 'function') renderMagicMatrix();
+    } else if (screenId === 'screen-pve-result') {
+        if (typeof updateWheelCurrencyHud === 'function') updateWheelCurrencyHud();
+    } else if (screenId === 'screen-waiting-room') {
+        if (typeof renderWaitingRoomUI === 'function') renderWaitingRoomUI();
     }
 }
 
@@ -7682,12 +9008,11 @@ function openModal(type) {
     } else if (type === 'online' || type === 'pvp') {
         titleEl.innerHTML = `<img src="res/drawable-mdpi/haypitown_online_a.png" style="height:30px"> Đấu Trường Online P2P & PVP Hall`;
         renderOnlineModal(bodyEl);
-    } else if (type === 'hatch') {
-        titleEl.innerHTML = `<img src="res/drawable-mdpi/dragon_egg.png" style="height:30px"> Ấp Trứng Rồng Thần (Dragon Hatchery)`;
-        renderHatchModal(bodyEl);
     } else if (type === 'magic') {
-        titleEl.innerHTML = `<img src="res/drawable-mdpi/magic_matrix.png" style="height:28px"> Ma Trận Phép Thuật (Magic Matrix)`;
-        renderMagicModal(bodyEl);
+        closeModal();
+        showMagicMatrixScreen();
+        return;
+    } else if (type === 'hatch') {
     } else if (type === 'synth') {
         titleEl.innerHTML = `<img src="res/drawable-mdpi/magic_color_3.png" style="height:28px"> Lò Hợp Thành Đá Quý (Synthesis Furnace)`;
         renderSynthModal(bodyEl);
@@ -8195,6 +9520,255 @@ function openSelectedDragonDetailModal() {
     document.getElementById('modal-backdrop').classList.add('active');
     titleEl.innerHTML = `<img src="res/drawable-mdpi/dragon_rock.png" style="height:30px"> Chi Tiết Kỹ Năng & Góc Bắn Rồng`;
     renderDragonModal(bodyEl);
+}
+
+// ============================================================================
+// AUTHENTIC MAGIC MATRIX SYSTEM (media_1792748840863_d3f60555.jpg)
+// ============================================================================
+let matrixSelectedDragonId = '108';
+let selectedMatrixHoleIdx = null;
+
+// Gem inventory with authentic Haypi Dragon gems
+if (!STATE.magicInventory) {
+    STATE.magicInventory = [
+        { id: 'mana_5', name: 'MANA STONE', lvl: 5, stat: 'mp', bonus: 60, icon: 'magic_color_2.png', count: 9 },
+        { id: 'mana_4', name: 'MANA STONE', lvl: 4, stat: 'mp', bonus: 35, icon: 'magic_color_0.png', count: 9 },
+        { id: 'mana_2', name: 'MANA STONE', lvl: 2, stat: 'mp', bonus: 15, icon: 'magic_color_1.png', count: 11 },
+        { id: 'crt_4', name: 'CRT STONE', lvl: 4, stat: 'cri', bonus: 5, icon: 'magic_color_4.png', count: 11 },
+        { id: 'crt_1', name: 'CRT STONE', lvl: 1, stat: 'cri', bonus: 2, icon: 'magic_color_5.png', count: 9 },
+        { id: 'atk_1', name: 'ATTACK STONE', lvl: 1, stat: 'atk', bonus: 15, icon: 'magic_color_6.png', count: 9 },
+        { id: 'dmg_3', name: 'DAMAGE STONE', lvl: 3, stat: 'atk', bonus: 40, icon: 'magic_color_7.png', count: 9 },
+        { id: 'hp_4', name: 'HEALTH STONE', lvl: 4, stat: 'hp', bonus: 150, icon: 'magic_color_0.png', count: 2 },
+        { id: 'hp_2', name: 'HEALTH STONE', lvl: 2, stat: 'hp', bonus: 50, icon: 'magic_color_1.png', count: 2 },
+        { id: 'agi_4', name: 'AGILITY STONE', lvl: 4, stat: 'act', bonus: 20, icon: 'magic_color_8.png', count: 9 }
+    ];
+}
+
+// 9 Sockets per dragon
+if (!STATE.dragonSockets) {
+    STATE.dragonSockets = {};
+}
+
+// Default initial gems for Roco matching media_1792748840863_d3f60555.jpg:
+if (!STATE.dragonSockets['108']) {
+    STATE.dragonSockets['108'] = [
+        { id: 'mana_4', name: 'MANA STONE', lvl: 4, stat: 'mp', bonus: 35, icon: 'magic_color_0.png' }, // Hole 0 (Top)
+        { id: 'agi_4', name: 'AGILITY STONE', lvl: 4, stat: 'act', bonus: 20, icon: 'magic_color_2.png' }, // Hole 1 (Center)
+        { id: 'hp_2', name: 'HEALTH STONE', lvl: 2, stat: 'hp', bonus: 50, icon: 'magic_color_1.png' }, // Hole 2 (Mid-Left)
+        { id: 'crt_1', name: 'CRT STONE', lvl: 1, stat: 'cri', bonus: 2, icon: 'magic_color_3.png' }, // Hole 3 (Mid-Right)
+        null, // Hole 4 (Below-Left X)
+        null, // Hole 5 (Below-Right X)
+        { id: 'dmg_3', name: 'DAMAGE STONE', lvl: 3, stat: 'atk', bonus: 40, icon: 'magic_color_4.png' }, // Hole 6 (Bottom)
+        { id: 'atk_1', name: 'ATTACK STONE', lvl: 1, stat: 'atk', bonus: 15, icon: 'magic_color_7.png' }, // Hole 7 (Far-Left)
+        { id: 'mana_5', name: 'MANA STONE', lvl: 5, stat: 'mp', bonus: 60, icon: 'magic_color_6.png' }  // Hole 8 (Far-Right)
+    ];
+}
+
+// Initial gems for Leshy matching media_1792748840880_c395c16e.jpg:
+if (!STATE.dragonSockets['104']) {
+    STATE.dragonSockets['104'] = [
+        { id: 'hp_4', name: 'HEALTH STONE', lvl: 4, stat: 'hp', bonus: 150, icon: 'magic_color_2.png' },
+        { id: 'agi_4', name: 'AGILITY STONE', lvl: 4, stat: 'act', bonus: 20, icon: 'magic_color_2.png' },
+        { id: 'mana_2', name: 'MANA STONE', lvl: 2, stat: 'mp', bonus: 15, icon: 'magic_color_2.png' },
+        { id: 'crt_4', name: 'CRT STONE', lvl: 4, stat: 'cri', bonus: 5, icon: 'magic_color_2.png' },
+        { id: 'hp_2', name: 'HEALTH STONE', lvl: 2, stat: 'hp', bonus: 50, icon: 'magic_color_4.png' },
+        null, // Hole 5 (X)
+        { id: 'dmg_3', name: 'DAMAGE STONE', lvl: 3, stat: 'atk', bonus: 40, icon: 'magic_color_4.png' },
+        { id: 'atk_1', name: 'ATTACK STONE', lvl: 1, stat: 'atk', bonus: 15, icon: 'magic_color_2.png' },
+        { id: 'mana_5', name: 'MANA STONE', lvl: 5, stat: 'mp', bonus: 60, icon: 'magic_color_2.png' }
+    ];
+}
+
+function showMagicMatrixScreen() {
+    playSfx('btn');
+    if (!matrixSelectedDragonId || !PLAYABLE_DRAGONS[matrixSelectedDragonId]) {
+        matrixSelectedDragonId = STATE.selectedDragonId || '108';
+    }
+    showScreen('screen-magic');
+    renderMagicMatrix();
+}
+
+function renderMagicMatrix() {
+    const screen = document.getElementById('screen-magic');
+    if (!screen) return;
+
+    if (!matrixSelectedDragonId || !PLAYABLE_DRAGONS[matrixSelectedDragonId]) {
+        matrixSelectedDragonId = STATE.selectedDragonId || '108';
+    }
+    const d = PLAYABLE_DRAGONS[matrixSelectedDragonId];
+
+    // Ensure sockets array exists for this dragon
+    if (!STATE.dragonSockets[d.id]) {
+        STATE.dragonSockets[d.id] = [null, null, null, null, null, null, null, null, null];
+    }
+    const sockets = STATE.dragonSockets[d.id];
+
+    // Calculate matrix bonuses
+    let bonusHp = 0, bonusMp = 0, bonusAtk = 0, bonusDef = 0, bonusCri = 0, bonusAct = 0;
+    sockets.forEach(gem => {
+        if (!gem) return;
+        if (gem.stat === 'hp') bonusHp += gem.bonus;
+        else if (gem.stat === 'mp') bonusMp += gem.bonus;
+        else if (gem.stat === 'atk') bonusAtk += gem.bonus;
+        else if (gem.stat === 'def') bonusDef += gem.bonus;
+        else if (gem.stat === 'cri') bonusCri += gem.bonus;
+        else if (gem.stat === 'act') bonusAct += gem.bonus;
+    });
+
+    // Base stats
+    const lvlScale = 1 + (d.level - 1) * 0.08;
+    const finalHp = Math.round(d.baseHp * lvlScale + (STATE.magicLevels ? STATE.magicLevels.hp * 65 : 0) + bonusHp);
+    const finalMp = Math.round((d.baseMp || 100) + (STATE.magicLevels ? STATE.magicLevels.sta * 10 : 0) + bonusMp);
+    const finalAtk = Math.round(d.baseAtk * lvlScale + (STATE.magicLevels ? STATE.magicLevels.atk * 14 : 0) + bonusAtk);
+    const finalDef = Math.round(d.baseDef * lvlScale + (STATE.magicLevels ? STATE.magicLevels.def * 10 : 0) + bonusDef);
+    const finalCri = Math.round((d.crit || 20) + bonusCri);
+    const rInfo = (typeof DRAGON_AUTHENTIC_RATINGS !== 'undefined' && DRAGON_AUTHENTIC_RATINGS[d.id]) ? DRAGON_AUTHENTIC_RATINGS[d.id] : { mobility: 100 };
+    const finalAct = rInfo.mobility + bonusAct;
+
+    // Update Left Column UI
+    const lvlEl = document.getElementById('magic-dragon-lvl');
+    if (lvlEl) lvlEl.innerText = `LV${d.level}`;
+    const avatarEl = document.getElementById('magic-dragon-avatar');
+    if (avatarEl) avatarEl.src = d.avatar;
+    const nameEl = document.getElementById('magic-dragon-name');
+    let dName = d.name;
+    if (d.id === '112') dName = 'EggShell';
+    if (d.id === '113') dName = 'Lightning';
+    if (nameEl) nameEl.innerText = dName.toUpperCase();
+
+    // Update 6-Row Stats
+    const hpEl = document.getElementById('magic-val-hp');
+    if (hpEl) hpEl.innerText = finalHp;
+    const mpEl = document.getElementById('magic-val-mp');
+    if (mpEl) mpEl.innerText = finalMp;
+    const atkEl = document.getElementById('magic-val-atk');
+    if (atkEl) atkEl.innerText = finalAtk;
+    const defEl = document.getElementById('magic-val-def');
+    if (defEl) defEl.innerText = finalDef;
+    const criEl = document.getElementById('magic-val-cri');
+    if (criEl) criEl.innerText = `${finalCri}%`;
+    const actEl = document.getElementById('magic-val-act');
+    if (actEl) actEl.innerText = finalAct;
+
+    // Render 9 Matrix Holes
+    for (let i = 0; i < 9; i++) {
+        const holeEl = document.getElementById(`magic-hole-${i}`);
+        if (!holeEl) continue;
+        const gem = sockets[i];
+        if (gem) {
+            holeEl.innerHTML = `<img src="res/drawable-mdpi/${gem.icon}" title="${gem.name} LV.${gem.lvl} (+${gem.bonus} ${gem.stat.toUpperCase()})" alt="Gem">`;
+        } else {
+            holeEl.innerHTML = `<img src="res/drawable-mdpi/magic_color_black.png" title="Ô trống - Nhấp để khảm ngọc" alt="Empty">`;
+        }
+        if (selectedMatrixHoleIdx === i) {
+            holeEl.classList.add('selected');
+        } else {
+            holeEl.classList.remove('selected');
+        }
+    }
+
+    // Render Gem Inventory List
+    const listEl = document.getElementById('magic-gem-list');
+    if (listEl) {
+        let html = '';
+        STATE.magicInventory.forEach((gem, idx) => {
+            if (gem.count <= 0) return;
+            html += `
+                <div class="magic-gem-item" onclick="embedGemFromInventory(${idx})">
+                    <div class="magic-gem-icon-box">
+                        <img src="res/drawable-mdpi/${gem.icon}" alt="Gem">
+                        <span class="magic-gem-count">x${gem.count}</span>
+                    </div>
+                    <div class="magic-gem-info">
+                        <div class="magic-gem-name">${gem.name}</div>
+                        <div class="magic-gem-lvl">LV.${gem.lvl}</div>
+                        <div class="magic-gem-bonus">+${gem.bonus} ${gem.stat.toUpperCase()}</div>
+                    </div>
+                </div>
+            `;
+        });
+        if (!html) {
+            html = `<div style="padding:16px; text-align:center; color:#888; font-size:12px;">Kho đá đã hết. Hãy vượt ải hoặc mua thêm!</div>`;
+        }
+        listEl.innerHTML = html;
+    }
+}
+
+function clickMagicHole(idx) {
+    playSfx('select');
+    const sockets = STATE.dragonSockets[matrixSelectedDragonId];
+    if (!sockets) return;
+    const gem = sockets[idx];
+    if (gem) {
+        if (confirm(`Bạn có muốn tháo viên [${gem.name} LV.${gem.lvl}] (+${gem.bonus} ${gem.stat.toUpperCase()}) trở lại kho không?`)) {
+            unembedGem(idx);
+        }
+    } else {
+        selectedMatrixHoleIdx = idx;
+        renderMagicMatrix();
+    }
+}
+
+function embedGemFromInventory(invIdx) {
+    const gem = STATE.magicInventory[invIdx];
+    if (!gem || gem.count <= 0) return;
+
+    const sockets = STATE.dragonSockets[matrixSelectedDragonId];
+    if (!sockets) return;
+
+    // Find target hole: either selectedMatrixHoleIdx or first empty hole
+    let targetHole = selectedMatrixHoleIdx;
+    if (targetHole === null || targetHole === undefined || sockets[targetHole] !== null) {
+        targetHole = sockets.findIndex(g => g === null);
+    }
+
+    if (targetHole === -1) {
+        alert('Tất cả 9 ô ma trận đã được khảm đầy ngọc! Hãy nhấp vào một ô để tháo ngọc cũ trước.');
+        return;
+    }
+
+    playSfx('coin');
+    gem.count--;
+    sockets[targetHole] = {
+        id: gem.id,
+        name: gem.name,
+        lvl: gem.lvl,
+        stat: gem.stat,
+        bonus: gem.bonus,
+        icon: gem.icon
+    };
+
+    selectedMatrixHoleIdx = null;
+    saveProgress();
+    renderMagicMatrix();
+}
+
+function unembedGem(holeIdx) {
+    const sockets = STATE.dragonSockets[matrixSelectedDragonId];
+    if (!sockets || !sockets[holeIdx]) return;
+
+    playSfx('btn');
+    const gem = sockets[holeIdx];
+    const existing = STATE.magicInventory.find(g => g.id === gem.id);
+    if (existing) {
+        existing.count++;
+    } else {
+        STATE.magicInventory.push({ ...gem, count: 1 });
+    }
+
+    sockets[holeIdx] = null;
+    saveProgress();
+    renderMagicMatrix();
+}
+
+function openMagicDragonPicker() {
+    playSfx('btn');
+    const unlocked = Object.values(PLAYABLE_DRAGONS).filter(d => d.unlocked);
+    const currIdx = unlocked.findIndex(d => d.id === matrixSelectedDragonId);
+    const nextIdx = (currIdx + 1) % unlocked.length;
+    matrixSelectedDragonId = unlocked[nextIdx].id;
+    selectedMatrixHoleIdx = null;
+    renderMagicMatrix();
 }
 
 // ============================================================================
@@ -8733,6 +10307,10 @@ function showBattleVictoryModal(isWin) {
         stars = hpRatio >= 0.70 ? 3 : (hpRatio >= 0.40 ? 2 : 1);
         STATE.clearedStages[key] = Math.max(STATE.clearedStages[key] || 0, stars);
 
+        // Calculated Authentic Battle Score
+        const calculatedScore = 8000 + Math.floor(hpRatio * 5000) + Math.floor(Math.random() * 1500) + stars * 1000;
+        STATE.score = Math.max(STATE.score || 0, calculatedScore);
+
         // Check if clearing this stage unlocks a New Dragon!
         const rewardDragonId = STAGE_DRAGON_REWARDS[key];
         if (rewardDragonId && PLAYABLE_DRAGONS[rewardDragonId]) {
@@ -8778,37 +10356,37 @@ function showBattleVictoryModal(isWin) {
 
         STATE.gold += 1800;
         STATE.diamonds += 30;
-        STATE.score += 150;
         PLAYABLE_DRAGONS[STATE.selectedDragonId].exp += 120;
         saveProgress();
+        updateTopHud();
+
+        // Authentic Flow: Launch Post-Battle PVE Result & Roulette Wheel Screen!
+        setTimeout(() => {
+            showPveResultScreen(true, stars, calculatedScore, { chapter: ch, stage: st, mode: BTL.mode, unlockMsg, newDragonBanner });
+        }, 400);
+        return;
     }
     updateTopHud();
 
+    // Defeat Fallback Modal
     const titleEl = document.getElementById('modal-title');
     const bodyEl = document.getElementById('modal-body');
     document.getElementById('modal-backdrop').classList.add('active');
 
-    titleEl.innerHTML = isWin ? `🏆 CHIẾN THẮNG HUY HOÀNG (VICTORY!)` : `💀 THẤT BẠI (DEFEAT)`;
+    titleEl.innerHTML = `💀 THẤT BẠI (DEFEAT)`;
     bodyEl.innerHTML = `
         <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; height:100%; gap:10px; text-align:center;">
-            <img src="res/drawable-mdpi/${isWin ? 'result_win.png' : 'result_lose.png'}" style="height:68px; object-fit:contain;">
+            <img src="res/drawable-mdpi/result_lose.png" style="height:68px; object-fit:contain;">
             <div style="display:flex; gap:10px;">
-                <img src="res/drawable-mdpi/${isWin && stars >= 1 ? 'result_star_1.png' : 'result_star_00.png'}" style="height:42px;">
-                <img src="res/drawable-mdpi/${isWin && stars >= 2 ? 'result_star_1.png' : 'result_star_00.png'}" style="height:42px;">
-                <img src="res/drawable-mdpi/${isWin && stars >= 3 ? 'result_star_1.png' : 'result_star_00.png'}" style="height:42px;">
+                <img src="res/drawable-mdpi/result_star_00.png" style="height:42px;">
+                <img src="res/drawable-mdpi/result_star_00.png" style="height:42px;">
+                <img src="res/drawable-mdpi/result_star_00.png" style="height:42px;">
             </div>
-            ${newDragonBanner}
-            ${unlockMsg ? `<div style="background:#e8f5e9; border:2px solid #2e7d32; color:#1b5e20; padding:5px 14px; border-radius:10px; font-size:13.5px;">${unlockMsg}</div>` : ''}
             <div style="font-size:14px; font-weight:900; color:#5a2d0c;">
-                ${isWin
-                    ? `Phần thưởng vượt màn: <b style="color:#b84a00;">+1,800 Vàng</b>, <b style="color:#0277bd;">+30 Kim Cương</b> & <b style="color:#2e7d32;">+120 EXP Rồng</b>!`
-                    : `Đừng nản chí! Hãy nâng cấp Ma Trận Phép Thuật hoặc đổi sang Rồng khác để khắc chế địa hình!`}
+                Đừng nản chí! Hãy nâng cấp Ma Trận Phép Thuật hoặc đổi sang Rồng khác để khắc chế địa hình!
             </div>
             <div style="display:flex; gap:14px; margin-top:4px;">
                 <button class="haypi-action-btn" onclick="closeModal(); startCampaignBattle(${BTL.chapter}, ${BTL.stage}, ${BTL.mode !== 'pve'}, '${BTL.mode}');">🔄 Chơi Lại</button>
-                ${isWin && BTL.mode === 'pve'
-                    ? `<button class="haypi-action-btn green" onclick="closeModal(); proceedToNextStage(${BTL.chapter}, ${BTL.stage});">⏭️ Màn Tiếp Theo</button>`
-                    : ''}
                 <button class="haypi-action-btn" onclick="closeModal(); leaveBattle();">🗺️ Về Bản Đồ</button>
             </div>
         </div>
@@ -8827,6 +10405,474 @@ function proceedToNextStage(ch, st) {
         openWorldMap();
     }
 }
+
+// ============================================================================
+// AUTHENTIC PVE RESULT & ROULETTE WHEEL ENGINE (media_1792748883084_8eec11f3.jpg)
+// ============================================================================
+let wheelCurrentRot = 0;
+let wheelIsSpinning = false;
+let wheelPendingReward = null;
+let wheelPostBattleContext = null;
+let activeWheelItems = [];
+
+function initWheelItems() {
+    // 6 Reward Items on the Wheel matching Haypi Dragon APK & user screenshots
+    activeWheelItems = [
+        { type: 'dragon_exp', name: 'Kinh Nghiệm Rồng', icon: 'res/drawable-mdpi/icon800901.png', qty: 1193 },
+        { type: 'silver', name: 'Tiền Bạc', icon: 'res/drawable-mdpi/icon800201.png', qty: 3900 },
+        { type: 'player_exp', name: 'Kinh Nghiệm Nhân Vật', icon: 'res/drawable-mdpi/icon801001.png', qty: 1785 },
+        { type: 'silver', name: 'Tiền Bạc', icon: 'res/drawable-mdpi/icon800201.png', qty: 800 },
+        { type: 'silver', name: 'Tiền Bạc', icon: 'res/drawable-mdpi/icon800201.png', qty: 4500 },
+        { type: 'silver', name: 'Tiền Bạc', icon: 'res/drawable-mdpi/icon800201.png', qty: 210 }
+    ];
+
+    // High variety chance for synthesis stone, gold diamond and crystal gems
+    if (Math.random() < 0.65) {
+        activeWheelItems[0] = { type: 'synthesis', name: 'Đá Hợp Thành (Piedra de síntesis)', icon: 'res/drawable-mdpi/icon801601.png', qty: 1 };
+    }
+    if (Math.random() < 0.5) {
+        activeWheelItems[4] = { type: 'gold_gem', name: 'Đá Quý / Vàng', icon: 'res/drawable-mdpi/icon800101.png', qty: 1 };
+    }
+    if (Math.random() < 0.45) {
+        activeWheelItems[3] = { type: 'magic_stone', name: 'Đá Ma Trận Bạo Kích (CRT Stone)', icon: 'res/drawable-mdpi/magic_color_5.png', qty: 1 };
+    }
+
+    renderWheelSlots();
+}
+
+function renderWheelSlots() {
+    const container = document.getElementById('pve-res-wheel-slots');
+    if (!container) return;
+
+    // Disc radius = 130px, item orbit radius = 80px
+    const cx = 130;
+    const cy = 130;
+    const r = 80;
+
+    container.innerHTML = activeWheelItems.map((item, idx) => {
+        const rad = (idx * 60) * (Math.PI / 180);
+        const x = Math.round(cx + r * Math.cos(rad));
+        const y = Math.round(cy + r * Math.sin(rad));
+
+        return `
+            <div class="pve-res-slot" style="left:${x}px; top:${y}px;">
+                <img src="${item.icon}" class="pve-res-slot-img" alt="${item.name}">
+                <div class="pve-res-slot-qty">${item.qty}</div>
+            </div>
+        `;
+    }).join('');
+}
+
+function showPveResultScreen(isWin = true, stars = 3, score = 12850, context = null) {
+    wheelPostBattleContext = context || {
+        chapter: (typeof BTL !== 'undefined' && BTL.chapter) ? BTL.chapter : 1,
+        stage: (typeof BTL !== 'undefined' && BTL.stage) ? BTL.stage : 1,
+        mode: (typeof BTL !== 'undefined' && BTL.mode) ? BTL.mode : 'pve'
+    };
+
+    wheelIsSpinning = false;
+    wheelPendingReward = null;
+
+    showScreen('screen-pve-result');
+
+    // Update Scores
+    const scoreValEl = document.getElementById('pve-res-score-val');
+    if (scoreValEl) scoreValEl.textContent = score.toLocaleString();
+
+    const bestScore = Math.max(16000, STATE.score || 16000);
+    const bestNumEl = document.getElementById('pve-res-best-num');
+    if (bestNumEl) bestNumEl.textContent = bestScore.toLocaleString();
+
+    // Update 3 Stars
+    for (let s = 1; s <= 3; s++) {
+        const starEl = document.getElementById(`pve-res-star-${s}`);
+        if (starEl) {
+            if (isWin && s <= stars) {
+                starEl.src = 'res/drawable-mdpi/result_star_1.png';
+                starEl.classList.add('lit');
+            } else {
+                starEl.src = 'res/drawable-mdpi/result_star_00.png';
+                starEl.classList.remove('lit');
+            }
+        }
+    }
+
+    // Update Currencies on bottom bar
+    updateWheelCurrencyHud();
+
+    // Reset Wheel and items
+    initWheelItems();
+    const discWrap = document.getElementById('pve-res-wheel-disc-wrap');
+    if (discWrap) {
+        discWrap.style.transition = 'none';
+        wheelCurrentRot = 0;
+        discWrap.style.transform = `rotate(0deg)`;
+    }
+
+    // Enable button
+    const btn = document.getElementById('pve-res-btn-spin');
+    if (btn) {
+        btn.disabled = false;
+        btn.textContent = 'AUTO SPIN';
+    }
+
+    // Hide Dialog
+    const dialog = document.getElementById('pve-res-dialog-backdrop');
+    if (dialog) dialog.style.display = 'none';
+}
+
+function updateWheelCurrencyHud() {
+    const silverEl = document.getElementById('pve-res-bottom-silver');
+    if (silverEl) silverEl.textContent = (STATE.gold || 0).toLocaleString();
+
+    const goldEl = document.getElementById('pve-res-bottom-gold');
+    if (goldEl) goldEl.textContent = (STATE.diamonds || 0).toLocaleString();
+}
+
+function startWheelSpin() {
+    if (wheelIsSpinning) return;
+    wheelIsSpinning = true;
+
+    playSfx('btn');
+
+    const btn = document.getElementById('pve-res-btn-spin');
+    if (btn) {
+        btn.disabled = true;
+        btn.textContent = 'SPINNING...';
+    }
+
+    // Pick a winning index (0 to 5)
+    const winningIdx = Math.floor(Math.random() * activeWheelItems.length);
+    wheelPendingReward = activeWheelItems[winningIdx];
+
+    // Compute target rotation so slot winningIdx lands at 180° (pointing to orange arrow on left)
+    const targetDegInWheel = winningIdx * 60;
+    const rem = ((180 - targetDegInWheel) % 360 + 360) % 360;
+    const base = Math.floor(wheelCurrentRot / 360) * 360 + 5 * 360;
+    let finalRot = base + rem;
+    if (finalRot <= wheelCurrentRot + 4 * 360) finalRot += 360;
+
+    wheelCurrentRot = finalRot;
+
+    const discWrap = document.getElementById('pve-res-wheel-disc-wrap');
+    if (discWrap) {
+        discWrap.style.transition = 'transform 3.8s cubic-bezier(0.12, 0.88, 0.18, 1)';
+        discWrap.style.transform = `rotate(${wheelCurrentRot}deg)`;
+    }
+
+    // Play tick sound during spin
+    let ticks = 0;
+    const tickInterval = setInterval(() => {
+        if (!wheelIsSpinning || ticks > 18) {
+            clearInterval(tickInterval);
+            return;
+        }
+        playSfx('coin', 0.25);
+        ticks++;
+    }, 180);
+
+    setTimeout(() => {
+        wheelIsSpinning = false;
+        clearInterval(tickInterval);
+        onWheelSpinComplete();
+    }, 3900);
+}
+
+function onWheelSpinComplete() {
+    playSfx('levelup');
+
+    const dialog = document.getElementById('pve-res-dialog-backdrop');
+    const descEl = document.getElementById('pve-res-dialog-desc');
+    const imgEl = document.getElementById('pve-res-dialog-item-img');
+    const numEl = document.getElementById('pve-res-dialog-item-num');
+
+    if (!wheelPendingReward) return;
+
+    if (descEl) {
+        descEl.innerHTML = `Bạn đã nhận được vật phẩm <b>${wheelPendingReward.name}</b>!<br>Bạn có muốn dùng <b>2 Vàng</b> để quay lại không?`;
+    }
+    if (imgEl) imgEl.src = wheelPendingReward.icon;
+    if (numEl) numEl.textContent = wheelPendingReward.qty;
+
+    if (dialog) dialog.style.display = 'flex';
+}
+
+function respinWheel() {
+    if ((STATE.diamonds || 0) < 2) {
+        alert('Bạn không đủ Vàng để quay lại! (Cần 2 Vàng)');
+        return;
+    }
+
+    STATE.diamonds -= 2;
+    updateTopHud();
+    updateWheelCurrencyHud();
+    saveProgress();
+
+    // Close Dialog and spin again
+    const dialog = document.getElementById('pve-res-dialog-backdrop');
+    if (dialog) dialog.style.display = 'none';
+
+    // Mix up prizes slightly
+    initWheelItems();
+    setTimeout(() => {
+        startWheelSpin();
+    }, 300);
+}
+
+function claimWheelReward() {
+    playSfx('coin');
+
+    if (wheelPendingReward) {
+        if (wheelPendingReward.type === 'silver') {
+            STATE.gold = (STATE.gold || 0) + wheelPendingReward.qty;
+        } else if (wheelPendingReward.type === 'gold_gem') {
+            STATE.diamonds = (STATE.diamonds || 0) + wheelPendingReward.qty;
+        } else if (wheelPendingReward.type === 'dragon_exp') {
+            const dr = PLAYABLE_DRAGONS[STATE.selectedDragonId];
+            if (dr) {
+                dr.exp = (dr.exp || 0) + wheelPendingReward.qty;
+                if (typeof checkDragonLevelUp === 'function') checkDragonLevelUp(STATE.selectedDragonId);
+            }
+        } else if (wheelPendingReward.type === 'player_exp') {
+            STATE.score = (STATE.score || 0) + wheelPendingReward.qty;
+        } else if (wheelPendingReward.type === 'synthesis' || wheelPendingReward.type === 'magic_stone') {
+            if (!STATE.magicInventory) STATE.magicInventory = [];
+            STATE.magicInventory.push({
+                id: 'gem_' + Date.now(),
+                name: wheelPendingReward.name,
+                lvl: 1,
+                stat: 'atk',
+                bonus: 25,
+                count: wheelPendingReward.qty || 1,
+                icon: wheelPendingReward.icon
+            });
+        }
+        wheelPendingReward = null;
+    }
+
+    saveProgress();
+    updateTopHud();
+
+    // Hide Dialog
+    const dialog = document.getElementById('pve-res-dialog-backdrop');
+    if (dialog) dialog.style.display = 'none';
+
+    // Transition back to Map or City
+    if (wheelPostBattleContext && wheelPostBattleContext.mode === 'pve') {
+        openChapterMap(wheelPostBattleContext.chapter || 1);
+    } else {
+        showScreen('screen-city');
+    }
+}
+
+window.showPveResultScreen = showPveResultScreen;
+
+// ============================================================================
+// AUTHENTIC CO-OP BOSS WAITING ROOM ENGINE (media_1792748932225_ef562e77.jpg)
+// ============================================================================
+let currentRoomBossMapIdx = 1; // Default to Chapter 2 Beach Map (room_map2.png matching screenshot)
+let currentRoomDifficulty = 'NORMAL'; // NORMAL | HARD | EXPERT
+let isRoomMaster = true;
+let isRoomReady = false;
+
+const ROOM_BOSS_MAPS = [
+    { id: 1, name: 'Chương 1: Secret Forest', boss: 'Mộc Long Leshy (Boss 1-15)', img: 'res/drawable-mdpi/room_map0.png', bossDragonId: '109', bossHp: 5000 },
+    { id: 2, name: 'Chương 2: Beach / Elven Town', boss: 'Hải Long Tide (Boss 2-15)', img: 'res/drawable-mdpi/room_map2.png', bossDragonId: '108', bossHp: 6500 },
+    { id: 3, name: 'Chương 3: Icefield', boss: 'Băng Long Crystal (Boss 3-15)', img: 'res/drawable-mdpi/room_map1.png', bossDragonId: '110', bossHp: 8000 },
+    { id: 4, name: 'Chương 4: Caverns', boss: 'Cổ Thạch Long (Boss 4-15)', img: 'res/drawable-mdpi/room_map3.png', bossDragonId: '108', bossHp: 9500 },
+    { id: 5, name: 'Chương 5: Sky Sea', boss: 'Lôi Long Thunder (Boss 5-15)', img: 'res/drawable-mdpi/room_map4.png', bossDragonId: '113', bossHp: 11000 },
+    { id: 6, name: 'Chương 6: Fire Mountain', boss: 'Hỏa Long Lava (Boss 6-15)', img: 'res/drawable-mdpi/room_map5.png', bossDragonId: '111', bossHp: 13000 },
+    { id: 7, name: 'Chương 7: Desert Ruins', boss: 'Hắc Long Chaos (Boss 7-15)', img: 'res/drawable-mdpi/room_map6.png', bossDragonId: '114', bossHp: 15000 },
+    { id: 8, name: 'Chương 8: Grassland & Coast', boss: 'Thánh Long Light (Boss 8-15)', img: 'res/drawable-mdpi/room_map7.png', bossDragonId: '112', bossHp: 18000 }
+];
+
+let roomSlots = [
+    {
+        occupied: true,
+        isMaster: true,
+        isReady: true,
+        name: 'DragonPenis[3]',
+        lvl: 35,
+        winRate: 89,
+        dragonId: '108',
+        avatar: 'res/drawable-mdpi/icon108.png'
+    },
+    {
+        occupied: true,
+        isMaster: false,
+        isReady: true,
+        name: 'trollzor[8]',
+        lvl: 28,
+        winRate: 92,
+        dragonId: '109',
+        avatar: 'res/drawable-mdpi/icon109.png'
+    },
+    { occupied: false },
+    { occupied: false }
+];
+
+function showWaitingRoomScreen(mapChapter = 2) {
+    currentRoomBossMapIdx = Math.max(0, Math.min(ROOM_BOSS_MAPS.length - 1, mapChapter - 1));
+    showScreen('screen-waiting-room');
+    renderWaitingRoomUI();
+}
+
+function renderWaitingRoomUI() {
+    // 1. Render Map Preview & Boss info
+    const mapData = ROOM_BOSS_MAPS[currentRoomBossMapIdx];
+    const mapImg = document.getElementById('room-map-img');
+    const bossTxt = document.getElementById('room-boss-target-name');
+    const diffVal = document.getElementById('room-diff-val');
+
+    if (mapImg) mapImg.src = mapData.img;
+    if (bossTxt) bossTxt.innerHTML = `👑 TRÙM: <b>${mapData.boss.toUpperCase()}</b><br><span style="color:#b9f6ca; font-size:11px;">Máu Trùm: ${mapData.bossHp.toLocaleString()} HP</span>`;
+    if (diffVal) diffVal.textContent = currentRoomDifficulty;
+
+    // 2. Render 4 Slots
+    roomSlots.forEach((slot, idx) => {
+        const slotBox = document.getElementById(`room-slot-box-${idx}`);
+        const nameEl = document.getElementById(`room-name-${idx}`);
+
+        if (!slotBox || !nameEl) return;
+
+        if (slot.occupied) {
+            slotBox.className = 'room-slot-box' + (idx === 1 ? ' selected' : '');
+            slotBox.innerHTML = `
+                <div class="room-slot-stats">
+                    <span class="room-slot-lvl">LV ${slot.lvl}</span>
+                    <span class="room-slot-rate">${slot.winRate} %</span>
+                </div>
+                <div class="room-slot-avatar-wrap">
+                    <img src="${slot.avatar}" class="room-slot-dragon-img" alt="${slot.name}">
+                </div>
+                ${slot.isMaster
+                    ? `<img src="res/drawable-mdpi/room_master.png" class="room-slot-stamp master">`
+                    : (slot.isReady ? `<img src="res/drawable-mdpi/room_ready.png" class="room-slot-stamp ready">` : '')}
+            `;
+            nameEl.textContent = slot.name;
+        } else {
+            slotBox.className = 'room-slot-box empty';
+            slotBox.innerHTML = `<div class="room-empty-txt">+ MỜI BẠN</div>`;
+            nameEl.textContent = 'Trống';
+        }
+    });
+
+    // 3. Render Main Action Button
+    const mainBtn = document.getElementById('room-btn-main');
+    if (mainBtn) {
+        if (isRoomMaster) {
+            mainBtn.textContent = 'START';
+            mainBtn.className = 'room-btn-main';
+        } else {
+            mainBtn.textContent = isRoomReady ? 'CANCEL' : 'READY';
+            mainBtn.className = 'room-btn-main' + (isRoomReady ? ' cancel' : '');
+        }
+    }
+}
+
+function changeBossMap(delta) {
+    playSfx('btn');
+    currentRoomBossMapIdx = (currentRoomBossMapIdx + delta + ROOM_BOSS_MAPS.length) % ROOM_BOSS_MAPS.length;
+    renderWaitingRoomUI();
+}
+
+function toggleDifficulty() {
+    playSfx('btn');
+    const diffs = ['NORMAL', 'HARD', 'EXPERT'];
+    const nextIdx = (diffs.indexOf(currentRoomDifficulty) + 1) % diffs.length;
+    currentRoomDifficulty = diffs[nextIdx];
+    renderWaitingRoomUI();
+}
+
+function clickRoomSlot(idx) {
+    playSfx('btn');
+    const slot = roomSlots[idx];
+    if (!slot.occupied) {
+        // Invite a bot or ally into empty slot
+        const botNames = ['DragonMaster[12]', 'bjfai[15]', 'SuperRoco[7]', 'ThunderBolt[10]'];
+        const randomName = botNames[Math.floor(Math.random() * botNames.length)];
+        const drKeys = ['108', '109', '110', '111', '113'];
+        const drId = drKeys[Math.floor(Math.random() * drKeys.length)];
+        const dr = PLAYABLE_DRAGONS[drId];
+
+        roomSlots[idx] = {
+            occupied: true,
+            isMaster: false,
+            isReady: true,
+            name: randomName,
+            lvl: Math.floor(25 + Math.random() * 15),
+            winRate: Math.floor(85 + Math.random() * 12),
+            dragonId: drId,
+            avatar: dr ? dr.avatar : 'res/drawable-mdpi/icon108.png'
+        };
+        const latestChat = document.getElementById('room-chat-latest');
+        if (latestChat) latestChat.textContent = `${randomName}: ready to fight!`;
+        renderWaitingRoomUI();
+    } else if (!slot.isMaster && isRoomMaster) {
+        // Master can kick or toggle slot
+        if (confirm(`Bạn có muốn đuổi đồng đội ${slot.name} khỏi phòng không?`)) {
+            roomSlots[idx] = { occupied: false };
+            renderWaitingRoomUI();
+        }
+    }
+}
+
+function handleRoomMainAction() {
+    playSfx('btn');
+    if (isRoomMaster) {
+        // Start co-op battle
+        startCoopBossBattle();
+    } else {
+        isRoomReady = !isRoomReady;
+        roomSlots[1].isReady = isRoomReady;
+        renderWaitingRoomUI();
+    }
+}
+
+function startCoopBossBattle() {
+    const mapData = ROOM_BOSS_MAPS[currentRoomBossMapIdx];
+    playSfx('levelup');
+
+    // Launch co-op battle with both players against Giant Boss!
+    startCampaignBattle(mapData.id, 15, false, 'hotseat_2p');
+
+    // Adjust enemy Boss stats to be a true RAID BOSS!
+    setTimeout(() => {
+        if (BTL.enemies && BTL.enemies[0]) {
+            const boss = BTL.enemies[0];
+            boss.name = `👑 SIÊU TRÙM ${mapData.boss.toUpperCase()}`;
+            boss.maxHp = mapData.bossHp;
+            boss.hp = mapData.bossHp;
+            boss.atk = Math.round(boss.atk * 1.5);
+        }
+        spawnFloatText(568, 200, `⚔️ TRẬN ĐẤU CO-OP TRÙM BẮT ĐẦU!`, '#ffea00');
+    }, 850);
+}
+
+function leaveWaitingRoom() {
+    playSfx('btn');
+    showScreen('screen-worldmap');
+}
+
+function openRoomChatModal() {
+    const msg = prompt('Nhập tin nhắn gửi đến các người chơi trong phòng:', 'lets go boss!');
+    if (msg && msg.trim()) {
+        const latest = document.getElementById('room-chat-latest');
+        if (latest) latest.textContent = `Bạn: ${msg.trim()}`;
+        playSfx('coin');
+    }
+}
+
+function openRoomHelpModal() {
+    alert('HƯỚNG DẪN CO-OP ĐÁNH TRÙM:\n\n1. Phòng hỗ trợ 2 - 4 người chơi cùng hợp lực đánh Boss cuối màn.\n2. Chủ phòng (MASTER) có quyền chọn Màn, Trùm và Độ khó (Normal, Hard, Expert).\n3. Bấm vào ô trống để mời thêm đồng đội hoặc Robot trợ chiến.\n4. Khi tất cả đã READY, Chủ phòng nhấn START để vào trận chiến!');
+}
+
+function openRoomInviteModal() {
+    const code = 'HD-' + Math.floor(1000 + Math.random() * 9000);
+    alert(`MÃ MỜI PHÒNG CO-OP: ${code}\n\nĐã sao chép liên kết phòng! Gửi mã này cho bạn bè để cùng vào phòng săn Boss!`);
+}
+
+window.showWaitingRoomScreen = showWaitingRoomScreen;
 </script>
 </body>
 </html>
