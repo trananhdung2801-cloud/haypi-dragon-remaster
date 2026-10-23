@@ -32,7 +32,17 @@
             font-weight: normal;
             font-style: normal;
         }
-        * { box-sizing: border-box; margin: 0; padding: 0; user-select: none; -webkit-user-drag: none; }
+        * { box-sizing: border-box; margin: 0; padding: 0; user-select: none; -webkit-user-drag: none; -webkit-touch-callout: none; }
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            position: fixed;
+            inset: 0;
+            touch-action: manipulation;
+        }
         body {
             background: radial-gradient(circle at center, #182232 0%, #070a10 100%);
             font-family: 'Segoe UI', 'Trebuchet MS', Tahoma, sans-serif;
@@ -41,8 +51,32 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            min-height: 100vh;
-            overflow: hidden;
+        }
+        #screen-rotate-toggle {
+            position: fixed;
+            top: 10px;
+            right: 12px;
+            z-index: 999999;
+            background: rgba(16, 24, 39, 0.9);
+            border: 1.5px solid #ffd54f;
+            border-radius: 20px;
+            color: #fff3c4;
+            font-size: 13px;
+            font-weight: 700;
+            padding: 6px 14px;
+            cursor: pointer;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.7);
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+            transition: transform 0.15s ease, background 0.15s ease;
+        }
+        #screen-rotate-toggle:active {
+            transform: scale(0.94);
+            background: rgba(30, 41, 59, 1);
         }
         .haypi-stone-text {
             font-family: 'HaypiFont', 'Trebuchet MS', sans-serif;
@@ -1634,6 +1668,7 @@
 </style>
 </head>
 <body>
+<button id="screen-rotate-toggle" onclick="toggleScreenOrientation()" title="Xoay Màn Hình Ngang/Dọc">🔄 Xoay Ngang</button>
 
 <div id="phone-shell">
 <div id="game-viewport">
@@ -2956,8 +2991,41 @@ function showScreen(screenId) {
 
 
 // ============================================================================
-// PWA ENGINE & RESPONSIVE VIEWPORT AUTOSCALER
+// PWA ENGINE & RESPONSIVE VIEWPORT AUTOSCALER & DYNAMIC ORIENTATION
 // ============================================================================
+let currentOrientationMode = 'auto'; // 'auto' | 'landscape' | 'normal'
+let currentRotationDeg = 0;
+
+function toggleScreenOrientation() {
+    if (currentOrientationMode === 'auto') {
+        currentOrientationMode = currentRotationDeg === 90 ? 'normal' : 'landscape';
+    } else if (currentOrientationMode === 'landscape') {
+        currentOrientationMode = 'normal';
+    } else {
+        currentOrientationMode = 'auto';
+    }
+    if (screen.orientation && screen.orientation.lock) {
+        if (currentOrientationMode === 'normal') {
+            try { screen.orientation.unlock(); } catch (e) {}
+        } else {
+            screen.orientation.lock('landscape').catch(() => {});
+        }
+    }
+    autoScaleViewport();
+}
+
+function updateOrientationButtonUi() {
+    const btn = document.getElementById('screen-rotate-toggle');
+    if (!btn) return;
+    if (currentRotationDeg === 90) {
+        btn.innerHTML = '🔄 Xoay Dọc';
+        btn.title = 'Chuyển về khung hình dọc';
+    } else {
+        btn.innerHTML = '🔄 Xoay Ngang';
+        btn.title = 'Xoay màn hình ngang 90°';
+    }
+}
+
 function autoScaleViewport() {
     const shell = document.getElementById('phone-shell');
     const vp = document.getElementById('game-viewport');
@@ -2965,16 +3033,27 @@ function autoScaleViewport() {
 
     const winW = window.innerWidth;
     const winH = window.innerHeight;
-
-    const isStandalone = window.matchMedia('(display-mode: standalone)').matches ||
-                         window.matchMedia('(display-mode: fullscreen)').matches ||
-                         navigator.standalone === true ||
-                         winW <= 1180 || winH <= 680;
+    const isPortrait = winH > winW;
 
     const targetW = 1136;
     const targetH = 640;
 
-    if (isStandalone) {
+    let rotate90 = false;
+    if (currentOrientationMode === 'landscape') {
+        rotate90 = isPortrait;
+    } else if (currentOrientationMode === 'auto') {
+        // Automatically adapt on mobile devices held vertically: rotate 90deg to landscape
+        rotate90 = isPortrait;
+    } else {
+        rotate90 = false;
+    }
+
+    currentRotationDeg = rotate90 ? 90 : 0;
+    updateOrientationButtonUi();
+
+    const isMobile = winW <= 1180 || winH <= 680 || isPortrait;
+
+    if (isMobile) {
         shell.style.padding = '0';
         shell.style.border = 'none';
         shell.style.borderRadius = '0';
@@ -2984,17 +3063,7 @@ function autoScaleViewport() {
             vp.style.borderRadius = '0';
             vp.style.boxShadow = 'none';
         }
-
-        const scale = Math.min(winW / targetW, winH / targetH);
-        shell.style.transform = `scale(${scale})`;
-        shell.style.transformOrigin = 'center center';
     } else {
-        const availW = winW - 60;
-        const availH = winH - 40;
-        const baseW = targetW + 56;
-        const baseH = targetH + 20;
-        const scale = Math.min(1.0, Math.min(availW / baseW, availH / baseH));
-
         shell.style.padding = '10px 28px';
         shell.style.borderRadius = '34px';
         shell.style.border = '2px solid #4a5264';
@@ -3004,14 +3073,31 @@ function autoScaleViewport() {
             vp.style.borderRadius = '18px';
             vp.style.boxShadow = 'inset 0 0 0 1px rgba(255, 215, 120, 0.22)';
         }
-
-        shell.style.transform = `scale(${scale})`;
-        shell.style.transformOrigin = 'center center';
     }
+
+    let scale;
+    if (rotate90) {
+        scale = Math.min(winH / targetW, winW / targetH);
+        shell.style.transform = `rotate(90deg) scale(${scale})`;
+    } else {
+        scale = Math.min(winW / targetW, winH / targetH);
+        if (!isMobile) {
+            const availW = winW - 60;
+            const availH = winH - 40;
+            const baseW = targetW + 56;
+            const baseH = targetH + 20;
+            scale = Math.min(1.0, Math.min(availW / baseW, availH / baseH));
+        }
+        shell.style.transform = `scale(${scale})`;
+    }
+    shell.style.transformOrigin = 'center center';
 }
 
 window.addEventListener('resize', autoScaleViewport);
 window.addEventListener('orientationchange', () => setTimeout(autoScaleViewport, 150));
+if (window.visualViewport) {
+    window.visualViewport.addEventListener('resize', autoScaleViewport);
+}
 window.addEventListener('load', autoScaleViewport);
 
 // Register Service Worker for Offline PWA Play
@@ -4092,8 +4178,23 @@ function toggleCameraPanMode() {
 
     function getCanvasCoords(e) {
         const rect = bCanvas.getBoundingClientRect();
-        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-        const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+        const clientX = e.touches && e.touches.length > 0 ? e.touches[0].clientX : e.clientX;
+        const clientY = e.touches && e.touches.length > 0 ? e.touches[0].clientY : e.clientY;
+
+        if (currentRotationDeg === 90) {
+            const centerX = rect.left + rect.width / 2;
+            const centerY = rect.top + rect.height / 2;
+            const dx = clientX - centerX;
+            const dy = clientY - centerY;
+            const scale = rect.height / bCanvas.width;
+            return {
+                x: (bCanvas.width / 2) + (dy / scale),
+                y: (bCanvas.height / 2) - (dx / scale),
+                rawX: clientX,
+                rawY: clientY
+            };
+        }
+
         const scaleX = bCanvas.width / rect.width;
         const scaleY = bCanvas.height / rect.height;
         return {
@@ -4130,8 +4231,8 @@ function toggleCameraPanMode() {
         // Otherwise pan camera
         camDragging = true;
         BTL.manualCam = true;
-        sx = pt.rawX + BTL.camX;
-        sy = pt.rawY + BTL.camY;
+        sx = pt.x + BTL.camX;
+        sy = pt.y + BTL.camY;
     }
 
     function updateDragAimVector(ctrl, worldX, worldY) {
@@ -4162,8 +4263,8 @@ function toggleCameraPanMode() {
             return;
         }
         if (camDragging) {
-            BTL.camX = Math.max(0, Math.min(Math.max(0, BTL.mapW - 1136), sx - pt.rawX));
-            BTL.camY = Math.max(0, Math.min(Math.max(0, BTL.mapH - 640), sy - pt.rawY));
+            BTL.camX = Math.max(0, Math.min(Math.max(0, BTL.mapW - 1136), sx - pt.x));
+            BTL.camY = Math.max(0, Math.min(Math.max(0, BTL.mapH - 640), sy - pt.y));
         }
     }
 
@@ -5084,6 +5185,7 @@ function drawDragonAngleSectorAndAim(ctx, ctrl, now) {
 }
 
 function battleLoop(now) {
+    try {
     const dt = Math.min(0.05, (now - lastFrameTime) / 1000);
     lastFrameTime = now;
 
@@ -5272,14 +5374,15 @@ function battleLoop(now) {
             if (fName === 'zd_16_37.png') {
                 angleRad = (pr.flightTime * 14 * (pr.vx >= 0 ? 1 : -1));
             }
+            let drawn = false;
             if (pr.bomb.special === 'rage_critical') {
                 bCtx.save();
                 bCtx.shadowColor = '#ff3d00';
                 bCtx.shadowBlur = 18;
-                drawCocosFrame(bCtx, 'zidan', fName, pr.x, pr.y, false, 1.25, 0, 0, angleRad);
+                drawn = drawCocosFrame(bCtx, 'zidan', fName, pr.x, pr.y, false, 1.25, 0, 0, angleRad);
                 bCtx.restore();
             } else {
-                drawCocosFrame(bCtx, 'zidan', fName, pr.x, pr.y, false, 0.95, 0, 0, angleRad);
+                drawn = drawCocosFrame(bCtx, 'zidan', fName, pr.x, pr.y, false, 0.95, 0, 0, angleRad);
             }
             if (!drawn) {
                 bCtx.fillStyle = '#ffeb3b';
@@ -5327,7 +5430,9 @@ function battleLoop(now) {
 
         bCtx.restore();
     }
-
+    } catch (loopErr) {
+        console.error("BattleLoop protected error:", loopErr);
+    }
     requestAnimationFrame(battleLoop);
 }
 requestAnimationFrame(battleLoop);
