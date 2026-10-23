@@ -1101,115 +1101,81 @@
         }
         .btl-socket-mover:active { background-image: url('images/ingame/hd/ingame_butten_mover_b.png'); }
 
-        /* Socket 0 (center x=170, y=58): Rage / Anger Flame Socket */
-        .btl-socket-rage {
+        /* ==================== AUTHENTIC HAYPI DRAGON INGAME BOTTOM HUD ==================== */
+        /* Socket 1: Weapon / Bullet Selector Socket (x=124px, 86x86) */
+        .btl-socket-bullet {
             position: absolute;
-            left: 126px;
+            left: 122px;
             top: 14px;
-            width: 88px;
-            height: 88px;
+            width: 86px;
+            height: 86px;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
             border-radius: 50%;
-            background: radial-gradient(circle, #2a1510 0%, #160a07 65%, #0d0504 100%);
-            border: 2.5px solid #ff7043;
-            box-shadow: inset 0 2px 6px rgba(0,0,0,0.85), 0 3px 8px rgba(0,0,0,0.65), 0 0 10px rgba(255, 112, 67, 0.45);
+            background: radial-gradient(circle, #252e3d 0%, #131a24 70%, #090e15 100%);
+            border: 3px solid #d4a259;
+            box-shadow: inset 0 2px 6px rgba(0,0,0,0.85), 0 3px 8px rgba(0,0,0,0.7), 0 0 10px rgba(212, 162, 89, 0.4);
             transition: transform 0.12s, border-color 0.12s, box-shadow 0.12s;
+            z-index: 5;
         }
-        .btl-socket-rage:hover {
-            transform: scale(1.04);
-            border-color: #ffab91;
-            box-shadow: inset 0 2px 8px rgba(0,0,0,0.9), 0 0 16px rgba(255, 112, 67, 0.7);
+        .btl-socket-bullet:hover {
+            transform: scale(1.05);
+            border-color: #ffe082;
+            box-shadow: inset 0 2px 8px rgba(0,0,0,0.9), 0 0 14px rgba(255, 224, 130, 0.65);
         }
-        .btl-socket-rage.active {
-            border-color: #ff3d00;
-            box-shadow: inset 0 0 10px rgba(255, 61, 0, 0.8), 0 0 22px #ff3d00;
-        }
-        .btl-rage-fill-wrap {
-            position: absolute;
-            left: 12px;
-            bottom: 8px;
-            width: 64px;
-            height: 64px;
-            border-radius: 50%;
-            overflow: hidden;
+        .btl-socket-bullet img.bullet-main-ico {
+            width: 58px;
+            height: 58px;
+            object-fit: contain;
             pointer-events: none;
+            filter: drop-shadow(0 2px 5px rgba(0,0,0,0.85));
+            transition: transform 0.15s;
         }
-        .btl-rage-fill {
+        .btl-socket-bullet .bullet-name-tag {
             position: absolute;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            height: 50%;
-            background: url('res/drawable-mdpi/ingame_angry.png') center bottom / 100% 64px no-repeat;
-            opacity: 0.78;
-            transition: height 0.2s;
-        }
-        .btl-rage-icon {
-            position: relative;
-            width: 76px;
-            height: 76px;
-            background: url('images/ingame/hd/icon20011_a.png') center / contain no-repeat;
-            z-index: 2;
-            transition: transform 0.12s, filter 0.12s;
-        }
-        .btl-socket-rage:hover .btl-rage-icon { transform: scale(1.06); }
-        .btl-socket-rage.active .btl-rage-icon {
-            filter: brightness(1.25) drop-shadow(0 0 12px #ff3d00);
-            transform: scale(1.1);
-        }
-        .btl-rage-pct {
-            position: absolute;
-            bottom: 2px;
+            top: -20px;
             left: 50%;
             transform: translateX(-50%);
+            background: rgba(10, 15, 25, 0.9);
+            border: 1px solid #d4a259;
+            border-radius: 5px;
+            padding: 1px 6px;
             font-size: 10px;
             font-weight: 900;
-            color: #fff8c8;
-            text-shadow: 0 1px 3px #000, 0 0 4px #000;
-            z-index: 3;
+            color: #ffe082;
             white-space: nowrap;
+            pointer-events: none;
+            text-shadow: 0 1px 2px #000;
         }
-
-        /* Paper Plane Button perched right above Left/Rage Socket (images/ingame/hd/ingame_butten_paperplane_a.png 88x60) */
-        .btl-plane-btn {
+        .btl-socket-bullet .bullet-sub-dots {
             position: absolute;
-            left: 126px;
-            top: -42px;
-            width: 78px;
-            height: 52px;
-            background: url('images/ingame/hd/ingame_butten_paperplane_a.png') center / contain no-repeat;
-            border: none;
-            cursor: pointer;
-            z-index: 6;
-            transition: transform 0.12s, filter 0.12s;
-        }
-        .btl-plane-btn:hover { transform: scale(1.08); }
-        .btl-plane-btn.active {
-            background-image: url('images/ingame/hd/ingame_butten_paperplane_b.png');
-            filter: drop-shadow(0 0 10px #00e5ff);
-            transform: scale(1.1);
-        }
-        .btl-plane-btn span {
-            position: absolute;
+            bottom: 4px;
             left: 50%;
-            bottom: -8px;
             transform: translateX(-50%);
-            font-size: 9.5px;
-            font-weight: 900;
-            color: #80d8ff;
-            text-shadow: 0 1px 2px #000, 0 0 4px #000;
-            white-space: nowrap;
+            display: flex;
+            gap: 5px;
+            pointer-events: none;
+        }
+        .btl-socket-bullet .bullet-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #556270;
+            border: 1px solid #222;
+        }
+        .btl-socket-bullet .bullet-dot.active {
+            background: #ffd54f;
+            box-shadow: 0 0 6px #ffd54f;
         }
 
-        /* 5 Carved Circular Sockets in ingame_bg.png: centers at x=288, 384, 480, 577, 673, y=60 (each 74x74) */
+        /* Support Skill Sockets (Sockets 2, 3, 4, 5: centers at x=250, 344, 438, 532, 72x72) */
         .btl-circle-socket {
             position: absolute;
-            top: 23px;
-            width: 74px;
-            height: 74px;
+            top: 24px;
+            width: 72px;
+            height: 72px;
             border-radius: 50%;
             cursor: pointer;
             display: flex;
@@ -1230,20 +1196,32 @@
             border-color: #ff9100;
             box-shadow: inset 0 0 8px rgba(255, 145, 0, 0.6), 0 0 18px #ff9100;
         }
+        .btl-circle-socket.locked-slot {
+            background: radial-gradient(circle, #1a1e26 0%, #0d1015 70%, #06080b 100%);
+            border-color: #616161;
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.9);
+            cursor: not-allowed;
+            opacity: 0.75;
+        }
+        .btl-circle-socket.locked-slot .skill-ico {
+            width: 38px;
+            height: 38px;
+            opacity: 0.85;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.9));
+        }
         .btl-circle-socket img.skill-ico {
-            width: 66px;
-            height: 66px;
+            width: 64px;
+            height: 64px;
             object-fit: contain;
             pointer-events: none;
             filter: drop-shadow(0 2px 4px rgba(0,0,0,0.7));
         }
-        /* Authentic Spinning Orange Ring (images/ingame/hd/ingame_skillselect.png 79x79) */
         .btl-circle-socket .skill-select-ring {
             position: absolute;
             left: -3px;
             top: -3px;
-            width: 80px;
-            height: 80px;
+            width: 78px;
+            height: 78px;
             background: url('images/ingame/hd/ingame_skillselect.png') center / 100% 100% no-repeat;
             pointer-events: none;
             display: none;
@@ -1261,11 +1239,11 @@
             position: absolute;
             left: 2px;
             top: 0px;
-            background: rgba(0,0,0,0.82);
+            background: rgba(0,0,0,0.85);
             border: 1px solid #d4a259;
             border-radius: 6px;
             padding: 0 4px;
-            font-size: 9.5px;
+            font-size: 9px;
             font-weight: 900;
             color: #ffe082;
             z-index: 4;
@@ -1274,67 +1252,170 @@
             position: absolute;
             right: 2px;
             bottom: 0px;
-            background: rgba(0,0,0,0.85);
+            background: rgba(0,0,0,0.88);
             border-radius: 5px;
-            padding: 0 4px;
-            font-size: 9.5px;
+            padding: 1px 4px;
+            font-size: 8.5px;
             font-weight: 900;
-            color: #69f0ae;
+            color: #80d8ff;
             z-index: 4;
         }
         .btl-socket-name {
             position: absolute;
             left: 50%;
-            top: -15px;
+            top: -18px;
+            transform: translateX(-50%);
+            background: rgba(10, 15, 25, 0.88);
+            border: 1px solid rgba(212, 162, 89, 0.6);
+            border-radius: 4px;
+            padding: 1px 5px;
+            font-size: 9.5px;
+            font-weight: 900;
+            color: #ffe082;
+            white-space: nowrap;
+            pointer-events: none;
+            display: none;
+        }
+        .btl-circle-socket:hover .btl-socket-name { display: block; }
+
+        /* Socket 6: Rage / Anger Socket - MÀU ĐỎ (x=638px, 78x78) */
+        .btl-socket-rage {
+            position: absolute;
+            left: 638px;
+            top: 20px;
+            width: 78px;
+            height: 78px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: radial-gradient(circle, #380d09 0%, #1c0503 65%, #0f0201 100%);
+            border: 3.5px solid #d32f2f;
+            box-shadow: inset 0 2px 6px rgba(0,0,0,0.85), 0 3px 8px rgba(0,0,0,0.7), 0 0 12px rgba(211, 47, 47, 0.5);
+            transition: transform 0.12s, border-color 0.12s, box-shadow 0.12s;
+            z-index: 5;
+        }
+        .btl-socket-rage:hover {
+            transform: scale(1.06);
+            border-color: #ff5252;
+            box-shadow: inset 0 2px 8px rgba(0,0,0,0.9), 0 0 18px rgba(255, 61, 0, 0.8);
+        }
+        .btl-socket-rage.active {
+            border-color: #ff1744;
+            box-shadow: inset 0 0 12px rgba(255, 23, 68, 0.9), 0 0 24px #ff1744;
+            animation: ragePulseAura 1.0s ease-in-out infinite alternate;
+        }
+        @keyframes ragePulseAura {
+            from { transform: scale(1.0); box-shadow: 0 0 12px #ff1744; }
+            to { transform: scale(1.08); box-shadow: 0 0 24px #ff3d00, inset 0 0 10px #ff3d00; }
+        }
+        .btl-rage-fill-wrap {
+            position: absolute;
+            inset: 6px;
+            border-radius: 50%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        .btl-rage-fill {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 25%;
+            background: linear-gradient(180deg, #ff7043 0%, #d84315 100%);
+            opacity: 0.65;
+            transition: height 0.25s;
+        }
+        .btl-rage-icon {
+            position: relative;
+            width: 68px;
+            height: 68px;
+            background: url('images/ingame/hd/icon20011_a.png') center / contain no-repeat;
+            z-index: 2;
+            transition: transform 0.12s, filter 0.12s;
+        }
+        .btl-socket-rage.active .btl-rage-icon {
+            filter: brightness(1.3) drop-shadow(0 0 10px #ff3d00);
+        }
+        .btl-rage-pct {
+            position: absolute;
+            bottom: 2px;
+            left: 50%;
             transform: translateX(-50%);
             font-size: 9.5px;
             font-weight: 900;
-            color: #fff3c4;
-            text-shadow: 0 1px 2px #000, 0 0 4px #000;
+            color: #ffe082;
+            text-shadow: 0 1px 3px #000, 0 0 4px #000;
+            z-index: 4;
             white-space: nowrap;
-            pointer-events: none;
         }
 
-        /* Carved HP & MP Slots on ingame_bg.png (x=730..845, y=68 & y=88) */
+        /* Paper Plane Button perched above the stone bar on the right side */
+        .btl-plane-btn {
+            position: absolute;
+            left: 742px;
+            top: -40px;
+            width: 78px;
+            height: 52px;
+            background: url('images/ingame/hd/ingame_butten_paperplane_a.png') center / contain no-repeat;
+            border: none;
+            cursor: pointer;
+            z-index: 6;
+            transition: transform 0.12s, filter 0.12s;
+        }
+        .btl-plane-btn:hover { transform: scale(1.08); }
+        .btl-plane-btn.active {
+            background-image: url('images/ingame/hd/ingame_butten_paperplane_b.png');
+            filter: drop-shadow(0 0 12px #00e5ff);
+            transform: scale(1.1);
+        }
+        .btl-plane-btn span {
+            position: absolute;
+            left: 50%;
+            bottom: -8px;
+            transform: translateX(-50%);
+            font-size: 9.5px;
+            font-weight: 900;
+            color: #80d8ff;
+            text-shadow: 0 1px 2px #000, 0 0 4px #000;
+            white-space: nowrap;
+        }
+
+        /* Compact Authentic HP & MP Bars at right (x=734px, y=32px) */
         .btl-hpmp-area {
             position: absolute;
-            left: 722px;
-            top: 32px;
-            width: 128px;
-            height: 74px;
-            pointer-events: none;
+            left: 730px;
+            top: 26px;
+            width: 115px;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            z-index: 4;
         }
         .btl-stat-slot {
-            position: absolute;
-            left: 34px;
-            width: 90px;
-            height: 15px;
-            background: url('images/ingame/hd/ingame_hp2_bg.png') left center / 100% 100% no-repeat;
+            position: relative;
+            width: 110px;
+            height: 18px;
+            background: #0a0e14;
+            border-radius: 9px;
+            border: 1.5px solid #3e4756;
             overflow: hidden;
-            border-radius: 3px;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.8);
         }
-        .btl-stat-slot.hp { top: 37px; }
-        .btl-stat-slot.mp { top: 57px; }
-        .btl-stat-label-img {
-            position: absolute;
-            left: 1px;
-            width: 31px;
-            height: 16px;
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center;
-        }
-        .btl-stat-label-img.hp { top: 36px; background-image: url('images/ingame/hd/ingame_text_hp.png'); }
-        .btl-stat-label-img.mp { top: 56px; background-image: url('images/ingame/hd/ingame_text_mp.png'); }
+        .btl-stat-slot.hp { border-color: #8e24aa; }
+        .btl-stat-slot.mp { border-color: #0288d1; }
         .btl-stat-fill-hp {
             height: 100%;
-            background: url('images/ingame/hd/ingame_hp2.png') left center / 106px 16px no-repeat;
-            transition: width 0.15s;
+            background: linear-gradient(180deg, #ff5252 0%, #b71c1c 100%);
+            border-radius: 8px;
+            transition: width 0.25s ease;
         }
         .btl-stat-fill-mp {
             height: 100%;
-            background: url('images/ingame/hd/ingame_mp2.png') left center / 106px 16px no-repeat;
-            transition: width 0.15s;
+            background: linear-gradient(180deg, #40c4ff 0%, #0277bd 100%);
+            border-radius: 8px;
+            transition: width 0.25s ease;
         }
         .btl-stat-num {
             position: absolute;
@@ -1342,125 +1423,80 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 9.5px;
+            font-size: 10px;
             font-weight: 900;
             color: #fff;
             text-shadow: 0 1px 2px #000, 0 0 3px #000;
+            letter-spacing: 0.5px;
         }
-        /* Power & Stamina mini-bar perched above HP/MP or Top of Stone Bar */
-        .btl-power-strip {
-            position: absolute;
-            left: 252px;
-            top: -22px;
-            width: 458px;
+
+        /* ==================== AUTHENTIC LOADING SCREEN WITH QUOTES ==================== */
+        #screen-loading {
+            background: radial-gradient(circle at center, #1c2b3d 0%, #070c14 100%);
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+        }
+        #screen-loading.active { display: flex; }
+        .loading-dragon-anim {
+            width: 140px;
+            height: 140px;
+            background: url('res/drawable-mdpi/loading_anim00.png') center / contain no-repeat;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 8px 18px rgba(0,0,0,0.7));
+        }
+        .loading-title-txt {
+            font-family: 'HaypiFont', 'Trebuchet MS', sans-serif;
+            font-size: 24px;
+            color: #ffe082;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 4px #000, 0 0 10px rgba(255, 224, 130, 0.4);
+            margin-bottom: 14px;
+        }
+        .loading-bar-wrap {
+            width: 460px;
             height: 18px;
-            background: rgba(15, 8, 3, 0.9);
-            border: 1.5px solid #d4a259;
-            border-radius: 9px;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-        }
-        .btl-bar-fill {
-            height: 100%;
-            transition: width 0.06s linear;
-        }
-        .btl-bar-fill.power {
-            background: linear-gradient(90deg, #ffeb3b 0%, #ff9800 55%, #f44336 100%);
-        }
-        .btl-last-power-tick {
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            width: 3px;
-            background: #00e5ff;
-            box-shadow: 0 0 4px #00e5ff;
-            z-index: 3;
-        }
-        .btl-bar-txt {
-            position: absolute;
-            inset: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 10.5px;
-            font-weight: 900;
-            color: #fff8dc;
-            text-shadow: 0 1px 2px #000;
-        }
-
-        /* Side Angle & Fire Wing Controls on the 88px left/right margins of 1136px 16:9 screen */
-        .btl-left-wing {
-            position: absolute;
-            left: 6px;
-            bottom: 6px;
-            width: 78px;
-            height: 104px;
-            pointer-events: auto;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: space-between;
-            background: rgba(24, 14, 6, 0.88);
-            border: 1.5px solid #a67c46;
+            background: #0d131a;
             border-radius: 12px;
-            padding: 5px 4px;
+            border: 2px solid #5a4025;
+            box-shadow: inset 0 2px 6px rgba(0,0,0,0.9), 0 2px 8px rgba(0,0,0,0.6);
+            overflow: hidden;
+            margin-bottom: 26px;
         }
-        .btl-angle-btn {
-            width: 66px;
-            height: 26px;
-            background: linear-gradient(180deg, #5c3818 0%, #331c08 100%);
-            border: 1.5px solid #e6b450;
-            border-radius: 6px;
-            color: #ffe89e;
-            font-size: 11px;
-            font-weight: 900;
-            cursor: pointer;
+        .loading-bar-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #fbc02d, #ff6f00, #ffab00);
+            border-radius: 10px;
+            animation: loadingProgressAnim 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
         }
-        .btl-angle-btn:hover { filter: brightness(1.15); }
-        .btl-angle-readout {
-            font-family: 'HaypiFont', 'Trebuchet MS', sans-serif;
-            font-size: 18px;
-            font-weight: 900;
-            color: #ffd54f;
-            text-shadow: 0 2px 3px #000;
+        @keyframes loadingProgressAnim {
+            0% { width: 5%; }
+            50% { width: 68%; }
+            100% { width: 100%; }
         }
-
-        .btl-right-wing {
-            position: absolute;
-            right: 6px;
-            bottom: 6px;
-            width: 78px;
-            height: 104px;
-            pointer-events: auto;
+        .loading-tip-banner {
+            position: relative;
+            width: 720px;
+            min-height: 78px;
+            background: url('res/drawable-mdpi/title_tips.png') center / 100% 100% no-repeat;
             display: flex;
             align-items: center;
             justify-content: center;
+            padding: 12px 40px;
+            text-align: center;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.75);
         }
-        .btl-fire-btn {
-            width: 76px;
-            height: 76px;
-            border-radius: 50%;
-            background: radial-gradient(circle at 35% 30%, #ff8a50 0%, #d84315 60%, #870000 100%);
-            border: 3px solid #ffd54f;
-            box-shadow: 0 5px 14px rgba(0,0,0,0.85), inset 0 2px 6px rgba(255,255,255,0.45);
+        .loading-tip-txt {
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            font-size: 14.5px;
+            font-weight: 800;
             color: #fff8e1;
-            font-family: 'HaypiFont', 'Trebuchet MS', sans-serif;
-            font-size: 17px;
-            font-weight: 900;
-            text-shadow: 0 2px 4px #000;
-            cursor: pointer;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
+            text-shadow: 0 1px 3px #000, 0 0 6px #000;
+            line-height: 1.35;
         }
-        .btl-fire-btn:active, .btl-fire-btn.charging {
-            transform: scale(0.94);
-            background: radial-gradient(circle at center, #ffd54f 0%, #ff5722 70%, #b71c1c 100%);
-            box-shadow: 0 0 20px #ff9800;
-        }
-        .btl-fire-btn small { font-family: 'Segoe UI', sans-serif; font-size: 9px; color: #ffe082; }
 
         /* ==================== 6. UNIVERSAL AUTHENTIC MODAL SYSTEM ==================== */
         #modal-backdrop {
@@ -1928,6 +1964,18 @@
         <button class="btn-back-corner" onclick="openWorldMap()" title="Quay lại Bản Đồ Thế Giới"></button>
     </div>
 
+    <!-- ==================== 4.5 AUTHENTIC LOADING TRANSITION SCREEN ==================== -->
+    <div id="screen-loading" class="screen">
+        <div class="loading-title-txt">HAYPI DRAGON</div>
+        <div class="loading-dragon-anim" id="loading-dragon-sprite"></div>
+        <div class="loading-bar-wrap">
+            <div class="loading-bar-fill"></div>
+        </div>
+        <div class="loading-tip-banner">
+            <div class="loading-tip-txt" id="loading-tip-txt">"Roco's Rock can destroy an object in a single turn."</div>
+        </div>
+    </div>
+
     <!-- ==================== 5. ORIGINAL BATTLE SCREEN (16:9 1136x640, AUTHENTIC APK HUD & SOCKETS) ==================== -->
     <div id="screen-battle" class="screen">
         <canvas id="battle-canvas" width="1136" height="640"></canvas>
@@ -1976,16 +2024,16 @@
                 <button class="btl-angle-btn" onclick="changeAimAngle(-2)">▼ -GÓC</button>
             </div>
 
-            <!-- Center 960x110 Stone Bar with Exact Socket Positions -->
+            <!-- Center 960x110 Stone Bar with Authentic Original APK Layout -->
             <div class="btl-stone-bar">
-                <!-- Power & Aiming Strip perched right above the 5 circular sockets -->
+                <!-- Power & Aiming Live Indicator -->
                 <div class="btl-power-strip">
                     <div id="btl-power-fill" class="btl-bar-fill power" style="width:0%"></div>
                     <div id="btl-last-power-tick" class="btl-last-power-tick" style="left:0%"></div>
-                    <div id="btl-power-txt" class="btl-bar-txt">🎯 Kéo trực tiếp từ Rồng để ngắm & thả tay để bắn (Hoặc giữ SPACE)</div>
+                    <div id="btl-power-txt" class="btl-bar-txt">🎯 Chạm & Kéo trực tiếp từ Rồng để chỉnh góc & lực, nhấc tay để bắn!</div>
                 </div>
 
-                <!-- Paper Plane Button perched above Rage Socket -->
+                <!-- Paper Plane Button perched above the stone bar on the right side -->
                 <button id="btl-plane-btn" class="btl-plane-btn" onclick="togglePaperPlane()" title="Bay dịch chuyển (Tốn 40 MP)">
                     <span>✈️ Bay (40 MP)</span>
                 </button>
@@ -1996,8 +2044,22 @@
                         ontouchstart="startWalk(-1); event.preventDefault();" ontouchend="stopWalk(); event.preventDefault();"
                         title="Di chuyển sang trái (Phím A / ◀)"></button>
 
-                <!-- Rage / Anger Socket (x=126, y=14, 88x88) -->
-                <div id="btl-rage-socket" class="btl-socket-rage" onclick="toggleRageSkill()" title="Nộ Khí (Angry Shot - Đạt 100% Nộ để bắn Siêu Đạn Lôi Điện +80% DMG)">
+                <!-- Socket 1: Weapon / Bullet Selector (x=122, y=14) -->
+                <div id="btl-bullet-socket" class="btl-socket-bullet" onclick="toggleBulletSelection()" title="Nhấn để đổi giữa 3 loại đạn">
+                    <span class="bullet-name-tag" id="btl-bullet-name">Đạn Sắt</span>
+                    <img id="btl-bullet-img" class="bullet-main-ico" src="images/ingame/hd/icon200101_a.png" alt="Bullet">
+                    <div class="bullet-sub-dots">
+                        <span class="bullet-dot active" id="bdot-0"></span>
+                        <span class="bullet-dot" id="bdot-1"></span>
+                        <span class="bullet-dot" id="bdot-2"></span>
+                    </div>
+                </div>
+
+                <!-- Sockets 2, 3, 4, 5: Support Skills & 4th Locked Slot -->
+                <div id="btl-five-sockets"></div>
+
+                <!-- Socket 6: Rage / Anger Socket - MÀU ĐỎ (x=638, y=20) -->
+                <div id="btl-rage-socket" class="btl-socket-rage" onclick="toggleRageSkill()" title="Nộ Khí (Đạt 100% Nộ kích hoạt Siêu Bạo Kích +80% Sát Thương)">
                     <div class="btl-rage-fill-wrap">
                         <div id="btl-rage-fill" class="btl-rage-fill" style="height:25%"></div>
                     </div>
@@ -2005,17 +2067,12 @@
                     <div id="btl-rage-txt" class="btl-rage-pct">NỘ 25%</div>
                 </div>
 
-                <!-- 5 Carved Circular Sockets (x=251, 347, 443, 540, 636, y=23, 74x74) -->
-                <div id="btl-five-sockets"></div>
-
-                <!-- Carved HP & MP Bar Slots (x=722, y=32) -->
+                <!-- Compact HP & MP Readout Slots (x=730, y=26) -->
                 <div class="btl-hpmp-area">
-                    <div class="btl-stat-label-img hp"></div>
                     <div class="btl-stat-slot hp">
                         <div id="btl-hp-fill" class="btl-stat-fill-hp" style="width:100%"></div>
                         <div id="btl-hp-txt" class="btl-stat-num">850/850</div>
                     </div>
-                    <div class="btl-stat-label-img mp"></div>
                     <div class="btl-stat-slot mp">
                         <div id="btl-mp-fill" class="btl-stat-fill-mp" style="width:100%"></div>
                         <div id="btl-mp-txt" class="btl-stat-num">100/100</div>
@@ -2027,17 +2084,6 @@
                         onmousedown="startWalk(1)" onmouseup="stopWalk()" onmouseleave="stopWalk()"
                         ontouchstart="startWalk(1); event.preventDefault();" ontouchend="stopWalk(); event.preventDefault();"
                         title="Di chuyển sang phải (Phím D / ▶)"></button>
-            </div>
-
-            <!-- Right Wing: Hold-to-Shoot Button (in addition to Drag-on-Dragon aiming!) -->
-            <div class="btl-right-wing">
-                <button id="btl-fire-btn" class="btl-fire-btn"
-                        onmousedown="beginChargeShot()" onmouseup="releaseChargeShot()"
-                        ontouchstart="beginChargeShot(); event.preventDefault();" ontouchend="releaseChargeShot(); event.preventDefault();"
-                        title="Giữ để tích lực bắn hoặc kéo trực tiếp trên Rồng">
-                    BẮN
-                    <small>GIỮ SPACE</small>
-                </button>
             </div>
         </div>
     </div>
@@ -4135,18 +4181,38 @@ function startCampaignBattle(chNum, stageNum, isPvp = false, onlineMode = 'none'
             : (isPvp ? `🏆 Đấu Trường PVP (${mapKey.toUpperCase()})` : `⚔️ Màn ${chNum}-${stageNum} (${mapKey.toUpperCase()})`));
     document.getElementById('btl-stage-title').textContent = modeLabel;
 
-    renderBattleSkillBar();
-    showScreen('screen-battle');
-    BTL.active = true;
+    // Authentic Haypi Dragon Loading Screen with Tips
+    const HAYPI_TIPS = [
+        "Roco's Rock can destroy an object in a single turn.",
+        "Crystal's Ice Spikes fall directly from the sky upon unsuspecting foes.",
+        "Adjust your firing angle according to the wind direction and strength!",
+        "A paper plane can transport your dragon across obstacles to safety.",
+        "Special 4th skill slot unlocks once your dragon ascends to mythical forms.",
+        "Destroying wooden supports makes enemy fortresses crumble to the ground.",
+        "Collect anger through combat to unleash devastating critical strikes!",
+        "Use double and triple shot buffs to blanket enemies in overwhelming fire.",
+        "Higher ground gives you wider angles and tactical advantages over foes."
+    ];
+    const randomTip = HAYPI_TIPS[Math.floor(Math.random() * HAYPI_TIPS.length)];
+    const tipEl = document.getElementById('loading-tip-txt');
+    if (tipEl) tipEl.textContent = randomTip;
 
-    if (BTL.mode === 'p2p_guest') {
-        BTL.turn = 'enemy';
-        document.getElementById('btl-turn-owner').textContent = '🟠 Đợi lượt Chủ Phòng...';
-        focusCameraOn(BTL.enemies[0].x, BTL.enemies[0].y, true);
-    } else {
-        startPlayerTurn();
-        focusCameraOn(BTL.player.x, BTL.player.y, true);
-    }
+    showScreen('screen-loading');
+    setTimeout(() => {
+        renderBattleSkillBar();
+        updateBulletSocketUI();
+        showScreen('screen-battle');
+        BTL.active = true;
+
+        if (BTL.mode === 'p2p_guest') {
+            BTL.turn = 'enemy';
+            document.getElementById('btl-turn-owner').textContent = '🟠 Đợi lượt Chủ Phòng...';
+            focusCameraOn(BTL.enemies[0].x, BTL.enemies[0].y, true);
+        } else {
+            startPlayerTurn();
+            focusCameraOn(BTL.player.x, BTL.player.y, true);
+        }
+    }, 750);
 }
 
 function getActiveControllableActor() {
@@ -4323,20 +4389,122 @@ function getActiveDragonDef() {
     return PLAYABLE_DRAGONS[dId] || PLAYABLE_DRAGONS[STATE.selectedDragonId] || PLAYABLE_DRAGONS['108'];
 }
 
-// Render the 5 Carved Circular Sockets in images/ingame/hd/ingame_bg.png:
-// Socket 1 (x=251): Power | Socket 2 (x=347): Quick Shot | Socket 3 (x=443): Volley | Socket 4 (x=540): Bomb 1 | Socket 5 (x=636): Bomb 2
+// ==================== AUTHENTIC WEAPONS & SKILLS SYSTEM ====================
+let btlCurrentBulletIdx = 0; // 0: Đạn Thường (Sắt), 1: Kỹ Năng 1, 2: Kỹ Năng 2
+
+function toggleBulletSelection() {
+    const act = getActiveControllableActor();
+    const d = getActiveDragonDef();
+    if (!act || !d) return;
+
+    btlCurrentBulletIdx = (btlCurrentBulletIdx + 1) % 3;
+    playSfx('select');
+
+    let bulletName = 'Đạn Thường';
+    let bulletCost = 0;
+    if (btlCurrentBulletIdx === 1 && d.bombs && d.bombs[0]) {
+        bulletName = d.bombs[0].name;
+        bulletCost = d.bombs[0].cost;
+        BTL.selectedBombIdx = 0;
+    } else if (btlCurrentBulletIdx === 2 && d.bombs && d.bombs[1]) {
+        bulletName = d.bombs[1].name;
+        bulletCost = d.bombs[1].cost;
+        BTL.selectedBombIdx = 1;
+    } else {
+        btlCurrentBulletIdx = 0;
+        bulletName = 'Đạn Thường (Sắt)';
+        bulletCost = 0;
+        BTL.selectedBombIdx = -1;
+    }
+
+    updateBulletSocketUI();
+    spawnFloatText(act.x, act.y - 60, `Đạn: ${bulletName} (${bulletCost} MP)`, '#ffe082');
+}
+
+function updateBulletSocketUI() {
+    const d = getActiveDragonDef();
+    if (!d) return;
+
+    const nameEl = document.getElementById('btl-bullet-name');
+    const imgEl = document.getElementById('btl-bullet-img');
+    const dot0 = document.getElementById('bdot-0');
+    const dot1 = document.getElementById('bdot-1');
+    const dot2 = document.getElementById('bdot-2');
+
+    if (dot0) dot0.classList.toggle('active', btlCurrentBulletIdx === 0);
+    if (dot1) dot1.classList.toggle('active', btlCurrentBulletIdx === 1);
+    if (dot2) dot2.classList.toggle('active', btlCurrentBulletIdx === 2);
+
+    if (btlCurrentBulletIdx === 0) {
+        if (nameEl) nameEl.textContent = 'Đạn Sắt';
+        if (imgEl) imgEl.src = 'images/ingame/hd/icon200101_a.png';
+    } else if (btlCurrentBulletIdx === 1 && d.bombs && d.bombs[0]) {
+        if (nameEl) nameEl.textContent = d.bombs[0].name.split('(')[0].trim();
+        if (imgEl) imgEl.src = d.bombs[0].icon;
+    } else if (btlCurrentBulletIdx === 2 && d.bombs && d.bombs[1]) {
+        if (nameEl) nameEl.textContent = d.bombs[1].name.split('(')[0].trim();
+        if (imgEl) imgEl.src = d.bombs[1].icon;
+    }
+}
+
+function togglePaperPlane() {
+    const act = getActiveControllableActor();
+    if (!act) return;
+    if (act.mp < 40) {
+        spawnFloatText(act.x, act.y - 60, '⚠️ Không đủ MP! Cần 40 MP.', '#ff5252');
+        playSfx('lose', 0.4);
+        return;
+    }
+    BTL.paperPlaneMode = !BTL.paperPlaneMode;
+    const btn = document.getElementById('btl-plane-btn');
+    if (btn) btn.classList.toggle('active', BTL.paperPlaneMode);
+    playSfx('select');
+    if (BTL.paperPlaneMode) {
+        spawnFloatText(act.x, act.y - 60, '✈️ Chế độ Máy Bay Giấy: Kéo & nhấc tay để dịch chuyển!', '#80d8ff');
+    } else {
+        spawnFloatText(act.x, act.y - 60, 'Đã hủy Máy Bay Giấy', '#fff');
+    }
+}
+
+function toggleRageSkill() {
+    const act = getActiveControllableActor();
+    if (!act) return;
+    const angerVal = act.anger || 0;
+    if (angerVal < 100) {
+        spawnFloatText(act.x, act.y - 60, `Nộ: ${Math.round(angerVal)}%/100%! Tấn công để tích đầy.`, '#ff8a80');
+        playSfx('lose', 0.35);
+        return;
+    }
+    BTL.rageActive = !BTL.rageActive;
+    const rEl = document.getElementById('btl-rage-socket');
+    if (rEl) rEl.classList.toggle('active', BTL.rageActive);
+    playSfx('levelup');
+    if (BTL.rageActive) {
+        spawnFloatText(act.x, act.y - 65, '🔥 NỘ KHÍ KÍCH HOẠT: +80% SÁT THƯƠNG!', '#ff1744');
+    } else {
+        spawnFloatText(act.x, act.y - 60, 'Đã tắt Nộ Khí', '#fff');
+    }
+}
+
+// Render Authentic 4 Support Skill Sockets (left: 226, 326, 426, 526)
 function renderBattleSkillBar() {
     const d = getActiveDragonDef();
     const wrap = document.getElementById('btl-five-sockets');
     if (!wrap || !d) return;
     wrap.innerHTML = '';
 
-    const socketLefts = [251, 347, 443, 540, 636];
+    const socketLefts = [226, 326, 426, 526];
     const act = getActiveControllableActor();
     const currentMp = act ? act.mp : 100;
 
-    // Sockets 0, 1, 2: Support Buffs (Power, Quick Shot, Volley)
-    SUPPORT_ABILITIES.forEach((ab, i) => {
+    // Sockets 1, 2, 3: Support Buffs (Power Up, Quick Shot 2x, Volley Shot 3x)
+    const buffs = [
+        { id: 'power_up', name: 'Tăng Lực (+40% Sát Thương)', shortName: 'Tăng Lực', icon: 'images/ingame/hd/icon101700_a.png', cost: 25, key: '1' },
+        { id: 'quick_shot', name: 'Bắn x2 (Bắn 2 Phát)', shortName: 'Bắn x2', icon: 'images/ingame/hd/icon102001_a.png', cost: 40, key: '2' },
+        { id: 'volley_shot', name: '3 Tia Đạn (Phủ Rộng)', shortName: '3 Tia', icon: 'images/ingame/hd/icon102002_a.png', cost: 60, key: '3' }
+    ];
+
+    buffs.forEach((ab, i) => {
         const isOn = !!BTL.activeBuffs[ab.id];
         const isOutOfMp = currentMp < ab.cost;
         let iconSrc = ab.icon;
@@ -4349,7 +4517,7 @@ function renderBattleSkillBar() {
         const el = document.createElement('div');
         el.className = 'btl-circle-socket' + (isOn ? ' active-buff' : '');
         el.style.left = socketLefts[i] + 'px';
-        el.title = `${ab.name} (${ab.cost} MP): ${ab.desc}`;
+        el.title = `${ab.name} (${ab.cost} MP)`;
         el.innerHTML = `
             <span class="btl-socket-name">${ab.shortName}</span>
             <span class="btl-socket-key">${ab.key}</span>
@@ -4364,60 +4532,39 @@ function renderBattleSkillBar() {
         wrap.appendChild(el);
     });
 
-    // Sockets 3, 4: Dragon Unique Bomb 1 & Bomb 2 (clicking toggles between Basic Shot and Bomb 1/2!)
-    d.bombs.forEach((b, idx) => {
-        const isSel = (BTL.selectedBombIdx === idx);
-        const isOutOfMp = currentMp < b.cost;
-        let iconSrc = b.icon;
-        if (isSel) {
-            iconSrc = b.icon.replace('_a.png', '_b.png');
-        } else if (isOutOfMp) {
-            iconSrc = b.icon.replace('_a.png', '_c.png');
-        }
-
-        const el = document.createElement('div');
-        el.className = 'btl-circle-socket' + (isSel ? ' selected' : '');
-        el.style.left = socketLefts[3 + idx] + 'px';
-        el.title = `${b.name} (${b.cost} MP): ${b.desc} (Nhấn để Bật/Tắt kỹ năng đạn)`;
-        el.innerHTML = `
-            <span class="btl-socket-name">${b.name.split('(')[0].trim()}</span>
-            <span class="btl-socket-key">${idx + 1}</span>
-            <img class="skill-ico" src="${iconSrc}" alt="${b.name}">
-            <div class="skill-select-ring"></div>
-            <span class="btl-socket-cost">${b.cost}MP</span>
-        `;
-        el.onclick = () => {
-            selectDragonBomb(idx);
+    // Socket 4: 4th Skill Slot - LOCKED by default (padlock 🔒)
+    const isMythic = d.id === '110'; // Angelo has mythic skill
+    const lockEl = document.createElement('div');
+    lockEl.className = 'btl-circle-socket' + (isMythic ? '' : ' locked-slot');
+    lockEl.style.left = socketLefts[3] + 'px';
+    lockEl.title = isMythic ? 'Thánh Quang Hộ Thể (50 MP)' : 'Ô Kỹ Năng 4: ĐANG KHÓA!';
+    lockEl.innerHTML = `
+        <span class="btl-socket-name">${isMythic ? 'Thánh Quang' : 'Khóa'}</span>
+        <span class="btl-socket-key">4</span>
+        <img class="skill-ico" src="images/ingame/hd/icon102004_a.png" alt="Skill 4">
+        ${isMythic ? '' : '<div style="position:absolute; font-size:22px; filter:drop-shadow(0 2px 4px #000);">🔒</div>'}
+        <div class="skill-select-ring"></div>
+        <span class="btl-socket-cost">${isMythic ? '50MP' : '🔒'}</span>
+    `;
+    lockEl.onclick = () => {
+        if (!isMythic) {
+            playSfx('lose', 0.4);
+            const a = getActiveControllableActor();
+            if (a) spawnFloatText(a.x, a.y - 60, '🔒 Kỹ Năng 4 đang Khóa! Cần Rồng Thần Thoại để mở khóa.', '#ffab00');
+        } else {
+            playSfx('select');
+            toggleSupportBuff('mythic_blessing', 50);
             renderBattleSkillBar();
-        };
-        wrap.appendChild(el);
-    });
+        }
+    };
+    wrap.appendChild(lockEl);
+
+    updateBulletSocketUI();
+    updateBattleHudBars();
 }
 
 function selectDragonBomb(idx) {
-    const act = getActiveControllableActor();
-    if (!act) return;
-    playSfx('btn');
-    // Toggle off back to Basic Shot (-1) if clicking the already selected bomb!
-    if (BTL.selectedBombIdx === idx) {
-        BTL.selectedBombIdx = -1;
-        spawnFloatText(act.x, act.y - 60, 'Đạn Thường (0 MP)', '#ffe082');
-    } else {
-        const d = getActiveDragonDef();
-        const b = d.bombs[idx];
-        if (act.mp < b.cost) {
-            spawnFloatText(act.x, act.y - 60, `Không đủ MP (${b.cost} MP)!`, '#ff5252');
-            return;
-        }
-        BTL.selectedBombIdx = idx;
-        BTL.rageActive = false;
-        document.getElementById('btl-rage-socket').classList.remove('active');
-        spawnFloatText(act.x, act.y - 60, `🎯 ${b.name}!`, '#ffd54f');
-    }
-    BTL.paperPlaneMode = false;
-    document.getElementById('btl-plane-btn').classList.remove('active');
-    renderBattleSkillBar();
-    updateBattleHudBars();
+    toggleBulletSelection();
 }
 
 function toggleRageSkill() {
@@ -4948,7 +5095,7 @@ function endPlayerShotPhase(lastTurn = 'player') {
         return;
     }
 
-    // 3. PVE / AI Turn
+    // 3. PVE / AI Turn using Authentic APK Lua Logic (attack_ai.lua, move_ai.lua, skill_list.lua)
     BTL.turn = 'enemy';
     document.getElementById('btl-turn-owner').textContent = '🔴 Lượt của Địch';
 
@@ -4959,6 +5106,7 @@ function endPlayerShotPhase(lastTurn = 'player') {
             BTL.manualCam = false;
             focusCameraOn(en.x, en.y);
 
+            // Handle status ticks
             if (en.burnTurns > 0) {
                 en.burnTurns--;
                 en.hp = Math.max(1, en.hp - 45);
@@ -4975,31 +5123,78 @@ function endPlayerShotPhase(lastTurn = 'player') {
                 return;
             }
 
-            en.dir = (BTL.player.x < en.x) ? -1 : 1;
+            // Target Selection (attack_ai.lua: attack_min_hp_enemy / player)
+            let target = BTL.player;
+            if (BTL.summons && BTL.summons.length > 0) {
+                const aliveSm = BTL.summons.filter(s => s.hp > 0);
+                if (aliveSm.length > 0 && Math.random() < 0.35) target = aliveSm[0];
+            }
+
+            // Move AI (move_ai.lua: move_to_cloest_enemy / patrol)
+            const distToTarget = Math.abs(target.x - en.x);
+            if (distToTarget > 480 && Math.random() < 0.60) {
+                const step = Math.min(distToTarget - 350, 40 + Math.random() * 25);
+                en.dir = (target.x < en.x) ? -1 : 1;
+                en.action = 'move';
+                en.x = Math.max(60, Math.min(BTL.mapW - 60, en.x + en.dir * step));
+                en.y = findSurfaceY(en.x, en.y);
+            } else if (distToTarget < 110 && Math.random() < 0.50) {
+                en.dir = (target.x < en.x) ? 1 : -1;
+                en.action = 'move';
+                en.x = Math.max(60, Math.min(BTL.mapW - 60, en.x + en.dir * 35));
+                en.y = findSurfaceY(en.x, en.y);
+            }
+
+            // Aim & Ballistic Calculation with Wind Compensation (attack_ai.lua: get_power_of_long_distance_attack)
+            const dx = target.x - en.x;
+            const dy = (target.y - 28) - (en.y - 32);
+            en.dir = dx >= 0 ? 1 : -1;
             en.action = 'attack';
             en.frameIdx = 0;
 
-            const dx = Math.abs(BTL.player.x - en.x);
-            const angle = 42 + (idx * 6);
-            const g = 0.24;
-            const rad = (angle * Math.PI) / 180;
-            const idealSpeed = Math.sqrt((dx * g) / Math.max(0.2, Math.sin(2 * rad)));
-            const powerPct = Math.max(25, Math.min(92, ((idealSpeed - 4.2) / 14.5) * 100 + (Math.random() * 10 - 5)));
-
-            // Use authentic projectile frames matching the enemy's dragon unit!
             const enDragon = PLAYABLE_DRAGONS[en.unitId] || PLAYABLE_DRAGONS['107'];
-            const useSkill = Math.random() < 0.45 && enDragon.bombs && enDragon.bombs.length > 0;
-            const enBomb = useSkill ? enDragon.bombs[0] : {
-                id: 'enemy_basic',
-                zidanFrames: enDragon.basicFrames || ['zd_16_10.png','zd_16_11.png','zd_16_12.png'],
-                hitEffect: enDragon.basicHitEffect || 'bbz',
-                dmgMult: 0.92,
-                radius: 52,
-                terrainDmg: 100
-            };
+            const minA = enDragon.angleMin || 30;
+            const maxA = enDragon.angleMax || 70;
+            let angle = Math.max(minA, Math.min(maxA, 45 + (idx * 4) + (Math.random() * 6 - 3)));
+            const rad = (angle * Math.PI) / 180;
+            const absDx = Math.max(40, Math.abs(dx));
+            const g = 0.24;
+            const windAcc = BTL.wind * 0.008;
+
+            let t = Math.sqrt(Math.max(1, (2 * absDx) / (g * Math.tan(rad))));
+            const idealVx = Math.max(1, (absDx - 0.5 * windAcc * en.dir * t * t) / t);
+            const idealVy = (dy - 0.5 * g * t * t) / -t;
+            const speed = Math.max(4.2, Math.min(18.7, Math.hypot(idealVx, idealVy)));
+            let powerPct = Math.max(12, Math.min(100, ((speed - 4.2) / 14.5) * 100));
+
+            // Authentic Hit Rate Check (attack_ai.lua: hit_rate & inaccuracy roll)
+            const hitRate = en.hitRate || Math.min(88, 68 + (BTL.chapter || 1) * 3);
+            if (Math.random() * 100 > hitRate) {
+                const isUnder = Math.random() < 0.5;
+                powerPct = Math.max(12, Math.min(100, powerPct * (isUnder ? (0.58 + Math.random() * 0.22) : (1.18 + Math.random() * 0.26))));
+                angle = Math.max(minA, Math.min(maxA, angle + (Math.random() * 8 - 4)));
+            }
+
+            // Skill AI & Mana Check (skill_list.lua & use_skill_ai.lua)
+            let enBomb = null;
+            if (enDragon.bombs && enDragon.bombs.length > 0 && (en.mp || 100) >= enDragon.bombs[0].cost && Math.random() < 0.45) {
+                enBomb = enDragon.bombs[0];
+                en.mp = Math.max(0, (en.mp || 100) - enBomb.cost);
+                spawnFloatText(en.x, en.y - 70, `⚡ ${enBomb.name.split('(')[0].trim()}!`, '#ff9100');
+            } else {
+                enBomb = {
+                    id: 'enemy_basic',
+                    zidanFrames: enDragon.basicFrames || ['zd_16_10.png','zd_16_11.png','zd_16_12.png'],
+                    hitEffect: enDragon.basicHitEffect || 'bbz',
+                    dmgMult: 0.95,
+                    radius: 52,
+                    terrainDmg: 110,
+                    special: 'none'
+                };
+            }
 
             playSfx('throw');
-            spawnProjectile(en, angle, powerPct, enBomb, 0.92, 'enemy', false);
+            spawnProjectile(en, angle, powerPct, enBomb, 0.95, 'enemy', false);
         }, delay);
         delay += 1750;
     });
@@ -5145,34 +5340,42 @@ function drawDragonAngleSectorAndAim(ctx, ctrl, now) {
     const centerX = ctrl.x;
     const centerY = ctrl.y - 32;
 
-    // 1. Draw the dragon's authentic Angle Sector Fan (ingame_angle_3070.png etc.) centered on the dragon
+    // 1. Draw the dragon's authentic Angle Sector Fan (ingame_angle_*.png) centered on dragon
     if (dialImg && dialImg.complete && dialImg.naturalWidth > 0) {
         ctx.save();
-        ctx.globalAlpha = 0.68;
+        ctx.globalAlpha = 0.72;
         ctx.translate(centerX, centerY);
         if (ctrl.dir === -1) ctx.scale(-1, 1);
         ctx.drawImage(dialImg, -68, -68, 136, 136);
         ctx.restore();
     }
 
-    // 2. Draw Aiming Line with authentic ingame_aim.png dots & spinning ingame_aim_bk.png reticle
+    // 2. Calculate Parabolic Trajectory Influenced by Gravity & Wind
     const rad = (ctrl.angle * Math.PI) / 180;
     const aimPower = (BTL.dragAiming || BTL.charging) ? ctrl.power : (BTL.lastPower || 45);
-    const maxLen = 70 + (aimPower / 100) * 165;
-    const dirX = Math.cos(rad) * ctrl.dir;
-    const dirY = -Math.sin(rad);
+    const speed = 4.2 + (aimPower / 100) * 14.5;
+    const vx0 = Math.cos(rad) * speed * ctrl.dir;
+    const vy0 = -Math.sin(rad) * speed;
 
     const aimDotImg = getImg('res/drawable-mdpi/ingame_aim.png');
     const aimBkImg = getImg('res/drawable-mdpi/ingame_aim_bk.png');
     const aimPhImg = getImg('res/drawable-mdpi/ingame_aim_ph.png');
 
-    const numDots = 8;
-    for (let i = 1; i <= numDots; i++) {
-        const dist = (maxLen / numDots) * i;
-        const px = centerX + dirX * dist;
-        const py = centerY + dirY * dist;
+    const totalSteps = Math.min(22, Math.max(7, Math.round((aimPower / 100) * 22)));
+    let lastPx = centerX;
+    let lastPy = centerY;
+
+    for (let t = 1; t <= totalSteps; t++) {
+        // Curve formula matches physics in battleLoop:
+        // x(t) = x0 + vx0 * t + 0.5 * (wind * 0.008) * t^2
+        // y(t) = y0 + vy0 * t + 0.5 * 0.24 * t^2
+        const px = centerX + vx0 * t + 0.5 * (BTL.wind * 0.008) * (t * t);
+        const py = centerY + vy0 * t + 0.5 * 0.24 * (t * t);
+        lastPx = px;
+        lastPy = py;
+
         if (aimDotImg && aimDotImg.complete && aimDotImg.naturalWidth > 0) {
-            const sz = 10 + (i / numDots) * 4;
+            const sz = 9 + (t / totalSteps) * 5;
             ctx.drawImage(aimDotImg, px - sz / 2, py - sz / 2, sz, sz);
         } else {
             ctx.fillStyle = '#ffeb3b';
@@ -5182,34 +5385,113 @@ function drawDragonAngleSectorAndAim(ctx, ctrl, now) {
         }
     }
 
-    const endX = centerX + dirX * maxLen;
-    const endY = centerY + dirY * maxLen;
+    // 3. Draw Target Reticle & Red Crosshair (+) at End of Arc
     ctx.save();
-    ctx.translate(endX, endY);
+    ctx.translate(lastPx, lastPy);
     if (aimBkImg && aimBkImg.complete && aimBkImg.naturalWidth > 0) {
         ctx.save();
-        ctx.rotate(now / 350);
-        ctx.drawImage(aimBkImg, -22, -22, 44, 44);
+        ctx.rotate(now / 320);
+        ctx.drawImage(aimBkImg, -20, -20, 40, 40);
         ctx.restore();
     }
+    // Red Reticle Crosshair (+)
+    ctx.strokeStyle = '#ff1744';
+    ctx.lineWidth = 2.5;
+    ctx.beginPath();
+    ctx.moveTo(-10, 0); ctx.lineTo(10, 0);
+    ctx.moveTo(0, -10); ctx.lineTo(0, 10);
+    ctx.stroke();
+
     if (aimPhImg && aimPhImg.complete && aimPhImg.naturalWidth > 0) {
-        ctx.rotate(Math.atan2(dirY, dirX));
+        const endAngle = Math.atan2(vy0 + 0.24 * totalSteps, vx0 + (BTL.wind * 0.008) * totalSteps);
+        ctx.rotate(endAngle);
         ctx.drawImage(aimPhImg, -14, -14, 28, 28);
     }
     ctx.restore();
 
-    // Show live Angle & Power readout badge near the reticle while dragging/charging
+    // 4. Live Angle, Power & Wind Indicator
     if (BTL.dragAiming || BTL.charging) {
         ctx.save();
         ctx.font = '900 13px Trebuchet MS';
         ctx.textAlign = 'center';
         ctx.strokeStyle = '#000';
         ctx.lineWidth = 3.5;
-        const txt = `${Math.round(ctrl.angle)}° • Lực ${Math.round(ctrl.power)}%`;
-        ctx.strokeText(txt, endX, endY - 26);
+        const windDesc = BTL.wind !== 0 ? ` • Gió ${BTL.wind > 0 ? '▶' : '◀'} ${Math.abs(BTL.wind).toFixed(1)}` : '';
+        const txt = `${Math.round(ctrl.angle)}° • Lực ${Math.round(ctrl.power)}%${windDesc}`;
+        ctx.strokeText(txt, lastPx, lastPy - 26);
         ctx.fillStyle = '#ffee58';
-        ctx.fillText(txt, endX, endY - 26);
+        ctx.fillText(txt, lastPx, lastPy - 26);
         ctx.restore();
+    }
+}
+
+// ==================== DESTRUCTIBLE BLOCKS & PROPS GRAVITY SYSTEM ====================
+function updateDestructibleBlocksPhysics(dt) {
+    if (!BTL.blocks || BTL.blocks.length === 0) return;
+
+    let anyMoved = false;
+    const groundY = BTL.mapH - 95;
+
+    // Check blocks
+    for (const b of BTL.blocks) {
+        if (b.destroyed || b.isCoin) continue;
+
+        const halfW = b.w * 0.44;
+        const halfH = b.h * 0.44;
+        const bottomY = b.y + halfH;
+
+        // Ground collision
+        if (bottomY >= groundY) {
+            b.y = groundY - halfH;
+            b.vy = 0;
+            b.isFalling = false;
+            continue;
+        }
+
+        // Check if there is another non-destroyed block directly supporting it beneath
+        let supported = false;
+        for (const other of BTL.blocks) {
+            if (other === b || other.destroyed || other.isCoin) continue;
+            const otherTopY = other.y - other.h * 0.44;
+            // Vertically touching within 8px
+            if (otherTopY >= bottomY - 5 && otherTopY <= bottomY + 10) {
+                // Horizontal overlap
+                const minX = Math.max(b.x - halfW, other.x - other.w * 0.44);
+                const maxX = Math.min(b.x + halfW, other.x + other.w * 0.44);
+                if (maxX - minX > Math.min(b.w, other.w) * 0.22) {
+                    if (!other.isFalling) {
+                        supported = true;
+                        b.y = otherTopY - halfH;
+                        b.vy = 0;
+                        b.isFalling = false;
+                        break;
+                    }
+                }
+            }
+        }
+
+        if (!supported) {
+            b.isFalling = true;
+            b.vy = (b.vy || 0) + 0.45;
+            b.y += b.vy;
+            anyMoved = true;
+
+            if (b.y + halfH >= groundY) {
+                b.y = groundY - halfH;
+                b.vy = 0;
+                b.isFalling = false;
+            }
+        }
+    }
+
+    // When blocks tumble down, actors standing on them fall along!
+    if (anyMoved) {
+        if (BTL.player) BTL.player.y = findSurfaceY(BTL.player.x, BTL.player.y);
+        if (BTL.enemies) {
+            BTL.enemies.forEach(e => {
+                if (!e.dead) e.y = findSurfaceY(e.x, e.y);
+            });
+        }
     }
 }
 
@@ -5221,15 +5503,18 @@ function battleLoop(now) {
     if (BTL.active && BTL.player) {
         const ctrl = getActiveControllableActor();
 
-        // 0. Continuous Victory & Defeat Check
+        // 0. Continuous Block Gravity & Falling Props
+        updateDestructibleBlocksPhysics(dt);
+
+        // Continuous Victory & Defeat Check (safeguarded against hung projectiles)
         if (BTL.active && !BTL.ended && !BTL.ending) {
             const aliveEnemies = BTL.enemies.filter(e => !e.dead && e.hp > 0);
             if (BTL.enemies.length > 0 && aliveEnemies.length === 0 && BTL.projectiles.length === 0) {
                 BTL.ending = true;
-                setTimeout(() => showBattleVictoryModal(true), 500);
+                setTimeout(() => showBattleVictoryModal(true), 400);
             } else if (BTL.player && (BTL.player.hp <= 0 || BTL.player.dead) && BTL.projectiles.length === 0) {
                 BTL.ending = true;
-                setTimeout(() => showBattleVictoryModal(false), 500);
+                setTimeout(() => showBattleVictoryModal(false), 400);
             }
         }
 
@@ -5308,7 +5593,7 @@ function battleLoop(now) {
                     }
                 }
             }
-            if (!hit && (pr.y >= BTL.mapH - 40 || pr.x < -50 || pr.x > BTL.mapW + 50)) {
+            if (!hit && (pr.y >= BTL.mapH - 40 || pr.x < -60 || pr.x > BTL.mapW + 60 || pr.stepCount > 280 || isNaN(pr.x) || isNaN(pr.y))) {
                 hit = true;
             }
 
