@@ -2889,8 +2889,15 @@ const CHAPTER_METADATA = {
 };
 
 // ============================================================================
-// 2. SEQUENTIAL CAMPAIGN PROGRESSION & GLOBAL STATE (Persisted in localStorage)
+// 2. AUTHENTIC DRAGON EXP TABLE (from data/dragonExp.txt) & GLOBAL STATE
 // ============================================================================
+const DRAGON_EXP_TABLE = [
+    0, 500, 1400, 2900, 5200, 8500, 13000, 18900, 26400, 35700,
+    47000, 60500, 76400, 94900, 116200, 140500, 168000, 198900, 233400, 271700,
+    314000, 360500, 411400, 466900, 527200, 592500, 663000, 738900, 820400, 907700,
+    1001000, 1100500, 1206400, 1318900, 1438200, 1564500, 1698000, 1838900, 1987400, 2143700, 2308000
+];
+
 const STATE = {
     selectedDragonId: '108',
     unlockedDragons: { '108': true },
@@ -2900,17 +2907,19 @@ const STATE = {
     soundEnabled: true,
     currentChapter: 1,
     currentStageNum: 1,
-    // Sequential Unlocking: starts at Chapter 1, Stage 1!
     maxUnlockedChapter: 1,
     maxUnlockedStagePerChapter: { 1: 1, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0, 8: 0 },
-    clearedStages: {}, // e.g. { '1-1': 3 }
+    clearedStages: {},
     magicLevels: { atk: 3, def: 3, hp: 3, sta: 2 },
     synthGems: { ruby: 8, sapphire: 7, emerald: 6, topaz: 5 },
+    // Authentic Quest Chain from data/task.task
     tasks: [
-        { id: 1, title: 'Hoàn thành Màn 1-3 để giải cứu & mở khóa Mộc Long Leshy', rewardGold: 2000, rewardDia: 35, done: false, claimed: false },
-        { id: 2, title: 'Sử dụng Kỹ năng Đạn Đặc Biệt hoặc Nộ Khí trong trận', rewardGold: 2000, rewardDia: 35, done: true, claimed: false },
-        { id: 3, title: 'Nâng cấp Ma Trận Phép Thuật hoặc Huấn Luyện Rồng', rewardGold: 2500, rewardDia: 50, done: false, claimed: false },
-        { id: 4, title: 'Tham gia 1 trận Đấu Trường Online / PVP', rewardGold: 3500, rewardDia: 80, done: false, claimed: false }
+        { id: 20101, title: 'Vượt Màn 1-1 Thảo Nguyên Khởi Đầu (pve101e)', rewardGold: 1500, rewardDia: 30, done: true, claimed: false },
+        { id: 20103, title: 'Hoàn thành Màn 1-3 để giải cứu Mộc Long Leshy (pve103e)', rewardGold: 2000, rewardDia: 35, done: false, claimed: false },
+        { id: 20104, title: 'Huấn luyện tăng cấp Rồng trong Tổ Rồng (dragonExp.txt)', rewardGold: 2000, rewardDia: 35, done: false, claimed: false },
+        { id: 20106, title: 'Vượt Màn 1-6 để giải cứu Hỏa Long Lava (pve106e)', rewardGold: 2500, rewardDia: 40, done: false, claimed: false },
+        { id: 20109, title: 'Vượt Màn 1-10 để giải cứu Băng Long Crystal (pve110e)', rewardGold: 3000, rewardDia: 50, done: false, claimed: false },
+        { id: 20112, title: 'Tiêu diệt Trùm Mộc Long Leshy Màn 1-15 (pve115e)', rewardGold: 5000, rewardDia: 100, done: false, claimed: false }
     ]
 };
 
@@ -3908,7 +3917,7 @@ let BTL = {
     floatTexts: []
 };
 
-// Translate Chinese NPC names from haypi_full_data.js into proper Vietnamese/English names
+// Translate Chinese NPC names from npc_data.txt & haypi_full_data.js into authentic Vietnamese names
 function translateNpcName(rawName, unitId, stageNum) {
     if (!rawName) return `Long Tộc Hộ Vệ ${stageNum}`;
     const map = {
@@ -3916,6 +3925,54 @@ function translateNpcName(rawName, unitId, stageNum) {
         '野生小龙': 'Tiểu Long Rừng Sâu',
         '强壮的野生小龙': 'Cuồng Long Hoang Dã',
         '精英小龙': 'Tinh Anh Long Tộc',
+        '野生土龙': 'Thổ Long Hoang Dã',
+        '野生蛋龙': 'Đản Long Hoang Dã',
+        '野生精灵龙': 'Tinh Linh Long Hoang Dã',
+        '野生巨龙': 'Cự Long Hoang Dã',
+        '蛋龙守卫': 'Đản Long Hộ Vệ',
+        '精灵龙守卫': 'Tinh Linh Long Hộ Vệ',
+        '幸运巨龙': 'May Mắn Cự Long',
+        '幸运土龙': 'May Mắn Thổ Long',
+        '强壮巨龙': 'Cường Tráng Cự Long',
+        '强壮土龙': 'Cường Tráng Thổ Long',
+        '莱西的守卫': 'Thị Vệ Của Leshy',
+        '莱西': 'Chúa Tể Mộc Long Leshy (BOSS)',
+        '邪恶土龙': 'Tà Ác Thổ Long',
+        '邪恶蛋龙': 'Tà Ác Đản Long',
+        '邪恶精灵龙': 'Tà Ác Tinh Linh Long',
+        '邪恶火龙': 'Tà Ác Hỏa Long',
+        '巨龙队长': 'Cự Long Đội Trưởng',
+        '精灵龙队长': 'Tinh Linh Long Đội Trưởng',
+        '邪恶巨龙': 'Tà Ác Cự Long',
+        '幸运火龙': 'May Mắn Hỏa Long',
+        '魔能巨龙': 'Ma Năng Cự Long',
+        '魔能火龙': 'Ma Năng Hỏa Long',
+        '魔能精灵龙': 'Ma Năng Tinh Linh Long',
+        '熔岩碎块': 'Dung Nham Toái Phiến',
+        '熔岩': 'Chúa Tể Hỏa Long Lava (BOSS)',
+        '冰原巨龙': 'Băng Nguyên Cự Long',
+        '冰原蛋龙': 'Băng Nguyên Đản Long',
+        '冰原土龙': 'Băng Nguyên Thổ Long',
+        '冰原精灵龙': 'Băng Nguyên Tinh Linh Long',
+        '冰原冰龙': 'Băng Nguyên Băng Long',
+        '冰原火龙': 'Băng Nguyên Hỏa Long',
+        '幸运冰龙': 'May Mắn Băng Long',
+        '幸运精灵龙': 'May Mắn Tinh Linh Long',
+        '霜之火龙': 'Sương Chi Hỏa Long',
+        '霜之精灵龙': 'Sương Chi Tinh Linh Long',
+        '充能土龙': 'Nạp Năng Thổ Long',
+        '充能蛋龙': 'Nạp Năng Đản Long',
+        '充能精灵龙': 'Nạp Năng Tinh Linh Long',
+        '洞窟冰龙守卫': 'Động Quật Băng Long Hộ Vệ',
+        '洞窟蛋龙守卫': 'Động Quật Đản Long Hộ Vệ',
+        '洞窟精灵龙守卫': 'Động Quật Tinh Linh Long Hộ Vệ',
+        '洞窟土龙守卫': 'Động Quật Thổ Long Hộ Vệ',
+        '充能冰龙': 'Nạp Năng Băng Long',
+        '邪恶冰龙队长': 'Tà Ác Băng Long Đội Trưởng',
+        '邪恶土龙队长': 'Tà Ác Thổ Long Đội Trưởng',
+        '邪恶精灵龙队长': 'Tà Ác Tinh Linh Long Đội Trưởng',
+        '纠结之木': 'Cổ Thụ Trói Buộc (BOSS)',
+        '水晶': 'Chúa Tể Băng Long Crystal (BOSS)',
         '森林守护者': 'Thần Hộ Vệ Rừng Xanh',
         '食人花': 'Hoa Ăn Thịt Khổng Lồ',
         '石头龙': 'Thạch Long Hộ Vệ',
@@ -4140,8 +4197,17 @@ function startCampaignBattle(chNum, stageNum, isPvp = false, onlineMode = 'none'
             anger: 35,
             atk: isPvp ? atk : Math.max(85, npc.atk),
             def: isPvp ? def : Math.max(30, npc.def),
-            stamina: maxSta,
-            maxStamina: maxSta,
+            // Authentic NPC parameters from npc_data.txt & npc_list.lua
+            hitRate: npc.hit || Math.min(88, 68 + chNum * 3),
+            critRate: (npc.crit || 104) % 100,
+            moveAi: npc.moveAi !== undefined ? npc.moveAi : 2,
+            attackAi: npc.attackAi !== undefined ? npc.attackAi : 4,
+            useSkillAi: npc.useSkillAi !== undefined ? npc.useSkillAi : 1,
+            stamina: npc.move || maxSta,
+            maxStamina: npc.move || maxSta,
+            density: npc.density || 1.0,
+            pull: npc.pull || 0.4,
+            projId: npc.proj || 200001,
             angle: 45,
             angleMin: 20,
             angleMax: 75,
@@ -5813,19 +5879,23 @@ function openModal(type) {
 
 function renderOnlineModal(bodyEl) {
     let mapOptions = '';
-    for (let i = 1; i <= 12; i++) {
+    // Authentic 16 PVP Arena Maps from mapinfo.cat in map/ directory
+    for (let i = 1; i <= 16; i++) {
         const mKey = `pvp100${String(i).padStart(2, '0')}`;
         const mObj = HAYPI_FULL_DATA.maps[mKey];
         const sizeTxt = mObj ? `${mObj.w}x${mObj.h}` : '1200x800';
         mapOptions += `
-            <div style="background:rgba(255,245,220,0.9); border:2px solid #c49a6c; border-radius:10px; padding:9px 12px; display:flex; align-items:center; justify-content:space-between;">
-                <div>
-                    <div style="font-size:13px; font-weight:900; color:#5a2d0c;">🗺️ Bản Đồ PVP #${i} (${mKey.toUpperCase()})</div>
-                    <div style="font-size:11px; color:#7a4414;">Kích thước: ${sizeTxt} • Địa hình phá hủy</div>
+            <div style="background:rgba(255,245,220,0.92); border:2px solid #c49a6c; border-radius:10px; padding:7px 10px; display:flex; align-items:center; gap:10px; justify-content:space-between; box-shadow:0 2px 6px rgba(0,0,0,0.15);">
+                <div style="display:flex; align-items:center; gap:10px;">
+                    <img src="res/drawable-mdpi/room_map0.png" style="width:68px; height:46px; border-radius:6px; border:1.5px solid #b85d00; object-fit:cover; box-shadow:0 2px 4px rgba(0,0,0,0.35);" alt="Map">
+                    <div>
+                        <div style="font-size:12.5px; font-weight:900; color:#5a2d0c;">🗺️ Đấu Trường #${i} (${mKey.toUpperCase()})</div>
+                        <div style="font-size:10.5px; color:#7a4414;">Kích thước: ${sizeTxt} • Phá hủy địa hình</div>
+                    </div>
                 </div>
-                <div style="display:flex; gap:6px;">
-                    <button class="haypi-action-btn" style="min-width:92px; height:34px; font-size:11.5px;" onclick="startHotseat2P(${i - 1})">👥 2 Người</button>
-                    <button class="haypi-action-btn green" style="min-width:92px; height:34px; font-size:11.5px;" onclick="closeModal(); startCampaignBattle(1, ${i - 1}, true, 'none');">⚔️ Đấu AI</button>
+                <div style="display:flex; gap:5px;">
+                    <button class="haypi-action-btn" style="min-width:78px; height:32px; font-size:11px;" onclick="startHotseat2P(${i - 1})">👥 2 Người</button>
+                    <button class="haypi-action-btn green" style="min-width:78px; height:32px; font-size:11px;" onclick="closeModal(); startCampaignBattle(1, ${i - 1}, true, 'none');">⚔️ Đấu AI</button>
                 </div>
             </div>
         `;
@@ -5834,7 +5904,7 @@ function renderOnlineModal(bodyEl) {
     bodyEl.innerHTML = `
         <div style="display:flex; flex-direction:column; gap:12px;">
             <!-- Real-Time Online P2P Room Box -->
-            <div style="background:linear-gradient(180deg, rgba(255,248,225,0.95), rgba(255,236,179,0.92)); border:2px solid #d88718; border-radius:12px; padding:14px 16px;">
+            <div style="background:linear-gradient(180deg, rgba(255,248,225,0.95), rgba(255,236,179,0.92)); border:2px solid #d88718; border-radius:12px; padding:14px 16px; box-shadow:0 3px 8px rgba(0,0,0,0.2);">
                 <div style="font-size:15px; font-weight:900; color:#5a2d0c; margin-bottom:6px;">🌐 PHÒNG ĐẤU ONLINE THỜI GIAN THỰC (WebRTC P2P & Đa Tab)</div>
                 <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap;">
                     <button class="haypi-action-btn green" onclick="createOnlineRoom()">➕ Tạo Phòng Online</button>
@@ -5848,8 +5918,8 @@ function renderOnlineModal(bodyEl) {
                 </div>
             </div>
 
-            <div style="font-size:14px; font-weight:900; color:#5a2d0c;">🏆 Danh sách 12 Bản Đồ Đấu Trường PVP Gốc (Chọn "👥 2 Người" để 2 người bắn luân phiên hoặc "⚔️ Đấu AI"):</div>
-            <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+            <div style="font-size:14px; font-weight:900; color:#5a2d0c;">🏆 Danh sách 16 Bản Đồ Đấu Trường PVP Gốc (chuẩn mapinfo.cat - Chọn "👥 2 Người" hoặc "⚔️ Đấu AI"):</div>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; max-height:360px; overflow-y:auto; padding-right:4px;">
                 ${mapOptions}
             </div>
         </div>
@@ -5893,7 +5963,7 @@ function renderDragonModal(bodyEl) {
             <div class="skill-card-row">
                 <img src="${b.icon}" alt="${b.name}">
                 <div style="flex:1">
-                    <div style="font-size:13px; font-weight:900; color:#ffd54f;">[Ô Kỹ Năng ${idx + 4} / Phím ${idx + 1}] ${b.name} <span style="color:#76ff03; font-size:11px;">(Tốn ${b.cost} MP)</span></div>
+                    <div style="font-size:13px; font-weight:900; color:#ffd54f;">[Đạn Kỹ Năng ${idx + 1} • Nhấn Ô Chọn Đạn Trong Trận] ${b.name} <span style="color:#76ff03; font-size:11px;">(Tốn ${b.cost} MP)</span></div>
                     <div style="font-size:11px; color:#f5e6c8;">${b.desc}</div>
                 </div>
             </div>
@@ -5922,6 +5992,7 @@ function renderDragonModal(bodyEl) {
                 <div style="text-align:center;">
                     <div style="font-size:18px; font-weight:900; color:#ffe082; text-shadow:0 2px 4px #000;">${d.name} — ${d.title}</div>
                     <div style="font-size:11px; color:#ffd54f;">Hệ: ${d.element} | Góc bắn: ${d.angleMin}° – ${d.angleMax}°</div>
+                    <div style="font-size:11.5px; font-weight:800; color:#80d8ff; margin-top:2px;">Cấp độ: <b style="color:#ffd54f;">Lv.${d.level}</b> (EXP: ${d.exp}/${DRAGON_EXP_TABLE[d.level] || (d.level * 1000)})</div>
                 </div>
                 <canvas id="modal-dragon-canvas" width="220" height="200"></canvas>
                 ${actionBtnsHtml}
@@ -5997,8 +6068,9 @@ function trainCurrentDragon() {
         return;
     }
     STATE.gold -= cost;
-    d.level++;
-    STATE.tasks[2].done = true;
+    d.level = Math.min(40, d.level + 1);
+    d.exp = DRAGON_EXP_TABLE[d.level - 1] || (d.level * 1000);
+    if (STATE.tasks[2]) STATE.tasks[2].done = true;
     saveProgress();
     playSfx('levelup');
     updateTopHud();
