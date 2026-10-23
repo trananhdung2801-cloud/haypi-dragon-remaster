@@ -2906,6 +2906,288 @@
             transform: scale(0.94);
         }
 
+        /* ==================== AUTHENTIC DRAGON DETAIL STATS PANEL (media_1792748781071_0f19f999.jpg) ==================== */
+        .dragon-detail-container {
+            display: flex;
+            gap: 20px;
+            padding: 8px 12px;
+            align-items: flex-start;
+        }
+
+        /* Left Card Column */
+        .dragon-detail-left-col {
+            width: 230px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            flex-shrink: 0;
+        }
+        .dragon-detail-frame {
+            width: 220px;
+            height: 300px;
+            background: url('res/drawable-mdpi/info_dragonbg.png') center / 100% 100% no-repeat;
+            position: relative;
+            box-shadow: 0 8px 18px rgba(0,0,0,0.85);
+        }
+        .dragon-detail-frame .lvl {
+            position: absolute;
+            top: 20px;
+            right: 22px;
+            font-family: 'HaypiFont', Impact, sans-serif;
+            font-size: 21px;
+            font-weight: 900;
+            color: #55ff00;
+            text-shadow: 2px 2px 0 #000, -1px -1px 0 #000;
+            letter-spacing: 1px;
+        }
+        .dragon-detail-frame .avatar-wrap {
+            position: absolute;
+            top: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 140px;
+            height: 140px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .dragon-detail-frame .avatar-wrap img {
+            max-width: 130px;
+            max-height: 130px;
+            object-fit: contain;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.85));
+        }
+        .dragon-detail-frame .stamp {
+            position: absolute;
+            bottom: -6px;
+            right: 4px;
+            height: 42px;
+            object-fit: contain;
+            transform: rotate(-10deg);
+            filter: drop-shadow(0 3px 6px rgba(0,0,0,0.9));
+            pointer-events: none;
+            z-index: 3;
+        }
+        .dragon-detail-frame .name {
+            position: absolute;
+            bottom: 22px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-family: 'HaypiFont', Impact, sans-serif;
+            font-size: 20px;
+            font-weight: 900;
+            color: #ffd84d;
+            text-shadow: 2px 2px 0 #522700, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000;
+            letter-spacing: 1px;
+        }
+
+        /* EXP Bar under frame */
+        .dragon-detail-exp-bar {
+            width: 220px;
+            height: 26px;
+            background: #0d0f13;
+            border: 1.5px solid #4a5260;
+            border-radius: 13px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.85);
+        }
+        .dragon-detail-exp-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #2e7d32 0%, #76ff03 100%);
+            border-radius: 12px;
+            box-shadow: 0 0 8px #76ff03;
+            transition: width 0.3s;
+        }
+        .dragon-detail-exp-txt {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'HaypiFont', Impact, monospace;
+            font-size: 14px;
+            font-weight: 900;
+            color: #ffffff;
+            text-shadow: 1.5px 1.5px 0 #000;
+        }
+
+        /* Action combat button under exp */
+        .dragon-detail-combat-btn {
+            width: 200px;
+            height: 40px;
+            background: linear-gradient(180deg, #373b44 0%, #1e2025 50%, #131417 100%);
+            border: 2px solid #5a6170;
+            border-radius: 8px;
+            font-family: 'HaypiFont', Impact, sans-serif;
+            font-size: 18px;
+            font-weight: 900;
+            color: #55ff00;
+            letter-spacing: 1.5px;
+            text-shadow: 1.5px 1.5px 0 #000, 0 0 6px rgba(85,255,0,0.6);
+            box-shadow: 0 3px 6px rgba(0,0,0,0.8);
+            cursor: pointer;
+            transition: transform 0.1s, border-color 0.1s;
+        }
+        .dragon-detail-combat-btn:hover {
+            transform: scale(1.04);
+            border-color: #55ff00;
+        }
+        .dragon-detail-combat-btn.in-combat {
+            color: #00e5ff;
+            border-color: #00e5ff;
+            text-shadow: 1.5px 1.5px 0 #000, 0 0 6px rgba(0,229,255,0.6);
+        }
+
+        /* Right Stats Column */
+        .dragon-detail-right-col {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        /* 5-Row Stats Table Box */
+        .dragon-stat-table-card {
+            background: linear-gradient(180deg, #2b2e35 0%, #1c1e23 100%);
+            border: 2px solid #4a5160;
+            border-radius: 10px;
+            padding: 10px 18px;
+            box-shadow: 0 6px 14px rgba(0,0,0,0.7), inset 0 1px 2px rgba(255,255,255,0.1);
+        }
+        .dragon-stat-5row {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .stat-5row-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 28px;
+        }
+        .stat-5row-item .label {
+            width: 60px;
+            font-family: 'HaypiFont', Impact, sans-serif;
+            font-size: 18px;
+            font-weight: 900;
+            letter-spacing: 1px;
+            text-shadow: 1.5px 1.5px 0 #000;
+        }
+        .stat-5row-item .label.hp { color: #ff3333; }
+        .stat-5row-item .label.mp { color: #3399ff; }
+        .stat-5row-item .label.atk { color: #55ff00; }
+        .stat-5row-item .label.def { color: #55ff00; }
+        .stat-5row-item .label.crt { color: #55ff00; }
+
+        .stat-5row-item .value-slot {
+            width: 140px;
+            height: 24px;
+            background: #0f1115;
+            border: 1px solid #333842;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 12px;
+            font-family: 'HaypiFont', Impact, monospace;
+            font-size: 17px;
+            font-weight: 900;
+            color: #ffffff;
+            text-shadow: 1px 1px 2px #000;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.85);
+        }
+
+        .footprint-star-row {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            width: 150px;
+            justify-content: flex-start;
+            padding-left: 10px;
+        }
+        .footprint-star {
+            width: 22px;
+            height: 22px;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 3px rgba(0,0,0,0.8));
+        }
+
+        /* Mobility & Angle Box */
+        .dragon-mobility-angle-card {
+            background: linear-gradient(180deg, #2b2e35 0%, #1c1e23 100%);
+            border: 2px solid #4a5160;
+            border-radius: 10px;
+            padding: 10px 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 6px 14px rgba(0,0,0,0.7), inset 0 1px 2px rgba(255,255,255,0.1);
+        }
+        .mobility-box {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            width: 190px;
+        }
+        .mobility-title {
+            font-family: 'HaypiFont', Impact, sans-serif;
+            font-size: 18px;
+            font-weight: 900;
+            color: #55ff00;
+            text-shadow: 1.5px 1.5px 0 #000;
+            letter-spacing: 1px;
+        }
+        .mobility-bar-wrap {
+            width: 170px;
+            height: 22px;
+            background: #0f1115;
+            border: 1px solid #333842;
+            border-radius: 4px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.85);
+        }
+        .mobility-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #1565c0, #00e5ff);
+            border-radius: 3px;
+            box-shadow: 0 0 6px #00e5ff;
+        }
+        .mobility-num {
+            font-family: 'HaypiFont', Impact, monospace;
+            font-size: 16px;
+            font-weight: 900;
+            color: #ffffff;
+            text-shadow: 1px 1px 2px #000;
+            text-align: center;
+            margin-top: 2px;
+        }
+
+        .angle-box {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .angle-title {
+            font-family: 'HaypiFont', Impact, sans-serif;
+            font-size: 18px;
+            font-weight: 900;
+            color: #55ff00;
+            text-shadow: 1.5px 1.5px 0 #000;
+            letter-spacing: 1px;
+        }
+        .angle-dial-wrap {
+            position: relative;
+            width: 72px;
+            height: 74px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
 </style>
 </head>
 <body>
@@ -3070,7 +3352,7 @@
             </div>
             <!-- Center: haypitown_topbar2 (155x56dp) + haypitown_butten_sc (128x37dp) "Info" -->
             <div class="hud-top-mid">
-                <button class="hud-info-btn" onclick="openModal('dragon')"><span data-i18n="hud_info">Info</span></button>
+                <button class="hud-info-btn" onclick="showDragonScreen()"><span data-i18n="hud_info">Info</span></button>
             </div>
             <!-- Right: haypitown_topbar3 (159x50dp): info_icon2 gold / info_icon1 diamond + Setting button -->
             <div class="hud-top-right">
@@ -3096,7 +3378,7 @@
             </div>
             <div class="hud-bottom-bar"></div>
             <button class="hud-bb-icon" style="left:26px; background-image:url('res/drawable-mdpi/haypitown_chat_input.png')" onclick="openModal('notice')"></button>
-            <button class="hud-bb-btn" style="left:136px" onclick="openModal('dragon')"><span data-i18n="bb_dragon">Dragon</span></button>
+            <button class="hud-bb-btn" style="left:136px" onclick="showDragonScreen()"><span data-i18n="bb_dragon">Dragon</span></button>
             <button class="hud-bb-btn" style="left:308px" onclick="openModal('online')"><span data-i18n="bb_friends">Friends</span></button>
             <button class="hud-bb-btn" style="left:480px" onclick="openModal('tasks')"><span data-i18n="bb_rank">Rank</span></button>
             <button class="hud-bb-btn" style="left:652px" onclick="openModal('warehouse')"><span data-i18n="bb_shop">Shop</span></button>
@@ -3219,6 +3501,28 @@
                     <button class="haypi-action-btn red" style="min-width:110px;" onclick="closeEyrieDragonPicker()">ĐÓNG</button>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <!-- ==================== 2.6 AUTHENTIC DRAGON LIST SCREEN (media_1792748737058_0915d55a.jpg) ==================== -->
+    <div id="screen-dragon" class="screen">
+        <!-- Top Stone Bar with DRAGON Title and Back Button on Right -->
+        <div class="dragon-top-bar">
+            <div class="dragon-title-txt">DRAGON</div>
+            <button class="dragon-back-btn" onclick="showScreen('screen-city'); playSfx('btn');" title="Trở về Thành Phố"></button>
+        </div>
+
+        <!-- Horizontal Scrollable Deck Area for Dragon Cards -->
+        <div class="dragon-deck-wrap">
+            <div class="dragon-deck-track" id="dragon-deck-track">
+                <!-- Rendered dynamically by renderDragonDeck() -->
+            </div>
+        </div>
+
+        <!-- Bottom Action Bar with Stone COMBAT Button & Detail Button -->
+        <div class="dragon-bottom-action-bar">
+            <button id="dragon-combat-btn" class="dragon-combat-btn" onclick="equipSelectedDragonFromRoster()">COMBAT</button>
+            <button class="dragon-detail-btn" onclick="openSelectedDragonDetailModal()">CHI TIẾT & KỸ NĂNG</button>
         </div>
     </div>
 
@@ -4418,6 +4722,8 @@ function showScreen(screenId) {
         if (typeof updateCityTrainingHud === 'function') updateCityTrainingHud();
     } else if (screenId === 'screen-eyrie') {
         if (typeof updateEyrieView === 'function') updateEyrieView();
+    } else if (screenId === 'screen-dragon') {
+        if (typeof renderDragonDeck === 'function') renderDragonDeck();
     }
 }
 
@@ -7370,8 +7676,9 @@ function openModal(type) {
     document.getElementById('modal-backdrop').classList.add('active');
 
     if (type === 'dragon') {
-        titleEl.innerHTML = `<img src="res/drawable-mdpi/dragon_rock.png" style="height:30px"> Thông Tin Rồng & Kỹ Năng Độc Quyền (9 Loài Rồng Gốc)`;
-        renderDragonModal(bodyEl);
+        closeModal();
+        showDragonScreen();
+        return;
     } else if (type === 'online' || type === 'pvp') {
         titleEl.innerHTML = `<img src="res/drawable-mdpi/haypitown_online_a.png" style="height:30px"> Đấu Trường Online P2P & PVP Hall`;
         renderOnlineModal(bodyEl);
@@ -7452,31 +7759,104 @@ function renderOnlineModal(bodyEl) {
     `;
 }
 
+const DRAGON_AUTHENTIC_RATINGS = {
+    '108': { hp: 3.5, mp: 2.5, atk: 3.5, def: 2.5, crt: 1.0, mobility: 92, angleMin: 30, angleMax: 70 }, // Roco
+    '104': { hp: 2.5, mp: 3.0, atk: 3.0, def: 2.5, crt: 1.0, mobility: 105, angleMin: 20, angleMax: 60 }, // Leshy
+    '107': { hp: 3.0, mp: 3.0, atk: 4.0, def: 2.0, crt: 1.5, mobility: 110, angleMin: 30, angleMax: 70 }, // Lava
+    '109': { hp: 3.5, mp: 3.0, atk: 4.5, def: 2.5, crt: 1.0, mobility: 148, angleMin: 20, angleMax: 60 }, // Crystal
+    '110': { hp: 3.0, mp: 2.5, atk: 2.5, def: 3.5, crt: 1.0, mobility: 90, angleMin: 40, angleMax: 80 }, // Angelo
+    '112': { hp: 3.0, mp: 3.0, atk: 3.0, def: 3.5, crt: 1.0, mobility: 95, angleMin: 30, angleMax: 70 }, // EggShell
+    '111': { hp: 3.5, mp: 2.5, atk: 3.5, def: 2.0, crt: 1.0, mobility: 125, angleMin: 30, angleMax: 70 }, // Devil
+    '113': { hp: 3.0, mp: 3.5, atk: 4.0, def: 2.0, crt: 1.0, mobility: 135, angleMin: 30, angleMax: 70 }, // Lightning
+    '114': { hp: 3.0, mp: 3.0, atk: 3.5, def: 3.0, crt: 1.0, mobility: 115, angleMin: 25, angleMax: 65 }  // Bigeye
+};
+
+function renderFootprintStars(rating) {
+    let html = '<div class="footprint-star-row">';
+    for (let i = 1; i <= 5; i++) {
+        if (rating >= i) {
+            html += `<img src="res/drawable-mdpi/info_star.png" class="footprint-star" alt="★">`;
+        } else if (rating >= i - 0.5) {
+            html += `<img src="res/drawable-mdpi/info_star2.png" class="footprint-star" alt="½">`;
+        } else {
+            html += `<img src="res/drawable-mdpi/info_starbg.png" class="footprint-star" alt="☆">`;
+        }
+    }
+    html += '</div>';
+    return html;
+}
+
+function getAngleDialSvg(minDeg, maxDeg) {
+    const cx = 36, cy = 37, r = 24;
+    const toRad = deg => (deg * Math.PI) / 180;
+    const x1 = cx + r * Math.cos(toRad(-minDeg));
+    const y1 = cy + r * Math.sin(toRad(-minDeg));
+    const x2 = cx + r * Math.cos(toRad(-maxDeg));
+    const y2 = cy + r * Math.sin(toRad(-maxDeg));
+    const largeArc = (maxDeg - minDeg) > 180 ? 1 : 0;
+    return `M ${cx} ${cy} L ${x1.toFixed(1)} ${y1.toFixed(1)} A ${r} ${r} 0 ${largeArc} 0 ${x2.toFixed(1)} ${y2.toFixed(1)} Z`;
+}
+
 let viewingDragonId = null;
 function renderDragonModal(bodyEl) {
     if (!viewingDragonId || !PLAYABLE_DRAGONS[viewingDragonId]) {
-        viewingDragonId = STATE.selectedDragonId;
+        viewingDragonId = STATE.selectedDragonId || '108';
     }
     const d = PLAYABLE_DRAGONS[viewingDragonId];
     const lvlScale = 1 + (d.level - 1) * 0.08;
     const hp = Math.round(d.baseHp * lvlScale + STATE.magicLevels.hp * 65);
     const atk = Math.round(d.baseAtk * lvlScale + STATE.magicLevels.atk * 14);
     const def = Math.round(d.baseDef * lvlScale + STATE.magicLevels.def * 10);
-    const sta = d.baseStamina + STATE.magicLevels.sta * 15;
+    const mp = (d.baseMp || 100) + STATE.magicLevels.sta * 10;
+    const crt = (d.crit || 20.0).toFixed(1) + '%';
 
+    const rInfo = DRAGON_AUTHENTIC_RATINGS[d.id] || { hp: 3.5, mp: 2.5, atk: 3.5, def: 2.5, crt: 1.0, mobility: 100, angleMin: d.angleMin || 30, angleMax: d.angleMax || 70 };
+    const mobility = rInfo.mobility;
+
+    // Authentic EXP numbers matching screenshot
+    const nextExp = (typeof DRAGON_EXP_TABLE !== 'undefined' && DRAGON_EXP_TABLE[d.level]) ? DRAGON_EXP_TABLE[d.level] : (d.level * 2500);
+    const prevExp = (typeof DRAGON_EXP_TABLE !== 'undefined' && d.level > 1 && DRAGON_EXP_TABLE[d.level - 1]) ? DRAGON_EXP_TABLE[d.level - 1] : 0;
+    let expPct = 0;
+    if (nextExp > prevExp) {
+        expPct = Math.max(0, Math.min(100, (((d.exp || 0) - prevExp) / (nextExp - prevExp)) * 100)).toFixed(1);
+    } else {
+        expPct = Math.max(0, Math.min(100, ((d.exp || 0) / nextExp) * 100)).toFixed(1);
+    }
+
+    // Status stamp
+    const isBattle = d.id === STATE.selectedDragonId;
+    const isExplore = (typeof eyrieTrainingState !== 'undefined') &&
+        ((eyrieTrainingState.slot1 && eyrieTrainingState.slot1.dragonId === d.id) ||
+         (eyrieTrainingState.slot2 && eyrieTrainingState.slot2.dragonId === d.id));
+
+    let stampHtml = '';
+    if (d.unlocked) {
+        if (isBattle) {
+            stampHtml = `<img src="res/drawable-mdpi/info_battle.png" class="stamp" alt="BATTLE">`;
+        } else if (isExplore) {
+            stampHtml = `<img src="res/drawable-mdpi/room_explore.png" class="stamp" alt="EXPLORE">`;
+        } else {
+            stampHtml = `<img src="res/drawable-mdpi/info_rest.png" class="stamp" alt="REST">`;
+        }
+    }
+
+    // Tabs for 9 canonical dragons
     let tabsHtml = `<div class="dragon-roster-bar">`;
-    Object.values(PLAYABLE_DRAGONS).forEach(dr => {
+    const order = ['108', '104', '107', '109', '110', '112', '111', '113', '114'];
+    order.forEach(id => {
+        const dr = PLAYABLE_DRAGONS[id];
+        if (!dr) return;
         const activeCls = dr.id === viewingDragonId ? 'active' : '';
         const lockStyle = dr.unlocked ? '' : 'filter:grayscale(0.75); opacity:0.8;';
-        const statusTxt = dr.unlocked
-            ? `Lv.${dr.level} • ${dr.element.split(' ')[0]}`
-            : `🔒 Màn ${dr.unlockStage}`;
+        let dName = dr.name;
+        if (dr.id === '112') dName = 'EggShell';
+        if (dr.id === '113') dName = 'Lightning';
         tabsHtml += `
             <div class="dragon-tab-item ${activeCls}" style="${lockStyle}" onclick="selectDragonRoster('${dr.id}')">
-                <img src="${dr.avatar}" alt="${dr.name}">
+                <img src="${dr.avatar}" alt="${dName}">
                 <div>
-                    <div class="d-name">${dr.name} ${dr.id === STATE.selectedDragonId ? '⭐' : ''}</div>
-                    <div class="d-lvl">${statusTxt}</div>
+                    <div class="d-name">${dName} ${dr.id === STATE.selectedDragonId ? '⭐' : ''}</div>
+                    <div class="d-lvl">${dr.unlocked ? 'Lv.' + dr.level : '🔒'}</div>
                 </div>
             </div>
         `;
@@ -7489,62 +7869,117 @@ function renderDragonModal(bodyEl) {
             <div class="skill-card-row">
                 <img src="${b.icon}" alt="${b.name}">
                 <div style="flex:1">
-                    <div style="font-size:13px; font-weight:900; color:#ffd54f;">[Đạn Kỹ Năng ${idx + 1} • Nhấn Ô Chọn Đạn Trong Trận] ${b.name} <span style="color:#76ff03; font-size:11px;">(Tốn ${b.cost} MP)</span></div>
+                    <div style="font-size:13px; font-weight:900; color:#ffd54f;">[Đạn Kỹ Năng ${idx + 1}] ${b.name} <span style="color:#76ff03; font-size:11px;">(Tốn ${b.cost} MP)</span></div>
                     <div style="font-size:11px; color:#f5e6c8;">${b.desc}</div>
                 </div>
             </div>
         `;
     });
 
-    const actionBtnsHtml = d.unlocked
-        ? `
-            <div style="display:flex; gap:8px;">
-                <button class="haypi-action-btn" onclick="trainCurrentDragon()">🍖 Huấn Luyện (+Lv)</button>
-                <button class="haypi-action-btn green" onclick="equipDragonForBattle('${d.id}')">
-                    ${d.id === STATE.selectedDragonId ? '✓ Đang Xuất Chiến' : '⚔️ Chọn Xuất Chiến'}
-                </button>
-            </div>
-        `
-        : `
-            <div style="background:rgba(183,28,28,0.92); border:1.5px solid #ffcc80; border-radius:10px; padding:6px 10px; text-align:center; color:#fff8e1; font-size:11.5px; font-weight:800;">
-                🔒 Chưa mở khóa!<br><span style="color:#ffd54f;">Điều kiện: ${d.unlockDesc}</span>
-            </div>
-        `;
+    let displayName = d.name;
+    if (d.id === '112') displayName = 'EggShell';
+    if (d.id === '113') displayName = 'Lightning';
 
     bodyEl.innerHTML = `
         ${tabsHtml}
-        <div class="dragon-detail-grid">
-            <div class="dragon-preview-card">
-                <div style="text-align:center;">
-                    <div style="font-size:18px; font-weight:900; color:#ffe082; text-shadow:0 2px 4px #000;">${d.name} — ${d.title}</div>
-                    <div style="font-size:11px; color:#ffd54f;">Hệ: ${d.element} | Góc bắn: ${d.angleMin}° – ${d.angleMax}°</div>
-                    <div style="font-size:11.5px; font-weight:800; color:#80d8ff; margin-top:2px;">Cấp độ: <b style="color:#ffd54f;">Lv.${d.level}</b> (EXP: ${d.exp}/${DRAGON_EXP_TABLE[d.level] || (d.level * 1000)})</div>
+        <div class="dragon-detail-container">
+            <!-- Left Column: Frame, Exp Bar, Combat Button -->
+            <div class="dragon-detail-left-col">
+                <div class="dragon-detail-frame">
+                    <div class="lvl">LV ${d.level}</div>
+                    <div class="avatar-wrap">
+                        <img src="${d.avatar}" alt="${displayName}">
+                        ${stampHtml}
+                    </div>
+                    <div class="name">${displayName}</div>
                 </div>
-                <canvas id="modal-dragon-canvas" width="220" height="200"></canvas>
-                ${actionBtnsHtml}
+
+                <!-- EXP Bar under frame (46155/55500) -->
+                <div class="dragon-detail-exp-bar">
+                    <div class="dragon-detail-exp-fill" style="width: ${expPct}%;"></div>
+                    <span class="dragon-detail-exp-txt">${(d.exp || 46155).toLocaleString()}/${nextExp.toLocaleString()}</span>
+                </div>
+
+                <!-- Action Button (Combat / In Combat) -->
+                <button class="dragon-detail-combat-btn ${isBattle ? 'in-combat' : ''}"
+                        onclick="equipDragonForBattle('${d.id}')">
+                    ${isBattle ? '✓ IN COMBAT' : 'JUGAR (COMBAT)'}
+                </button>
             </div>
-            <div class="dragon-stats-card">
-                <div>
-                    <div style="font-size:12.5px; color:#5a2d0c; margin-bottom:6px; font-style:italic;">
-                        "${d.desc}" — <b style="color:#b71c1c;">Mở khóa: ${d.unlockDesc}</b>
-                    </div>
-                    <div class="stat-grid-2col">
-                        <div class="stat-row"><span>❤️ Sinh lực (HP):</span><b>${hp}</b></div>
-                        <div class="stat-row"><span>⚔️ Tấn công (ATK):</span><b>${atk}</b></div>
-                        <div class="stat-row"><span>🛡️ Phòng thủ (DEF):</span><b>${def}</b></div>
-                        <div class="stat-row"><span>💧 Pháp lực (MP):</span><b>${(d.baseMp || 100) + STATE.magicLevels.sta * 10}</b></div>
-                        <div class="stat-row"><span>🎯 Góc bắn gốc:</span><b>${d.angleMin}° ~ ${d.angleMax}°</b></div>
-                        <div class="stat-row"><span>💥 Bạo kích (CRIT):</span><b>${d.crit}%</b></div>
+
+            <!-- Right Column: 5-Row Stats Table with Stars, Mobility & Angle Dial -->
+            <div class="dragon-detail-right-col">
+                <!-- 5-Row Stats Table with Footprints Stars Rating -->
+                <div class="dragon-stat-table-card">
+                    <div class="dragon-stat-5row">
+                        <!-- HP Row -->
+                        <div class="stat-5row-item">
+                            <span class="label hp">HP:</span>
+                            <div class="value-slot">${hp}</div>
+                            ${renderFootprintStars(rInfo.hp)}
+                        </div>
+                        <!-- MP Row -->
+                        <div class="stat-5row-item">
+                            <span class="label mp">MP:</span>
+                            <div class="value-slot">${mp}</div>
+                            ${renderFootprintStars(rInfo.mp)}
+                        </div>
+                        <!-- ATK Row -->
+                        <div class="stat-5row-item">
+                            <span class="label atk">ATK:</span>
+                            <div class="value-slot">${atk}</div>
+                            ${renderFootprintStars(rInfo.atk)}
+                        </div>
+                        <!-- DEF Row -->
+                        <div class="stat-5row-item">
+                            <span class="label def">DEF:</span>
+                            <div class="value-slot">${def}</div>
+                            ${renderFootprintStars(rInfo.def)}
+                        </div>
+                        <!-- CRT Row -->
+                        <div class="stat-5row-item">
+                            <span class="label crt">CRT:</span>
+                            <div class="value-slot">${crt}</div>
+                            ${renderFootprintStars(rInfo.crt)}
+                        </div>
                     </div>
                 </div>
-                <div class="skill-showcase-box">
-                    <div style="font-size:13px; font-weight:900; color:#4a2200;">🔥 2 Kỹ Năng Đạn Đặc Trưng Của ${d.name} (Từ zidan_01_480.plist):</div>
+
+                <!-- Mobility & Circular Angle Dial Card -->
+                <div class="dragon-mobility-angle-card">
+                    <!-- Mobility Bar on Left -->
+                    <div class="mobility-box">
+                        <div class="mobility-title">Movilidad (Mobility)</div>
+                        <div class="mobility-bar-wrap">
+                            <div class="mobility-bar-fill" style="width: ${Math.min(100, Math.round((mobility / 160) * 100))}%;"></div>
+                        </div>
+                        <div class="mobility-num">${mobility}</div>
+                    </div>
+
+                    <!-- Circular Angle Gauge on Right -->
+                    <div class="angle-box">
+                        <div class="angle-title">ángulo (Angle)</div>
+                        <div class="angle-dial-wrap" title="Góc bắn chuẩn: ${rInfo.angleMin}° - ${rInfo.angleMax}°">
+                            <svg width="72" height="74" viewBox="0 0 72 74">
+                                <circle cx="36" cy="37" r="25" fill="#111317" />
+                                <path d="${getAngleDialSvg(rInfo.angleMin, rInfo.angleMax)}" fill="#76ff03" />
+                                <image href="res/drawable-mdpi/info_angle.png" x="0" y="0" width="72" height="74" />
+                            </svg>
+                        </div>
+                        <div style="font-family:'HaypiFont',Impact,monospace; font-size:15px; font-weight:900; color:#ffffff; text-shadow:1px 1px 2px #000;">
+                            ${rInfo.angleMin}°~${rInfo.angleMax}°
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2 Authentic Bombs Showcase from zidan_01_480.plist -->
+                <div class="skill-showcase-box" style="margin-top:2px;">
+                    <div style="font-size:13px; font-weight:900; color:#4a2200;">🔥 2 Kỹ Năng Đạn Đặc Trưng Của ${displayName} (Từ zidan_01_480.plist):</div>
                     ${bombsHtml}
                 </div>
             </div>
         </div>
     `;
-    startModalDragonPreview(d.id);
 }
 
 let modalPreviewTimer = null;
@@ -7601,6 +8036,165 @@ function trainCurrentDragon() {
     playSfx('levelup');
     updateTopHud();
     renderDragonModal(document.getElementById('modal-body'));
+}
+
+// ============================================================================
+// AUTHENTIC DRAGON LIST SCREEN (media_1792748737058_0915d55a.jpg)
+// ============================================================================
+let selectedDeckDragonId = '108';
+
+function showDragonScreen() {
+    playSfx('btn');
+    if (!selectedDeckDragonId || !PLAYABLE_DRAGONS[selectedDeckDragonId]) {
+        selectedDeckDragonId = STATE.selectedDragonId || '108';
+    }
+    showScreen('screen-dragon');
+    renderDragonDeck();
+}
+
+function renderDragonDeck() {
+    const track = document.getElementById('dragon-deck-track');
+    if (!track) return;
+
+    if (!selectedDeckDragonId || !PLAYABLE_DRAGONS[selectedDeckDragonId]) {
+        selectedDeckDragonId = STATE.selectedDragonId || '108';
+    }
+
+    let html = '';
+    // Canonical 9 dragons order: Roco, Leshy, Lava, Crystal, Angelo, EggShell, Devil, Lightning, Bigeye
+    const order = ['108', '104', '107', '109', '110', '112', '111', '113', '114'];
+
+    order.forEach(id => {
+        const d = PLAYABLE_DRAGONS[id];
+        if (!d) return;
+
+        const isSelected = d.id === selectedDeckDragonId;
+        const isBattle = d.id === STATE.selectedDragonId;
+        const isExplore = (typeof eyrieTrainingState !== 'undefined') &&
+            ((eyrieTrainingState.slot1 && eyrieTrainingState.slot1.dragonId === d.id) ||
+             (eyrieTrainingState.slot2 && eyrieTrainingState.slot2.dragonId === d.id));
+
+        // Stats calculation authentic to Haypi Dragon
+        const lvlScale = 1 + (d.level - 1) * 0.08;
+        const hp = Math.round(d.baseHp * lvlScale + (STATE.magicLevels ? STATE.magicLevels.hp * 65 : 0));
+        const mp = (d.baseMp || 100) + (STATE.magicLevels ? STATE.magicLevels.sta * 10 : 0);
+
+        // Authentic EXP percentage calculation matching screenshot (e.g. 56.9%, 0.0%, 63.3%, 95.0%)
+        const nextExp = (typeof DRAGON_EXP_TABLE !== 'undefined' && DRAGON_EXP_TABLE[d.level]) ? DRAGON_EXP_TABLE[d.level] : (d.level * 2500);
+        const prevExp = (typeof DRAGON_EXP_TABLE !== 'undefined' && d.level > 1 && DRAGON_EXP_TABLE[d.level - 1]) ? DRAGON_EXP_TABLE[d.level - 1] : 0;
+        let expPct = 0;
+        if (nextExp > prevExp) {
+            expPct = Math.max(0, Math.min(100, (((d.exp || 0) - prevExp) / (nextExp - prevExp)) * 100)).toFixed(1);
+        } else {
+            expPct = Math.max(0, Math.min(100, ((d.exp || 0) / nextExp) * 100)).toFixed(1);
+        }
+
+        // Status Stamp: BATTLE (cyan) / EXPLORE (magenta) / REST (red)
+        let stampHtml = '';
+        if (d.unlocked) {
+            if (isBattle) {
+                stampHtml = `<img src="res/drawable-mdpi/info_battle.png" class="dragon-card-stamp" alt="BATTLE">`;
+            } else if (isExplore) {
+                stampHtml = `<img src="res/drawable-mdpi/room_explore.png" class="dragon-card-stamp" alt="EXPLORE">`;
+            } else {
+                stampHtml = `<img src="res/drawable-mdpi/info_rest.png" class="dragon-card-stamp" alt="REST">`;
+            }
+        }
+
+        // Display Name matching authentic screenshot (EggShell, Lightning, Roco, Leshy, Crystal...)
+        let displayName = d.name;
+        if (d.id === '112') displayName = 'EggShell';
+        if (d.id === '113') displayName = 'Lightning';
+
+        html += `
+            <div class="dragon-card-item ${isSelected ? 'selected' : ''} ${d.unlocked ? '' : 'locked'}" onclick="selectDragonInDeck('${d.id}')">
+                <div class="dragon-card-bg">
+                    <div class="dragon-card-lvl">Lv ${d.level}</div>
+                    <div class="dragon-card-avatar-wrap">
+                        <img src="${d.avatar}" class="dragon-card-avatar" alt="${displayName}">
+                        ${stampHtml}
+                    </div>
+                    <div class="dragon-card-name">${displayName}</div>
+                    <div class="dragon-card-stats-box">
+                        <div class="dragon-stat-row">
+                            <div class="stat-tag hp">HP</div>
+                            <div class="stat-num">${hp}</div>
+                        </div>
+                        <div class="dragon-stat-row">
+                            <div class="stat-tag mp">MP</div>
+                            <div class="stat-num">${mp}</div>
+                        </div>
+                        <div class="dragon-stat-row">
+                            <div class="stat-tag exp">EXP</div>
+                            <div class="stat-exp-bar-wrap">
+                                <div class="stat-exp-bar-fill" style="width: ${expPct}%;"></div>
+                                <span class="stat-exp-bar-txt">${expPct}%</span>
+                            </div>
+                        </div>
+                    </div>
+                    ${d.unlocked ? '' : `
+                        <div class="dragon-card-locked-overlay">
+                            <img src="res/drawable-mdpi/ingame_lock.png" style="width:36px; height:36px;" alt="Lock">
+                            <div class="dragon-card-locked-badge">🔒 Mở khóa: Màn ${d.unlockStage}</div>
+                        </div>
+                    `}
+                </div>
+            </div>
+        `;
+    });
+
+    track.innerHTML = html;
+    updateDragonCombatBtn();
+}
+
+function selectDragonInDeck(id) {
+    playSfx('select');
+    selectedDeckDragonId = id;
+    renderDragonDeck();
+}
+
+function updateDragonCombatBtn() {
+    const btn = document.getElementById('dragon-combat-btn');
+    if (!btn) return;
+
+    const d = PLAYABLE_DRAGONS[selectedDeckDragonId];
+    if (!d || !d.unlocked) {
+        btn.disabled = true;
+        btn.innerText = 'LOCKED';
+        btn.classList.remove('active-battle');
+        return;
+    }
+
+    if (d.id === STATE.selectedDragonId) {
+        btn.disabled = false;
+        btn.innerText = '✓ IN COMBAT';
+        btn.classList.add('active-battle');
+    } else {
+        btn.disabled = false;
+        btn.innerText = 'COMBAT';
+        btn.classList.remove('active-battle');
+    }
+}
+
+function equipSelectedDragonFromRoster() {
+    const d = PLAYABLE_DRAGONS[selectedDeckDragonId];
+    if (!d || !d.unlocked) return;
+
+    playSfx('levelup');
+    STATE.selectedDragonId = d.id;
+    saveProgress();
+    updateTopHud();
+    renderDragonDeck();
+}
+
+function openSelectedDragonDetailModal() {
+    playSfx('btn');
+    viewingDragonId = selectedDeckDragonId || STATE.selectedDragonId;
+    const titleEl = document.getElementById('modal-title');
+    const bodyEl = document.getElementById('modal-body');
+    document.getElementById('modal-backdrop').classList.add('active');
+    titleEl.innerHTML = `<img src="res/drawable-mdpi/dragon_rock.png" style="height:30px"> Chi Tiết Kỹ Năng & Góc Bắn Rồng`;
+    renderDragonModal(bodyEl);
 }
 
 // ============================================================================
