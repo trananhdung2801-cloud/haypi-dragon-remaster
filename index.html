@@ -876,51 +876,98 @@
             gap: 14px;
             box-shadow: 0 6px 16px rgba(0,0,0,0.7);
         }
+        #screen-worldmap {
+            position: absolute;
+            inset: 0;
+            width: 960px;
+            height: 640px;
+            overflow: hidden;
+            display: none;
+            user-select: none;
+        }
+        #screen-worldmap.active { display: block; }
         .wmap-page {
             position: absolute;
             inset: 0;
+            width: 960px;
+            height: 640px;
             display: none;
         }
         .wmap-page.active { display: block; }
         .wmap-ground {
             position: absolute;
-            left: 98px;
-            top: 36px;
-            width: 940px;
-            height: 568px;
-            background-size: contain;
+            inset: 0;
+            width: 960px;
+            height: 640px;
+            background-size: 100% 100%;
             background-position: center;
             background-repeat: no-repeat;
         }
-        .wmap-zone {
+
+        /* Authentic World Map Interactive Locations (media_1792748980272_31215496.jpg) */
+        .wmap-loc-item {
             position: absolute;
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             cursor: pointer;
-            transition: transform 0.14s, filter 0.14s;
+            transition: transform 0.15s, filter 0.15s;
+            z-index: 10;
         }
-        .wmap-zone:hover {
-            transform: scale(1.06);
-            filter: brightness(1.15) drop-shadow(0 0 12px rgba(255,220,100,0.85));
+        .wmap-loc-item:hover {
+            transform: scale(1.08);
+            filter: drop-shadow(0 0 16px rgba(255, 235, 59, 0.85));
         }
-        .wmap-zone.locked {
-            filter: grayscale(0.45) brightness(0.82);
+        .wmap-loc-item.locked {
+            opacity: 0.65;
+            filter: grayscale(0.5);
         }
-        .wmap-zone-label {
-            position: absolute;
-            left: 50%;
-            bottom: 4px;
-            transform: translateX(-50%);
-            background: rgba(30, 15, 4, 0.92);
-            border: 1.5px solid #f0be52;
-            border-radius: 10px;
-            padding: 3px 11px;
-            font-size: 12px;
+        .wmap-star-wrap {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            filter: drop-shadow(0 3px 6px rgba(0,0,0,0.85));
+        }
+        .wmap-star-img {
+            width: 36px;
+            height: 36px;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 5px rgba(0,0,0,0.8));
+            animation: starPulse 1.8s infinite alternate ease-in-out;
+        }
+        .wmap-star-score {
+            font-family: 'HaypiFont', Impact, sans-serif;
+            font-size: 26px;
             font-weight: 900;
-            color: #ffe8a3;
+            color: #ffea00;
+            text-shadow: 2px 2px 0 #522700, -1.5px -1.5px 0 #000, 1.5px -1.5px 0 #000, -1.5px 1.5px 0 #000, 0 3px 6px rgba(0,0,0,0.9);
+            letter-spacing: 1px;
+        }
+        .wmap-loc-name {
+            font-family: 'HaypiFont', Impact, sans-serif;
+            font-size: 20px;
+            font-weight: 900;
+            color: #ffd84d;
+            text-shadow: 2.5px 2.5px 0 #522700, -1.5px -1.5px 0 #000, 1.5px -1.5px 0 #000, -1.5px 1.5px 0 #000, 0 3px 6px rgba(0,0,0,0.95);
+            letter-spacing: 1.5px;
             white-space: nowrap;
-            box-shadow: 0 3px 8px rgba(0,0,0,0.75);
+            margin-top: 4px;
+        }
+        .wmap-back-btn {
+            position: absolute;
+            right: 18px;
+            top: 14px;
+            width: 56px;
+            height: 44px;
+            background: url('res/drawable-mdpi/channel_butten_back_a.png') center / contain no-repeat;
+            border: none;
+            cursor: pointer;
+            z-index: 30;
+            filter: drop-shadow(0 2px 5px rgba(0,0,0,0.85));
+            transition: transform 0.1s;
+        }
+        .wmap-back-btn:active {
+            transform: scale(0.92);
         }
         .wmap-nav-arrow {
             position: absolute;
@@ -1071,18 +1118,113 @@
             pointer-events: none;
             z-index: 20;
         }
-        /* Authentic Wind Dial (images/ingame/hd/ingame_wind.png 74x104 + ingame_wind_arrow.png) */
-        .btl-wind-box {
+        /* ==================== AUTHENTIC TOP BATTLE HUD (media_1792749082842_034be71d.jpg) ==================== */
+        .btl-top-hud {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 120px;
+            pointer-events: none;
+            z-index: 25;
+        }
+        /* 1. Top-Left Player Badge */
+        .btl-top-player-hud {
+            position: absolute;
+            left: 12px;
+            top: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            pointer-events: auto;
+        }
+        .btl-player-avatar {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            border: 2px solid #ffd54f;
+            background: #1a1a1a;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.8));
+        }
+        .btl-player-info-col {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+        .btl-player-name {
+            font-family: 'HaypiFont', Arial, sans-serif;
+            font-size: 13px;
+            font-weight: 900;
+            color: #40c4ff;
+            text-shadow: 0 1px 2px #000, 0 0 4px #000;
+        }
+        .btl-player-top-hp-bar {
+            width: 90px;
+            height: 10px;
+            background: #0d1b2a;
+            border: 1.5px solid #00bcd4;
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.8);
+        }
+        .btl-player-top-hp-fill {
+            height: 100%;
+            background: linear-gradient(180deg, #00e5ff 0%, #0097a7 100%);
+            border-radius: 4px;
+            transition: width 0.25s ease;
+        }
+
+        /* 2. Top-Center Controls: SKIP 1 | WIND | MENU | CHAT */
+        .btl-top-center-hud {
             position: absolute;
             left: 50%;
-            top: 4px;
+            top: 6px;
             transform: translateX(-50%);
-            width: 74px;
-            height: 104px;
-            background: url('images/ingame/hd/ingame_wind.png') center / 100% 100% no-repeat;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            pointer-events: auto;
+        }
+        .btl-skip-btn {
+            width: 108px;
+            height: 44px;
+            background: url('images/ingame/hd/ingame_butten_pass_a.png') center / 100% 100% no-repeat;
+            border: none;
+            cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
+            font-family: 'HaypiFont', Arial, sans-serif;
+            font-size: 17px;
+            font-weight: 900;
+            color: #ffeb3b;
+            text-shadow: 0 2px 2px #000, 0 0 4px #000;
+            letter-spacing: 1px;
+            transition: transform 0.1s, filter 0.1s;
+        }
+        .btl-skip-btn:hover { transform: scale(1.05); filter: brightness(1.15); }
+        .btl-skip-btn:active { background-image: url('images/ingame/hd/ingame_butten_pass_b.png'); transform: scale(0.96); }
+
+        .btl-wind-box {
+            position: relative;
+            width: 66px;
+            height: 84px;
+            background: url('images/ingame/hd/ingame_wind.png') center / 100% 100% no-repeat;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .btl-wind-lbl {
+            position: absolute;
+            top: 4px;
+            font-family: 'HaypiFont', Arial, sans-serif;
+            font-size: 11px;
+            font-weight: 900;
+            color: #ffe082;
+            text-shadow: 0 1px 2px #000;
+            letter-spacing: 0.5px;
         }
         .btl-wind-arrow {
             position: absolute;
@@ -1092,95 +1234,272 @@
         }
         .btl-wind-val {
             position: absolute;
-            bottom: 22px;
-            font-family: 'HaypiFont', 'Trebuchet MS', sans-serif;
+            bottom: 16px;
+            font-family: 'HaypiFont', Arial, sans-serif;
             font-size: 15px;
             font-weight: 900;
             color: #fff8c8;
-            text-shadow: 0 2px 3px #000, 0 0 6px #000;
+            text-shadow: 0 2px 3px #000, 0 0 5px #000;
             z-index: 2;
         }
-        /* Authentic Turn Countdown Timer (images/ingame/hd/ingame_time_bg.png + ingame_number_0..9.png) */
-        .btl-timer-box {
-            position: absolute;
-            right: 290px;
-            top: 8px;
-            width: 74px;
-            height: 74px;
-            background: url('images/ingame/hd/ingame_time_bg.png') center / 100% 100% no-repeat;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 1px;
-        }
-        .btl-timer-box img {
-            height: 36px;
-            width: auto;
-            object-fit: contain;
-            filter: drop-shadow(0 2px 3px rgba(0,0,0,0.8));
-        }
-        /* Authentic Top-Right Stone PASS Button (images/ingame/hd/ingame_butten_pass_a.png 124x52) */
-        .btl-pass-top-btn {
-            position: absolute;
-            right: 154px;
-            top: 12px;
-            width: 124px;
-            height: 52px;
-            background: url('images/ingame/hd/ingame_butten_pass_a.png') center / 100% 100% no-repeat;
-            border: none;
-            cursor: pointer;
-            pointer-events: auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'HaypiFont', 'Trebuchet MS', sans-serif;
-            font-size: 20px;
-            font-weight: 900;
-            color: #fff3c4;
-            text-shadow: 0 2px 0 #1f1209, 0 -1px 0 #000, 1px 1px 4px #000;
-            letter-spacing: 1px;
-            transition: transform 0.1s, filter 0.1s;
-        }
-        .btl-pass-top-btn:hover { transform: scale(1.04); filter: brightness(1.12); }
-        .btl-pass-top-btn:active { background-image: url('images/ingame/hd/ingame_butten_pass_b.png'); transform: scale(0.96); }
 
-        /* Authentic Top-Right Stone MENU Button (images/ingame/hd/ingame_butten_inmenu_a.png) */
-        .btl-pause-btn {
-            position: absolute;
-            right: 14px;
-            top: 12px;
-            width: 132px;
-            height: 52px;
+        .btl-menu-top-btn {
+            width: 108px;
+            height: 44px;
             background: url('images/ingame/hd/ingame_butten_inmenu_a.png') center / 100% 100% no-repeat;
             border: none;
             cursor: pointer;
-            pointer-events: auto;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-family: 'HaypiFont', 'Trebuchet MS', sans-serif;
-            font-size: 20px;
+            font-family: 'HaypiFont', Arial, sans-serif;
+            font-size: 17px;
             font-weight: 900;
-            color: #fff3c4;
-            text-shadow: 0 2px 0 #1f1209, 0 -1px 0 #000, 1px 1px 4px #000;
+            color: #ccff90;
+            text-shadow: 0 2px 2px #000, 0 0 4px #000;
             letter-spacing: 1px;
             transition: transform 0.1s, filter 0.1s;
         }
-        .btl-pause-btn:hover { transform: scale(1.04); filter: brightness(1.12); }
-        .btl-pause-btn:active { background-image: url('images/ingame/hd/ingame_butten_inmenu_b.png'); transform: scale(0.96); }
+        .btl-menu-top-btn:hover { transform: scale(1.05); filter: brightness(1.15); }
+        .btl-menu-top-btn:active { background-image: url('images/ingame/hd/ingame_butten_inmenu_b.png'); transform: scale(0.96); }
+
+        .btl-chat-btn {
+            width: 53px;
+            height: 41px;
+            background: url('res/drawable-mdpi/haypitown_buttenchat_a.png') center / 100% 100% no-repeat;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.1s, filter 0.1s;
+        }
+        .btl-chat-btn:hover { transform: scale(1.08); filter: brightness(1.12); }
+        .btl-chat-btn:active { background-image: url('res/drawable-mdpi/haypitown_buttenchat_b.png'); transform: scale(0.92); }
+
+        /* 3. Top-Right Enemy List */
+        .btl-enemies-top-list {
+            position: absolute;
+            right: 12px;
+            top: 8px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            pointer-events: auto;
+            max-width: 220px;
+        }
+        .btl-enemy-row {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(18, 10, 8, 0.7);
+            padding: 2px 6px;
+            border-radius: 6px;
+            border: 1px solid rgba(244, 67, 54, 0.4);
+        }
+        .btl-enemy-avatar {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            border: 1.5px solid #f44336;
+            background: #2a110f;
+            object-fit: contain;
+        }
+        .btl-enemy-col {
+            display: flex;
+            flex-direction: column;
+            gap: 1px;
+        }
+        .btl-enemy-name {
+            font-family: Arial, sans-serif;
+            font-size: 10px;
+            font-weight: 900;
+            color: #ff5252;
+            text-shadow: 0 1px 2px #000;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 140px;
+        }
+        .btl-enemy-hp-bar {
+            width: 80px;
+            height: 6px;
+            background: #1a0808;
+            border-radius: 3px;
+            overflow: hidden;
+            border: 0.5px solid #d32f2f;
+        }
+        .btl-enemy-hp-fill {
+            height: 100%;
+            background: linear-gradient(180deg, #ff5252 0%, #b71c1c 100%);
+            border-radius: 3px;
+            transition: width 0.2s ease;
+        }
+
+        /* 4. Turn Countdown Timer Dial (Right side) */
+        .btl-timer-badge {
+            position: absolute;
+            right: 80px;
+            top: 75px;
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #fff8e1 0%, #ffecb3 70%, #ffe082 100%);
+            box-shadow: 0 4px 14px rgba(0,0,0,0.45), inset 0 2px 4px rgba(255,255,255,0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: auto;
+            border: 2px solid rgba(255, 213, 79, 0.6);
+        }
+        .btl-timer-badge span {
+            font-family: 'HaypiFont', Arial, sans-serif;
+            font-size: 34px;
+            font-weight: 900;
+            color: #1a1a1a;
+            line-height: 1;
+        }
+
+        /* 5. In-game Battle Chat Modal / Popup */
+        .btl-chat-popup {
+            position: absolute;
+            left: 50%;
+            top: 60px;
+            transform: translateX(-50%);
+            z-index: 60;
+            pointer-events: auto;
+            animation: btlChatIn 0.18s cubic-bezier(0.18, 0.89, 0.32, 1.28) forwards;
+        }
+        @keyframes btlChatIn {
+            from { opacity: 0; transform: translate(-50%, -10px) scale(0.95); }
+            to { opacity: 1; transform: translate(-50%, 0) scale(1); }
+        }
+        .btl-chat-card {
+            width: 320px;
+            background: linear-gradient(180deg, rgba(24, 30, 42, 0.98) 0%, rgba(12, 16, 24, 0.98) 100%);
+            border: 2px solid #e6b450;
+            border-radius: 14px;
+            padding: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.85), 0 0 16px rgba(230, 180, 80, 0.35);
+        }
+        .btl-chat-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-family: 'HaypiFont', Arial, sans-serif;
+            font-size: 13px;
+            font-weight: 900;
+            color: #ffe082;
+            padding-bottom: 8px;
+            border-bottom: 1px solid rgba(230, 180, 80, 0.4);
+        }
+        .btl-chat-close {
+            background: none;
+            border: none;
+            color: #ffe082;
+            font-size: 16px;
+            font-weight: 900;
+            cursor: pointer;
+        }
+        .btl-chat-quick-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6px;
+            margin: 10px 0;
+        }
+        .btl-quick-msg {
+            background: rgba(36, 48, 66, 0.85);
+            border: 1px solid #455a64;
+            color: #eceff1;
+            border-radius: 6px;
+            padding: 6px 8px;
+            font-size: 11px;
+            font-weight: bold;
+            cursor: pointer;
+            text-align: left;
+            transition: background 0.1s, border-color 0.1s;
+        }
+        .btl-quick-msg:hover {
+            background: #37474f;
+            border-color: #ffd54f;
+            color: #ffd54f;
+        }
+        .btl-chat-input-row {
+            display: flex;
+            gap: 6px;
+        }
+        .btl-chat-input {
+            flex: 1;
+            height: 32px;
+            background: rgba(10, 14, 20, 0.9);
+            border: 1px solid #78909c;
+            border-radius: 6px;
+            padding: 0 8px;
+            color: #fff;
+            font-size: 12px;
+            outline: none;
+        }
+        .btl-chat-input:focus { border-color: #ffd54f; }
+        .btl-chat-send-btn {
+            background: #d4a259;
+            border: 1px solid #ffe082;
+            color: #1a1205;
+            font-weight: 900;
+            border-radius: 6px;
+            padding: 0 12px;
+            cursor: pointer;
+        }
+
+        /* Floating speech bubble over Dragon */
+        .btl-floating-bubble {
+            position: absolute;
+            background: #ffffff;
+            border: 2px solid #222222;
+            border-radius: 12px;
+            padding: 6px 12px;
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+            font-weight: 900;
+            color: #1a1a1a;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+            pointer-events: none;
+            z-index: 45;
+            white-space: nowrap;
+        }
+        .btl-floating-bubble::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 20px;
+            border-width: 8px 8px 0;
+            border-style: solid;
+            border-color: #ffffff transparent;
+            display: block;
+            width: 0;
+        }
+        .btl-floating-bubble::before {
+            content: '';
+            position: absolute;
+            bottom: -11px;
+            left: 18px;
+            border-width: 10px 10px 0;
+            border-style: solid;
+            border-color: #222222 transparent;
+            display: block;
+            width: 0;
+        }
 
         .btl-stage-badge {
             position: absolute;
             left: 14px;
-            top: 10px;
+            top: 54px;
             background: rgba(20, 12, 5, 0.88);
             border: 1.5px solid #d9a74a;
             border-radius: 10px;
-            padding: 6px 14px;
+            padding: 4px 10px;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
             pointer-events: auto;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.65);
+        }
             box-shadow: 0 4px 12px rgba(0,0,0,0.65);
         }
         .btl-camera-btn {
@@ -1227,31 +1546,30 @@
             padding: 0;
         }
 
-        /* ==================== AUTHENTIC 960x110 STONE BOTTOM BAR (images/ingame/hd/ingame_bg.png) ==================== */
+        /* ==================== AUTHENTIC STONE BOTTOM BAR (images/ingame/hd/ingame_bg.png) ==================== */
         .btl-bottom-outer {
             position: absolute;
             left: 0;
             right: 0;
             bottom: 0;
-            height: 118px;
+            height: 115px;
             z-index: 25;
             pointer-events: none;
         }
-        /* The exact 960x110 HD stone bar centered at the bottom */
         .btl-stone-bar {
             position: absolute;
-            left: 88px;
+            left: calc((100% - 960px) / 2);
             bottom: 0;
             width: 960px;
             height: 110px;
             background: url('images/ingame/hd/ingame_bg.png') left top / 960px 110px no-repeat;
             pointer-events: auto;
         }
-        /* Socket Left (center x=54.5, y=64): Move Left Arrow (98x80) */
+        /* Move Left Button (x=6, top=22, 98x80) */
         .btl-socket-movel {
             position: absolute;
             left: 6px;
-            top: 24px;
+            top: 22px;
             width: 98px;
             height: 80px;
             background: url('images/ingame/hd/ingame_butten_movel_a.png') center / 100% 100% no-repeat;
@@ -1259,11 +1577,12 @@
             cursor: pointer;
         }
         .btl-socket-movel:active { background-image: url('images/ingame/hd/ingame_butten_movel_b.png'); }
-        /* Socket Right (center x=901.5, y=64): Move Right Arrow (98x80) */
+
+        /* Move Right Button (x=855, top=22, 98x80) */
         .btl-socket-mover {
             position: absolute;
-            left: 853px;
-            top: 24px;
+            left: 855px;
+            top: 22px;
             width: 98px;
             height: 80px;
             background: url('images/ingame/hd/ingame_butten_mover_a.png') center / 100% 100% no-repeat;
@@ -1272,46 +1591,39 @@
         }
         .btl-socket-mover:active { background-image: url('images/ingame/hd/ingame_butten_mover_b.png'); }
 
-        /* ==================== AUTHENTIC HAYPI DRAGON INGAME BOTTOM HUD ==================== */
-        /* Socket 1: Weapon / Bullet Selector Socket (x=124px, 86x86) */
+        /* Bullet Dome (Center x=168, y=42 -> left 136, top 10, 64x64) */
         .btl-socket-bullet {
             position: absolute;
-            left: 122px;
-            top: 14px;
-            width: 86px;
-            height: 86px;
+            left: 136px;
+            top: 10px;
+            width: 64px;
+            height: 64px;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 50%;
-            background: radial-gradient(circle, #252e3d 0%, #131a24 70%, #090e15 100%);
-            border: 3px solid #d4a259;
-            box-shadow: inset 0 2px 6px rgba(0,0,0,0.85), 0 3px 8px rgba(0,0,0,0.7), 0 0 10px rgba(212, 162, 89, 0.4);
-            transition: transform 0.12s, border-color 0.12s, box-shadow 0.12s;
             z-index: 5;
-        }
-        .btl-socket-bullet:hover {
-            transform: scale(1.05);
-            border-color: #ffe082;
-            box-shadow: inset 0 2px 8px rgba(0,0,0,0.9), 0 0 14px rgba(255, 224, 130, 0.65);
+            background: transparent;
+            border: none;
         }
         .btl-socket-bullet img.bullet-main-ico {
-            width: 58px;
-            height: 58px;
+            width: 52px;
+            height: 52px;
             object-fit: contain;
-            pointer-events: none;
-            filter: drop-shadow(0 2px 5px rgba(0,0,0,0.85));
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.85));
             transition: transform 0.15s;
+        }
+        .btl-socket-bullet:hover img.bullet-main-ico {
+            transform: scale(1.1);
         }
         .btl-socket-bullet .bullet-name-tag {
             position: absolute;
-            top: -20px;
+            top: -18px;
             left: 50%;
             transform: translateX(-50%);
             background: rgba(10, 15, 25, 0.9);
             border: 1px solid #d4a259;
-            border-radius: 5px;
+            border-radius: 4px;
             padding: 1px 6px;
             font-size: 10px;
             font-weight: 900;
@@ -1319,216 +1631,74 @@
             white-space: nowrap;
             pointer-events: none;
             text-shadow: 0 1px 2px #000;
-        }
-        
-        /* Chamber badge in corner of Socket 1 */
-        .btl-socket-bullet .bullet-chamber-badge {
-            position: absolute;
-            right: -2px;
-            bottom: -2px;
-            width: 28px;
-            height: 28px;
-            object-fit: contain;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.9));
-            pointer-events: none;
             z-index: 6;
         }
-        .btl-socket-bullet .skill-select-ring {
-            position: absolute;
-            inset: -4px;
-            background: url('images/ingame/hd/ingame_skillselect.png') center / 100% 100% no-repeat;
-            pointer-events: none;
-            animation: haypiSpinRing 2s linear infinite;
-            z-index: 4;
-        }
 
-        /* 3-Bullet Floating Selector Menu */
-        #btl-bullet-popup {
+        /* 2 Sub-bullet cavities in the ear sockets of ingame_bg.png */
+        .btl-bullet-sub-ear {
             position: absolute;
-            left: 100px;
-            bottom: 114px;
-            display: none;
-            align-items: center;
-            gap: 12px;
-            padding: 10px 14px;
-            background: linear-gradient(180deg, rgba(28, 36, 48, 0.96) 0%, rgba(12, 16, 24, 0.98) 100%);
-            border: 2px solid #e6b450;
-            border-radius: 18px;
-            box-shadow: 0 12px 32px rgba(0,0,0,0.9), 0 0 18px rgba(230, 180, 80, 0.4);
-            z-index: 32;
-            pointer-events: auto;
-            animation: bulletPopupIn 0.18s cubic-bezier(0.18, 0.89, 0.32, 1.28) forwards;
-        }
-        #btl-bullet-popup.active { display: flex; }
-        @keyframes bulletPopupIn {
-            from { opacity: 0; transform: translateY(10px) scale(0.92); }
-            to { opacity: 1; transform: translateY(0) scale(1); }
-        }
-        .bullet-choice-card {
-            position: relative;
-            width: 82px;
-            height: 102px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 4px;
-            cursor: pointer;
-            background: radial-gradient(circle, #202b3b 0%, #101622 75%, #080b12 100%);
-            border: 2px solid #5d4625;
-            border-radius: 14px;
-            padding: 6px 4px;
-            transition: transform 0.12s, border-color 0.15s, box-shadow 0.15s;
-        }
-        .bullet-choice-card:hover {
-            transform: translateY(-4px) scale(1.06);
-            border-color: #ffd54f;
-            box-shadow: 0 4px 14px rgba(255, 213, 79, 0.45);
-        }
-        .bullet-choice-card.active {
-            border-color: #ffb300;
-            background: radial-gradient(circle, #382c0f 0%, #1f1807 80%, #0d0a02 100%);
-            box-shadow: 0 0 18px #ffb300, inset 0 0 10px rgba(255, 179, 0, 0.7);
-        }
-        .bullet-choice-card .bullet-slot-icon-wrap {
-            position: relative;
-            width: 52px;
-            height: 52px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .bullet-choice-card img.choice-img {
-            width: 46px;
-            height: 46px;
-            object-fit: contain;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.85));
-        }
-        .bullet-choice-card .choice-ring {
-            position: absolute;
-            inset: -4px;
-            background: url('images/ingame/hd/ingame_skillselect.png') center / 100% 100% no-repeat;
-            display: none;
-            animation: haypiSpinRing 1.6s linear infinite;
-            pointer-events: none;
-        }
-        .bullet-choice-card.active .choice-ring { display: block; }
-        .bullet-choice-card .choice-name {
-            font-size: 10px;
-            font-weight: 900;
-            color: #ffffff;
-            text-shadow: 0 1px 3px #000, 0 0 3px #000;
-            white-space: nowrap;
-            text-align: center;
-            max-width: 76px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-        .bullet-choice-card.active .choice-name { color: #ffe082; }
-        .bullet-choice-card .choice-cost {
-            font-size: 9.5px;
-            font-weight: 900;
-            color: #80d8ff;
-            text-shadow: 0 1px 2px #000;
-        }
-        .bullet-choice-card .choice-key {
-            position: absolute;
-            top: 3px;
-            left: 4px;
-            background: rgba(0,0,0,0.85);
-            border: 1px solid #ffd54f;
-            border-radius: 4px;
-            font-size: 8.5px;
-            font-weight: 900;
-            color: #ffe082;
-            padding: 0 3px;
-        }
-        .bullet-choice-card.active .choice-badge {
-            position: absolute;
-            bottom: -6px;
-            background: #ff8f00;
-            border: 1px solid #ffe082;
-            border-radius: 4px;
-            font-size: 8px;
-            font-weight: 900;
-            color: #ffffff;
-            padding: 0 4px;
-            text-shadow: 0 1px 2px #000;
-        }
-
-        .btl-socket-bullet .bullet-sub-dots {
-            position: absolute;
-            bottom: 4px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 5px;
-            pointer-events: none;
-        }
-        .btl-socket-bullet .bullet-dot {
-            width: 7px;
-            height: 7px;
+            width: 22px;
+            height: 22px;
             border-radius: 50%;
-            background: #556270;
-            border: 1px solid #222;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 6;
+            transition: transform 0.12s;
         }
-        .btl-socket-bullet .bullet-dot.active {
-            background: #ffd54f;
-            box-shadow: 0 0 6px #ffd54f;
+        .btl-bullet-sub-ear.left { left: 124px; top: 81px; }
+        .btl-bullet-sub-ear.right { left: 193px; top: 79px; }
+        .btl-bullet-sub-ear:hover { transform: scale(1.2); }
+        .bdot-glow-core {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #546e7a 0%, #263238 75%, #000 100%);
+            border: 1.5px solid #455a64;
+            transition: all 0.2s;
+        }
+        .btl-bullet-sub-ear.active .bdot-glow-core {
+            background: radial-gradient(circle, #ff7043 0%, #d84315 65%, #bf360c 100%);
+            border-color: #ffd54f;
+            box-shadow: 0 0 10px #ff3d00, inset 0 1px 3px #fff;
         }
 
-        /* Support Skill Sockets (Sockets 2, 3, 4, 5: centers at x=250, 344, 438, 532, 72x72) */
+        /* 5 Sockets (Centers at x=288, 380, 479, 576, 672; y=61; size 64x64; top=29) */
         .btl-circle-socket {
             position: absolute;
-            top: 24px;
-            width: 72px;
-            height: 72px;
+            top: 29px;
+            width: 64px;
+            height: 64px;
             border-radius: 50%;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: radial-gradient(circle, #212c3d 0%, #101726 65%, #080d18 100%);
-            border: 2.5px solid #d4a259;
-            box-shadow: inset 0 2px 6px rgba(0,0,0,0.85), 0 3px 8px rgba(0,0,0,0.65), 0 0 10px rgba(212, 162, 89, 0.4);
-            transition: transform 0.12s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+            background: transparent;
+            border: none;
+            box-shadow: none;
+            transition: transform 0.12s ease;
+            z-index: 5;
         }
-        .btl-circle-socket:hover {
-            transform: scale(1.06);
-            border-color: #ffe082;
-            box-shadow: inset 0 2px 8px rgba(0,0,0,0.9), 0 0 14px rgba(255, 224, 130, 0.65);
-        }
-        .btl-circle-socket.selected,
-        .btl-circle-socket.active-buff {
-            border-color: #ff9100;
-            box-shadow: inset 0 0 8px rgba(255, 145, 0, 0.6), 0 0 18px #ff9100;
-        }
-        .btl-circle-socket.locked-slot {
-            background: radial-gradient(circle, #1a1e26 0%, #0d1015 70%, #06080b 100%);
-            border-color: #616161;
-            box-shadow: inset 0 2px 5px rgba(0,0,0,0.9);
-            cursor: not-allowed;
-            opacity: 0.75;
-        }
-        .btl-circle-socket.locked-slot .skill-ico {
-            width: 38px;
-            height: 38px;
-            opacity: 0.85;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.9));
-        }
+        .btl-circle-socket:hover { transform: scale(1.08); }
         .btl-circle-socket img.skill-ico {
-            width: 64px;
-            height: 64px;
+            width: 52px;
+            height: 52px;
             object-fit: contain;
             pointer-events: none;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.7));
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.8));
+        }
+        .btl-circle-socket img.skill-ico.lock-img {
+            width: 34px;
+            height: 44px;
         }
         .btl-circle-socket .skill-select-ring {
             position: absolute;
-            left: -3px;
-            top: -3px;
-            width: 78px;
-            height: 78px;
+            left: -4px;
+            top: -4px;
+            width: 72px;
+            height: 72px;
             background: url('images/ingame/hd/ingame_skillselect.png') center / 100% 100% no-repeat;
             pointer-events: none;
             display: none;
@@ -1537,35 +1707,6 @@
         .btl-circle-socket.selected .skill-select-ring,
         .btl-circle-socket.active-buff .skill-select-ring {
             display: block;
-        }
-        @keyframes haypiSpinRing {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-        .btl-socket-key {
-            position: absolute;
-            left: 2px;
-            top: 0px;
-            background: rgba(0,0,0,0.85);
-            border: 1px solid #d4a259;
-            border-radius: 6px;
-            padding: 0 4px;
-            font-size: 9px;
-            font-weight: 900;
-            color: #ffe082;
-            z-index: 4;
-        }
-        .btl-socket-cost {
-            position: absolute;
-            right: 2px;
-            bottom: 0px;
-            background: rgba(0,0,0,0.88);
-            border-radius: 5px;
-            padding: 1px 4px;
-            font-size: 8.5px;
-            font-weight: 900;
-            color: #80d8ff;
-            z-index: 4;
         }
         .btl-socket-name {
             position: absolute;
@@ -1584,42 +1725,57 @@
             display: none;
         }
         .btl-circle-socket:hover .btl-socket-name { display: block; }
+        .btl-socket-key {
+            position: absolute;
+            left: 2px;
+            top: 0px;
+            background: rgba(0,0,0,0.85);
+            border: 1px solid #d4a259;
+            border-radius: 5px;
+            padding: 0 4px;
+            font-size: 8.5px;
+            font-weight: 900;
+            color: #ffe082;
+            z-index: 4;
+        }
+        .btl-socket-cost {
+            position: absolute;
+            right: 2px;
+            bottom: 0px;
+            background: rgba(0,0,0,0.88);
+            border-radius: 4px;
+            padding: 1px 4px;
+            font-size: 8px;
+            font-weight: 900;
+            color: #80d8ff;
+            z-index: 4;
+        }
 
-        /* Socket 6: Rage / Anger Socket - MÀU ĐỎ (x=638px, 78x78) */
+        /* Socket 5: Rage flame (x=640, top=29) */
         .btl-socket-rage {
             position: absolute;
-            left: 638px;
-            top: 20px;
-            width: 78px;
-            height: 78px;
+            left: 640px;
+            top: 29px;
+            width: 64px;
+            height: 64px;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
             border-radius: 50%;
-            background: radial-gradient(circle, #380d09 0%, #1c0503 65%, #0f0201 100%);
-            border: 3.5px solid #d32f2f;
-            box-shadow: inset 0 2px 6px rgba(0,0,0,0.85), 0 3px 8px rgba(0,0,0,0.7), 0 0 12px rgba(211, 47, 47, 0.5);
-            transition: transform 0.12s, border-color 0.12s, box-shadow 0.12s;
+            background: transparent;
+            border: none;
+            box-shadow: none;
+            transition: transform 0.12s;
             z-index: 5;
         }
-        .btl-socket-rage:hover {
-            transform: scale(1.06);
-            border-color: #ff5252;
-            box-shadow: inset 0 2px 8px rgba(0,0,0,0.9), 0 0 18px rgba(255, 61, 0, 0.8);
-        }
+        .btl-socket-rage:hover { transform: scale(1.08); }
         .btl-socket-rage.active {
-            border-color: #ff1744;
-            box-shadow: inset 0 0 12px rgba(255, 23, 68, 0.9), 0 0 24px #ff1744;
-            animation: ragePulseAura 1.0s ease-in-out infinite alternate;
-        }
-        @keyframes ragePulseAura {
-            from { transform: scale(1.0); box-shadow: 0 0 12px #ff1744; }
-            to { transform: scale(1.08); box-shadow: 0 0 24px #ff3d00, inset 0 0 10px #ff3d00; }
+            animation: ragePulseAura 0.8s ease-in-out infinite alternate;
         }
         .btl-rage-fill-wrap {
             position: absolute;
-            inset: 6px;
+            inset: 4px;
             border-radius: 50%;
             overflow: hidden;
             pointer-events: none;
@@ -1630,14 +1786,13 @@
             right: 0;
             bottom: 0;
             height: 25%;
-            background: linear-gradient(180deg, #ff7043 0%, #d84315 100%);
-            opacity: 0.65;
+            background: linear-gradient(180deg, rgba(255, 112, 67, 0.55) 0%, rgba(216, 67, 21, 0.8) 100%);
             transition: height 0.25s;
         }
         .btl-rage-icon {
             position: relative;
-            width: 68px;
-            height: 68px;
+            width: 52px;
+            height: 52px;
             background: url('images/ingame/hd/icon20011_a.png') center / contain no-repeat;
             z-index: 2;
             transition: transform 0.12s, filter 0.12s;
@@ -1647,94 +1802,86 @@
         }
         .btl-rage-pct {
             position: absolute;
-            bottom: 2px;
+            bottom: -15px;
             left: 50%;
             transform: translateX(-50%);
-            font-size: 9.5px;
+            font-size: 9px;
             font-weight: 900;
             color: #ffe082;
-            text-shadow: 0 1px 3px #000, 0 0 4px #000;
+            text-shadow: 0 1px 2px #000;
             z-index: 4;
             white-space: nowrap;
         }
 
-        /* Paper Plane Button perched above the stone bar on the right side */
+        /* Paper Plane (Fly Button) */
         .btl-plane-btn {
             position: absolute;
-            left: 742px;
-            top: -40px;
-            width: 78px;
-            height: 52px;
+            left: 760px;
+            top: 10px;
+            width: 56px;
+            height: 44px;
             background: url('images/ingame/hd/ingame_butten_paperplane_a.png') center / contain no-repeat;
             border: none;
             cursor: pointer;
             z-index: 6;
-            transition: transform 0.12s, filter 0.12s;
+            transition: transform 0.12s;
         }
         .btl-plane-btn:hover { transform: scale(1.08); }
         .btl-plane-btn.active {
             background-image: url('images/ingame/hd/ingame_butten_paperplane_b.png');
-            filter: drop-shadow(0 0 12px #00e5ff);
-            transform: scale(1.1);
-        }
-        .btl-plane-btn span {
-            position: absolute;
-            left: 50%;
-            bottom: -8px;
-            transform: translateX(-50%);
-            font-size: 9.5px;
-            font-weight: 900;
-            color: #80d8ff;
-            text-shadow: 0 1px 2px #000, 0 0 4px #000;
-            white-space: nowrap;
+            filter: drop-shadow(0 0 10px #00e5ff);
         }
 
-        /* Compact Authentic HP & MP Bars at right (x=734px, y=32px) */
-        .btl-hpmp-area {
+        /* HP & MP Slots fitted into ingame_bg.png cavities */
+        .btl-slot-bar-hp {
             position: absolute;
-            left: 730px;
-            top: 26px;
-            width: 115px;
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-            z-index: 4;
-        }
-        .btl-stat-slot {
-            position: relative;
-            width: 110px;
-            height: 18px;
-            background: #0a0e14;
-            border-radius: 9px;
-            border: 1.5px solid #3e4756;
+            left: 742px;
+            top: 71px;
+            width: 95px;
+            height: 14px;
+            border-radius: 3px;
             overflow: hidden;
-            box-shadow: inset 0 2px 4px rgba(0,0,0,0.8);
+            background: #140404;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.9);
+            z-index: 5;
         }
-        .btl-stat-slot.hp { border-color: #8e24aa; }
-        .btl-stat-slot.mp { border-color: #0288d1; }
-        .btl-stat-fill-hp {
+        .btl-fill-hp {
             height: 100%;
-            background: linear-gradient(180deg, #ff5252 0%, #b71c1c 100%);
-            border-radius: 8px;
-            transition: width 0.25s ease;
+            background: linear-gradient(180deg, #f44336 0%, #b71c1c 100%);
+            border-radius: 2px;
+            transition: width 0.2s ease;
         }
-        .btl-stat-fill-mp {
+        .btl-slot-bar-mp {
+            position: absolute;
+            left: 742px;
+            top: 90px;
+            width: 95px;
+            height: 14px;
+            border-radius: 3px;
+            overflow: hidden;
+            background: #030d14;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.9);
+            z-index: 5;
+        }
+        .btl-fill-mp {
             height: 100%;
-            background: linear-gradient(180deg, #40c4ff 0%, #0277bd 100%);
-            border-radius: 8px;
-            transition: width 0.25s ease;
+            background: linear-gradient(180deg, #03a9f4 0%, #01579b 100%);
+            border-radius: 2px;
+            transition: width 0.2s ease;
         }
-        .btl-stat-num {
+        .btl-stat-val {
             position: absolute;
             inset: 0;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 10px;
+            font-family: 'HaypiFont', Arial, sans-serif;
+            font-size: 9.5px;
             font-weight: 900;
-            color: #fff;
-            text-shadow: 0 1px 2px #000, 0 0 3px #000;
-            letter-spacing: 0.5px;
+            color: #ffffff;
+            text-shadow: 0 1px 2px #000, 0 0 2px #000;
+            pointer-events: none;
+            letter-spacing: 0.3px;
         }
 
         /* ==================== AUTHENTIC LOADING SCREEN WITH QUOTES ==================== */
@@ -4845,52 +4992,99 @@
         </div>
     </div>
 
-    <!-- ==================== 3. ORIGINAL 2-PAGE WORLD MAP (SEQUENTIAL CHAPTER UNLOCK) ==================== -->
+    <!-- ==================== 3. ORIGINAL WORLD MAP WITH NAMES & TOTAL STARS (media_1792748980272_31215496.jpg) ==================== -->
     <div id="screen-worldmap" class="screen">
-        <div class="wmap-top-banner">
-            <div>
-                <div style="font-size:16px; font-weight:900; color:#ffe082;">🗺️ BẢN ĐỒ THẾ GIỚI (8 CHƯƠNG — 285 MÀN CHƠI GỐC)</div>
-                <div id="wmap-progress-txt" style="font-size:12px; color:#b9f6ca;">Chiến thắng các màn mốc (1-3, 1-6, 1-10, 1-15...) để mở khóa Rồng mới!</div>
-            </div>
-        </div>
-
-        <!-- Page 1: Chapters 1 - 5 -->
+        <!-- Page 1: Chapters 1 - 5 + Laputa + Haypi Town -->
         <div id="wmap-page-1" class="wmap-page active">
             <div class="wmap-ground" style="background-image:url('res/drawable-mdpi/map_ground01.png')"></div>
-            <div id="wmap-zone-1" class="wmap-zone" style="left:690px; top:332px; width:280px; height:220px;" onclick="openChapterMap(1)">
-                <div class="wmap-zone-label" id="wmap-lbl-1">Chương 1: Secret Forest</div>
+
+            <!-- 1. ANCIENT FOREST (0/45 Stars) -->
+            <div id="wmap-loc-1" class="wmap-loc-item" style="left:50px; top:245px; width:230px;" onclick="openChapterMap(1)" title="Chương 1: Ancient Forest (Secret Forest)">
+                <div class="wmap-star-wrap">
+                    <img src="res/drawable-mdpi/result_star_1.png" class="wmap-star-img" alt="Star">
+                    <span class="wmap-star-score" id="wmap-stars-forest">0/45</span>
+                </div>
+                <div class="wmap-loc-name">ANCIENT FOREST</div>
             </div>
-            <div id="wmap-zone-2" class="wmap-zone" style="left:430px; top:212px; width:265px; height:232px;" onclick="openChapterMap(2)">
-                <div class="wmap-zone-label" id="wmap-lbl-2">Chương 2: Elven Town</div>
+
+            <!-- 2. DRAGON VALLEY (0/135 Stars) -->
+            <div id="wmap-loc-4" class="wmap-loc-item" style="left:225px; top:130px; width:270px;" onclick="openChapterMap(4)" title="Chương 4: Dragon Valley (Caverns)">
+                <div class="wmap-star-wrap">
+                    <img src="res/drawable-mdpi/result_star_1.png" class="wmap-star-img" alt="Star">
+                    <span class="wmap-star-score" id="wmap-stars-valley">0/135</span>
+                </div>
+                <div class="wmap-loc-name">DRAGON VALLEY</div>
             </div>
-            <div id="wmap-zone-3" class="wmap-zone" style="left:520px; top:48px; width:305px; height:195px;" onclick="openChapterMap(3)">
-                <div class="wmap-zone-label" id="wmap-lbl-3">Chương 3: Icefield</div>
+
+            <!-- 3. HAYPI TOWN (Center Castle) -->
+            <div id="wmap-loc-town" class="wmap-loc-item" style="left:375px; top:460px; width:210px;" onclick="showScreen('screen-city')" title="Haypi Town - Trở về Thành Phố">
+                <div class="wmap-loc-name">HAYPI TOWN</div>
             </div>
-            <div id="wmap-zone-4" class="wmap-zone" style="left:135px; top:320px; width:290px; height:235px;" onclick="openChapterMap(4)">
-                <div class="wmap-zone-label" id="wmap-lbl-4">Chương 4: Caverns</div>
+
+            <!-- 4. ELF CITY (0/45 Stars) -->
+            <div id="wmap-loc-2" class="wmap-loc-item" style="left:560px; top:255px; width:200px;" onclick="openChapterMap(2)" title="Chương 2: Elf City (Elven Town)">
+                <div class="wmap-star-wrap">
+                    <img src="res/drawable-mdpi/result_star_1.png" class="wmap-star-img" alt="Star">
+                    <span class="wmap-star-score" id="wmap-stars-elf">0/45</span>
+                </div>
+                <div class="wmap-loc-name">ELF CITY</div>
             </div>
-            <div id="wmap-zone-5" class="wmap-zone" style="left:118px; top:55px; width:295px; height:255px;" onclick="openChapterMap(5)">
-                <div class="wmap-zone-label" id="wmap-lbl-5">Chương 5: Sky Sea</div>
+
+            <!-- 5. ICE HILL (0/90 Stars) -->
+            <div id="wmap-loc-3" class="wmap-loc-item" style="left:715px; top:185px; width:210px;" onclick="openChapterMap(3)" title="Chương 3: Ice Hill (Icefield)">
+                <div class="wmap-star-wrap">
+                    <img src="res/drawable-mdpi/result_star_1.png" class="wmap-star-img" alt="Star">
+                    <span class="wmap-star-score" id="wmap-stars-ice">0/90</span>
+                </div>
+                <div class="wmap-loc-name">ICE HILL</div>
+            </div>
+
+            <!-- 6. LAPUTA (0/60 Stars) - Highlighted in Red Box -->
+            <div id="wmap-loc-5" class="wmap-loc-item" style="left:20px; top:460px; width:195px;" onclick="openChapterMap(5)" title="Chương 5: Laputa (Sky Sea)">
+                <div class="wmap-star-wrap">
+                    <img src="res/drawable-mdpi/result_star_1.png" class="wmap-star-img" alt="Star">
+                    <span class="wmap-star-score" id="wmap-stars-laputa">0/60</span>
+                </div>
+                <div class="wmap-loc-name">LAPUTA</div>
             </div>
         </div>
 
-        <!-- Page 2: Chapters 6 - 8 -->
+        <!-- Page 2: Chapters 6 - 8 (Fire Mountain, Desert Ruins, Grassland) -->
         <div id="wmap-page-2" class="wmap-page">
             <div class="wmap-ground" style="background-image:url('res/drawable-mdpi/map_ground02.png')"></div>
-            <div id="wmap-zone-6" class="wmap-zone" style="left:565px; top:42px; width:310px; height:242px;" onclick="openChapterMap(6)">
-                <div class="wmap-zone-label" id="wmap-lbl-6">Chương 6: Fire Mountain</div>
+
+            <!-- 7. FIRE MOUNTAIN (0/60 Stars) -->
+            <div id="wmap-loc-6" class="wmap-loc-item" style="left:550px; top:150px; width:260px;" onclick="openChapterMap(6)" title="Chương 6: Fire Mountain">
+                <div class="wmap-star-wrap">
+                    <img src="res/drawable-mdpi/result_star_1.png" class="wmap-star-img" alt="Star">
+                    <span class="wmap-star-score" id="wmap-stars-fire">0/60</span>
+                </div>
+                <div class="wmap-loc-name">FIRE MOUNTAIN</div>
             </div>
-            <div id="wmap-zone-7" class="wmap-zone" style="left:545px; top:290px; width:370px; height:265px;" onclick="openChapterMap(7)">
-                <div class="wmap-zone-label" id="wmap-lbl-7">Chương 7: Desert Ruins</div>
+
+            <!-- 8. DESERT RUINS (0/60 Stars) -->
+            <div id="wmap-loc-7" class="wmap-loc-item" style="left:520px; top:360px; width:260px;" onclick="openChapterMap(7)" title="Chương 7: Desert Ruins">
+                <div class="wmap-star-wrap">
+                    <img src="res/drawable-mdpi/result_star_1.png" class="wmap-star-img" alt="Star">
+                    <span class="wmap-star-score" id="wmap-stars-desert">0/60</span>
+                </div>
+                <div class="wmap-loc-name">DESERT RUINS</div>
             </div>
-            <div id="wmap-zone-8" class="wmap-zone" style="left:140px; top:180px; width:410px; height:285px;" onclick="openChapterMap(8)">
-                <div class="wmap-zone-label" id="wmap-lbl-8">Chương 8: Grassland & Coast</div>
+
+            <!-- 9. GRASSLAND & COAST (0/60 Stars) -->
+            <div id="wmap-loc-8" class="wmap-loc-item" style="left:140px; top:260px; width:280px;" onclick="openChapterMap(8)" title="Chương 8: Grassland & Coast">
+                <div class="wmap-star-wrap">
+                    <img src="res/drawable-mdpi/result_star_1.png" class="wmap-star-img" alt="Star">
+                    <span class="wmap-star-score" id="wmap-stars-coast">0/60</span>
+                </div>
+                <div class="wmap-loc-name">GRASSLAND & COAST</div>
             </div>
         </div>
 
-        <div id="wmap-arrow-left" class="wmap-nav-arrow left" style="display:none;" onclick="switchWorldMapPage(1)" title="Trang 1 (Chương 1-5)"></div>
-        <div id="wmap-arrow-right" class="wmap-nav-arrow right" onclick="switchWorldMapPage(2)" title="Trang 2 (Chương 6-8)"></div>
-        <button class="btn-back-corner" onclick="exitWorldMap()" title="Quay về"></button>
+        <!-- Navigation Arrows & Back Button -->
+        <div id="wmap-arrow-left" class="wmap-nav-arrow left" style="display:none;" onclick="switchWorldMapPage(1)" title="Trang 1"></div>
+        <div id="wmap-arrow-right" class="wmap-nav-arrow right" onclick="switchWorldMapPage(2)" title="Trang 2"></div>
+        <button class="wmap-back-btn" onclick="exitWorldMap()" title="Quay về Thành Phố"></button>
     </div>
 
     <!-- ==================== 4. ORIGINAL CHAPTER STAGE MAP (SEQUENTIAL STAGE UNLOCK) ==================== -->
@@ -4925,32 +5119,70 @@
     <div id="screen-battle" class="screen">
         <canvas id="battle-canvas" width="1136" height="640"></canvas>
 
-        <!-- Top Battle HUD (Exact APK assets: ingame_wind.png, ingame_time_bg.png + sprite numbers, PASS & MENU stone buttons) -->
+        <!-- Top Battle HUD (Exact match with media_1792749082842_034be71d.jpg) -->
         <div class="btl-top-hud">
-            <div class="btl-stage-badge">
-                <div>
-                    <div id="btl-stage-title" style="font-size:14px; font-weight:900; color:#ffe082;">Màn 1-1</div>
-                    <div id="btl-turn-owner" style="font-size:11px; color:#a5d6a7;">Kéo từ Rồng để ngắm bắn hoặc giữ SPACE</div>
+            <!-- 1. Player Info (Top-Left) -->
+            <div class="btl-top-player-hud">
+                <img id="btl-player-avatar" class="btl-player-avatar" src="res/drawable-mdpi/dragon_108_ico.png" alt="Dragon Avatar">
+                <div class="btl-player-info-col">
+                    <span id="btl-player-name" class="btl-player-name">Qalfy</span>
+                    <div class="btl-player-top-hp-bar">
+                        <div id="btl-player-top-hp-fill" class="btl-player-top-hp-fill" style="width:100%;"></div>
+                    </div>
                 </div>
+            </div>
+
+            <!-- 2. Center Controls: SKIP 1 | WIND | MENU | CHAT -->
+            <div class="btl-top-center-hud">
+                <button class="btl-skip-btn" onclick="skipPlayerTurn()" title="Bỏ lượt (Pass)">SKIP 1</button>
+                <div class="btl-wind-box" title="Hướng gió & Sức gió">
+                    <div class="btl-wind-lbl">WIND</div>
+                    <div id="btl-wind-arrow" class="btl-wind-arrow"></div>
+                    <div id="btl-wind-txt" class="btl-wind-val">02</div>
+                </div>
+                <button class="btl-menu-top-btn" onclick="leaveBattle()" title="Menu / Tạm dừng">MENU</button>
+                <button class="btl-chat-btn" onclick="openBattleChatModal()" title="Mở khung trò chuyện"></button>
+            </div>
+
+            <!-- 3. Enemies List (Top-Right) -->
+            <div id="btl-enemies-top-list" class="btl-enemies-top-list"></div>
+
+            <!-- 4. Turn Countdown Timer Dial (Right side) -->
+            <div id="btl-timer-badge" class="btl-timer-badge" title="Thời gian lượt">
+                <span id="btl-timer-num">7</span>
+            </div>
+
+            <!-- Stage Badge -->
+            <div class="btl-stage-badge">
+                <span id="btl-stage-title" style="font-size:12px; font-weight:900; color:#ffe082;">Màn 1-1</span>
                 <button class="btl-camera-btn" onclick="toggleCameraPanMode()" id="btl-cam-mode-btn" title="Bật/Tắt chế độ kéo bản đồ">🎥 Xem Rồng</button>
             </div>
-
-            <!-- Wind Compass + Arrow -->
-            <div class="btl-wind-box" title="Hướng gió & Sức gió">
-                <div id="btl-wind-arrow" class="btl-wind-arrow"></div>
-                <div id="btl-wind-txt" class="btl-wind-val">0.0</div>
-            </div>
-
-            <!-- Sprite Digit Countdown Timer -->
-            <div id="btl-timer-box" class="btl-timer-box" title="Thời gian lượt">
-                <img src="images/ingame/hd/ingame_number_2.png" alt="2">
-                <img src="images/ingame/hd/ingame_number_0.png" alt="0">
-            </div>
-
-            <!-- Stone PASS & MENU Buttons with HaypiFont Text -->
-            <button class="btl-pass-top-btn" onclick="skipPlayerTurn()" title="Bỏ lượt (Pass)">PASS</button>
-            <button class="btl-pause-btn" onclick="leaveBattle()" title="Tạm dừng / Rời trận">MENU</button>
         </div>
+
+        <!-- In-game Battle Chat Popup -->
+        <div id="btl-chat-popup" class="btl-chat-popup" style="display:none;">
+            <div class="btl-chat-card">
+                <div class="btl-chat-header">
+                    <span>💬 TRÒ CHUYỆN CHIẾN TRƯỜNG</span>
+                    <button class="btl-chat-close" onclick="closeBattleChatModal()">✕</button>
+                </div>
+                <div class="btl-chat-quick-list">
+                    <button class="btl-quick-msg" onclick="sendBattleChatMessage('Tập trung đánh Boss!')">⚔️ Tập trung đánh Boss!</button>
+                    <button class="btl-quick-msg" onclick="sendBattleChatMessage('Bắn chuẩn lắm!')">🎯 Bắn chuẩn lắm!</button>
+                    <button class="btl-quick-msg" onclick="sendBattleChatMessage('Cứu tôi với!')">🛡️ Cứu tôi với!</button>
+                    <button class="btl-quick-msg" onclick="sendBattleChatMessage('Chờ một chút!')">⏳ Chờ một chút!</button>
+                    <button class="btl-quick-msg" onclick="sendBattleChatMessage('Tuyệt vời!')">🔥 Tuyệt vời!</button>
+                    <button class="btl-quick-msg" onclick="sendBattleChatMessage('Xin lỗi nha!')">😅 Xin lỗi nha!</button>
+                </div>
+                <div class="btl-chat-input-row">
+                    <input type="text" id="btl-custom-chat-input" class="btl-chat-input" placeholder="Nhập tin nhắn..." maxlength="40" onkeydown="if(event.key==='Enter')sendBattleCustomChat()">
+                    <button class="btl-chat-send-btn" onclick="sendBattleCustomChat()">GỬI</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Floating Speech Bubble above Dragon -->
+        <div id="btl-floating-bubble" class="btl-floating-bubble" style="display:none;"></div>
 
         <!-- Animated YOUR TURN Banner -->
         <div id="btl-turn-banner">
@@ -4960,8 +5192,6 @@
             </div>
         </div>
 
-        <!-- Bottom Authentic 960x110 Stone Bar (images/ingame/hd/ingame_bg.png) -->
-        
         <!-- Authentic Stage 1-1 Tutorial Overlay with teaching_dragon.png & teaching_hand.png -->
         <div id="btl-tutorial-overlay" class="btl-tutorial-wrap" style="display:none;">
             <div class="tutorial-dialog-card">
@@ -4991,41 +5221,31 @@
                 <button class="btl-angle-btn" onclick="changeAimAngle(-2)">▼ -GÓC</button>
             </div>
 
-            <!-- Center 960x110 Stone Bar with Authentic Original APK Layout -->
+            <!-- Center 960x110 Stone Bar with Exact Pixel Alignment to ingame_bg.png -->
             <div class="btl-stone-bar">
-                <!-- Power & Aiming Live Indicator -->
-                <div class="btl-power-strip">
-                    <div id="btl-power-fill" class="btl-bar-fill power" style="width:0%"></div>
-                    <div id="btl-last-power-tick" class="btl-last-power-tick" style="left:0%"></div>
-                    <div id="btl-power-txt" class="btl-bar-txt">🎯 Chạm & Kéo trực tiếp từ Rồng để chỉnh góc & lực, nhấc tay để bắn!</div>
-                </div>
-
-                <!-- Paper Plane Button perched above the stone bar on the right side -->
-                <button id="btl-plane-btn" class="btl-plane-btn" onclick="togglePaperPlane()" title="Bay dịch chuyển (Tốn 40 MP)">
-                    <span>✈️ Bay (40 MP)</span>
-                </button>
-
-                <!-- Left Move Arrow Socket (x=6, y=24, 98x80) -->
+                <!-- 1. Left Move Arrow (cavity x=0..109, center 54.5, 62) -->
                 <button class="btl-socket-movel"
                         onmousedown="startWalk(-1)" onmouseup="stopWalk()" onmouseleave="stopWalk()"
                         ontouchstart="startWalk(-1); event.preventDefault();" ontouchend="stopWalk(); event.preventDefault();"
                         title="Di chuyển sang trái (Phím A / ◀)"></button>
 
-                <!-- Socket 1: Weapon / Bullet Selector (x=122, y=14) -->
-                <div id="btl-bullet-socket" class="btl-socket-bullet" onclick="toggleBulletSelection()" title="Nhấn để đổi giữa 3 loại đạn">
+                <!-- 2. Bullet Chamber (Dome at x=136, y=10 + Ear Cavities at 124,81 and 193,79) -->
+                <div id="btl-bullet-socket" class="btl-socket-bullet" onclick="toggleBulletSelection()" title="Nhấn để đổi đạn (Phím SPACE hoặc click)">
                     <span class="bullet-name-tag" id="btl-bullet-name">Đạn Sắt</span>
                     <img id="btl-bullet-img" class="bullet-main-ico" src="images/ingame/hd/icon200101_a.png" alt="Bullet">
-                    <div class="bullet-sub-dots">
-                        <span class="bullet-dot active" id="bdot-0"></span>
-                        <span class="bullet-dot" id="bdot-1"></span>
-                        <span class="bullet-dot" id="bdot-2"></span>
-                    </div>
+                </div>
+                <!-- 2 Sub-bullet ammo sockets in the ear cavities of ingame_bg.png -->
+                <div id="bdot-1" class="btl-bullet-sub-ear left" onclick="selectBulletByIndex(1)" title="Đạn Kỹ Năng 1">
+                    <div class="bdot-glow-core"></div>
+                </div>
+                <div id="bdot-2" class="btl-bullet-sub-ear right" onclick="selectBulletByIndex(2)" title="Đạn Kỹ Năng 2">
+                    <div class="bdot-glow-core"></div>
                 </div>
 
-                <!-- Sockets 2, 3, 4, 5: Support Skills & 4th Locked Slot -->
+                <!-- 3. Sockets 1 to 4: 3 Support Buffs + 4th Locked / Special Dragon Skill -->
                 <div id="btl-five-sockets"></div>
 
-                <!-- Socket 6: Rage / Anger Socket - MÀU ĐỎ (x=638, y=20) -->
+                <!-- 4. Socket 5: Rage / Anger Socket (center 672, y=61 -> left 640, top 29) -->
                 <div id="btl-rage-socket" class="btl-socket-rage" onclick="toggleRageSkill()" title="Nộ Khí (Đạt 100% Nộ kích hoạt Siêu Bạo Kích +80% Sát Thương)">
                     <div class="btl-rage-fill-wrap">
                         <div id="btl-rage-fill" class="btl-rage-fill" style="height:25%"></div>
@@ -5034,19 +5254,20 @@
                     <div id="btl-rage-txt" class="btl-rage-pct">NỘ 25%</div>
                 </div>
 
-                <!-- Compact HP & MP Readout Slots (x=730, y=26) -->
-                <div class="btl-hpmp-area">
-                    <div class="btl-stat-slot hp">
-                        <div id="btl-hp-fill" class="btl-stat-fill-hp" style="width:100%"></div>
-                        <div id="btl-hp-txt" class="btl-stat-num">850/850</div>
-                    </div>
-                    <div class="btl-stat-slot mp">
-                        <div id="btl-mp-fill" class="btl-stat-fill-mp" style="width:100%"></div>
-                        <div id="btl-mp-txt" class="btl-stat-num">100/100</div>
-                    </div>
+                <!-- 5. Paper Plane Button perched above HP bar (x=760, top=10) -->
+                <button id="btl-plane-btn" class="btl-plane-btn" onclick="togglePaperPlane()" title="Bay dịch chuyển (Tốn 40 MP)"></button>
+
+                <!-- 6. Exact Indented HP & MP Slots in ingame_bg.png (left: 742px, top: 71px & 90px) -->
+                <div class="btl-slot-bar-hp">
+                    <div id="btl-hp-fill" class="btl-fill-hp" style="width:100%"></div>
+                    <div id="btl-hp-txt" class="btl-stat-val">1061/1061</div>
+                </div>
+                <div class="btl-slot-bar-mp">
+                    <div id="btl-mp-fill" class="btl-fill-mp" style="width:100%"></div>
+                    <div id="btl-mp-txt" class="btl-stat-val">0/176</div>
                 </div>
 
-                <!-- Right Move Arrow Socket (x=853, y=24, 98x80) -->
+                <!-- 7. Right Move Arrow (cavity x=850..959, center 904.5, 62) -->
                 <button class="btl-socket-mover"
                         onmousedown="startWalk(1)" onmouseup="stopWalk()" onmouseleave="stopWalk()"
                         ontouchstart="startWalk(1); event.preventDefault();" ontouchend="stopWalk(); event.preventDefault();"
@@ -6374,6 +6595,41 @@ function openWorldMap() {
     switchWorldMapPage(STATE.currentChapter > 5 ? 2 : 1);
 }
 
+function getChapterStarsEarned(ch) {
+    const maxS = getChapterMaxStage(ch);
+    let earned = 0;
+    for (let s = 1; s <= maxS; s++) {
+        earned += (STATE.clearedStages[`${ch}-${s}`] || 0);
+    }
+    return earned;
+}
+
+function getChapterMaxStars(ch) {
+    return getChapterMaxStage(ch) * 3;
+}
+
+function updateWorldMapStarCounts() {
+    const mapChapterMap = {
+        'wmap-stars-forest': 1,
+        'wmap-stars-elf': 2,
+        'wmap-stars-ice': 3,
+        'wmap-stars-valley': 4,
+        'wmap-stars-laputa': 5,
+        'wmap-stars-fire': 6,
+        'wmap-stars-desert': 7,
+        'wmap-stars-coast': 8
+    };
+
+    for (const [elId, ch] of Object.entries(mapChapterMap)) {
+        const el = document.getElementById(elId);
+        if (el) {
+            const earned = getChapterStarsEarned(ch);
+            const maxStars = getChapterMaxStars(ch);
+            el.textContent = `${earned}/${maxStars}`;
+        }
+    }
+}
+
 function refreshWorldMapLocks() {
     let totalCleared = Object.keys(STATE.clearedStages).length;
     let unlockedCount = Object.values(PLAYABLE_DRAGONS).filter(d => d.unlocked).length;
@@ -6384,36 +6640,14 @@ function refreshWorldMapLocks() {
     }
     STATE.maxUnlockedChapter = highestCh;
 
-    const progTxt = document.getElementById('wmap-progress-txt');
-    if (progTxt) {
-        progTxt.textContent = `Tiến độ: Đã vượt ${totalCleared} màn • Rồng sở hữu: ${unlockedCount}/9 • Đang ở: Chương ${highestCh}`;
-    }
+    updateWorldMapStarCounts();
 
     // Chapters 1 to 8:
-    // USER MANDATE: "Chapter chưa chơi được thì phải ẩn đi, khi nào xong map cũ mới cho chọn Chapter mới."
     for (let ch = 1; ch <= 8; ch++) {
-        const meta = CHAPTER_METADATA[ch];
-        const zoneEl = document.getElementById('wmap-zone-' + ch);
-        const lblEl = document.getElementById('wmap-lbl-' + ch);
-        if (!zoneEl || !meta) continue;
-
-        const isUnlocked = isChapterUnlocked(ch);
-        if (isUnlocked) {
-            zoneEl.style.display = 'block';
-            zoneEl.classList.remove('locked');
-            zoneEl.style.backgroundImage = `url('res/drawable-mdpi/${meta.iconA}')`;
-
-            const maxS = getChapterMaxStage(ch);
-            let clearedCount = 0;
-            for (let s = 1; s <= maxS; s++) {
-                if ((STATE.clearedStages[`${ch}-${s}`] || 0) > 0) clearedCount++;
-            }
-            if (lblEl) {
-                lblEl.innerHTML = `⚔️ Chương ${ch}: ${meta.name.split(':')[1].split('(')[0].trim()} (${clearedCount}/${maxS})`;
-            }
-        } else {
-            // HIDE COMPLETELY!
-            zoneEl.style.display = 'none';
+        const locEl = document.getElementById('wmap-loc-' + ch);
+        if (locEl) {
+            const isUnlocked = isChapterUnlocked(ch);
+            locEl.classList.toggle('locked', !isUnlocked);
         }
     }
 
@@ -7271,22 +7505,63 @@ function getActiveControllableActor() {
 }
 
 function findSurfaceY(x, startY) {
-    let bestY = null;
-    let bestDist = 9999;
+    const groundY = BTL.mapH - 95;
+    let bestY = groundY;
+    const maxClimb = 18;
+    const checkY = (startY !== undefined && !isNaN(startY)) ? startY : 0;
+
     for (const b of BTL.blocks) {
         if (b.destroyed || b.isCoin) continue;
-        const halfW = b.w * 0.46;
+        const halfW = b.w * 0.44;
         if (x >= b.x - halfW && x <= b.x + halfW) {
-            const topY = b.y - b.h * 0.42;
-            const dist = Math.abs(topY - startY);
-            if (topY >= startY - 100 && dist < bestDist) {
-                bestDist = dist;
+            const topY = b.y - b.h * 0.44;
+            // Surface must be beneath the dragon or within allowable climb step
+            if (topY >= checkY - maxClimb && topY < bestY) {
                 bestY = topY;
             }
         }
     }
-    if (bestY !== null) return bestY;
-    return Math.min(BTL.mapH - 95, Math.max(140, startY));
+    return bestY;
+}
+
+// 2D Horizontal Obstacle Collision (blocks walls, wooden planks, crates, rock pillars)
+function resolveWalkX(actor, dir, stepDist) {
+    if (!BTL.blocks || BTL.blocks.length === 0) {
+        return Math.max(60, Math.min(BTL.mapW - 60, actor.x + dir * stepDist));
+    }
+    let targetX = actor.x + dir * stepDist;
+    targetX = Math.max(60, Math.min(BTL.mapW - 60, targetX));
+    const feetY = actor.y;
+    const maxClimb = 18;
+    const dragonHalfW = 18;
+
+    for (const b of BTL.blocks) {
+        if (b.destroyed || b.isCoin) continue;
+        const halfW = b.w * 0.44;
+        const halfH = b.h * 0.44;
+        const bLeft = b.x - halfW;
+        const bRight = b.x + halfW;
+        const bTop = b.y - halfH;
+        const bBottom = b.y + halfH;
+
+        // Block acts as an impassable obstacle wall if:
+        // 1. Its top is higher than actor's feet - maxClimb (cannot simply step up onto it)
+        // 2. Its bottom extends into actor's body range (feetY - 45 to feetY)
+        if (bTop < feetY - maxClimb && bBottom > feetY - 45) {
+            if (dir > 0) {
+                // Moving right: dragon's right edge cannot penetrate bLeft
+                if (actor.x + dragonHalfW <= bLeft + 3 && targetX + dragonHalfW > bLeft) {
+                    targetX = Math.min(targetX, bLeft - dragonHalfW);
+                }
+            } else if (dir < 0) {
+                // Moving left: dragon's left edge cannot penetrate bRight
+                if (actor.x - dragonHalfW >= bRight - 3 && targetX - dragonHalfW < bRight) {
+                    targetX = Math.max(targetX, bRight + dragonHalfW);
+                }
+            }
+        }
+    }
+    return targetX;
 }
 
 function focusCameraOn(wx, wy, instant = false) {
@@ -7316,14 +7591,20 @@ function toggleCameraPanMode() {
     }
 }
 
-// Authentic Drag-on-Dragon Aiming (AimLineManagerImpl) + Map Panning
+// Authentic Drag-on-Dragon & Touch-Swipe Aiming (AimLineManagerImpl) + Map Panning
 (function initBattleCanvasTouchAndDrag() {
     let camDragging = false, sx = 0, sy = 0;
+    let touchStartX = 0, touchStartY = 0;
+    let initialDragonFacing = 1;
+    let hasAimMoved = false;
 
     function getCanvasCoords(e) {
         const rect = bCanvas.getBoundingClientRect();
-        const clientX = e.touches && e.touches.length > 0 ? e.touches[0].clientX : e.clientX;
-        const clientY = e.touches && e.touches.length > 0 ? e.touches[0].clientY : e.clientY;
+        const touch = (e.touches && e.touches.length > 0)
+            ? e.touches[0]
+            : ((e.changedTouches && e.changedTouches.length > 0) ? e.changedTouches[0] : e);
+        const clientX = (touch && touch.clientX !== undefined) ? touch.clientX : (touch && touch.pageX ? touch.pageX - window.scrollX : 0);
+        const clientY = (touch && touch.clientY !== undefined) ? touch.clientY : (touch && touch.pageY ? touch.pageY - window.scrollY : 0);
 
         if (currentRotationDeg === 90) {
             const centerX = rect.left + rect.width / 2;
@@ -7339,8 +7620,8 @@ function toggleCameraPanMode() {
             };
         }
 
-        const scaleX = bCanvas.width / rect.width;
-        const scaleY = bCanvas.height / rect.height;
+        const scaleX = bCanvas.width / (rect.width || 1);
+        const scaleY = bCanvas.height / (rect.height || 1);
         return {
             x: (clientX - rect.left) * scaleX,
             y: (clientY - rect.top) * scaleY,
@@ -7356,20 +7637,20 @@ function toggleCameraPanMode() {
         const worldY = pt.y + BTL.camY;
         const ctrl = getActiveControllableActor();
 
-        // Start Drag-on-Dragon Aiming if clicking/touching during player turn (and not in Camera Pan mode)
+        // If player turn & not in Camera Pan mode: ANY touch/click on battlefield initiates Aiming & Firing
         if (ctrl && !BTL.camPanMode && e.button !== 2) {
-            const distToDragon = Math.hypot(worldX - ctrl.x, worldY - (ctrl.y - 30));
-            if (distToDragon <= 260) {
-                BTL.dragAiming = true;
-                BTL.dragStartX = ctrl.x;
-                BTL.dragStartY = ctrl.y - 32;
-                BTL.dragCurX = worldX;
-                BTL.dragCurY = worldY;
-                ctrl.action = 'shotAim';
-                playSfx('power', 0.35);
-                updateDragAimVector(ctrl, worldX, worldY);
-                return;
-            }
+            BTL.dragAiming = true;
+            hasAimMoved = false;
+            touchStartX = worldX;
+            touchStartY = worldY;
+            initialDragonFacing = ctrl.dir || 1;
+            BTL.dragStartX = ctrl.x;
+            BTL.dragStartY = ctrl.y - 32;
+            BTL.dragCurX = worldX;
+            BTL.dragCurY = worldY;
+            ctrl.action = 'shotAim';
+            playSfx('power', 0.35);
+            return;
         }
 
         // Otherwise pan camera
@@ -7382,17 +7663,45 @@ function toggleCameraPanMode() {
     function updateDragAimVector(ctrl, worldX, worldY) {
         const hand = document.getElementById('tutorial-hand-demo');
         if (hand && hand.style.display !== 'none') hand.style.display = 'none';
-        let dx = worldX - (ctrl.x);
-        let dy = (ctrl.y - 32) - worldY;
-        const dist = Math.hypot(dx, dy);
 
-        // If player drags behind the dragon (slingshot style) or in front (direct target style), support both naturally!
-        if (Math.abs(dx) > 12) {
-            ctrl.dir = dx >= 0 ? 1 : -1;
+        // Check if dragging from dragon or swiping anywhere on screen
+        const distFromDragon = Math.hypot(worldX - ctrl.x, worldY - (ctrl.y - 32));
+        let deltaX = 0, deltaY = 0;
+
+        if (distFromDragon <= 140) {
+            // Dragging directly around dragon
+            deltaX = worldX - ctrl.x;
+            deltaY = (ctrl.y - 32) - worldY;
+        } else {
+            // Swiping relative to touch start point
+            deltaX = worldX - touchStartX;
+            deltaY = touchStartY - worldY;
         }
-        const rawAngle = Math.atan2(Math.max(10, Math.abs(dy)), Math.max(10, Math.abs(dx))) * (180 / Math.PI);
+
+        const dragDist = Math.hypot(deltaX, deltaY);
+        if (dragDist < 6) return;
+        hasAimMoved = true;
+
+        // Slingshot Pull-Back (pulling opposite to facing direction) vs Forward Aim (pointing towards target)
+        const isPullingBack = (deltaX * initialDragonFacing < -8);
+
+        let aimDx = deltaX;
+        let aimDy = deltaY;
+
+        if (isPullingBack) {
+            // Slingshot: pulling backward charges forward shot without flipping dragon
+            ctrl.dir = initialDragonFacing;
+            aimDx = -deltaX;
+            aimDy = -deltaY;
+        } else {
+            // Forward Aim: pointing forward in facing direction
+            ctrl.dir = initialDragonFacing;
+        }
+
+        const rawAngle = Math.atan2(Math.max(8, Math.abs(aimDy)), Math.max(8, Math.abs(aimDx))) * (180 / Math.PI);
         ctrl.angle = Math.round(Math.max(ctrl.angleMin, Math.min(ctrl.angleMax, rawAngle)));
-        ctrl.power = Math.round(Math.max(12, Math.min(100, (dist / 220) * 100)));
+        ctrl.power = Math.round(Math.min(100, Math.max(15, (dragDist / 180) * 100)));
+
         BTL.dragCurX = worldX;
         BTL.dragCurY = worldY;
         updateBattleHudBars();
@@ -7418,12 +7727,17 @@ function toggleCameraPanMode() {
         if (BTL.dragAiming) {
             BTL.dragAiming = false;
             const ctrl = getActiveControllableActor();
-            if (ctrl && ctrl.power >= 10) {
-                BTL.lastPower = ctrl.power;
-                executeActorFire(ctrl, ctrl.power);
+            if (ctrl && hasAimMoved) {
+                const firePower = Math.min(100, Math.max(15, ctrl.power || 35));
+                ctrl.power = firePower;
+                BTL.lastPower = firePower;
+                executeActorFire(ctrl, firePower);
+            } else if (ctrl) {
+                ctrl.action = 'default';
             }
         }
         camDragging = false;
+        hasAimMoved = false;
     }
 
     bCanvas.addEventListener('mousedown', onDown);
@@ -7432,6 +7746,7 @@ function toggleCameraPanMode() {
     bCanvas.addEventListener('touchstart', e => { onDown(e); e.preventDefault(); }, { passive: false });
     window.addEventListener('touchmove', e => { if (BTL.dragAiming || camDragging) { onMove(e); e.preventDefault(); } }, { passive: false });
     window.addEventListener('touchend', onUp);
+    window.addEventListener('touchcancel', onUp);
 })();
 
 function getActiveDragonDef() {
@@ -7444,14 +7759,18 @@ function getActiveDragonDef() {
 let btlCurrentBulletIdx = 0; // 0: Đạn Thường (Sắt), 1: Kỹ Năng 1, 2: Kỹ Năng 2
 
 function toggleBulletSelection() {
+    selectBulletByIndex((btlCurrentBulletIdx + 1) % 3);
+}
+
+function selectBulletByIndex(idx) {
     const act = getActiveControllableActor();
     const d = getActiveDragonDef();
     if (!act || !d) return;
 
-    btlCurrentBulletIdx = (btlCurrentBulletIdx + 1) % 3;
+    btlCurrentBulletIdx = idx;
     playSfx('select');
 
-    let bulletName = 'Đạn Thường';
+    let bulletName = 'Đạn Thường (Sắt)';
     let bulletCost = 0;
     if (btlCurrentBulletIdx === 1 && d.bombs && d.bombs[0]) {
         bulletName = d.bombs[0].name;
@@ -7468,8 +7787,13 @@ function toggleBulletSelection() {
         BTL.selectedBombIdx = -1;
     }
 
+    // Reset paper plane and rage when picking a weapon
+    BTL.paperPlaneMode = false;
+    const planeBtn = document.getElementById('btl-plane-btn');
+    if (planeBtn) planeBtn.classList.remove('active');
+
     updateBulletSocketUI();
-    spawnFloatText(act.x, act.y - 60, `Đạn: ${bulletName} (${bulletCost} MP)`, '#ffe082');
+    spawnFloatText(act.x, act.y - 60, `Đạn: ${bulletName.split('(')[0].trim()} (${bulletCost} MP)`, '#ffe082');
 }
 
 function updateBulletSocketUI() {
@@ -7478,13 +7802,11 @@ function updateBulletSocketUI() {
 
     const nameEl = document.getElementById('btl-bullet-name');
     const imgEl = document.getElementById('btl-bullet-img');
-    const dot0 = document.getElementById('bdot-0');
-    const dot1 = document.getElementById('bdot-1');
-    const dot2 = document.getElementById('bdot-2');
+    const ear1 = document.getElementById('bdot-1');
+    const ear2 = document.getElementById('bdot-2');
 
-    if (dot0) dot0.classList.toggle('active', btlCurrentBulletIdx === 0);
-    if (dot1) dot1.classList.toggle('active', btlCurrentBulletIdx === 1);
-    if (dot2) dot2.classList.toggle('active', btlCurrentBulletIdx === 2);
+    if (ear1) ear1.classList.toggle('active', btlCurrentBulletIdx === 1);
+    if (ear2) ear2.classList.toggle('active', btlCurrentBulletIdx === 2);
 
     if (btlCurrentBulletIdx === 0) {
         if (nameEl) nameEl.textContent = 'Đạn Sắt';
@@ -7501,8 +7823,8 @@ function updateBulletSocketUI() {
 function togglePaperPlane() {
     const act = getActiveControllableActor();
     if (!act) return;
-    if (act.mp < 40) {
-        spawnFloatText(act.x, act.y - 60, '⚠️ Không đủ MP! Cần 40 MP.', '#ff5252');
+    if (act.mp < 40 && !BTL.paperPlaneMode) {
+        spawnFloatText(act.x, act.y - 60, '⚠️ Cần 40 MP để Bay dịch chuyển!', '#ff5252');
         playSfx('lose', 0.4);
         return;
     }
@@ -7511,40 +7833,56 @@ function togglePaperPlane() {
     if (btn) btn.classList.toggle('active', BTL.paperPlaneMode);
     playSfx('select');
     if (BTL.paperPlaneMode) {
-        spawnFloatText(act.x, act.y - 60, '✈️ Chế độ Máy Bay Giấy: Kéo & nhấc tay để dịch chuyển!', '#80d8ff');
+        BTL.selectedBombIdx = -1;
+        BTL.rageActive = false;
+        const rEl = document.getElementById('btl-rage-socket');
+        if (rEl) rEl.classList.remove('active');
+        renderBattleSkillBar();
+        spawnFloatText(act.x, act.y - 60, '✈️ Chế độ Bay: Kéo & nhấc tay để dịch chuyển!', '#80d8ff');
     } else {
-        spawnFloatText(act.x, act.y - 60, 'Đã hủy Máy Bay Giấy', '#fff');
+        spawnFloatText(act.x, act.y - 60, 'Đã hủy Chế độ Bay', '#fff');
     }
 }
 
 function toggleRageSkill() {
     const act = getActiveControllableActor();
     if (!act) return;
-    const angerVal = act.anger || 0;
-    if (angerVal < 100) {
-        spawnFloatText(act.x, act.y - 60, `Nộ: ${Math.round(angerVal)}%/100%! Tấn công để tích đầy.`, '#ff8a80');
-        playSfx('lose', 0.35);
+    playSfx('select');
+    if (BTL.rageActive) {
+        BTL.rageActive = false;
+        const rEl = document.getElementById('btl-rage-socket');
+        if (rEl) rEl.classList.remove('active');
+        spawnFloatText(act.x, act.y - 60, 'Đã tắt Nộ Khí', '#fff');
         return;
     }
-    BTL.rageActive = !BTL.rageActive;
-    const rEl = document.getElementById('btl-rage-socket');
-    if (rEl) rEl.classList.toggle('active', BTL.rageActive);
-    playSfx('levelup');
-    if (BTL.rageActive) {
-        spawnFloatText(act.x, act.y - 65, '🔥 NỘ KHÍ KÍCH HOẠT: +80% SÁT THƯƠNG!', '#ff1744');
-    } else {
-        spawnFloatText(act.x, act.y - 60, 'Đã tắt Nộ Khí', '#fff');
+    if ((act.anger || 0) < 100) {
+        spawnFloatText(act.x, act.y - 65, `🔥 Nộ Khí: ${Math.round(act.anger || 0)}/100% (Tăng khi bắn trúng/nhận sát thương)`, '#ff8a65');
+        return;
     }
+    BTL.rageActive = true;
+    BTL.selectedBombIdx = -1;
+    BTL.paperPlaneMode = false;
+    const pBtn = document.getElementById('btl-plane-btn');
+    if (pBtn) pBtn.classList.remove('active');
+    const rEl = document.getElementById('btl-rage-socket');
+    if (rEl) rEl.classList.add('active');
+    renderBattleSkillBar();
+    spawnFloatText(act.x, act.y - 68, '🔥 SIÊU NỘ KHÍ BẬT (+80% Sát Thương)!', '#ff3d00');
 }
 
-// Render Authentic 4 Support Skill Sockets (left: 226, 326, 426, 526)
+// Render Authentic 4 Support Skill Sockets (left: 256, 348, 447, 544 matching ingame_bg.png)
 function renderBattleSkillBar() {
     const d = getActiveDragonDef();
     const wrap = document.getElementById('btl-five-sockets');
     if (!wrap || !d) return;
     wrap.innerHTML = '';
 
-    const socketLefts = [226, 326, 426, 526];
+    // EXACT 1:1 Centers of the sockets in ingame_bg.png:
+    // Socket 1: center 288 -> left 256
+    // Socket 2: center 380 -> left 348
+    // Socket 3: center 479 -> left 447
+    // Socket 4: center 576 -> left 544
+    const socketLefts = [256, 348, 447, 544];
     const act = getActiveControllableActor();
     const currentMp = act ? act.mp : 100;
 
@@ -7552,7 +7890,7 @@ function renderBattleSkillBar() {
     const buffs = [
         { id: 'power_up', name: 'Tăng Lực (+40% Sát Thương)', shortName: 'Tăng Lực', icon: 'images/ingame/hd/icon101700_a.png', cost: 25, key: '1' },
         { id: 'quick_shot', name: 'Bắn x2 (Bắn 2 Phát)', shortName: 'Bắn x2', icon: 'images/ingame/hd/icon102001_a.png', cost: 40, key: '2' },
-        { id: 'volley_shot', name: '3 Tia Đạn (Phủ Rộng)', shortName: '3 Tia', icon: 'images/ingame/hd/icon102002_a.png', cost: 60, key: '3' }
+        { id: 'volley_shot', name: '3 Tia Đạn (Phủ Rộng)', shortName: '3 Tia', icon: 'images/ingame/hd/icon102004_a.png', cost: 60, key: '3' }
     ];
 
     buffs.forEach((ab, i) => {
@@ -7642,12 +7980,7 @@ function renderBattleSkillBar() {
     } else {
         lockEl.title = 'Ô Kỹ Năng 4: ĐANG KHÓA! (Chỉ mở khóa cho các Rồng Đặc Biệt & Thần Thoại)';
         lockEl.innerHTML = `
-            <span class="btl-socket-name">Khóa</span>
-            <span class="btl-socket-key">4</span>
-            <img class="skill-ico" src="images/ingame/hd/icon102004_a.png" style="opacity:0.35;" alt="Locked">
-            <img src="images/ingame/hd/ingame_lock.png" style="position:absolute; width:28px; height:36px; filter:drop-shadow(0 2px 5px rgba(0,0,0,0.9)); z-index:5;" alt="Locked">
-            <div class="skill-select-ring"></div>
-            <span class="btl-socket-cost">🔒</span>
+            <img class="skill-ico lock-img" src="images/ingame/hd/ingame_lock.png" alt="Locked">
         `;
         lockEl.onclick = () => {
             playSfx('lose', 0.4);
@@ -7662,31 +7995,8 @@ function renderBattleSkillBar() {
 }
 
 function selectDragonBomb(idx) {
-    selectBullet(idx + 1);
+    selectBulletByIndex(idx + 1);
 }
-
-function toggleRageSkill() {
-    const act = getActiveControllableActor();
-    if (!act) return;
-    playSfx('select');
-    if (BTL.rageActive) {
-        BTL.rageActive = false;
-        document.getElementById('btl-rage-socket').classList.remove('active');
-        return;
-    }
-    if ((act.anger || 0) < 100) {
-        spawnFloatText(act.x, act.y - 65, `🔥 Nộ Khí: ${Math.round(act.anger || 0)}/100% (Tăng khi bắn trúng/nhận sát thương)`, '#ff8a65');
-        return;
-    }
-    BTL.rageActive = true;
-    BTL.selectedBombIdx = -1;
-    BTL.paperPlaneMode = false;
-    document.getElementById('btl-plane-btn').classList.remove('active');
-    document.getElementById('btl-rage-socket').classList.add('active');
-    renderBattleSkillBar();
-    spawnFloatText(act.x, act.y - 68, '🔥 SIÊU NỘ KHÍ BẬT (+80% Sát Thương Lôi Điện)!', '#ff3d00');
-}
-
 
 function activateSpecialDragonSkill(spSkill) {
     const act = getActiveControllableActor();
@@ -7790,41 +8100,74 @@ function toggleSupportBuff(buffId, cost) {
     updateBattleHudBars();
 }
 
-function togglePaperPlane() {
-    const act = getActiveControllableActor();
-    if (!act) return;
-    playSfx('select');
-    if (!BTL.paperPlaneMode && act.mp < 40) {
-        spawnFloatText(act.x, act.y - 60, 'Cần 40 MP để Bay dịch chuyển!', '#ff5252');
-        return;
-    }
-    BTL.paperPlaneMode = !BTL.paperPlaneMode;
-    document.getElementById('btl-plane-btn').classList.toggle('active', BTL.paperPlaneMode);
-    if (BTL.paperPlaneMode) {
-        BTL.selectedBombIdx = -1;
-        BTL.rageActive = false;
-        document.getElementById('btl-rage-socket').classList.remove('active');
-        renderBattleSkillBar();
-        spawnFloatText(act.x, act.y - 65, '✈️ Máy Bay Giấy BẬT!', '#00e5ff');
+// ==================== IN-GAME BATTLE CHAT SYSTEM ====================
+function openBattleChatModal() {
+    playSfx('btn');
+    const popup = document.getElementById('btl-chat-popup');
+    if (popup) popup.style.display = 'block';
+}
+
+function closeBattleChatModal() {
+    playSfx('btn');
+    const popup = document.getElementById('btl-chat-popup');
+    if (popup) popup.style.display = 'none';
+}
+
+function sendBattleChatMessage(msg) {
+    if (!msg || !msg.trim()) return;
+    playSfx('coin');
+    closeBattleChatModal();
+
+    const act = getActiveControllableActor() || BTL.player;
+    if (act) {
+        showBattleSpeechBubble(act.x, act.y - 70, msg.trim());
     }
 }
 
+function sendBattleCustomChat() {
+    const input = document.getElementById('btl-custom-chat-input');
+    if (!input || !input.value.trim()) return;
+    sendBattleChatMessage(input.value.trim());
+    input.value = '';
+}
+
+let battleSpeechBubbleTimer = null;
+function showBattleSpeechBubble(worldX, worldY, text) {
+    const bubble = document.getElementById('btl-floating-bubble');
+    if (!bubble) return;
+
+    const screenX = worldX - BTL.camX;
+    const screenY = worldY - BTL.camY;
+    bubble.textContent = `${STATE.playerName || 'Qalfy'}: ${text}`;
+    bubble.style.left = `${Math.max(10, Math.min(1000, screenX))}px`;
+    bubble.style.top = `${Math.max(10, Math.min(500, screenY))}px`;
+    bubble.style.display = 'block';
+
+    if (battleSpeechBubbleTimer) clearTimeout(battleSpeechBubbleTimer);
+    battleSpeechBubbleTimer = setTimeout(() => {
+        bubble.style.display = 'none';
+    }, 3500);
+}
+
 function updateSpriteTimerDigits(seconds) {
-    const box = document.getElementById('btl-timer-box');
-    if (!box) return;
     const s = Math.max(0, Math.min(99, Math.floor(seconds)));
-    const d1 = Math.floor(s / 10);
-    const d2 = s % 10;
-    box.innerHTML = d1 > 0
-        ? `<img src="images/ingame/hd/ingame_number_${d1}.png" alt="${d1}"><img src="images/ingame/hd/ingame_number_${d2}.png" alt="${d2}">`
-        : `<img src="images/ingame/hd/ingame_number_${d2}.png" alt="${d2}">`;
+    const numEl = document.getElementById('btl-timer-num');
+    if (numEl) numEl.textContent = s;
+    const box = document.getElementById('btl-timer-box');
+    if (box) {
+        const d1 = Math.floor(s / 10);
+        const d2 = s % 10;
+        box.innerHTML = d1 > 0
+            ? `<img src="images/ingame/hd/ingame_number_${d1}.png" alt="${d1}"><img src="images/ingame/hd/ingame_number_${d2}.png" alt="${d2}">`
+            : `<img src="images/ingame/hd/ingame_number_${d2}.png" alt="${d2}">`;
+    }
 }
 
 function updateBattleHudBars() {
     const p = getActiveControllableActor() || BTL.player;
     if (!p) return;
 
-    // Update HP & MP slots on the stone bar
+    // 1. Update HP & MP slots on the stone bar
     const hpPct = Math.max(0, Math.min(100, (p.hp / p.maxHp) * 100));
     const mpPct = Math.max(0, Math.min(100, (p.mp / p.maxMp) * 100));
     const hpFill = document.getElementById('btl-hp-fill');
@@ -7836,25 +8179,62 @@ function updateBattleHudBars() {
     if (hpTxt) hpTxt.textContent = `${Math.round(p.hp)}/${p.maxHp}`;
     if (mpTxt) mpTxt.textContent = `${Math.round(p.mp)}/${p.maxMp}`;
 
-    // Update Rage / Anger socket
+    // 2. Top-Left Player HUD
+    const topHpFill = document.getElementById('btl-player-top-hp-fill');
+    if (topHpFill) topHpFill.style.width = hpPct + '%';
+    const topPlayerName = document.getElementById('btl-player-name');
+    if (topPlayerName) topPlayerName.textContent = STATE.playerName || 'Qalfy';
+    const playerAvatar = document.getElementById('btl-player-avatar');
+    const dragonDef = getActiveDragonDef();
+    if (playerAvatar && dragonDef) {
+        playerAvatar.src = dragonDef.avatar || `res/drawable-mdpi/dragon_${dragonDef.id}_ico.png`;
+    }
+
+    // 3. Top-Right Enemy List
+    const enemyListEl = document.getElementById('btl-enemies-top-list');
+    if (enemyListEl && BTL.enemies) {
+        enemyListEl.innerHTML = '';
+        BTL.enemies.forEach(e => {
+            if (e.hp <= 0 && e.dead) return;
+            const eHpPct = Math.max(0, Math.min(100, (e.hp / e.maxHp) * 100));
+            const row = document.createElement('div');
+            row.className = 'btl-enemy-row';
+            row.innerHTML = `
+                <img class="btl-enemy-avatar" src="${e.avatar || 'res/drawable-mdpi/dragon_108_ico.png'}" alt="Enemy">
+                <div class="btl-enemy-col">
+                    <span class="btl-enemy-name">${e.name || 'Enemy'}</span>
+                    <div class="btl-enemy-hp-bar">
+                        <div class="btl-enemy-hp-fill" style="width:${eHpPct}%;"></div>
+                    </div>
+                </div>
+            `;
+            enemyListEl.appendChild(row);
+        });
+    }
+
+    // 4. Update Turn Timer (big circular dial number)
+    const timerNum = document.getElementById('btl-timer-num');
+    if (timerNum) {
+        const s = Math.max(0, Math.ceil(BTL.turnTimer || 0));
+        timerNum.textContent = s;
+    }
+
+    // 5. Update Rage / Anger socket
     const ragePct = Math.max(0, Math.min(100, Math.round(p.anger || 0)));
     const rageFill = document.getElementById('btl-rage-fill');
     const rageTxt = document.getElementById('btl-rage-txt');
     if (rageFill) rageFill.style.height = ragePct + '%';
     if (rageTxt) rageTxt.textContent = ragePct >= 100 ? '🔥 NỘ ĐẦY!' : `NỘ ${ragePct}%`;
 
-    // Update Power strip
-    const d = getActiveDragonDef();
-    const activeShotName = BTL.paperPlaneMode
-        ? '✈️ Máy Bay Giấy'
-        : (BTL.rageActive
-            ? '🔥 Siêu Đạn Nộ Khí'
-            : (BTL.selectedBombIdx >= 0 ? d.bombs[BTL.selectedBombIdx].name.split('(')[0].trim() : 'Đạn Thường (0 MP)'));
-    document.getElementById('btl-power-fill').style.width = p.power + '%';
-    document.getElementById('btl-power-txt').textContent = `[${activeShotName}] Lực: ${Math.round(p.power)}% (Trước: ${Math.round(BTL.lastPower)}%) • Thể lực đi bộ: ${Math.round(p.stamina)}`;
-    document.getElementById('btl-last-power-tick').style.left = BTL.lastPower + '%';
+    // 6. Update Wind text (formatted as 2-digit e.g. 02 matching screenshot)
+    const windTxt = document.getElementById('btl-wind-txt');
+    if (windTxt) {
+        const absWind = Math.abs(Math.round(BTL.wind || 0));
+        windTxt.textContent = absWind < 10 ? `0${absWind}` : `${absWind}`;
+    }
 
-    document.getElementById('btl-angle-txt').textContent = `${Math.round(p.angle)}°`;
+    const angleTxt = document.getElementById('btl-angle-txt');
+    if (angleTxt) angleTxt.textContent = `${Math.round(p.angle)}°`;
 }
 
 function startPlayerTurn(isPlayer2 = false) {
@@ -7983,10 +8363,24 @@ function executeActorFire(p, powerVal) {
             zidanFrames: ['zd_16_16.png'], // Authentic Green Dragon riding Paper Plane in zidan_01_480.plist!
             hitEffect: 'ty_a',
             dmgMult: 0,
-            radius: 20,
+            radius: 24,
             terrainDmg: 0,
             special: 'teleport'
         };
+        p.mp = Math.max(0, p.mp - mpCost);
+        p.action = 'attack';
+        p.frameIdx = 0;
+        const firedByTurn = BTL.turn;
+        BTL.turn = 'busy';
+        BTL.manualCam = false;
+        BTL.currentTrajectory = [];
+        playSfx('throw');
+        spawnProjectile(p, p.angle, powerVal, bomb, 1.0, firedByTurn, true);
+        BTL.paperPlaneMode = false;
+        const planeBtn = document.getElementById('btl-plane-btn');
+        if (planeBtn) planeBtn.classList.remove('active');
+        updateBattleHudBars();
+        return;
     } else if (BTL.rageActive && (p.anger || 0) >= 100) {
         p.anger = 0;
         BTL.rageActive = false;
@@ -8056,13 +8450,6 @@ function executeActorFire(p, powerVal) {
         });
     }
 
-    if (BTL.paperPlaneMode) {
-        spawnProjectile(p, p.angle, powerVal, bomb, 1.0, firedByTurn, true);
-        BTL.paperPlaneMode = false;
-        document.getElementById('btl-plane-btn').classList.remove('active');
-        updateBattleHudBars();
-        return;
-    }
 
     const angles = BTL.activeBuffs.thunder_quad
         ? [p.angle - 12, p.angle - 4, p.angle + 4, p.angle + 12]
@@ -8148,8 +8535,10 @@ function handleProjectileImpact(proj, hitX, hitY) {
         playSfx('select');
         proj.shooter.x = Math.max(60, Math.min(BTL.mapW - 60, hitX));
         proj.shooter.y = findSurfaceY(proj.shooter.x, hitY);
+        proj.shooter.action = 'default';
         spawnSpriteEffect('ty_a', proj.shooter.x, proj.shooter.y, 1.0);
-        spawnFloatText(proj.shooter.x, proj.shooter.y - 50, '✈️ Dịch chuyển!', '#00e5ff');
+        spawnFloatText(proj.shooter.x, proj.shooter.y - 50, '✈️ Dịch chuyển thành công!', '#00e5ff');
+        focusCameraOn(proj.shooter.x, proj.shooter.y, true);
         return;
     }
 
@@ -8319,18 +8708,18 @@ function endPlayerShotPhase(lastTurn = 'player') {
                 if (aliveSm.length > 0 && Math.random() < 0.35) target = aliveSm[0];
             }
 
-            // Move AI (move_ai.lua: move_to_cloest_enemy / patrol)
+            // Move AI (move_ai.lua: move_to_cloest_enemy / patrol with Obstacle Collision)
             const distToTarget = Math.abs(target.x - en.x);
             if (distToTarget > 480 && Math.random() < 0.60) {
                 const step = Math.min(distToTarget - 350, 40 + Math.random() * 25);
                 en.dir = (target.x < en.x) ? -1 : 1;
                 en.action = 'move';
-                en.x = Math.max(60, Math.min(BTL.mapW - 60, en.x + en.dir * step));
+                en.x = resolveWalkX(en, en.dir, step);
                 en.y = findSurfaceY(en.x, en.y);
             } else if (distToTarget < 110 && Math.random() < 0.50) {
                 en.dir = (target.x < en.x) ? 1 : -1;
                 en.action = 'move';
-                en.x = Math.max(60, Math.min(BTL.mapW - 60, en.x + en.dir * 35));
+                en.x = resolveWalkX(en, en.dir, 35);
                 en.y = findSurfaceY(en.x, en.y);
             }
 
@@ -8737,11 +9126,11 @@ function battleLoop(now) {
             }
         }
 
-        // 1. Walking on Original Terrain
+        // 1. Walking on Original Terrain with Obstacle Collision
         if (ctrl && BTL.walkDir !== 0 && !BTL.charging && !BTL.dragAiming && ctrl.stamina > 0.5) {
             ctrl.dir = BTL.walkDir;
             ctrl.action = 'move';
-            ctrl.x = Math.max(60, Math.min(BTL.mapW - 60, ctrl.x + BTL.walkDir * 2.2));
+            ctrl.x = resolveWalkX(ctrl, BTL.walkDir, 2.2);
             ctrl.y = findSurfaceY(ctrl.x, ctrl.y);
             ctrl.stamina = Math.max(0, ctrl.stamina - 0.55);
             updateBattleHudBars();
@@ -8793,7 +9182,7 @@ function battleLoop(now) {
                     break;
                 }
             }
-            if (!hit) {
+            if (!hit && pr.stepCount > 1) {
                 for (const b of BTL.blocks) {
                     if (b.destroyed) continue;
                     if (b.isCoin) {
