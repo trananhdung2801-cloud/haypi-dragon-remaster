@@ -1,0 +1,5 @@
+.git
+.github
+*.py
+*.pyc
+*.md
