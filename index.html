@@ -1112,6 +1112,20 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            border-radius: 50%;
+            background: radial-gradient(circle, #2a1510 0%, #160a07 65%, #0d0504 100%);
+            border: 2.5px solid #ff7043;
+            box-shadow: inset 0 2px 6px rgba(0,0,0,0.85), 0 3px 8px rgba(0,0,0,0.65), 0 0 10px rgba(255, 112, 67, 0.45);
+            transition: transform 0.12s, border-color 0.12s, box-shadow 0.12s;
+        }
+        .btl-socket-rage:hover {
+            transform: scale(1.04);
+            border-color: #ffab91;
+            box-shadow: inset 0 2px 8px rgba(0,0,0,0.9), 0 0 16px rgba(255, 112, 67, 0.7);
+        }
+        .btl-socket-rage.active {
+            border-color: #ff3d00;
+            box-shadow: inset 0 0 10px rgba(255, 61, 0, 0.8), 0 0 22px #ff3d00;
         }
         .btl-rage-fill-wrap {
             position: absolute;
@@ -1201,14 +1215,27 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: transform 0.1s;
+            background: radial-gradient(circle, #212c3d 0%, #101726 65%, #080d18 100%);
+            border: 2.5px solid #d4a259;
+            box-shadow: inset 0 2px 6px rgba(0,0,0,0.85), 0 3px 8px rgba(0,0,0,0.65), 0 0 10px rgba(212, 162, 89, 0.4);
+            transition: transform 0.12s ease, border-color 0.15s ease, box-shadow 0.15s ease;
         }
-        .btl-circle-socket:hover { transform: scale(1.06); }
+        .btl-circle-socket:hover {
+            transform: scale(1.06);
+            border-color: #ffe082;
+            box-shadow: inset 0 2px 8px rgba(0,0,0,0.9), 0 0 14px rgba(255, 224, 130, 0.65);
+        }
+        .btl-circle-socket.selected,
+        .btl-circle-socket.active-buff {
+            border-color: #ff9100;
+            box-shadow: inset 0 0 8px rgba(255, 145, 0, 0.6), 0 0 18px #ff9100;
+        }
         .btl-circle-socket img.skill-ico {
-            width: 70px;
-            height: 70px;
+            width: 66px;
+            height: 66px;
             object-fit: contain;
             pointer-events: none;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.7));
         }
         /* Authentic Spinning Orange Ring (images/ingame/hd/ingame_skillselect.png 79x79) */
         .btl-circle-socket .skill-select-ring {
@@ -4098,6 +4125,8 @@ function startCampaignBattle(chNum, stageNum, isPvp = false, onlineMode = 'none'
     BTL.dragAiming = false;
     BTL.manualCam = false;
     BTL.camPanMode = false;
+    BTL.ended = false;
+    BTL.ending = false;
 
     const modeLabel = BTL.mode === 'p2p_host' || BTL.mode === 'p2p_guest'
         ? `🌐 Phòng Online ${ONLINE.roomCode} (${mapKey.toUpperCase()})`
@@ -5192,6 +5221,18 @@ function battleLoop(now) {
     if (BTL.active && BTL.player) {
         const ctrl = getActiveControllableActor();
 
+        // 0. Continuous Victory & Defeat Check
+        if (BTL.active && !BTL.ended && !BTL.ending) {
+            const aliveEnemies = BTL.enemies.filter(e => !e.dead && e.hp > 0);
+            if (BTL.enemies.length > 0 && aliveEnemies.length === 0 && BTL.projectiles.length === 0) {
+                BTL.ending = true;
+                setTimeout(() => showBattleVictoryModal(true), 500);
+            } else if (BTL.player && (BTL.player.hp <= 0 || BTL.player.dead) && BTL.projectiles.length === 0) {
+                BTL.ending = true;
+                setTimeout(() => showBattleVictoryModal(false), 500);
+            }
+        }
+
         // 1. Walking on Original Terrain
         if (ctrl && BTL.walkDir !== 0 && !BTL.charging && !BTL.dragAiming && ctrl.stamina > 0.5) {
             ctrl.dir = BTL.walkDir;
@@ -5859,16 +5900,18 @@ function claimTaskReward(idx) {
 
 function showBattleVictoryModal(isWin) {
     BTL.active = false;
+    BTL.ended = true;
     playSfx(isWin ? 'win' : 'lose');
 
     let unlockMsg = '';
     let newDragonBanner = '';
+    let stars = 0;
     if (isWin) {
         const ch = BTL.chapter;
         const st = BTL.stage;
         const key = `${ch}-${st}`;
         const hpRatio = BTL.player ? (BTL.player.hp / BTL.player.maxHp) : 1;
-        const stars = hpRatio >= 0.70 ? 3 : (hpRatio >= 0.40 ? 2 : 1);
+        stars = hpRatio >= 0.70 ? 3 : (hpRatio >= 0.40 ? 2 : 1);
         STATE.clearedStages[key] = Math.max(STATE.clearedStages[key] || 0, stars);
 
         // Check if clearing this stage unlocks a New Dragon!
