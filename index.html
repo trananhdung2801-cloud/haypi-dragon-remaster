@@ -441,8 +441,8 @@
             font-family: 'HaypiFont', 'Trebuchet MS', sans-serif;
             font-size: 22px;
             font-weight: 900;
-            color: #0e2f47;
-            text-shadow: 0 1px 0 rgba(255,255,255,0.75);
+            color: #ffffff;
+            text-shadow: 0 2px 4px #000, 0 0 6px rgba(0,0,0,0.85);
             text-align: center;
             line-height: 1.05;
             letter-spacing: 0.5px;
@@ -450,7 +450,8 @@
         .title-tips-content small {
             font-size: 11px;
             font-weight: 900;
-            color: #1a4a6b;
+            color: #ffe082;
+            text-shadow: 0 1px 3px #000;
             margin-top: 2px;
             line-height: 1.05;
             white-space: nowrap;
@@ -459,15 +460,16 @@
             font-family: 'HaypiFont', 'Trebuchet MS', sans-serif;
             font-size: 24px;
             font-weight: 900;
-            color: #0d2e42;
-            text-shadow: 0 1px 0 rgba(255,255,255,0.65);
+            color: #ffffff;
+            text-shadow: 0 2px 4px #000, 0 0 6px rgba(0,0,0,0.85);
             text-align: center;
             line-height: 1;
         }
         .title-wooden-tips small {
             font-size: 11.5px;
             font-weight: 900;
-            color: #13466a;
+            color: #ffe082;
+            text-shadow: 0 1px 3px #000;
             margin-top: 2px;
             line-height: 1;
             white-space: nowrap;
@@ -1149,6 +1151,142 @@
             pointer-events: none;
             text-shadow: 0 1px 2px #000;
         }
+        
+        /* Chamber badge in corner of Socket 1 */
+        .btl-socket-bullet .bullet-chamber-badge {
+            position: absolute;
+            right: -2px;
+            bottom: -2px;
+            width: 28px;
+            height: 28px;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.9));
+            pointer-events: none;
+            z-index: 6;
+        }
+        .btl-socket-bullet .skill-select-ring {
+            position: absolute;
+            inset: -4px;
+            background: url('images/ingame/hd/ingame_skillselect.png') center / 100% 100% no-repeat;
+            pointer-events: none;
+            animation: haypiSpinRing 2s linear infinite;
+            z-index: 4;
+        }
+
+        /* 3-Bullet Floating Selector Menu */
+        #btl-bullet-popup {
+            position: absolute;
+            left: 100px;
+            bottom: 114px;
+            display: none;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 14px;
+            background: linear-gradient(180deg, rgba(28, 36, 48, 0.96) 0%, rgba(12, 16, 24, 0.98) 100%);
+            border: 2px solid #e6b450;
+            border-radius: 18px;
+            box-shadow: 0 12px 32px rgba(0,0,0,0.9), 0 0 18px rgba(230, 180, 80, 0.4);
+            z-index: 32;
+            pointer-events: auto;
+            animation: bulletPopupIn 0.18s cubic-bezier(0.18, 0.89, 0.32, 1.28) forwards;
+        }
+        #btl-bullet-popup.active { display: flex; }
+        @keyframes bulletPopupIn {
+            from { opacity: 0; transform: translateY(10px) scale(0.92); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        .bullet-choice-card {
+            position: relative;
+            width: 82px;
+            height: 102px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            cursor: pointer;
+            background: radial-gradient(circle, #202b3b 0%, #101622 75%, #080b12 100%);
+            border: 2px solid #5d4625;
+            border-radius: 14px;
+            padding: 6px 4px;
+            transition: transform 0.12s, border-color 0.15s, box-shadow 0.15s;
+        }
+        .bullet-choice-card:hover {
+            transform: translateY(-4px) scale(1.06);
+            border-color: #ffd54f;
+            box-shadow: 0 4px 14px rgba(255, 213, 79, 0.45);
+        }
+        .bullet-choice-card.active {
+            border-color: #ffb300;
+            background: radial-gradient(circle, #382c0f 0%, #1f1807 80%, #0d0a02 100%);
+            box-shadow: 0 0 18px #ffb300, inset 0 0 10px rgba(255, 179, 0, 0.7);
+        }
+        .bullet-choice-card .bullet-slot-icon-wrap {
+            position: relative;
+            width: 52px;
+            height: 52px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .bullet-choice-card img.choice-img {
+            width: 46px;
+            height: 46px;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.85));
+        }
+        .bullet-choice-card .choice-ring {
+            position: absolute;
+            inset: -4px;
+            background: url('images/ingame/hd/ingame_skillselect.png') center / 100% 100% no-repeat;
+            display: none;
+            animation: haypiSpinRing 1.6s linear infinite;
+            pointer-events: none;
+        }
+        .bullet-choice-card.active .choice-ring { display: block; }
+        .bullet-choice-card .choice-name {
+            font-size: 10px;
+            font-weight: 900;
+            color: #ffffff;
+            text-shadow: 0 1px 3px #000, 0 0 3px #000;
+            white-space: nowrap;
+            text-align: center;
+            max-width: 76px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .bullet-choice-card.active .choice-name { color: #ffe082; }
+        .bullet-choice-card .choice-cost {
+            font-size: 9.5px;
+            font-weight: 900;
+            color: #80d8ff;
+            text-shadow: 0 1px 2px #000;
+        }
+        .bullet-choice-card .choice-key {
+            position: absolute;
+            top: 3px;
+            left: 4px;
+            background: rgba(0,0,0,0.85);
+            border: 1px solid #ffd54f;
+            border-radius: 4px;
+            font-size: 8.5px;
+            font-weight: 900;
+            color: #ffe082;
+            padding: 0 3px;
+        }
+        .bullet-choice-card.active .choice-badge {
+            position: absolute;
+            bottom: -6px;
+            background: #ff8f00;
+            border: 1px solid #ffe082;
+            border-radius: 4px;
+            font-size: 8px;
+            font-weight: 900;
+            color: #ffffff;
+            padding: 0 4px;
+            text-shadow: 0 1px 2px #000;
+        }
+
         .btl-socket-bullet .bullet-sub-dots {
             position: absolute;
             bottom: 4px;
@@ -1498,6 +1636,106 @@
             line-height: 1.35;
         }
 
+        
+        /* ==================== AUTHENTIC TUTORIAL SYSTEM (STAGE 1-1) ==================== */
+        .btl-tutorial-wrap {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: 40;
+        }
+        .tutorial-dialog-card {
+            position: absolute;
+            top: 65px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 650px;
+            background: linear-gradient(180deg, rgba(30, 22, 14, 0.96) 0%, rgba(15, 10, 6, 0.98) 100%);
+            border: 2.5px solid #e6b450;
+            border-radius: 16px;
+            padding: 14px 20px 14px 105px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.88), 0 0 18px rgba(230, 180, 80, 0.4);
+            pointer-events: auto;
+            animation: tutorialDropIn 0.25s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+        }
+        @keyframes tutorialDropIn {
+            from { opacity: 0; transform: translate(-50%, -20px) scale(0.94); }
+            to { opacity: 1; transform: translate(-50%, 0) scale(1); }
+        }
+        .tutorial-dragon-img {
+            position: absolute;
+            left: -18px;
+            top: -24px;
+            width: 115px;
+            height: 115px;
+            object-fit: contain;
+            filter: drop-shadow(0 4px 10px rgba(0,0,0,0.8));
+            animation: tutorDragonBounce 2.4s ease-in-out infinite alternate;
+        }
+        @keyframes tutorDragonBounce {
+            from { transform: translateY(0); }
+            to { transform: translateY(-6px); }
+        }
+        .tutorial-title {
+            font-size: 15px;
+            font-weight: 900;
+            color: #ffd54f;
+            text-shadow: 0 1px 3px #000;
+            letter-spacing: 0.5px;
+        }
+        .tutorial-desc {
+            font-size: 13px;
+            color: #ffffff;
+            line-height: 1.4;
+            text-shadow: 0 1px 2px #000;
+        }
+        .tutorial-desc b { color: #ffe082; }
+        .tutorial-btn-row {
+            display: flex;
+            gap: 12px;
+            margin-top: 4px;
+            justify-content: flex-end;
+        }
+        .tutorial-hand-pointer {
+            position: absolute;
+            width: 76px;
+            height: 76px;
+            pointer-events: none;
+            z-index: 42;
+            animation: handSlingshotPull 1.8s ease-in-out infinite;
+        }
+        .tutorial-hand-pointer img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.85));
+        }
+        .tutorial-pull-cue {
+            position: absolute;
+            top: 74px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0,0,0,0.85);
+            border: 1px solid #ffe082;
+            border-radius: 6px;
+            padding: 2px 8px;
+            font-size: 11px;
+            font-weight: 900;
+            color: #ffe082;
+            white-space: nowrap;
+            text-shadow: 0 1px 2px #000;
+        }
+        @keyframes handSlingshotPull {
+            0% { transform: translate(0, 0) scale(1); opacity: 0; }
+            20% { transform: translate(0, 0) scale(1); opacity: 1; }
+            60% { transform: translate(-65px, 35px) scale(0.92); opacity: 1; }
+            85% { transform: translate(-75px, 40px) scale(0.9); opacity: 0.8; }
+            100% { transform: translate(0, 0) scale(1); opacity: 0; }
+        }
+
         /* ==================== 6. UNIVERSAL AUTHENTIC MODAL SYSTEM ==================== */
         #modal-backdrop {
             position: absolute;
@@ -1531,8 +1769,8 @@
         .haypi-modal-title {
             font-size: 21px;
             font-weight: 900;
-            color: #5a2d0c;
-            text-shadow: 0 1px 0 rgba(255,255,255,0.7);
+            color: #ffffff !important;
+            text-shadow: 0 2px 4px #000, 0 0 8px rgba(0,0,0,0.95);
             display: flex;
             align-items: center;
             gap: 10px;
@@ -1540,7 +1778,8 @@
         .haypi-modal-body {
             flex: 1;
             overflow-y: auto;
-            color: #4a2508;
+            color: #ffffff !important;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.9);
             padding-right: 4px;
         }
         .dragon-roster-bar {
@@ -1568,8 +1807,8 @@
             box-shadow: 0 2px 8px rgba(184, 93, 0, 0.35);
         }
         .dragon-tab-item img { width: 36px; height: 36px; object-fit: contain; }
-        .dragon-tab-item .d-name { font-size: 12px; font-weight: 900; color: #4a2306; }
-        .dragon-tab-item .d-lvl { font-size: 10px; color: #7a4414; font-weight: bold; }
+        .dragon-tab-item .d-name { font-size: 12px; font-weight: 900; color: #ffffff; text-shadow: 0 1px 3px #000; }
+        .dragon-tab-item .d-lvl { font-size: 10px; color: #ffe082; font-weight: bold; text-shadow: 0 1px 2px #000; }
 
         .dragon-detail-grid {
             display: grid;
@@ -1588,13 +1827,15 @@
             padding: 14px;
         }
         .dragon-stats-card {
-            background: rgba(255, 245, 220, 0.78);
+            background: rgba(35, 24, 15, 0.88);
             border: 2px solid #c49a6c;
             border-radius: 12px;
             padding: 14px 16px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            color: #ffffff;
+            text-shadow: 0 1px 3px #000;
         }
         .stat-grid-2col {
             display: grid;
@@ -1606,11 +1847,13 @@
         .stat-row {
             display: flex;
             justify-content: space-between;
-            background: rgba(140, 90, 40, 0.12);
+            background: rgba(0, 0, 0, 0.45);
             padding: 5px 10px;
             border-radius: 6px;
+            color: #ffffff;
+            text-shadow: 0 1px 2px #000;
         }
-        .stat-row b { color: #b84a00; }
+        .stat-row b { color: #ffd54f; text-shadow: 0 1px 3px #000; }
         .skill-showcase-box {
             background: url('res/drawable-mdpi/info_skillbg.png') center / 100% 100% no-repeat;
             padding: 10px 12px;
@@ -1636,8 +1879,8 @@
             padding: 8px 18px;
             font-size: 13px;
             font-weight: 900;
-            color: #4a2200;
-            text-shadow: 0 1px 0 rgba(255,255,255,0.65);
+            color: #ffffff;
+            text-shadow: 0 1px 3px #000, 0 0 4px #000;
             cursor: pointer;
             min-width: 124px;
             height: 40px;
@@ -2016,6 +2259,28 @@
         </div>
 
         <!-- Bottom Authentic 960x110 Stone Bar (images/ingame/hd/ingame_bg.png) -->
+        
+        <!-- Authentic Stage 1-1 Tutorial Overlay with teaching_dragon.png & teaching_hand.png -->
+        <div id="btl-tutorial-overlay" class="btl-tutorial-wrap" style="display:none;">
+            <div class="tutorial-dialog-card">
+                <img class="tutorial-dragon-img" src="images/ingame/hd/teaching_dragon.png" alt="Dragon Mentor">
+                <div style="flex:1;">
+                    <div class="tutorial-title">🐲 BÀI HUẤN LUYỆN TÂN THỦ (MÀN 1-1)</div>
+                    <div class="tutorial-desc" id="tutorial-step-desc">
+                        Chào mừng Long Thủ! Hãy <b>chạm vào Rồng</b>, kéo lùi về sau để căn <b>Góc</b> & <b>Lực</b> bắn, sau đó <b>nhấc tay lên</b> để phóng đạn tiêu diệt quái vật!
+                    </div>
+                    <div class="tutorial-btn-row">
+                        <button class="haypi-action-btn green" style="height:32px; min-width:110px; font-size:12px;" onclick="dismissTutorialStep()">✓ Đã Hiểu</button>
+                        <button class="haypi-action-btn" style="height:32px; min-width:80px; font-size:12px;" onclick="skipTutorialPermanently()">Bỏ qua</button>
+                    </div>
+                </div>
+            </div>
+            <div id="tutorial-hand-demo" class="tutorial-hand-pointer">
+                <img src="images/ingame/hd/teaching_hand.png" alt="Hand Drag">
+                <div class="tutorial-pull-cue">◀ Kéo lùi căn lực</div>
+            </div>
+        </div>
+
         <div class="btl-bottom-outer">
             <!-- Left Wing: Angle Readout & Quick +/- Angle Buttons -->
             <div class="btl-left-wing">
@@ -2405,7 +2670,7 @@ function openAccountModal() {
     bodyEl.innerHTML = `
         <div style="display:flex; flex-direction:column; gap:12px; max-height:480px; overflow-y:auto; padding:4px 10px;">
             <div class="settings-card">
-                <div style="font-size:13.5px; font-weight:800; color:#3e2723; margin-bottom:6px;">
+                <div style="font-size:13.5px; font-weight:800; color:#ffffff; text-shadow:0 1px 3px #000; margin-bottom:6px;">
                     📌 ${currentLang === 'vi' ? 'Tài khoản hiện tại:' : 'Current Account:'} 
                     <span style="color:#d84315; font-size:15px; font-weight:900;">${current || (currentLang === 'vi' ? 'Khách (Chưa đăng nhập)' : 'Guest (Not logged in)')}</span>
                 </div>
@@ -2414,16 +2679,16 @@ function openAccountModal() {
 
             <!-- Login / Register Card -->
             <div class="settings-card">
-                <div style="font-size:14px; font-weight:900; color:#4e342e; border-bottom:1.5px solid #d7ccc8; padding-bottom:6px; margin-bottom:10px;">
+                <div style="font-size:14px; font-weight:900; color:#ffffff; text-shadow:0 1px 3px #000; border-bottom:1.5px solid #d7ccc8; padding-bottom:6px; margin-bottom:10px;">
                     🔑 ${currentLang === 'vi' ? 'Đăng Nhập Hoặc Đăng Ký Tài Khoản' : 'Login or Create New Account'}
                 </div>
                 <div style="display:flex; flex-direction:column; gap:8px;">
                     <div style="display:flex; align-items:center; gap:8px;">
-                        <span style="min-width:110px; font-size:13px; font-weight:bold; color:#4e342e;">${t('username')}</span>
+                        <span style="min-width:110px; font-size:13px; font-weight:bold; color:#ffffff; text-shadow:0 1px 2px #000;">${t('username')}</span>
                         <input id="acct-user-in" type="text" class="passcode-input" style="flex:1;" placeholder="username...">
                     </div>
                     <div style="display:flex; align-items:center; gap:8px;">
-                        <span style="min-width:110px; font-size:13px; font-weight:bold; color:#4e342e;">${t('password')}</span>
+                        <span style="min-width:110px; font-size:13px; font-weight:bold; color:#ffffff; text-shadow:0 1px 2px #000;">${t('password')}</span>
                         <input id="acct-pass-in" type="password" class="passcode-input" style="flex:1;" placeholder="password...">
                     </div>
                     <div style="display:flex; gap:10px; margin-top:8px; justify-content:flex-end;">
@@ -2443,7 +2708,7 @@ function openAccountModal() {
 
             <!-- Saved Accounts Table -->
             <div class="settings-card">
-                <div style="font-size:13.5px; font-weight:900; color:#4e342e; margin-bottom:6px;">
+                <div style="font-size:13.5px; font-weight:900; color:#ffffff; text-shadow:0 1px 3px #000; margin-bottom:6px;">
                     📋 ${t('acct_switch_tab')} (${accList.length})
                 </div>
                 ${accList.length === 0 ? `<div style="font-size:12px; color:#8d6e63; font-style:italic;">${t('no_accounts')}</div>` : `
@@ -2709,7 +2974,7 @@ const PLAYABLE_DRAGONS = {
         baseHp: 790, baseAtk: 158, baseDef: 88, baseStamina: 240, baseMp: 100, crit: 15,
         unlocked: false, unlockStage: '1-10', unlockDesc: 'Hoàn thành Màn 1-10 (Chương 1)',
         level: 10, exp: 410,
-        basicFrames: ['zd_16_36.png'], basicHitEffect: 'bkbd',
+        basicFrames: ['zd_16_17.png'], basicHitEffect: 'ty_a',
         desc: 'Rồng Pha Lê băng giá từ đỉnh núi tuyết, đóng băng kẻ thù và gọi mưa tinh thể sắc bén.',
         bombs: [
             {
@@ -3018,6 +3283,8 @@ preloadCoreAssets();
 
 // Authentic APK Numbered Sound Files in sound/
 const SFX_MAP = {
+    win_jingle: '10071.mp3',
+    lose_jingle: '10072.mp3',
     bgm_city: '10049.mp3',
     bgm_battle: '10059.mp3',
     btn: '10034.mp3',
@@ -4397,6 +4664,8 @@ function toggleCameraPanMode() {
     }
 
     function updateDragAimVector(ctrl, worldX, worldY) {
+        const hand = document.getElementById('tutorial-hand-demo');
+        if (hand && hand.style.display !== 'none') hand.style.display = 'none';
         let dx = worldX - (ctrl.x);
         let dy = (ctrl.y - 32) - worldY;
         const dist = Math.hypot(dx, dy);
@@ -4598,31 +4867,78 @@ function renderBattleSkillBar() {
         wrap.appendChild(el);
     });
 
-    // Socket 4: 4th Skill Slot - LOCKED by default (padlock 🔒)
-    const isMythic = d.id === '110'; // Angelo has mythic skill
-    const lockEl = document.createElement('div');
-    lockEl.className = 'btl-circle-socket' + (isMythic ? '' : ' locked-slot');
-    lockEl.style.left = socketLefts[3] + 'px';
-    lockEl.title = isMythic ? 'Thánh Quang Hộ Thể (50 MP)' : 'Ô Kỹ Năng 4: ĐANG KHÓA!';
-    lockEl.innerHTML = `
-        <span class="btl-socket-name">${isMythic ? 'Thánh Quang' : 'Khóa'}</span>
-        <span class="btl-socket-key">4</span>
-        <img class="skill-ico" src="images/ingame/hd/icon102004_a.png" alt="Skill 4">
-        ${isMythic ? '' : '<div style="position:absolute; font-size:22px; filter:drop-shadow(0 2px 4px #000);">🔒</div>'}
-        <div class="skill-select-ring"></div>
-        <span class="btl-socket-cost">${isMythic ? '50MP' : '🔒'}</span>
-    `;
-    lockEl.onclick = () => {
-        if (!isMythic) {
-            playSfx('lose', 0.4);
-            const a = getActiveControllableActor();
-            if (a) spawnFloatText(a.x, a.y - 60, '🔒 Kỹ Năng 4 đang Khóa! Cần Rồng Thần Thoại để mở khóa.', '#ffab00');
-        } else {
-            playSfx('select');
-            toggleSupportBuff('mythic_blessing', 50);
-            renderBattleSkillBar();
+    // Socket 4: 4th Skill Slot - SPECIAL DRAGON SKILLS SYSTEM
+    // Regular Dragons (Roco '108', Leshy '104', Lava '107', Crystal '109'): LOCKED (ingame_lock.png)
+    // Special Dragons: Angelo (101800 Heal), Devil (101900 Shield), Bolt (102003 4-Volley), Shell/Bigeye (101900 Barrier)
+    const SPECIAL_DRAGON_SKILLS = {
+        '110': { // Angelo (Holy Dragon)
+            id: 'holy_cure', name: 'Trị Liệu Thánh Quang', shortName: 'Trị Liệu',
+            icon: 'images/ingame/hd/icon101800_a.png', cost: 45, key: '4',
+            desc: 'Hồi phục ngay +240 HP cho bản thân và hóa giải toàn bộ hiệu ứng Bỏng/Băng/Nguyền rủa!'
+        },
+        '111': { // Devil (Evil Dragon)
+            id: 'dark_shield', name: 'Hắc Ám Hộ Thuẫn', shortName: 'Khiên Quỷ',
+            icon: 'images/ingame/hd/icon101900_a.png', cost: 40, key: '4',
+            desc: 'Kích hoạt khiên hắc ám, giảm 50% toàn bộ sát thương nhận vào trong 2 lượt tiếp theo.'
+        },
+        '113': { // Bolt (Thunder Dragon)
+            id: 'thunder_quad', name: 'Thiên Lôi 4 Tia', shortName: '4 Tia Sét',
+            icon: 'images/ingame/hd/icon102003_a.png', cost: 55, key: '4',
+            desc: 'Phân tách phát bắn thành 4 tia sấm sét hủy diệt phủ kín toàn bộ bản đồ!'
+        },
+        '112': { // Shell (Egg Dragon)
+            id: 'egg_barrier', name: 'Vỏ Trứng Vô Địch', shortName: 'Vỏ Trứng',
+            icon: 'images/ingame/hd/icon101900_a.png', cost: 45, key: '4',
+            desc: 'Ẩn mình vào vỏ trứng thần kỳ, miễn nhiễm 100% sát thương từ phát bắn kế tiếp của địch!'
+        },
+        '114': { // Bigeye (Ball Dragon)
+            id: 'chaos_shield', name: 'Trường Lực Hỗn Mang', shortName: 'Phản Xạ',
+            icon: 'images/ingame/hd/icon101900_a.png', cost: 45, key: '4',
+            desc: 'Tạo trường lực đàn hồi giảm 40% sát thương nhận vào.'
         }
     };
+
+    const spSkill = SPECIAL_DRAGON_SKILLS[d.id];
+    const isSpecialDragon = !!spSkill;
+    const isBuffActive = isSpecialDragon && !!BTL.activeBuffs[spSkill.id];
+
+    const lockEl = document.createElement('div');
+    lockEl.className = 'btl-circle-socket' + (isSpecialDragon ? (isBuffActive ? ' active-buff' : '') : ' locked-slot');
+    lockEl.style.left = socketLefts[3] + 'px';
+
+    if (isSpecialDragon) {
+        let iconSrc = spSkill.icon;
+        if (isBuffActive) iconSrc = spSkill.icon.replace('_a.png', '_b.png');
+        else if (currentMp < spSkill.cost) iconSrc = spSkill.icon.replace('_a.png', '_c.png');
+
+        lockEl.title = `${spSkill.name} (${spSkill.cost} MP): ${spSkill.desc}`;
+        lockEl.innerHTML = `
+            <span class="btl-socket-name">${spSkill.shortName}</span>
+            <span class="btl-socket-key">4</span>
+            <img class="skill-ico" src="${iconSrc}" alt="${spSkill.name}">
+            <div class="skill-select-ring"></div>
+            <span class="btl-socket-cost">${spSkill.cost}MP</span>
+        `;
+        lockEl.onclick = () => {
+            activateSpecialDragonSkill(spSkill);
+            renderBattleSkillBar();
+        };
+    } else {
+        lockEl.title = 'Ô Kỹ Năng 4: ĐANG KHÓA! (Chỉ mở khóa cho các Rồng Đặc Biệt & Thần Thoại)';
+        lockEl.innerHTML = `
+            <span class="btl-socket-name">Khóa</span>
+            <span class="btl-socket-key">4</span>
+            <img class="skill-ico" src="images/ingame/hd/icon102004_a.png" style="opacity:0.35;" alt="Locked">
+            <img src="images/ingame/hd/ingame_lock.png" style="position:absolute; width:28px; height:36px; filter:drop-shadow(0 2px 5px rgba(0,0,0,0.9)); z-index:5;" alt="Locked">
+            <div class="skill-select-ring"></div>
+            <span class="btl-socket-cost">🔒</span>
+        `;
+        lockEl.onclick = () => {
+            playSfx('lose', 0.4);
+            const a = getActiveControllableActor();
+            if (a) spawnFloatText(a.x, a.y - 60, '🔒 Ô Kỹ Năng 4 đang Khóa! Cần Rồng Đặc Biệt (Angelo, Devil, Bolt...) để mở khóa.', '#ffab00');
+        };
+    }
     wrap.appendChild(lockEl);
 
     updateBulletSocketUI();
@@ -4630,7 +4946,7 @@ function renderBattleSkillBar() {
 }
 
 function selectDragonBomb(idx) {
-    toggleBulletSelection();
+    selectBullet(idx + 1);
 }
 
 function toggleRageSkill() {
@@ -4653,6 +4969,90 @@ function toggleRageSkill() {
     document.getElementById('btl-rage-socket').classList.add('active');
     renderBattleSkillBar();
     spawnFloatText(act.x, act.y - 68, '🔥 SIÊU NỘ KHÍ BẬT (+80% Sát Thương Lôi Điện)!', '#ff3d00');
+}
+
+
+function activateSpecialDragonSkill(spSkill) {
+    const act = getActiveControllableActor();
+    if (!act || !spSkill) return;
+
+    if (BTL.activeBuffs[spSkill.id]) {
+        BTL.activeBuffs[spSkill.id] = false;
+        act.mp = Math.min(act.maxMp, act.mp + spSkill.cost);
+        playSfx('select');
+        spawnFloatText(act.x, act.y - 60, `Đã tắt ${spSkill.shortName}`, '#fff');
+    } else {
+        if (act.mp < spSkill.cost) {
+            spawnFloatText(act.x, act.y - 60, `Không đủ MP (${spSkill.cost} MP)!`, '#ff5252');
+            playSfx('lose', 0.4);
+            return;
+        }
+        act.mp -= spSkill.cost;
+        BTL.activeBuffs[spSkill.id] = true;
+        playSfx('levelup', 0.8);
+
+        if (spSkill.id === 'holy_cure') {
+            act.hp = Math.min(act.maxHp, act.hp + 240);
+            act.burnTurns = 0;
+            act.frozenTurns = 0;
+            act.curseTurns = 0;
+            act.defDebuff = 0;
+            spawnSpriteEffect('hp', act.x, act.y, 1.25);
+            spawnFloatText(act.x, act.y - 65, '✨ +240 HP & Hóa Giải Mọi Trạng Thái!', '#69f0ae');
+            BTL.activeBuffs[spSkill.id] = false; // Instant heal doesn't stay toggled
+        } else if (spSkill.id === 'dark_shield') {
+            act.defBuff = 2;
+            spawnFloatText(act.x, act.y - 65, '🛡️ Hắc Ám Hộ Thuẫn BẬT (-50% Sát Thương)!', '#b388ff');
+        } else if (spSkill.id === 'thunder_quad') {
+            spawnFloatText(act.x, act.y - 65, '⚡ Thiên Lôi 4 Tia SẴN SÀNG!', '#ffd54f');
+        } else if (spSkill.id === 'egg_barrier') {
+            act.immuneTurns = 1;
+            spawnFloatText(act.x, act.y - 65, '🥚 Vỏ Trứng Vô Địch: Miễn Nhiễm Sát Thương!', '#ffe082');
+        } else if (spSkill.id === 'chaos_shield') {
+            act.defBuff = 2;
+            spawnFloatText(act.x, act.y - 65, '🔮 Trường Lực Phản Xạ BẬT (-40% Sát Thương)!', '#80d8ff');
+        }
+    }
+    updateBattleHudBars();
+}
+
+function checkStageTutorial() {
+    const overlay = document.getElementById('btl-tutorial-overlay');
+    if (!overlay) return;
+    if (BTL.chapter === 1 && BTL.stage === 1 && BTL.mode === 'pve') {
+        const p = getActiveControllableActor() || BTL.player;
+        if (p) {
+            const handEl = document.getElementById('tutorial-hand-demo');
+            if (handEl) {
+                const screenX = Math.round(p.x - BTL.camX);
+                const screenY = Math.round(p.y - BTL.camY - 35);
+                handEl.style.left = screenX + 'px';
+                handEl.style.top = screenY + 'px';
+                handEl.style.display = 'block';
+            }
+        }
+        overlay.style.display = 'block';
+    } else {
+        overlay.style.display = 'none';
+    }
+}
+
+function dismissTutorialStep() {
+    const hand = document.getElementById('tutorial-hand-demo');
+    if (hand) hand.style.display = 'none';
+    const desc = document.getElementById('tutorial-step-desc');
+    if (desc) {
+        desc.innerHTML = '🎯 <b>Rất tốt!</b> Hãy căn lực và góc bắn, nhắm thẳng vào quái vật để hoàn thành màn chơi!';
+        setTimeout(() => {
+            const overlay = document.getElementById('btl-tutorial-overlay');
+            if (overlay) overlay.style.display = 'none';
+        }, 2200);
+    }
+}
+
+function skipTutorialPermanently() {
+    const overlay = document.getElementById('btl-tutorial-overlay');
+    if (overlay) overlay.style.display = 'none';
 }
 
 function toggleSupportBuff(buffId, cost) {
@@ -4855,6 +5255,7 @@ function releaseChargeShot() {
 }
 
 function executeActorFire(p, powerVal) {
+    closeBulletPopup();
     const d = getActiveDragonDef();
     let bomb = null;
     let mpCost = 0;
@@ -4890,10 +5291,11 @@ function executeActorFire(p, powerVal) {
         bomb = d.bombs[BTL.selectedBombIdx];
         mpCost = bomb.cost;
     } else {
-        // Basic Shot (0 MP) using authentic dragon projectile from zidan_01_480.plist!
+        // Basic Shot (0 MP) using authentic smooth black iron bullet zd_16_17.png!
         bomb = {
-            id: 'basic_shot',
-            zidanFrames: d.basicFrames || ['zd_16_17.png'],
+            id: 'iron_shot',
+            name: 'Đạn Sắt',
+            zidanFrames: ['zd_16_17.png'],
             hitEffect: d.basicHitEffect || 'ty_a',
             dmgMult: 1.0,
             radius: 52,
@@ -4946,9 +5348,9 @@ function executeActorFire(p, powerVal) {
         return;
     }
 
-    const angles = BTL.activeBuffs.volley_shot
-        ? [p.angle - 8, p.angle, p.angle + 8]
-        : [p.angle];
+    const angles = BTL.activeBuffs.thunder_quad
+        ? [p.angle - 12, p.angle - 4, p.angle + 4, p.angle + 12]
+        : (BTL.activeBuffs.volley_shot ? [p.angle - 8, p.angle, p.angle + 8] : [p.angle]);
     const salvoCount = BTL.activeBuffs.quick_shot ? 2 : 1;
     const dmgScale = (BTL.activeBuffs.power_up ? 1.45 : 1.0) * (BTL.activeBuffs.volley_shot ? 0.68 : 1.0);
 
@@ -5121,6 +5523,11 @@ function handleProjectileImpact(proj, hitX, hitY) {
                 spawnFloatText(t.x, t.y - 82, '💀 Lời nguyền Hắc Ám!', '#b388ff');
             }
 
+            if (t.immuneTurns > 0) {
+                t.immuneTurns--;
+                dmg = 0;
+                spawnFloatText(t.x, t.y - 60, '🛡️ MIỄN NHIỄM SÁT THƯƠNG!', '#ffe082');
+            }
             if (t.hp <= 0 && !t.dead) {
                 t.dead = true;
                 spawnSpriteEffect('soul2002', t.x, t.y - 20, 0.9);
@@ -5290,8 +5697,27 @@ window.addEventListener('keydown', e => {
     else if (e.key === 'ArrowRight' || e.key === 'd' || e.key === 'D') startWalk(1);
     else if (e.key === 'ArrowUp' || e.key === 'w' || e.key === 'W') changeAimAngle(2);
     else if (e.key === 'ArrowDown' || e.key === 's' || e.key === 'S') changeAimAngle(-2);
-    else if (e.key === '1') selectDragonBomb(0);
-    else if (e.key === '2') selectDragonBomb(1);
+    else if (e.key === '1') selectBullet(0);
+    else if (e.key === '2') selectBullet(1);
+    else if (e.key === '3') selectBullet(2);
+    else if (e.key === '4') {
+        const d = getActiveDragonDef();
+        if (d && (d.id === '110' || d.id === '111' || d.id === '112' || d.id === '113' || d.id === '114')) {
+            const skList = {
+                '110': { id: 'holy_cure', cost: 45, shortName: 'Trị Liệu' },
+                '111': { id: 'dark_shield', cost: 40, shortName: 'Khiên Quỷ' },
+                '113': { id: 'thunder_quad', cost: 55, shortName: '4 Tia Sét' },
+                '112': { id: 'egg_barrier', cost: 45, shortName: 'Vỏ Trứng' },
+                '114': { id: 'chaos_shield', cost: 45, shortName: 'Phản Xạ' }
+            };
+            activateSpecialDragonSkill(skList[d.id]);
+            renderBattleSkillBar();
+        } else {
+            playSfx('lose', 0.4);
+            const a = getActiveControllableActor();
+            if (a) spawnFloatText(a.x, a.y - 60, '🔒 Ô Kỹ Năng 4 đang Khóa! Cần Rồng Đặc Biệt để mở khóa.', '#ffab00');
+        }
+    }
     else if (e.key === 'q' || e.key === 'Q') toggleSupportBuff('power_up', 20);
     else if (e.key === 'e' || e.key === 'E') toggleSupportBuff('quick_shot', 30);
     else if (e.key === 'r' || e.key === 'R') toggleSupportBuff('volley_shot', 35);
@@ -5382,20 +5808,31 @@ function drawHealthBar(ctx, actor, isEnemy = false, isActiveTurn = false) {
     ctx.strokeText(label, actor.x, by - 4);
     ctx.fillText(label, actor.x, by - 4);
 
-    let badgeStr = '';
-    if (actor.burnTurns > 0) badgeStr += '🔥';
-    if (actor.frozenTurns > 0) badgeStr += '❄️';
-    if (actor.curseTurns > 0) badgeStr += '💀';
-    if (actor.defDebuff > 0) badgeStr += '🌿';
-    if (actor.atkBuff > 0) badgeStr += '✨';
-    if (badgeStr) ctx.fillText(badgeStr, actor.x, by - 18);
+    // Draw Authentic Status Effect Icons (ingame_status_01..04.png)
+        const activeStatuses = [];
+        if (actor.burnTurns > 0) activeStatuses.push('images/ingame/hd/ingame_status_01.png');
+        if (actor.frozenTurns > 0) activeStatuses.push('images/ingame/hd/ingame_status_02.png');
+        if (actor.curseTurns > 0) activeStatuses.push('images/ingame/hd/ingame_status_03.png');
+        if (actor.atkBuff > 0 || actor.defDebuff > 0) activeStatuses.push('images/ingame/hd/ingame_status_04.png');
 
-    // Draw Bouncing Green Turn Arrow (images/ingame/hd/ingame_arrow.png) above active dragon
+        if (activeStatuses.length > 0) {
+            const iconSize = 20;
+            const startX = actor.x - (activeStatuses.length * (iconSize + 2)) / 2;
+            activeStatuses.forEach((stSrc, idx) => {
+                const sImg = getImg(stSrc);
+                if (sImg && sImg.complete && sImg.naturalWidth > 0) {
+                    ctx.drawImage(sImg, startX + idx * (iconSize + 2), by - 24, iconSize, iconSize);
+                }
+            });
+        }
+
+    // Draw Authentic 5-Frame Animated Bouncing Turn Arrow (ingame_arrow4_00..04.png)
     if (isActiveTurn) {
-        const arrowImg = getImg('images/ingame/hd/ingame_arrow.png');
+        const arrowIdx = Math.floor(performance.now() / 120) % 5;
+        const arrowImg = getImg(`images/ingame/hd/ingame_arrow4_0${arrowIdx}.png`) || getImg('images/ingame/hd/ingame_arrow.png');
         const bounceOffset = Math.sin(performance.now() / 160) * 5;
         if (arrowImg && arrowImg.complete && arrowImg.naturalWidth > 0) {
-            ctx.drawImage(arrowImg, actor.x - 15, by - 48 + bounceOffset, 30, 32);
+            ctx.drawImage(arrowImg, actor.x - 18, by - 52 + bounceOffset, 36, 36);
         }
     }
 }
@@ -6124,8 +6561,8 @@ function renderMagicModal(bodyEl) {
                     <div style="background:rgba(255,245,220,0.88); border:2px solid #c49a6c; border-radius:12px; padding:14px; display:flex; align-items:center; gap:14px;">
                         <img src="${it.icon}" style="width:56px; height:56px; object-fit:contain;">
                         <div style="flex:1;">
-                            <div style="font-size:15px; font-weight:900; color:#5a2d0c;">${it.name}</div>
-                            <div style="font-size:12px; color:#8b4513; margin:4px 0;">Cấp hiện tại: <b>Lv.${lv}</b> (${it.bonus})</div>
+                            <div style="font-size:15px; font-weight:900; color:#ffffff; text-shadow:0 1px 3px #000;">${it.name}</div>
+                            <div style="font-size:12px; color:#ffe082; text-shadow:0 1px 2px #000; margin:4px 0;">Cấp hiện tại: <b>Lv.${lv}</b> (${it.bonus})</div>
                             <button class="haypi-action-btn" onclick="upgradeMagic('${it.key}', ${cost})">Nâng Cấp (${cost} Vàng)</button>
                         </div>
                     </div>
@@ -6159,8 +6596,8 @@ function renderSynthModal(bodyEl) {
                 <div style="background:rgba(255,245,220,0.88); border:2px solid #c49a6c; border-radius:12px; padding:14px; display:flex; align-items:center; gap:14px;">
                     <img src="${g.icon}" style="width:54px; height:54px; object-fit:contain;">
                     <div style="flex:1;">
-                        <div style="font-size:14px; font-weight:900; color:#5a2d0c;">${g.name}</div>
-                        <div style="font-size:12px; color:#7a4414; margin:4px 0;">Số lượng trong kho: <b>${STATE.synthGems[g.key]}</b></div>
+                        <div style="font-size:14px; font-weight:900; color:#ffffff; text-shadow:0 1px 3px #000;">${g.name}</div>
+                        <div style="font-size:12px; color:#ffe082; text-shadow:0 1px 2px #000; margin:4px 0;">Số lượng trong kho: <b>${STATE.synthGems[g.key]}</b></div>
                         <button class="haypi-action-btn" onclick="synthesizeGem('${g.key}', '${g.stat}')">🔨 Hợp Thành (+Chỉ Số)</button>
                     </div>
                 </div>
@@ -6192,8 +6629,8 @@ function renderShopModal(bodyEl) {
                 <div style="background:rgba(255,245,220,0.88); border:2px solid #c49a6c; border-radius:12px; padding:14px; display:flex; align-items:center; gap:14px;">
                     <img src="${it.icon}" style="width:56px; height:56px; object-fit:contain;">
                     <div style="flex:1;">
-                        <div style="font-size:14px; font-weight:900; color:#5a2d0c;">${it.name}</div>
-                        <div style="font-size:12px; color:#b84a00; margin:4px 0;">Giá: <b>${it.price} ${it.currency === 'gold' ? 'Vàng' : 'Kim Cương'}</b></div>
+                        <div style="font-size:14px; font-weight:900; color:#ffffff; text-shadow:0 1px 3px #000;">${it.name}</div>
+                        <div style="font-size:12px; color:#ffd54f; text-shadow:0 1px 2px #000; margin:4px 0;">Giá: <b>${it.price} ${it.currency === 'gold' ? 'Vàng' : 'Kim Cương'}</b></div>
                         <button class="haypi-action-btn" onclick="buyShopItem(${idx})">🛒 Mua Ngay</button>
                     </div>
                 </div>
@@ -6231,8 +6668,8 @@ function renderTasksModal(bodyEl) {
             ${STATE.tasks.map((t, i) => `
                 <div style="background:rgba(255,245,220,0.88); border:2px solid #c49a6c; border-radius:10px; padding:12px 16px; display:flex; align-items:center; justify-content:space-between;">
                     <div>
-                        <div style="font-size:14px; font-weight:900; color:#5a2d0c;">📜 ${t.title}</div>
-                        <div style="font-size:12px; color:#b85d00;">Phần thưởng: <b>+${t.rewardGold} Vàng</b> & <b>+${t.rewardDia} Kim Cương</b></div>
+                        <div style="font-size:14px; font-weight:900; color:#ffffff; text-shadow:0 1px 3px #000;">📜 ${t.title}</div>
+                        <div style="font-size:12px; color:#ffe082; text-shadow:0 1px 2px #000;">Phần thưởng: <b>+${t.rewardGold} Vàng</b> & <b>+${t.rewardDia} Kim Cương</b></div>
                     </div>
                     ${t.claimed
                         ? `<span style="font-weight:bold; color:#2e7d32;">✓ Đã Nhận</span>`
