@@ -305,13 +305,13 @@
             padding-bottom: 4px;
         }
         .title-start-btn .btn-main-txt {
-            font-family: 'HaypiFont', 'Trebuchet MS', sans-serif;
-            font-size: 28px;
+            font-family: 'HaypiFont', 'Trebuchet MS', Arial Black, sans-serif;
+            font-size: 38px;
             font-weight: 900;
-            color: #fff6c8;
-            text-shadow: 0 3px 0 #3a1800, 0 -1px 0 #000, 2px 2px 5px #000, 0 0 10px rgba(255,190,40,0.6);
-            letter-spacing: 1.5px;
-            line-height: 1.05;
+            color: #55ff00;
+            text-shadow: 0 3px 0 #1b4d05, 0 -1px 0 #000, 2px 2px 4px #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000;
+            letter-spacing: 2px;
+            line-height: 1;
         }
         .title-start-btn .btn-sub-txt {
             font-size: 11px;
@@ -346,13 +346,13 @@
             filter: drop-shadow(0 3px 6px rgba(0,0,0,0.6));
         }
         .title-acct-btn .btn-main-txt, .title-offline-btn .btn-main-txt {
-            font-family: 'HaypiFont', 'Trebuchet MS', sans-serif;
-            font-size: 19px;
+            font-family: 'HaypiFont', 'Trebuchet MS', Arial Black, sans-serif;
+            font-size: 20px;
             font-weight: 900;
-            color: #f5ebd6;
-            text-shadow: 0 2px 0 #1f1209, 0 -1px 0 #000, 1px 1px 4px #000;
-            letter-spacing: 0.8px;
-            line-height: 1.05;
+            color: #55ff00;
+            text-shadow: 0 2px 0 #1b4d05, 0 -1px 0 #000, 1.5px 1.5px 3px #000, -1px -1px 0 #000;
+            letter-spacing: 1px;
+            line-height: 1;
         }
         .title-acct-btn .btn-sub-txt, .title-offline-btn .btn-sub-txt {
             font-size: 10px;
@@ -438,11 +438,11 @@
             transform: rotate(3.5deg);
         }
         .title-tips-content span {
-            font-family: 'HaypiFont', 'Trebuchet MS', sans-serif;
-            font-size: 22px;
+            font-family: 'HaypiFont', 'Trebuchet MS', Arial Black, sans-serif;
+            font-size: 20px;
             font-weight: 900;
-            color: #ffffff;
-            text-shadow: 0 2px 4px #000, 0 0 6px rgba(0,0,0,0.85);
+            color: #0f375c;
+            text-shadow: 0 1px 0 rgba(255,255,255,0.7);
             text-align: center;
             line-height: 1.05;
             letter-spacing: 0.5px;
@@ -576,23 +576,175 @@
             filter: brightness(1.15) drop-shadow(0 0 12px rgba(255, 230, 110, 0.85));
             transform: translateY(-3px) scale(1.03);
         }
+        
+        /* Authentic 3D Cutout Typography Labels from Original Haypi Dragon */
         .city-building-tag {
             position: absolute;
             left: 50%;
-            bottom: -6px;
+            bottom: -16px;
             transform: translateX(-50%);
-            background: linear-gradient(180deg, rgba(48, 25, 8, 0.94) 0%, rgba(24, 11, 3, 0.96) 100%);
-            border: 1.5px solid #f5c453;
-            border-radius: 12px;
-            padding: 3px 11px;
-            font-size: 11.5px;
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+            padding: 0 !important;
+            font-family: 'HaypiFont', 'Trebuchet MS', Arial Black, sans-serif;
+            font-size: 25px;
             font-weight: 900;
-            color: #fff4c8;
+            color: #ffe680;
+            white-space: nowrap;
+            letter-spacing: 1.5px;
+            text-shadow: 0 3px 0 #281604, 0 4px 6px rgba(0,0,0,0.95), -2px -2px 0 #281604, 2px -2px 0 #281604, -2px 2px 0 #281604, 2px 2px 0 #281604;
+            pointer-events: none;
+            filter: drop-shadow(0 3px 4px rgba(0,0,0,0.85));
+            z-index: 5;
+        }
+        .city-play-label {
+            position: absolute;
+            left: 50%;
+            top: 24px;
+            transform: translateX(-50%);
+            font-family: 'HaypiFont', 'Trebuchet MS', Arial Black, sans-serif;
+            font-size: 28px;
+            font-weight: 900;
+            color: #ffe680;
+            white-space: nowrap;
+            letter-spacing: 2px;
+            text-shadow: 0 3px 0 #281604, 0 4px 6px rgba(0,0,0,0.95), -2px -2px 0 #281604, 2px -2px 0 #281604, -2px 2px 0 #281604, 2px 2px 0 #281604;
+            pointer-events: none;
+            z-index: 5;
+        }
+        .city-pvp-lvl {
+            position: absolute;
+            left: 50%;
+            top: 42px;
+            transform: translateX(-50%);
+            font-family: 'HaypiFont', 'Trebuchet MS', sans-serif;
+            font-size: 15px;
+            font-weight: 900;
+            color: #ffffff;
+            text-shadow: 0 2px 3px #000, 0 0 4px #000;
+            pointer-events: none;
+            letter-spacing: 1px;
+        }
+        .city-pointing-hand {
+            position: absolute;
+            left: 50%;
+            top: 48px;
+            transform: translateX(-50%);
+            width: 52px;
+            height: 52px;
+            pointer-events: none;
+            z-index: 8;
+            animation: handBounceDown 1.4s ease-in-out infinite alternate;
+        }
+        .city-pointing-hand img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.8));
+        }
+        @keyframes handBounceDown {
+            from { transform: translate(-50%, -8px); }
+            to { transform: translate(-50%, 6px); }
+        }
+
+        /* Running Notice Marquee Banner across top below HUD */
+        .city-notice-ticker {
+            position: absolute;
+            top: 86px;
+            left: 200px;
+            right: 200px;
+            height: 24px;
+            background: rgba(0, 0, 0, 0.42);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 18;
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            font-size: 12.5px;
+            font-weight: 800;
+            color: #ffffff;
+            text-shadow: 0 1px 2px #000;
+            padding: 0 8px;
+        }
+
+        /* Top-Left Training CD column */
+        .city-training-cd-column {
+            position: absolute;
+            left: 10px;
+            top: 102px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            z-index: 18;
+            pointer-events: auto;
+            cursor: pointer;
+        }
+        .city-cd-item {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            background: rgba(18, 12, 6, 0.75);
+            border: 1px solid rgba(255, 215, 0, 0.55);
+            border-radius: 8px;
+            padding: 2px 7px 2px 9px;
+            font-size: 10.5px;
+            font-weight: 900;
+            color: #ffffff;
+            text-shadow: 0 1px 2px #000;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.6);
+            transition: transform 0.1s, border-color 0.1s;
+        }
+        .city-cd-item:hover {
+            transform: scale(1.04);
+            border-color: #ffd800;
+        }
+        .city-cd-item b { color: #ffe082; }
+        .city-cd-bolt {
+            width: 22px;
+            height: 22px;
+            background: url('res/drawable-mdpi/haypitown_online_a.png') center / contain no-repeat;
+            filter: drop-shadow(0 1px 3px rgba(0,0,0,0.8));
+        }
+
+        /* Top-Right Event stack (Gift box, Gold coins, VIP book) */
+        .city-right-events {
+            position: absolute;
+            right: 14px;
+            top: 96px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            z-index: 18;
+        }
+        .city-event-btn {
+            position: relative;
+            width: 62px;
+            height: 62px;
+            cursor: pointer;
+            transition: transform 0.12s;
+        }
+        .city-event-btn:hover { transform: scale(1.08); }
+        .city-event-btn img { width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 3px 6px rgba(0,0,0,0.8)); }
+        .city-event-timer {
+            position: absolute;
+            bottom: -6px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0,0,0,0.85);
+            border: 1px solid #ffd54f;
+            border-radius: 6px;
+            padding: 1px 5px;
+            font-size: 9.5px;
+            font-weight: 900;
+            color: #ffe082;
             white-space: nowrap;
             text-shadow: 0 1px 2px #000;
-            pointer-events: none;
-            box-shadow: 0 3px 8px rgba(0,0,0,0.75);
         }
+
         .city-anim-layer {
             position: absolute;
             background-size: contain;
@@ -611,12 +763,12 @@
         .hud-player-name {
             position:absolute; left:8px; top:4px; width:300px;
             font-family:'HaypiFont','Trebuchet MS',sans-serif; font-size:22px; font-weight:900;
-            color:#fff8dc; text-shadow:0 2px 2px #000; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+            color:#ffe600; text-shadow:0 2px 0 #3e2723, 0 0 5px #000; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
         }
         .hud-level-badge {
             position:absolute; left:8px; top:38px; width:72px;
-            font-family:'HaypiFont','Trebuchet MS',sans-serif; font-size:19px; font-weight:900;
-            color:#ffe89e; text-shadow:0 2px 2px #000;
+            font-family:'HaypiFont','Trebuchet MS',sans-serif; font-size:18px; font-weight:900;
+            color:#ffe600; text-shadow:0 2px 0 #3e2723, 0 0 4px #000;
         }
         .hud-exp-bar {
             position:absolute; left:84px; top:38px; width:212px; height:28px;
@@ -637,7 +789,8 @@
             position:absolute; left:27px; top:0; width:256px; height:74px; border:none; cursor:pointer;
             background:url('res/drawable-mdpi/haypitown_butten_sc_a.png') center / 100% 100% no-repeat;
             font-family:'HaypiFont','Trebuchet MS',sans-serif; font-size:34px; font-weight:900;
-            color:#fff3c4; text-shadow:0 2px 0 #1f1209, 0 0 4px #000;
+            color:#55ff00; text-shadow:0 3px 0 #1b4d05, 0 -1px 0 #000, 2px 2px 4px #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000;
+            letter-spacing: 2px;
         }
         .hud-info-btn:active { background-image:url('res/drawable-mdpi/haypitown_butten_sc_b.png'); }
         .hud-top-right {
@@ -674,17 +827,33 @@
         .hud-bottom-bar { position:absolute; left:0; bottom:0; width:954px; height:110px; background:url('res/drawable-mdpi/haypitown_buttenbar.png') center / 100% 100% no-repeat; pointer-events:none !important; }
         .hud-chat-dragon { position:absolute; left:122px; bottom:20px; width:102px; height:120px; background:url('res/drawable-mdpi/ingame_text_dragon.png') center / contain no-repeat; pointer-events:none !important; z-index:1; }
         .hud-chat-box {
-            position:absolute; left:226px; bottom:96px; width:482px; height:50px;
-            background:url('res/drawable-mdpi/haypitown_chat_bg.png') center / 100% 100% no-repeat;
-            padding:6px 14px 0 20px; font-size:12.5px; font-weight:700; line-height:1.35; color:#fff3d1;
+            position:absolute; left:210px; bottom:94px; width:490px; height:48px;
+            background: #ffffff;
+            border: 2px solid #222222;
+            border-radius: 12px;
+            padding: 8px 16px; font-size: 13.5px; font-weight: 800; line-height: 1.3; color: #1a1a1a;
             overflow:hidden; white-space:nowrap; text-overflow:ellipsis;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.6);
+        }
+        .hud-chat-box::before {
+            content: '';
+            position: absolute;
+            left: -12px;
+            bottom: 12px;
+            border-top: 8px solid transparent;
+            border-bottom: 8px solid transparent;
+            border-right: 12px solid #ffffff;
         }
         .hud-chat-box > div:not(:last-child) { display:none; }
         .hud-bb-btn, .hud-bb-icon { position:absolute; bottom:6px; height:82px; border:none; cursor:pointer; z-index:2; transition:filter .1s; }
         .hud-bb-btn { width:168px; background:url('res/drawable-mdpi/haypitown_butten_a.png') center / 100% 100% no-repeat; }
         .hud-bb-btn:hover, .hud-bb-icon:hover { filter:brightness(1.12); }
         .hud-bb-btn:active { background-image:url('res/drawable-mdpi/haypitown_butten_b.png'); }
-        .hud-bb-btn span { font-family:'HaypiFont','Trebuchet MS',sans-serif; font-size:24px; font-weight:900; color:#fff3c4; text-shadow:0 2px 0 #1f1209, 0 0 4px #000; }
+        .hud-bb-btn span {
+            font-family:'HaypiFont','Trebuchet MS',Arial Black,sans-serif; font-size:23px; font-weight:900;
+            color:#55ff00; text-shadow:0 2px 0 #1b4d05, 0 -1px 0 #000, 1.5px 1.5px 3px #000, -1px -1px 0 #000;
+            letter-spacing: 1px;
+        }
         .hud-bb-icon { width:106px; background-color:transparent; background-size:58px auto; background-repeat:no-repeat; background-position:center;
             box-shadow:none; }
         .hud-bb-icon::before { content:''; position:absolute; inset:0; background:url('res/drawable-mdpi/haypitown_buttenchat_a.png') center / 100% 100% no-repeat; z-index:-1; }
@@ -1971,6 +2140,772 @@
             color: #2e1c0c;
         }
 
+        /* ==================== AUTHENTIC DRAGON EYRIE SCREEN (media_1792748673293_4306a8f8.jpg) ==================== */
+        #screen-eyrie {
+            position: absolute;
+            inset: 0;
+            width: 960px;
+            height: 640px;
+            background: radial-gradient(circle at 50% 38%, #2c3038 0%, #17181d 68%, #0d0e11 100%);
+            display: none;
+            flex-direction: column;
+            z-index: 20;
+            overflow: hidden;
+            user-select: none;
+        }
+        #screen-eyrie.active {
+            display: flex;
+        }
+
+        /* Top Stone Bar */
+        .eyrie-top-bar {
+            position: relative;
+            width: 100%;
+            height: 62px;
+            background: url('res/drawable-mdpi/haypitown_topbar.png') center / 100% 100% no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 18px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.75);
+            z-index: 5;
+        }
+        .eyrie-back-btn {
+            width: 62px;
+            height: 44px;
+            background: url('res/drawable-mdpi/channel_butten_back_a.png') center / contain no-repeat;
+            border: none;
+            cursor: pointer;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.85));
+            transition: transform 0.1s;
+        }
+        .eyrie-back-btn:active {
+            transform: scale(0.92);
+        }
+        .eyrie-title-txt {
+            font-family: 'HaypiFont', Impact, sans-serif;
+            font-size: 26px;
+            font-weight: 900;
+            color: #ffd84d;
+            text-shadow: 2px 2px 0 #522700, -1.5px -1.5px 0 #000, 1.5px -1.5px 0 #000, -1.5px 1.5px 0 #000, 0 3px 6px rgba(0,0,0,0.9);
+            letter-spacing: 2px;
+        }
+
+        /* Sub-bar: Player username & Bonus EXP */
+        .eyrie-sub-bar {
+            width: 100%;
+            height: 38px;
+            background: linear-gradient(180deg, #3d414a 0%, #262930 50%, #1c1e23 100%);
+            border-top: 1.5px solid #585d6b;
+            border-bottom: 2px solid #111215;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 36px;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.5);
+            z-index: 4;
+        }
+        .eyrie-player-name {
+            font-family: 'HaypiFont', Impact, sans-serif;
+            font-size: 18px;
+            font-weight: 900;
+            color: #ebdcb5;
+            text-shadow: 1.5px 1.5px 0 #000, 0 0 4px rgba(0,0,0,0.8);
+            letter-spacing: 1px;
+        }
+        .eyrie-bonus-exp {
+            font-family: 'HaypiFont', Impact, sans-serif;
+            font-size: 18px;
+            font-weight: 900;
+            color: #ffe600;
+            text-shadow: 1.5px 1.5px 0 #522700, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000;
+            letter-spacing: 1px;
+        }
+
+        /* Main Area: 2 Large Stone Nests */
+        .eyrie-main-area {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 50px;
+            padding: 10px 30px;
+            position: relative;
+        }
+        .eyrie-nest-slot {
+            width: 380px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+
+        /* Timer row above nest */
+        .eyrie-timer-row {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 6px;
+            height: 44px;
+        }
+        .eyrie-timer-pill {
+            background: rgba(15, 18, 22, 0.85);
+            border: 1.5px solid #5c6270;
+            border-radius: 20px;
+            padding: 4px 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.7), inset 0 1px 2px rgba(255,255,255,0.1);
+        }
+        .eyrie-timer-pill img {
+            width: 22px;
+            height: 22px;
+            object-fit: contain;
+        }
+        .eyrie-timer-clock-txt {
+            font-family: 'HaypiFont', monospace;
+            font-size: 18px;
+            font-weight: 900;
+            color: #ffffff;
+            text-shadow: 1px 1px 2px #000;
+            letter-spacing: 1.5px;
+        }
+        .eyrie-speedup-btn {
+            width: 44px;
+            height: 44px;
+            background: url('res/drawable-mdpi/pet_button_rt_a.png') center / contain no-repeat;
+            border: none;
+            cursor: pointer;
+            filter: drop-shadow(0 3px 6px rgba(0,0,0,0.85));
+            transition: transform 0.12s;
+            outline: none;
+        }
+        .eyrie-speedup-btn:hover {
+            transform: scale(1.08);
+        }
+        .eyrie-speedup-btn:active {
+            transform: scale(0.92);
+        }
+
+        /* Nest graphic containers */
+        .eyrie-nest-stage {
+            width: 380px;
+            height: 270px;
+            background-position: center bottom;
+            background-size: contain;
+            background-repeat: no-repeat;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        .eyrie-nest-stage.incubating {
+            background-image: url('res/drawable-mdpi/pet_trainingbg1.png');
+        }
+        .eyrie-nest-stage.empty {
+            background-image: url('res/drawable-mdpi/pet_trainingbg3.png');
+        }
+
+        /* Dragon inside the nest */
+        .eyrie-dragon-seat {
+            position: absolute;
+            bottom: 52px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 140px;
+            height: 140px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: none;
+        }
+        .eyrie-dragon-seat img {
+            max-width: 130px;
+            max-height: 130px;
+            object-fit: contain;
+            filter: drop-shadow(0 6px 12px rgba(0,0,0,0.85));
+            animation: eyrieDragonFloat 2.6s ease-in-out infinite alternate;
+        }
+        @keyframes eyrieDragonFloat {
+            0% { transform: translateY(0px) scale(1); }
+            100% { transform: translateY(-5px) scale(1.02); }
+        }
+
+        .eyrie-plus-seat {
+            position: absolute;
+            bottom: 75px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.45);
+            border: 2px dashed rgba(255, 215, 0, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 34px;
+            font-weight: 900;
+            color: #ffd84d;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            transition: transform 0.15s, background 0.15s;
+        }
+        .eyrie-nest-stage:hover .eyrie-plus-seat {
+            transform: translateX(-50%) scale(1.12);
+            background: rgba(255, 215, 0, 0.2);
+        }
+
+        /* Plaque under the nest (pet_trainingbg2.png: 190x70) */
+        .eyrie-plaque-box {
+            width: 360px;
+            height: 110px;
+            background: url('res/drawable-mdpi/pet_trainingbg2.png') center / 100% 100% no-repeat;
+            margin-top: -24px;
+            position: relative;
+            z-index: 3;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 8px 24px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.6);
+        }
+        .eyrie-dragon-title-txt {
+            font-family: 'HaypiFont', Impact, sans-serif;
+            font-size: 20px;
+            font-weight: 900;
+            color: #55ff00 !important;
+            text-shadow: 2px 2px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 0 0 6px rgba(85,255,0,0.5);
+            letter-spacing: 1.5px;
+            line-height: 1.2;
+        }
+        .eyrie-dragon-exp-txt {
+            font-family: 'HaypiFont', Impact, sans-serif;
+            font-size: 16px;
+            font-weight: 900;
+            color: #55ff00 !important;
+            text-shadow: 1.5px 1.5px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000;
+            letter-spacing: 1px;
+            margin-top: 2px;
+        }
+        .eyrie-exp-bar-frame {
+            width: 240px;
+            height: 11px;
+            background: #14171d;
+            border: 1.5px solid #4a5160;
+            border-radius: 6px;
+            overflow: hidden;
+            margin-top: 5px;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.8);
+        }
+        .eyrie-exp-bar-inner {
+            height: 100%;
+            background: linear-gradient(90deg, #2e7d32, #76ff03);
+            border-radius: 4px;
+            transition: width 0.4s ease;
+            box-shadow: 0 0 8px #76ff03;
+        }
+        .eyrie-swap-btn {
+            margin-top: 5px;
+            padding: 2px 14px;
+            font-size: 11.5px;
+            font-weight: 900;
+            border-radius: 5px;
+            background: linear-gradient(180deg, #388e3c, #1b5e20);
+            border: 1px solid #76ff03;
+            color: #ffffff;
+            cursor: pointer;
+            text-shadow: 1px 1px 2px #000;
+            transition: transform 0.1s;
+        }
+        .eyrie-swap-btn:active {
+            transform: scale(0.94);
+        }
+
+        /* Bottom Bar */
+        .eyrie-bot-bar {
+            width: 100%;
+            height: 70px;
+            background: url('res/drawable-mdpi/haypitown_buttenbar.png') center / 100% 100% no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 36px;
+            box-shadow: 0 -4px 12px rgba(0,0,0,0.7);
+            z-index: 5;
+        }
+        .eyrie-bot-currencies {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+        .eyrie-curr-badge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'HaypiFont', Impact, sans-serif;
+            font-size: 20px;
+            font-weight: 900;
+            color: #ffffff;
+            text-shadow: 1.5px 1.5px 0 #000, 0 0 4px rgba(0,0,0,0.8);
+        }
+        .eyrie-curr-badge img {
+            height: 28px;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.6));
+        }
+        .eyrie-curr-badge.gold {
+            color: #ffd800;
+        }
+        .eyrie-bot-actions {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+        .eyrie-action-pill {
+            padding: 8px 22px;
+            font-family: 'HaypiFont', Impact, sans-serif;
+            font-size: 14px;
+            font-weight: 900;
+            letter-spacing: 1px;
+            border-radius: 8px;
+            cursor: pointer;
+            border: 1.5px solid #ffe082;
+            background: linear-gradient(180deg, #f5a623 0%, #c4690d 100%);
+            color: #ffffff;
+            text-shadow: 1.5px 1.5px 0 #522700;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.6);
+            transition: transform 0.1s, filter 0.1s;
+        }
+        .eyrie-action-pill:active {
+            transform: scale(0.93);
+        }
+        .eyrie-action-pill.green {
+            border-color: #b9f6ca;
+            background: linear-gradient(180deg, #43a047 0%, #1b5e20 100%);
+            text-shadow: 1.5px 1.5px 0 #0e3711;
+        }
+
+        /* Dialog Popups inside Eyrie */
+        .eyrie-dialog-backdrop {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.78);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+        }
+        .eyrie-dialog-card {
+            width: 480px;
+            background: url('res/drawable-mdpi/info_bg1.png') center / 100% 100% no-repeat;
+            border-radius: 14px;
+            padding: 24px 28px;
+            box-shadow: 0 16px 48px rgba(0,0,0,0.9);
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            text-align: center;
+        }
+        .eyrie-dialog-title {
+            font-family: 'HaypiFont', Impact, sans-serif;
+            font-size: 22px;
+            font-weight: 900;
+            color: #ffffff !important;
+            text-shadow: 2px 2px 0 #000;
+        }
+        .eyrie-picker-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            max-height: 280px;
+            overflow-y: auto;
+            padding: 8px 4px;
+        }
+        .eyrie-picker-item {
+            background: rgba(255, 245, 220, 0.95);
+            border: 2px solid #b85d00;
+            border-radius: 10px;
+            padding: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            transition: transform 0.1s, border-color 0.1s;
+        }
+        .eyrie-picker-item:hover {
+            transform: scale(1.04);
+            border-color: #ffd800;
+        }
+        .eyrie-picker-item img {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+        }
+        .eyrie-picker-item .name {
+            font-size: 13px;
+            font-weight: 900;
+            color: #4a2505;
+            margin-top: 4px;
+        }
+        .eyrie-picker-item .lvl {
+            font-size: 11px;
+            font-weight: bold;
+            color: #2e7d32;
+        }
+
+        /* ==================== AUTHENTIC DRAGON LIST SCREEN (media_1792748737058_0915d55a.jpg) ==================== */
+        #screen-dragon {
+            position: absolute;
+            inset: 0;
+            width: 960px;
+            height: 640px;
+            background: radial-gradient(circle at 50% 40%, #2b2e35 0%, #17181c 70%, #0d0e11 100%);
+            display: none;
+            flex-direction: column;
+            z-index: 20;
+            overflow: hidden;
+            user-select: none;
+        }
+        #screen-dragon.active {
+            display: flex;
+        }
+
+        /* Top Stone Bar */
+        .dragon-top-bar {
+            width: 100%;
+            height: 62px;
+            background: url('res/drawable-mdpi/haypitown_topbar.png') center / 100% 100% no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.75);
+            z-index: 5;
+        }
+        .dragon-title-txt {
+            font-family: 'HaypiFont', Impact, sans-serif;
+            font-size: 26px;
+            font-weight: 900;
+            color: #ffd84d;
+            text-shadow: 2px 2px 0 #522700, -1.5px -1.5px 0 #000, 1.5px -1.5px 0 #000, -1.5px 1.5px 0 #000, 0 3px 6px rgba(0,0,0,0.9);
+            letter-spacing: 2px;
+        }
+        .dragon-back-btn {
+            width: 60px;
+            height: 44px;
+            background: url('res/drawable-mdpi/channel_butten_back_a.png') center / contain no-repeat;
+            border: none;
+            cursor: pointer;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.85));
+            transition: transform 0.1s;
+        }
+        .dragon-back-btn:active {
+            transform: scale(0.92);
+        }
+
+        /* Horizontal Deck Track Area */
+        .dragon-deck-wrap {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            overflow-x: auto;
+            overflow-y: hidden;
+            padding: 10px 40px;
+            scroll-behavior: smooth;
+        }
+        .dragon-deck-wrap::-webkit-scrollbar {
+            height: 8px;
+        }
+        .dragon-deck-wrap::-webkit-scrollbar-track {
+            background: rgba(0,0,0,0.4);
+            border-radius: 4px;
+        }
+        .dragon-deck-wrap::-webkit-scrollbar-thumb {
+            background: #5a6170;
+            border-radius: 4px;
+        }
+        .dragon-deck-track {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+            padding: 10px 10px;
+        }
+
+        /* Individual Dragon Card */
+        .dragon-card-item {
+            width: 220px;
+            height: 380px;
+            position: relative;
+            cursor: pointer;
+            flex-shrink: 0;
+            transition: transform 0.15s ease, filter 0.15s ease;
+        }
+        .dragon-card-item:hover {
+            transform: translateY(-4px);
+        }
+        .dragon-card-item.selected {
+            transform: translateY(-8px);
+            filter: drop-shadow(0 0 14px rgba(255, 215, 0, 0.75));
+        }
+
+        .dragon-card-bg {
+            width: 100%;
+            height: 100%;
+            background-image: url('res/drawable-mdpi/dragon_status_a.png');
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            position: relative;
+        }
+        .dragon-card-item.selected .dragon-card-bg {
+            background-image: url('res/drawable-mdpi/dragon_status_b.png');
+        }
+
+        /* Level badge top-right */
+        .dragon-card-lvl {
+            position: absolute;
+            top: 24px;
+            right: 28px;
+            font-family: 'HaypiFont', Impact, sans-serif;
+            font-size: 21px;
+            font-weight: 900;
+            color: #55ff00;
+            text-shadow: 2px 2px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000;
+            letter-spacing: 1px;
+        }
+
+        /* Dragon avatar in upper frame */
+        .dragon-card-avatar-wrap {
+            position: absolute;
+            top: 52px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 135px;
+            height: 135px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .dragon-card-avatar {
+            max-width: 125px;
+            max-height: 125px;
+            object-fit: contain;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.85));
+        }
+
+        /* Diagonal status stamp (BATTLE / REST / EXPLORE) */
+        .dragon-card-stamp {
+            position: absolute;
+            bottom: -8px;
+            right: 2px;
+            height: 42px;
+            object-fit: contain;
+            transform: rotate(-10deg);
+            filter: drop-shadow(0 3px 6px rgba(0,0,0,0.9));
+            pointer-events: none;
+            z-index: 3;
+        }
+
+        /* Dragon Name */
+        .dragon-card-name {
+            position: absolute;
+            top: 202px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-family: 'HaypiFont', Impact, sans-serif;
+            font-size: 20px;
+            font-weight: 900;
+            color: #ffd84d;
+            text-shadow: 2px 2px 0 #522700, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000;
+            letter-spacing: 1px;
+        }
+
+        /* Stats box at bottom */
+        .dragon-card-stats-box {
+            position: absolute;
+            bottom: 24px;
+            left: 20px;
+            right: 20px;
+            height: 110px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+        }
+        .dragon-stat-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 30px;
+        }
+        .stat-tag {
+            width: 48px;
+            height: 24px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'HaypiFont', Impact, sans-serif;
+            font-size: 13.5px;
+            font-weight: 900;
+            color: #ffffff;
+            letter-spacing: 0.5px;
+            text-shadow: 1px 1px 0 #000;
+        }
+        .stat-tag.hp {
+            background: #b71c1c;
+            border: 1px solid #ff5252;
+            box-shadow: inset 0 1px 2px rgba(255,255,255,0.3);
+        }
+        .stat-tag.mp {
+            background: #0d47a1;
+            border: 1px solid #448aff;
+            box-shadow: inset 0 1px 2px rgba(255,255,255,0.3);
+        }
+        .stat-tag.exp {
+            background: #1b5e20;
+            border: 1px solid #69f0ae;
+            box-shadow: inset 0 1px 2px rgba(255,255,255,0.3);
+        }
+        .stat-num {
+            font-family: 'HaypiFont', Impact, monospace;
+            font-size: 20px;
+            font-weight: 900;
+            color: #ffffff;
+            text-shadow: 1.5px 1.5px 0 #000;
+            text-align: right;
+            padding-right: 6px;
+        }
+        .stat-exp-bar-wrap {
+            width: 124px;
+            height: 24px;
+            background: #0c0e12;
+            border: 1.5px solid #374151;
+            border-radius: 5px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.85);
+        }
+        .stat-exp-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #2e7d32 0%, #76ff03 100%);
+            border-radius: 4px;
+            box-shadow: 0 0 6px #76ff03;
+            transition: width 0.3s;
+        }
+        .stat-exp-bar-txt {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'HaypiFont', Impact, monospace;
+            font-size: 13.5px;
+            font-weight: 900;
+            color: #ffffff;
+            text-shadow: 1.5px 1.5px 0 #000;
+        }
+
+        /* Locked Card Overlay */
+        .dragon-card-item.locked {
+            filter: grayscale(0.75) brightness(0.7);
+        }
+        .dragon-card-locked-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.45);
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            z-index: 4;
+        }
+        .dragon-card-locked-badge {
+            background: rgba(183, 28, 28, 0.92);
+            border: 1.5px solid #ffcc80;
+            border-radius: 8px;
+            padding: 4px 10px;
+            color: #fff;
+            font-size: 11px;
+            font-weight: 900;
+            text-align: center;
+        }
+
+        /* Bottom Action Bar */
+        .dragon-bottom-action-bar {
+            width: 100%;
+            height: 72px;
+            background: url('res/drawable-mdpi/haypitown_buttenbar.png') center / 100% 100% no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            padding: 0 32px;
+            box-shadow: 0 -4px 12px rgba(0,0,0,0.7);
+            z-index: 5;
+        }
+        .dragon-combat-btn {
+            min-width: 190px;
+            height: 48px;
+            background: linear-gradient(180deg, #373b44 0%, #1e2025 50%, #131417 100%);
+            border: 2px solid #5a6170;
+            border-radius: 10px;
+            font-family: 'HaypiFont', Impact, sans-serif;
+            font-size: 22px;
+            font-weight: 900;
+            color: #55ff00;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 0 #000, 0 0 8px rgba(85,255,0,0.6);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.8), inset 0 1px 2px rgba(255,255,255,0.15);
+            cursor: pointer;
+            transition: transform 0.12s, border-color 0.12s;
+        }
+        .dragon-combat-btn:hover {
+            transform: scale(1.06);
+            border-color: #55ff00;
+        }
+        .dragon-combat-btn:active {
+            transform: scale(0.95);
+        }
+        .dragon-combat-btn.active-battle {
+            color: #00e5ff;
+            border-color: #00e5ff;
+            text-shadow: 2px 2px 0 #000, 0 0 8px rgba(0,229,255,0.6);
+        }
+        .dragon-combat-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            border-color: #333;
+            color: #777;
+            text-shadow: none;
+            transform: none;
+        }
+        .dragon-detail-btn {
+            padding: 10px 22px;
+            height: 48px;
+            background: linear-gradient(180deg, #f5a623 0%, #c4690d 100%);
+            border: 1.5px solid #ffe082;
+            border-radius: 10px;
+            font-family: 'HaypiFont', Impact, sans-serif;
+            font-size: 15px;
+            font-weight: 900;
+            color: #ffffff;
+            letter-spacing: 1px;
+            text-shadow: 1.5px 1.5px 0 #522700;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.7);
+            cursor: pointer;
+            transition: transform 0.1s;
+        }
+        .dragon-detail-btn:active {
+            transform: scale(0.94);
+        }
+
 </style>
 </head>
 <body>
@@ -2000,16 +2935,13 @@
                 <div id="title-account-tag" class="title-account-tag">👤 Khách • Máy chủ: Haypi_01</div>
                 <button class="title-start-btn" onclick="enterMainCity()">
                     <span class="btn-main-txt">START</span>
-                    <span class="btn-sub-txt" data-i18n="title_start_sub">BẮT ĐẦU GAME</span>
                 </button>
                 <div class="title-sub-btns">
                     <button class="title-acct-btn" onclick="openAccountModal()">
-                        <span class="btn-main-txt">My Account</span>
-                        <span class="btn-sub-txt" data-i18n="title_acct_sub">TÀI KHOẢN</span>
+                        <span class="btn-main-txt">MY ACCOUNT</span>
                     </button>
-                    <button class="title-offline-btn" onclick="enterOfflineCampaign()">
-                        <span class="btn-main-txt">Practice</span>
-                        <span class="btn-sub-txt" data-i18n="title_practice_sub">CHIẾN DỊCH</span>
+                    <button class="title-offline-btn" onclick="openAccountModal()">
+                        <span class="btn-main-txt">VISIT HAYPI</span>
                     </button>
                 </div>
             </div>
@@ -2026,13 +2958,12 @@
             <div id="title-offline-swirl" class="title-offline-swirl"></div>
             <div class="title-wooden-tips">
                 <div class="title-tips-content">
-                    <span>OFFLINE</span>
-                    <small data-i18n="title_offline_sub">Vào Map Nhanh</small>
+                    <span>OFFLINE MODE</span>
                 </div>
             </div>
         </div>
 
-        <div class="title-version">Haypi Dragon Ver 1.6.1 • Authentic APK Remaster</div>
+        <div class="title-version">Version 1.5.4</div>
     </div>
 
     <!-- ==================== 2. ORIGINAL MAIN CITY (ZHUCHENG 16:9 UNIFORM) ==================== -->
@@ -2040,63 +2971,92 @@
         <div id="city-map-layer">
             <div class="city-cloud-decor"></div>
 
-            <!-- 1. PVE Campaign Portal (Uniform 1.73x scale from main_back_scene.xml) -->
+            <!-- 1. PVE Campaign Portal (PLAY) -->
             <div class="city-building" style="left:346px; top:126px; width:307px; height:241px; background-image:url('res/drawable-mdpi/zhucheng_battle_a.png');"
                  onclick="openWorldMap()">
+                <div class="city-play-label">PLAY</div>
+                <div class="city-pointing-hand"><img src="images/ingame/hd/teaching_hand.png" alt="Point"></div>
                 <div id="city-anim-portal" class="city-anim-layer" style="left:96px; top:72px; width:106px; height:102px;"></div>
                 <div id="city-anim-torch1" class="city-anim-layer" style="left:74px; top:133px; width:24px; height:32px;"></div>
                 <div id="city-anim-torch2" class="city-anim-layer" style="left:192px; top:133px; width:24px; height:32px;"></div>
-                <div class="city-building-tag">⚔️ Chiến Dịch (Campaign)</div>
             </div>
 
-            <!-- 2. PVP & Online Hall -->
+            <!-- 2. PVP Castle -->
             <div class="city-building" style="left:83px; top:122px; width:230px; height:178px; background-image:url('res/drawable-mdpi/zhucheng_netbattle_a.png');"
                  onclick="openModal('online')">
+                <div class="city-pvp-lvl">LV.5</div>
                 <div id="city-anim-flag1" class="city-anim-layer" style="left:95px; top:2px; width:34px; height:18px;"></div>
-                <div class="city-building-tag">🌐 Đấu Trường Online & PVP</div>
+                <div class="city-building-tag">PVP</div>
             </div>
 
-            <!-- 3. Warehouse & Shop -->
+            <!-- 3. Warehouse & House -->
             <div class="city-building" style="left:91px; top:342px; width:212px; height:149px; background-image:url('res/drawable-mdpi/zhucheng_shop_a.png');"
                  onclick="openModal('warehouse')">
-                <div class="city-building-tag">🎒 Kho Đồ & Cửa Hàng</div>
+                <div class="city-building-tag">HOUSE</div>
             </div>
 
             <!-- 4. Dragon Eyrie -->
             <div class="city-building" style="left:216px; top:450px; width:332px; height:156px; background-image:url('res/drawable-mdpi/zhucheng_eyrie_a.png');"
-                 onclick="openModal('eyrie')">
-                <div class="city-building-tag">🥚 Tổ Rồng (9 Loài Rồng)</div>
+                 onclick="showEyrieScreen()" title="Tổ Ấp Trứng & Luyện Rồng (Dragon Eyrie)">
+                <div class="city-building-tag">EYRIE</div>
             </div>
 
             <!-- 5. Magic Matrix -->
             <div class="city-building" style="left:592px; top:405px; width:251px; height:214px; background-image:url('res/drawable-mdpi/zhucheng_magic_a.png');"
                  onclick="openModal('magic')">
-                <div class="city-building-tag">✨ Ma Trận Phép Thuật</div>
+                <div class="city-building-tag">MAGIC</div>
             </div>
 
-            <!-- 6. Task House + Spinning Windmill -->
+            <!-- 6. Task House + Spinning Windmill (TASK) -->
             <div class="city-building" style="left:691px; top:172px; width:120px; height:154px; background-image:url('res/drawable-mdpi/zhucheng_task_a.png');"
                  onclick="openModal('tasks')">
                 <div id="city-anim-windmill" class="city-anim-layer" style="left:45px; top:-16px; width:98px; height:102px;"></div>
-                <div class="city-building-tag">📜 Nhiệm Vụ</div>
+                <div class="city-building-tag">TASK</div>
             </div>
 
-            <!-- 7. Notice Board -->
+            <!-- 7. Notice Board (NEWS) -->
             <div class="city-building" style="left:820px; top:320px; width:89px; height:110px; background-image:url('res/drawable-mdpi/zhucheng_notic_a.png');"
                  onclick="openModal('notice')">
-                <div class="city-building-tag">📣 Sự Kiện</div>
+                <div class="city-building-tag">NEWS</div>
             </div>
 
-            <!-- 8. Synthesis Furnace (Fits cleanly in 1136px 16:9!) -->
+            <!-- 8. Synthesis Furnace -->
             <div class="city-building" style="left:884px; top:475px; width:189px; height:156px; background-image:url('res/drawable-mdpi/zhucheng_synthetize_a.png');"
                  onclick="openModal('synth')">
-                <div class="city-building-tag">🔨 Lò Hợp Thành</div>
+                <div class="city-building-tag">SYNTH</div>
             </div>
 
-            <!-- 9. Explore Airship (Fits cleanly in 1136px 16:9!) -->
+            <!-- 9. Explore Cave / Airship (EXPLORE) -->
             <div class="city-building" style="left:912px; top:286px; width:218px; height:132px; background-image:url('res/drawable-mdpi/zhucheng_tanxian_a.png');"
                  onclick="openWorldMap()">
-                <div class="city-building-tag">🧭 Thám Hiểm Bản Đồ</div>
+                <div class="city-building-tag">EXPLORE</div>
+            </div>
+        </div>
+
+        
+        <!-- Authentic Running Notice Bar (from media_1792747749662_e0020276.jpg) -->
+        <div class="city-notice-ticker">
+            <marquee scrollamount="4">Congratulations! Player sunnysun963 got item Mana stone Lv5! • Welcome to Haypi Dragon!</marquee>
+        </div>
+
+        <!-- Authentic Top-Left Training CD Column (from media_1792747749662_e0020276.jpg) -->
+        <div class="city-training-cd-column" onclick="showEyrieScreen()" title="Tổ Ấp Trứng & Luyện Rồng (Dragon Eyrie)">
+            <div class="city-cd-item"><span>Training</span> <b id="city-train-cd-1">04:56</b> <div class="city-cd-bolt"></div></div>
+            <div class="city-cd-item"><span>Training</span> <b id="city-train-cd-2">--:--</b> <div class="city-cd-bolt"></div></div>
+            <div class="city-cd-item"><span>...s CD</span> <b>32:02</b> <div class="city-cd-bolt"></div></div>
+        </div>
+
+        <!-- Authentic Top-Right Event Stack (from media_1792747749662_e0020276.jpg) -->
+        <div class="city-right-events">
+            <div class="city-event-btn" onclick="claimDailyGift()" title="Nhận Quà Hàng Ngày">
+                <img src="res/drawable-mdpi/teaching_box_1.png" alt="Gift">
+                <span class="city-event-timer">0:03:51</span>
+            </div>
+            <div class="city-event-btn" onclick="openModal('shop')" title="Cửa Hàng">
+                <img src="res/drawable-mdpi/buycoins_coins_5.png" alt="Shop">
+            </div>
+            <div class="city-event-btn" onclick="openModal('notice')" title="Tin Tức & Sự Kiện">
+                <img src="res/drawable-mdpi/myinfo_icon_vip.png" alt="VIP">
             </div>
         </div>
 
@@ -2132,7 +3092,7 @@
         <div class="hud-bottom-wrap">
             <div class="hud-chat-dragon"></div>
             <div id="city-chat-log" class="hud-chat-box">
-                <div><b style="color:#ffd54f">[Haypi]:</b> <span data-i18n="chat_welcome">Chào mừng đến Haypi Town!</span></div>
+                <div>nbs can be selected from the bo...</div>
             </div>
             <div class="hud-bottom-bar"></div>
             <button class="hud-bb-icon" style="left:26px; background-image:url('res/drawable-mdpi/haypitown_chat_input.png')" onclick="openModal('notice')"></button>
@@ -2141,6 +3101,124 @@
             <button class="hud-bb-btn" style="left:480px" onclick="openModal('tasks')"><span data-i18n="bb_rank">Rank</span></button>
             <button class="hud-bb-btn" style="left:652px" onclick="openModal('warehouse')"><span data-i18n="bb_shop">Shop</span></button>
             <button class="hud-bb-icon" style="left:824px; background-image:url('res/drawable-mdpi/haypitown_icon_mail.png')" onclick="openModal('notice')"></button>
+        </div>
+    </div>
+
+    <!-- ==================== 2.5 AUTHENTIC DRAGON EYRIE SCREEN (media_1792748673293_4306a8f8.jpg) ==================== -->
+    <div id="screen-eyrie" class="screen">
+        <!-- Top Stone Bar -->
+        <div class="eyrie-top-bar">
+            <button class="eyrie-back-btn" onclick="showScreen('screen-city'); playSfx('btn');" title="Trở về Thành Phố"></button>
+            <div class="eyrie-title-txt">DRAGON EYRIE</div>
+            <div style="width:62px;"></div>
+        </div>
+
+        <!-- Sub Bar: Player Username & Bonus EXP -->
+        <div class="eyrie-sub-bar">
+            <div class="eyrie-player-name" id="eyrie-player-name">JUANMAO</div>
+            <div class="eyrie-bonus-exp">BONUS EXP: <span id="eyrie-bonus-rate">120%</span></div>
+        </div>
+
+        <!-- Main Eyrie Area (Two Stone Nests Side by Side) -->
+        <div class="eyrie-main-area">
+            <!-- Slot 1: Active Incubator Nest (pet_trainingbg1.png: 190x150) -->
+            <div class="eyrie-nest-slot" id="eyrie-slot-1">
+                <div class="eyrie-timer-row">
+                    <div class="eyrie-timer-pill">
+                        <img src="res/drawable-mdpi/pet_icon_time.png" alt="Time">
+                        <span class="eyrie-timer-clock-txt" id="eyrie-timer-txt">00:04:56</span>
+                    </div>
+                    <button class="eyrie-speedup-btn" onclick="openSpeedUpDialog(1)" title="Tăng Tốc Ấp Trứng (Speed Up)"></button>
+                </div>
+
+                <div class="eyrie-nest-stage incubating" onclick="openEyrieDragonPicker(1)" title="Nhấp để đổi rồng ấp">
+                    <div class="eyrie-dragon-seat" id="eyrie-dragon-1-seat">
+                        <img id="eyrie-dragon-1-img" src="res/drawable-mdpi/icon108.png" alt="Dragon">
+                    </div>
+                </div>
+
+                <div class="eyrie-plaque-box">
+                    <div class="eyrie-dragon-title-txt" id="eyrie-dragon-1-name">ROCO</div>
+                    <div class="eyrie-dragon-exp-txt" id="eyrie-dragon-1-exp">EXP: 4081/18500</div>
+                    <div class="eyrie-exp-bar-frame">
+                        <div class="eyrie-exp-bar-inner" id="eyrie-exp-1-fill" style="width: 22%;"></div>
+                    </div>
+                    <button class="eyrie-swap-btn" onclick="openEyrieDragonPicker(1)">ĐỔI RỒNG</button>
+                </div>
+            </div>
+
+            <!-- Slot 2: Second Stone Nest (pet_trainingbg3.png: 190x150) -->
+            <div class="eyrie-nest-slot" id="eyrie-slot-2">
+                <div class="eyrie-timer-row" id="eyrie-slot2-timer-row">
+                    <div class="eyrie-timer-pill">
+                        <img src="res/drawable-mdpi/pet_icon_time.png" alt="Time">
+                        <span class="eyrie-timer-clock-txt" id="eyrie-timer2-txt">SẴN SÀNG</span>
+                    </div>
+                    <button class="eyrie-speedup-btn" id="eyrie-speedup2-btn" style="visibility:hidden;" onclick="openSpeedUpDialog(2)" title="Tăng Tốc"></button>
+                </div>
+
+                <div class="eyrie-nest-stage empty" id="eyrie-nest-2-stage" onclick="openEyrieDragonPicker(2)" title="Nhấp để đưa rồng vào tổ 2">
+                    <div class="eyrie-dragon-seat" id="eyrie-dragon-2-seat" style="display:none;">
+                        <img id="eyrie-dragon-2-img" src="res/drawable-mdpi/icon108.png" alt="Dragon">
+                    </div>
+                    <div class="eyrie-plus-seat" id="eyrie-plus-2-seat">+</div>
+                </div>
+
+                <div class="eyrie-plaque-box" id="eyrie-plaque-2">
+                    <div class="eyrie-dragon-title-txt" id="eyrie-dragon-2-name" style="color:#a8b0c0 !important;">TỔ TRỐNG</div>
+                    <div class="eyrie-dragon-exp-txt" id="eyrie-dragon-2-exp" style="color:#788296 !important;">CHỌN RỒNG ĐỂ ẤP</div>
+                    <div class="eyrie-exp-bar-frame" id="eyrie-exp-2-frame" style="display:none;">
+                        <div class="eyrie-exp-bar-inner" id="eyrie-exp-2-fill" style="width: 0%;"></div>
+                    </div>
+                    <button class="eyrie-swap-btn" onclick="openEyrieDragonPicker(2)">CHỌN RỒNG</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Stone Bar (haypitown_buttenbar.png) -->
+        <div class="eyrie-bot-bar">
+            <div class="eyrie-bot-currencies">
+                <div class="eyrie-curr-badge">
+                    <img src="res/drawable-mdpi/buycoins_coins_1.png" alt="Silver">
+                    <span id="eyrie-curr-silver">25747</span>
+                </div>
+                <div class="eyrie-curr-badge gold">
+                    <img src="res/drawable-mdpi/gold_a.png" alt="Gold">
+                    <span id="eyrie-curr-gold">714</span>
+                </div>
+            </div>
+            <div class="eyrie-bot-actions">
+                <button class="eyrie-action-pill green" onclick="harvestEyrieExp()">🌾 THU HOẠCH EXP</button>
+                <button class="eyrie-action-pill" onclick="openSpeedUpDialog(1)">⚡ TĂNG TỐC</button>
+            </div>
+        </div>
+
+        <!-- Dialog: Speed Up Training (eyrie_dialog_speed_up.xml) -->
+        <div id="eyrie-speedup-modal" class="eyrie-dialog-backdrop" style="display:none;">
+            <div class="eyrie-dialog-card">
+                <div class="eyrie-dialog-title">⚡ TĂNG TỐC LUYỆN RỒNG</div>
+                <div style="font-size:14px; line-height:1.6; color:#ffffff; text-shadow:1px 1px 2px #000;">
+                    <p>Bạn có muốn tăng tốc ấp trứng và nhận ngay kinh nghiệm lập tức không?</p>
+                    <p style="color:#ffd800; font-size:16px; font-weight:900; margin-top:10px;" id="speedup-exp-gain">+3,500 EXP</p>
+                    <p style="font-size:12.5px; color:#b0bec5; margin-top:4px;">Chi phí: <b id="speedup-cost-txt" style="color:#76ff03;">Miễn phí (Lần đầu hôm nay)</b></p>
+                </div>
+                <div style="display:flex; justify-content:center; gap:16px; margin-top:10px;">
+                    <button class="haypi-action-btn red" style="min-width:110px;" onclick="closeSpeedUpDialog()">HỦY</button>
+                    <button class="haypi-action-btn green" style="min-width:130px;" onclick="confirmSpeedUpTraining()">XÁC NHẬN</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dialog: Select Dragon for Eyrie Slot -->
+        <div id="eyrie-picker-modal" class="eyrie-dialog-backdrop" style="display:none;">
+            <div class="eyrie-dialog-card" style="width:520px;">
+                <div class="eyrie-dialog-title">🐉 CHỌN RỒNG VÀO TỔ ẤP</div>
+                <div style="font-size:12px; color:#ffe082; margin-top:-6px;">Rồng trong tổ sẽ tự động tích lũy kinh nghiệm theo thời gian thực!</div>
+                <div class="eyrie-picker-grid" id="eyrie-picker-list"></div>
+                <div style="display:flex; justify-content:center; margin-top:8px;">
+                    <button class="haypi-action-btn red" style="min-width:110px;" onclick="closeEyrieDragonPicker()">ĐÓNG</button>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -3336,6 +4414,11 @@ function showScreen(screenId) {
     const target = document.getElementById(screenId);
     if (target) target.classList.add('active');
     updateTopHud();
+    if (screenId === 'screen-city') {
+        if (typeof updateCityTrainingHud === 'function') updateCityTrainingHud();
+    } else if (screenId === 'screen-eyrie') {
+        if (typeof updateEyrieView === 'function') updateEyrieView();
+    }
 }
 
 
@@ -3542,7 +4625,8 @@ function updateTopHud() {
     if (iconEl) iconEl.style.backgroundImage = `url('${d.avatar}')`;
     const lvlEl = document.getElementById('hud-dragon-lvl');
     if (lvlEl) lvlEl.textContent = 'Lv.' + d.level;
-    const nameEl = document.getElementById('hud-dragon-name');
+    const nameEl = document.getElementById('hud-player-name');
+    if (nameEl) nameEl.textContent = getActiveUsername() || 'HA_2122793';
     if (nameEl) nameEl.textContent = d.name;
     const goldEl = document.getElementById('hud-gold-val');
     if (goldEl) goldEl.textContent = STATE.gold.toLocaleString();
@@ -6276,12 +7360,17 @@ function closeModal() {
 
 function openModal(type) {
     playSfx('btn');
+    if (type === 'eyrie') {
+        closeModal();
+        showEyrieScreen();
+        return;
+    }
     const titleEl = document.getElementById('modal-title');
     const bodyEl = document.getElementById('modal-body');
     document.getElementById('modal-backdrop').classList.add('active');
 
-    if (type === 'dragon' || type === 'eyrie') {
-        titleEl.innerHTML = `<img src="res/drawable-mdpi/dragon_rock.png" style="height:30px"> Tổ Rồng & Kỹ Năng Độc Quyền (9 Loài Rồng Gốc)`;
+    if (type === 'dragon') {
+        titleEl.innerHTML = `<img src="res/drawable-mdpi/dragon_rock.png" style="height:30px"> Thông Tin Rồng & Kỹ Năng Độc Quyền (9 Loài Rồng Gốc)`;
         renderDragonModal(bodyEl);
     } else if (type === 'online' || type === 'pvp') {
         titleEl.innerHTML = `<img src="res/drawable-mdpi/haypitown_online_a.png" style="height:30px"> Đấu Trường Online P2P & PVP Hall`;
@@ -6513,6 +7602,348 @@ function trainCurrentDragon() {
     updateTopHud();
     renderDragonModal(document.getElementById('modal-body'));
 }
+
+// ============================================================================
+// AUTHENTIC DRAGON EYRIE (TỔ ẤP TRỨNG & LUYỆN RỒNG) LOGIC (media_1792748673293_4306a8f8.jpg)
+// ============================================================================
+let eyrieTrainingState = {
+    slot1: {
+        dragonId: '108', // Roco
+        remainingSecs: 296, // 04:56 matching media_1792748673293_4306a8f8.jpg
+        totalSecs: 1800,
+        bonusExpRate: 120, // BONUS EXP: 120%
+        speedUpFreeToday: true
+    },
+    slot2: {
+        dragonId: null, // empty nest waiting for placement
+        remainingSecs: 0,
+        totalSecs: 1800,
+        bonusExpRate: 120,
+        unlocked: true,
+        speedUpFreeToday: true
+    }
+};
+
+let activeSpeedUpSlot = 1;
+let activePickerSlot = 1;
+
+function formatTimerHHMMSS(seconds) {
+    const s = Math.max(0, Math.floor(seconds));
+    const h = Math.floor(s / 3600);
+    const m = Math.floor((s % 3600) / 60);
+    const sec = s % 60;
+    return `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}:${String(sec).padStart(2, '0')}`;
+}
+
+function formatTimerMMSS(seconds) {
+    const s = Math.max(0, Math.floor(seconds));
+    const m = Math.floor(s / 60);
+    const sec = s % 60;
+    return `${String(m).padStart(2, '0')}:${String(sec).padStart(2, '0')}`;
+}
+
+function showEyrieScreen() {
+    playSfx('btn');
+    if (!eyrieTrainingState.slot1.dragonId || !PLAYABLE_DRAGONS[eyrieTrainingState.slot1.dragonId]) {
+        eyrieTrainingState.slot1.dragonId = STATE.selectedDragonId || '108';
+    }
+    showScreen('screen-eyrie');
+    updateEyrieView();
+}
+
+function updateEyrieView() {
+    const screen = document.getElementById('screen-eyrie');
+    if (!screen) return;
+
+    // Player username & Bonus rate
+    const nameEl = document.getElementById('eyrie-player-name');
+    if (nameEl) nameEl.innerText = (STATE.playerName || 'JUANMAO').toUpperCase();
+    const bonusEl = document.getElementById('eyrie-bonus-rate');
+    if (bonusEl) bonusEl.innerText = `${eyrieTrainingState.slot1.bonusExpRate || 120}%`;
+
+    // Currencies in bottom stone bar
+    const silverEl = document.getElementById('eyrie-curr-silver');
+    if (silverEl) silverEl.innerText = (STATE.gold || 25747).toLocaleString();
+    const goldEl = document.getElementById('eyrie-curr-gold');
+    if (goldEl) goldEl.innerText = (STATE.diamonds || 714).toLocaleString();
+
+    // Slot 1
+    const s1 = eyrieTrainingState.slot1;
+    const timer1El = document.getElementById('eyrie-timer-txt');
+    if (timer1El) timer1El.innerText = formatTimerHHMMSS(s1.remainingSecs);
+
+    if (s1.dragonId && PLAYABLE_DRAGONS[s1.dragonId]) {
+        const d1 = PLAYABLE_DRAGONS[s1.dragonId];
+        const nextExp1 = DRAGON_EXP_TABLE[d1.level] || (d1.level * 2500);
+        const name1El = document.getElementById('eyrie-dragon-1-name');
+        if (name1El) name1El.innerText = `${d1.name.toUpperCase()} (LV.${d1.level})`;
+        const exp1El = document.getElementById('eyrie-dragon-1-exp');
+        if (exp1El) exp1El.innerText = `EXP: ${d1.exp || 4081}/${nextExp1}`;
+        const fill1El = document.getElementById('eyrie-exp-1-fill');
+        if (fill1El) {
+            const pct = Math.min(100, Math.round(((d1.exp || 4081) / nextExp1) * 100));
+            fill1El.style.width = `${pct}%`;
+        }
+        const img1El = document.getElementById('eyrie-dragon-1-img');
+        if (img1El) img1El.src = d1.avatar;
+    }
+
+    // Slot 2
+    const s2 = eyrieTrainingState.slot2;
+    const timer2El = document.getElementById('eyrie-timer2-txt');
+    const speedup2Btn = document.getElementById('eyrie-speedup2-btn');
+    const nest2Stage = document.getElementById('eyrie-nest-2-stage');
+    const seat2 = document.getElementById('eyrie-dragon-2-seat');
+    const plus2 = document.getElementById('eyrie-plus-2-seat');
+    const name2El = document.getElementById('eyrie-dragon-2-name');
+    const exp2El = document.getElementById('eyrie-dragon-2-exp');
+    const frame2 = document.getElementById('eyrie-exp-2-frame');
+    const fill2El = document.getElementById('eyrie-exp-2-fill');
+    const img2El = document.getElementById('eyrie-dragon-2-img');
+
+    if (s2.dragonId && PLAYABLE_DRAGONS[s2.dragonId]) {
+        const d2 = PLAYABLE_DRAGONS[s2.dragonId];
+        const nextExp2 = DRAGON_EXP_TABLE[d2.level] || (d2.level * 2500);
+        if (timer2El) timer2El.innerText = formatTimerHHMMSS(s2.remainingSecs);
+        if (speedup2Btn) speedup2Btn.style.visibility = 'visible';
+        if (nest2Stage) {
+            nest2Stage.classList.remove('empty');
+            nest2Stage.classList.add('incubating');
+        }
+        if (seat2) seat2.style.display = 'flex';
+        if (plus2) plus2.style.display = 'none';
+        if (img2El) img2El.src = d2.avatar;
+        if (name2El) {
+            name2El.innerText = `${d2.name.toUpperCase()} (LV.${d2.level})`;
+            name2El.style.color = '#55ff00';
+        }
+        if (exp2El) {
+            exp2El.innerText = `EXP: ${d2.exp || 0}/${nextExp2}`;
+            exp2El.style.color = '#55ff00';
+        }
+        if (frame2) frame2.style.display = 'block';
+        if (fill2El) {
+            const pct = Math.min(100, Math.round(((d2.exp || 0) / nextExp2) * 100));
+            fill2El.style.width = `${pct}%`;
+        }
+    } else {
+        if (timer2El) timer2El.innerText = 'SẴN SÀNG';
+        if (speedup2Btn) speedup2Btn.style.visibility = 'hidden';
+        if (nest2Stage) {
+            nest2Stage.classList.remove('incubating');
+            nest2Stage.classList.add('empty');
+        }
+        if (seat2) seat2.style.display = 'none';
+        if (plus2) plus2.style.display = 'flex';
+        if (name2El) {
+            name2El.innerText = 'TỔ TRỐNG';
+            name2El.style.color = '#a8b0c0';
+        }
+        if (exp2El) {
+            exp2El.innerText = 'CHỌN RỒNG ĐỂ ẤP';
+            exp2El.style.color = '#788296';
+        }
+        if (frame2) frame2.style.display = 'none';
+    }
+}
+
+function updateCityTrainingHud() {
+    const s1 = eyrieTrainingState.slot1;
+    const cd1El = document.getElementById('city-train-cd-1');
+    if (cd1El) cd1El.innerText = formatTimerMMSS(s1.remainingSecs);
+
+    const s2 = eyrieTrainingState.slot2;
+    const cd2El = document.getElementById('city-train-cd-2');
+    if (cd2El) {
+        cd2El.innerText = s2.dragonId ? formatTimerMMSS(s2.remainingSecs) : '--:--';
+    }
+}
+
+function openSpeedUpDialog(slotNum) {
+    playSfx('btn');
+    activeSpeedUpSlot = slotNum;
+    const slot = slotNum === 1 ? eyrieTrainingState.slot1 : eyrieTrainingState.slot2;
+    if (!slot.dragonId || !PLAYABLE_DRAGONS[slot.dragonId]) return;
+    const d = PLAYABLE_DRAGONS[slot.dragonId];
+
+    const modal = document.getElementById('eyrie-speedup-modal');
+    const expTxt = document.getElementById('speedup-exp-gain');
+    const costTxt = document.getElementById('speedup-cost-txt');
+
+    const expGain = Math.round(3500 * (slot.bonusExpRate / 100));
+    if (expTxt) expTxt.innerText = `+${expGain.toLocaleString()} EXP cho ${d.name}`;
+
+    if (costTxt) {
+        if (slot.speedUpFreeToday) {
+            costTxt.innerText = 'Miễn phí (Lần đầu hôm nay)';
+            costTxt.style.color = '#76ff03';
+        } else {
+            costTxt.innerText = '50 Đồng Bạc (Coins)';
+            costTxt.style.color = '#ffd800';
+        }
+    }
+    if (modal) modal.style.display = 'flex';
+}
+
+function closeSpeedUpDialog() {
+    playSfx('btn');
+    const modal = document.getElementById('eyrie-speedup-modal');
+    if (modal) modal.style.display = 'none';
+}
+
+function confirmSpeedUpTraining() {
+    playSfx('btn');
+    const slot = activeSpeedUpSlot === 1 ? eyrieTrainingState.slot1 : eyrieTrainingState.slot2;
+    if (!slot || !slot.dragonId || !PLAYABLE_DRAGONS[slot.dragonId]) {
+        closeSpeedUpDialog();
+        return;
+    }
+
+    if (!slot.speedUpFreeToday) {
+        if ((STATE.gold || 0) < 50) {
+            alert('Không đủ Đồng Bạc để tăng tốc luyện rồng!');
+            closeSpeedUpDialog();
+            return;
+        }
+        STATE.gold -= 50;
+    } else {
+        slot.speedUpFreeToday = false;
+    }
+
+    const d = PLAYABLE_DRAGONS[slot.dragonId];
+    const expGain = Math.round(3500 * (slot.bonusExpRate / 100));
+    d.exp = (d.exp || 0) + expGain;
+
+    const nextExp = DRAGON_EXP_TABLE[d.level] || (d.level * 2500);
+    if (d.exp >= nextExp && d.level < 40) {
+        d.level++;
+        playSfx('levelup');
+        alert(`⚡ TĂNG TỐC THÀNH CÔNG!\n${d.name.toUpperCase()} THĂNG CẤP LÊN LEVEL ${d.level}! (+${expGain} EXP)`);
+    } else {
+        playSfx('coin');
+        alert(`⚡ TĂNG TỐC THÀNH CÔNG!\n${d.name} nhận được +${expGain.toLocaleString()} EXP!`);
+    }
+
+    slot.remainingSecs = slot.totalSecs;
+    saveProgress();
+    closeSpeedUpDialog();
+    updateEyrieView();
+    updateCityTrainingHud();
+    updateTopHud();
+}
+
+function harvestEyrieExp() {
+    playSfx('coin');
+    const s1 = eyrieTrainingState.slot1;
+    if (s1.dragonId && PLAYABLE_DRAGONS[s1.dragonId]) {
+        const d = PLAYABLE_DRAGONS[s1.dragonId];
+        const gain = Math.round(1500 * (s1.bonusExpRate / 100));
+        d.exp = (d.exp || 0) + gain;
+        const nextExp = DRAGON_EXP_TABLE[d.level] || (d.level * 2500);
+        if (d.exp >= nextExp && d.level < 40) {
+            d.level++;
+            playSfx('levelup');
+            alert(`🌾 THU HOẠCH EXP THÀNH CÔNG!\n${d.name.toUpperCase()} THĂNG CẤP LÊN LEVEL ${d.level}! (+${gain} EXP)`);
+        } else {
+            alert(`🌾 THU HOẠCH THÀNH CÔNG!\n${d.name} nhận được +${gain.toLocaleString()} EXP!`);
+        }
+        s1.remainingSecs = s1.totalSecs;
+        saveProgress();
+        updateEyrieView();
+        updateCityTrainingHud();
+        updateTopHud();
+    }
+}
+
+function openEyrieDragonPicker(slotNum) {
+    playSfx('btn');
+    activePickerSlot = slotNum;
+    const modal = document.getElementById('eyrie-picker-modal');
+    const listEl = document.getElementById('eyrie-picker-list');
+    if (!modal || !listEl) return;
+
+    let html = '';
+    Object.values(PLAYABLE_DRAGONS).forEach(dr => {
+        if (!dr.unlocked) return;
+        const isCurrent = (slotNum === 1 && eyrieTrainingState.slot1.dragonId === dr.id) ||
+                          (slotNum === 2 && eyrieTrainingState.slot2.dragonId === dr.id);
+        const selBorder = isCurrent ? 'border-color:#55ff00; background:rgba(85,255,0,0.18); box-shadow:0 0 10px rgba(85,255,0,0.6);' : '';
+        html += `
+            <div class="eyrie-picker-item" style="${selBorder}" onclick="selectDragonForEyrieSlot('${dr.id}')">
+                <img src="${dr.avatar}" alt="${dr.name}">
+                <div class="name">${dr.name}</div>
+                <div class="lvl">Lv.${dr.level} • ${dr.element.split(' ')[0]}</div>
+                ${isCurrent ? '<span style="font-size:10px; color:#1b5e20; font-weight:900; background:#a5d6a7; padding:1px 6px; border-radius:4px; margin-top:2px;">ĐANG ẤP</span>' : ''}
+            </div>
+        `;
+    });
+    listEl.innerHTML = html;
+    modal.style.display = 'flex';
+}
+
+function closeEyrieDragonPicker() {
+    playSfx('btn');
+    const modal = document.getElementById('eyrie-picker-modal');
+    if (modal) modal.style.display = 'none';
+}
+
+function selectDragonForEyrieSlot(dragonId) {
+    playSfx('select');
+    if (activePickerSlot === 1) {
+        eyrieTrainingState.slot1.dragonId = dragonId;
+    } else {
+        eyrieTrainingState.slot2.dragonId = dragonId;
+        eyrieTrainingState.slot2.remainingSecs = eyrieTrainingState.slot2.totalSecs;
+    }
+    closeEyrieDragonPicker();
+    updateEyrieView();
+    updateCityTrainingHud();
+    saveProgress();
+}
+
+// 1-Second live ticking loop for Eyrie & City Training widgets
+setInterval(() => {
+    // Tick slot 1
+    if (eyrieTrainingState.slot1.dragonId && eyrieTrainingState.slot1.remainingSecs > 0) {
+        eyrieTrainingState.slot1.remainingSecs--;
+        if (eyrieTrainingState.slot1.remainingSecs <= 0) {
+            eyrieTrainingState.slot1.remainingSecs = eyrieTrainingState.slot1.totalSecs;
+            const d1 = PLAYABLE_DRAGONS[eyrieTrainingState.slot1.dragonId];
+            if (d1) {
+                const gain = Math.round(1200 * (eyrieTrainingState.slot1.bonusExpRate / 100));
+                d1.exp = (d1.exp || 0) + gain;
+                const nextExp = DRAGON_EXP_TABLE[d1.level] || (d1.level * 2500);
+                if (d1.exp >= nextExp && d1.level < 40) {
+                    d1.level++;
+                    playSfx('levelup');
+                }
+            }
+        }
+    }
+    // Tick slot 2
+    if (eyrieTrainingState.slot2.dragonId && eyrieTrainingState.slot2.remainingSecs > 0) {
+        eyrieTrainingState.slot2.remainingSecs--;
+        if (eyrieTrainingState.slot2.remainingSecs <= 0) {
+            eyrieTrainingState.slot2.remainingSecs = eyrieTrainingState.slot2.totalSecs;
+            const d2 = PLAYABLE_DRAGONS[eyrieTrainingState.slot2.dragonId];
+            if (d2) {
+                const gain = Math.round(1200 * (eyrieTrainingState.slot2.bonusExpRate / 100));
+                d2.exp = (d2.exp || 0) + gain;
+                const nextExp = DRAGON_EXP_TABLE[d2.level] || (d2.level * 2500);
+                if (d2.exp >= nextExp && d2.level < 40) {
+                    d2.level++;
+                    playSfx('levelup');
+                }
+            }
+        }
+    }
+
+    // Live update UI if visible
+    if (document.getElementById('screen-eyrie') && document.getElementById('screen-eyrie').classList.contains('active')) {
+        updateEyrieView();
+    }
+    updateCityTrainingHud();
+}, 1000);
 
 function renderHatchModal(bodyEl) {
     bodyEl.innerHTML = `
