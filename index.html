@@ -1565,39 +1565,39 @@
             background: url('images/ingame/hd/ingame_bg.png') left top / 960px 110px no-repeat;
             pointer-events: auto;
         }
-        /* Move Left Button (x=6, top=22, 98x80) */
+        /* Move Left Button (x=8, top=16, 96x86) */
         .btl-socket-movel {
             position: absolute;
-            left: 6px;
-            top: 22px;
-            width: 98px;
-            height: 80px;
+            left: 8px;
+            top: 16px;
+            width: 96px;
+            height: 86px;
             background: url('images/ingame/hd/ingame_butten_movel_a.png') center / 100% 100% no-repeat;
             border: none;
             cursor: pointer;
         }
         .btl-socket-movel:active { background-image: url('images/ingame/hd/ingame_butten_movel_b.png'); }
 
-        /* Move Right Button (x=855, top=22, 98x80) */
+        /* Move Right Button (x=856, top=16, 96x86) */
         .btl-socket-mover {
             position: absolute;
-            left: 855px;
-            top: 22px;
-            width: 98px;
-            height: 80px;
+            left: 856px;
+            top: 16px;
+            width: 96px;
+            height: 86px;
             background: url('images/ingame/hd/ingame_butten_mover_a.png') center / 100% 100% no-repeat;
             border: none;
             cursor: pointer;
         }
         .btl-socket-mover:active { background-image: url('images/ingame/hd/ingame_butten_mover_b.png'); }
 
-        /* Bullet Dome (Center x=168, y=42 -> left 136, top 10, 64x64) */
+        /* Bullet Dome (Center x=170, y=43 -> left 135px, top 8px, 70x70) */
         .btl-socket-bullet {
             position: absolute;
-            left: 136px;
-            top: 10px;
-            width: 64px;
-            height: 64px;
+            left: 135px;
+            top: 8px;
+            width: 70px;
+            height: 70px;
             cursor: pointer;
             display: flex;
             align-items: center;
@@ -1664,12 +1664,12 @@
             box-shadow: 0 0 10px #ff3d00, inset 0 1px 3px #fff;
         }
 
-        /* 5 Sockets (Centers at x=288, 380, 479, 576, 672; y=61; size 64x64; top=29) */
+        /* 5 Sockets (Centers at x=287.5, 383.5, 479.5, 576.5, 672.5; y=62; size 70x70; top=27) */
         .btl-circle-socket {
             position: absolute;
-            top: 29px;
-            width: 64px;
-            height: 64px;
+            top: 27px;
+            width: 70px;
+            height: 70px;
             border-radius: 50%;
             cursor: pointer;
             display: flex;
@@ -1751,13 +1751,13 @@
             z-index: 4;
         }
 
-        /* Socket 5: Rage flame (x=640, top=29) */
+        /* Socket 5: Rage flame (x=637, top=27, 70x70) */
         .btl-socket-rage {
             position: absolute;
-            left: 640px;
-            top: 29px;
-            width: 64px;
-            height: 64px;
+            left: 637px;
+            top: 27px;
+            width: 70px;
+            height: 70px;
             cursor: pointer;
             display: flex;
             align-items: center;
@@ -1813,13 +1813,13 @@
             white-space: nowrap;
         }
 
-        /* Paper Plane (Fly Button) */
+        /* Paper Plane (Fly Button - hollow cutout at x=746, top=6, 88x58) */
         .btl-plane-btn {
             position: absolute;
-            left: 760px;
-            top: 10px;
-            width: 56px;
-            height: 44px;
+            left: 746px;
+            top: 6px;
+            width: 88px;
+            height: 58px;
             background: url('images/ingame/hd/ingame_butten_paperplane_a.png') center / contain no-repeat;
             border: none;
             cursor: pointer;
@@ -1837,9 +1837,9 @@
             position: absolute;
             left: 742px;
             top: 71px;
-            width: 95px;
-            height: 14px;
-            border-radius: 3px;
+            width: 94px;
+            height: 13px;
+            border-radius: 2px;
             overflow: hidden;
             background: #140404;
             box-shadow: inset 0 1px 3px rgba(0,0,0,0.9);
@@ -1854,9 +1854,9 @@
         .btl-slot-bar-mp {
             position: absolute;
             left: 742px;
-            top: 90px;
-            width: 95px;
-            height: 14px;
+            top: 88px;
+            width: 94px;
+            height: 13px;
             border-radius: 3px;
             overflow: hidden;
             background: #030d14;
@@ -7576,13 +7576,13 @@ function resolveWalkX(actor, dir, stepDist) {
         // 2. Its bottom extends into actor's body range (feetY - 45 to feetY)
         if (bTop < feetY - maxClimb && bBottom > feetY - 45) {
             if (dir > 0) {
-                // Moving right: dragon's right edge cannot penetrate bLeft
-                if (actor.x + dragonHalfW <= bLeft + 3 && targetX + dragonHalfW > bLeft) {
+                // Moving right: dragon cannot penetrate block wall from the left
+                if (actor.x <= bRight && targetX + dragonHalfW > bLeft) {
                     targetX = Math.min(targetX, bLeft - dragonHalfW);
                 }
             } else if (dir < 0) {
-                // Moving left: dragon's left edge cannot penetrate bRight
-                if (actor.x - dragonHalfW >= bRight - 3 && targetX - dragonHalfW < bRight) {
+                // Moving left: dragon cannot penetrate block wall from the right
+                if (actor.x >= bLeft && targetX - dragonHalfW < bRight) {
                     targetX = Math.max(targetX, bRight + dragonHalfW);
                 }
             }
@@ -7770,8 +7770,8 @@ function toggleCameraPanMode() {
     window.addEventListener('mouseup', onUp);
     bCanvas.addEventListener('touchstart', e => { onDown(e); e.preventDefault(); }, { passive: false });
     window.addEventListener('touchmove', e => { if (BTL.dragAiming || camDragging) { onMove(e); e.preventDefault(); } }, { passive: false });
-    window.addEventListener('touchend', onUp);
-    window.addEventListener('touchcancel', onUp);
+    window.addEventListener('touchend', e => { onUp(e); e.preventDefault(); }, { passive: false });
+    window.addEventListener('touchcancel', e => { onUp(e); e.preventDefault(); }, { passive: false });
 })();
 
 function getActiveDragonDef() {
@@ -7907,7 +7907,7 @@ function renderBattleSkillBar() {
     // Socket 2: center 380 -> left 348
     // Socket 3: center 479 -> left 447
     // Socket 4: center 576 -> left 544
-    const socketLefts = [256, 348, 447, 544];
+    const socketLefts = [252, 348, 444, 541];
     const act = getActiveControllableActor();
     const currentMp = act ? act.mp : 100;
 
@@ -9157,6 +9157,7 @@ function battleLoop(now) {
             ctrl.action = 'move';
             ctrl.x = resolveWalkX(ctrl, BTL.walkDir, 2.2);
             ctrl.y = findSurfaceY(ctrl.x, ctrl.y);
+            if (ctrl.y > BTL.groundY) ctrl.y = BTL.groundY;
             ctrl.stamina = Math.max(0, ctrl.stamina - 0.55);
             updateBattleHudBars();
             focusCameraOn(ctrl.x, ctrl.y);
@@ -9207,9 +9208,9 @@ function battleLoop(now) {
                     break;
                 }
             }
-            if (!hit && pr.stepCount > 2) {
+            if (!hit && pr.stepCount > 4) {
                 const distToShooter = Math.hypot(pr.x - pr.shooter.x, pr.y - (pr.shooter.y - 32));
-                if (distToShooter > 36) {
+                if (distToShooter > 55) {
                     for (const b of BTL.blocks) {
                         if (b.destroyed) continue;
                         if (b.isCoin) {
