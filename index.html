@@ -224,10 +224,10 @@
         /* Little Brown Dragon (id=0x7f0a0151: 81x66 dip -> 162x132 px, peeking from BEHIND title_bar.png!) */
         .title-little-dragon {
             position: absolute;
-            right: 130px;
-            top: -42px;
-            width: 162px;
-            height: 132px;
+            right: 50px;
+            top: -208px;
+            width: 238px;
+            height: 194px;
             background: url('res/drawable-mdpi/title_anim3_01.png') center bottom / 100% 100% no-repeat;
             z-index: 1;
             pointer-events: none;
@@ -439,13 +439,19 @@
         }
         .title-tips-content span {
             font-family: 'HaypiFont', 'Trebuchet MS', Arial Black, sans-serif;
-            font-size: 20px;
+            font-size: 21px;
             font-weight: 900;
-            color: #0f375c;
-            text-shadow: 0 1px 0 rgba(255,255,255,0.7);
+            color: #ffffff;
+            text-shadow: 
+                -1.5px -1.5px 0 #0f2c42,
+                 1.5px -1.5px 0 #0f2c42,
+                -1.5px  1.5px 0 #0f2c42,
+                 1.5px  1.5px 0 #0f2c42,
+                 0 3px 6px rgba(0, 0, 0, 0.95),
+                 0 0 10px rgba(0, 0, 0, 0.85);
             text-align: center;
             line-height: 1.05;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.8px;
         }
         .title-tips-content small {
             font-size: 11px;
