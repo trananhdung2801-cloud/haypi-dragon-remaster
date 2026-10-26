@@ -1553,6 +1553,23 @@
         }
 
         /* ==================== AUTHENTIC STONE BOTTOM BAR (images/ingame/hd/ingame_bg.png) ==================== */
+        .btl-turn-owner-tag {
+            position: absolute;
+            top: 52px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(10, 15, 25, 0.9);
+            border: 1.5px solid #e6b450;
+            border-radius: 12px;
+            padding: 3px 14px;
+            font-size: 12px;
+            font-weight: 800;
+            color: #ffe082;
+            text-shadow: 0 1px 3px #000;
+            white-space: nowrap;
+            pointer-events: none;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
+        }
         .btl-bottom-outer {
             position: absolute;
             left: 0;
@@ -1561,6 +1578,98 @@
             height: 115px;
             z-index: 25;
             pointer-events: none;
+        }
+        .btl-left-wing {
+            position: absolute;
+            left: 8px;
+            bottom: 8px;
+            width: 74px;
+            height: 94px;
+            background: linear-gradient(180deg, rgba(30, 20, 10, 0.92) 0%, rgba(15, 10, 5, 0.96) 100%);
+            border: 2px solid #b8860b;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.7);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-around;
+            padding: 4px 2px;
+            pointer-events: auto;
+            z-index: 28;
+        }
+        .btl-angle-btn {
+            width: 66px;
+            height: 26px;
+            background: linear-gradient(180deg, #d4af37, #996515);
+            border: 1.5px solid #ffe082;
+            border-radius: 6px;
+            color: #fff;
+            font-size: 11px;
+            font-weight: 900;
+            cursor: pointer;
+            text-shadow: 0 1px 2px #000;
+            transition: transform 0.08s, filter 0.08s;
+        }
+        .btl-angle-btn:active {
+            transform: scale(0.95);
+            filter: brightness(0.9);
+        }
+        .btl-angle-readout {
+            font-family: 'HaypiFont', 'Trebuchet MS', sans-serif;
+            font-size: 18px;
+            font-weight: 900;
+            color: #ffd700;
+            text-shadow: 0 2px 4px #000;
+            line-height: 1;
+        }
+        .btl-right-wing {
+            position: absolute;
+            right: 8px;
+            bottom: 8px;
+            width: 74px;
+            height: 94px;
+            pointer-events: auto;
+            z-index: 28;
+        }
+        .btl-fire-btn {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, #ff6b35 0%, #d83a17 50%, #9e1b00 100%);
+            border: 2.5px solid #ffe082;
+            border-radius: 14px;
+            box-shadow: 0 4px 14px rgba(255, 60, 0, 0.5), inset 0 2px 4px rgba(255, 255, 255, 0.4);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2px;
+            cursor: pointer;
+            transition: transform 0.08s, filter 0.08s, box-shadow 0.15s;
+            user-select: none;
+            padding: 0;
+        }
+        .btl-fire-btn:active, .btl-fire-btn.charging {
+            transform: scale(0.94);
+            filter: brightness(1.25);
+            box-shadow: 0 0 20px #ff3d00, inset 0 0 10px #ffeb3b;
+            border-color: #ffffff;
+        }
+        .btl-fire-icon { font-size: 20px; line-height: 1; }
+        .btl-fire-label {
+            font-family: 'HaypiFont', 'Trebuchet MS', Arial Black, sans-serif;
+            font-size: 15px;
+            font-weight: 900;
+            color: #ffffff;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.9), 0 0 4px #000;
+            line-height: 1;
+        }
+        .btl-fire-cue {
+            font-size: 9px;
+            font-weight: 800;
+            color: #ffe082;
+            text-shadow: 0 1px 2px #000;
+            letter-spacing: 0.5px;
+            line-height: 1;
         }
         .btl-stone-bar {
             position: absolute;
@@ -5148,6 +5257,7 @@
                 </div>
                 <button class="btl-menu-top-btn" onclick="leaveBattle()" title="Menu / Tạm dừng">MENU</button>
                 <button class="btl-chat-btn" onclick="openBattleChatModal()" title="Mở khung trò chuyện"></button>
+                <div id="btl-turn-owner" class="btl-turn-owner-tag">🟢 Lượt của bạn</div>
             </div>
 
             <!-- 3. Enemies List (Top-Right) -->
@@ -5278,6 +5388,18 @@
                         onmousedown="startWalk(1)" onmouseup="stopWalk()" onmouseleave="stopWalk()"
                         ontouchstart="startWalk(1); event.preventDefault();" ontouchend="stopWalk(); event.preventDefault();"
                         title="Di chuyển sang phải (Phím D / ▶)"></button>
+            </div>
+
+            <!-- Right Wing: FIRE BUTTON (Supports Mouse click, touch & Spacebar) -->
+            <div class="btl-right-wing">
+                <button id="btl-fire-btn" class="btl-fire-btn"
+                        onmousedown="beginChargeShot()" onmouseup="releaseChargeShot()"
+                        ontouchstart="beginChargeShot(); event.preventDefault();" ontouchend="releaseChargeShot(); event.preventDefault();"
+                        title="Giữ để nạp lực, nhả để phóng đạn (Phím Space)">
+                    <span class="btl-fire-icon">🔥</span>
+                    <span class="btl-fire-label">BẮN</span>
+                    <span class="btl-fire-cue">SPACE</span>
+                </button>
             </div>
         </div>
     </div>
@@ -5801,7 +5923,9 @@ function verifyAdminPasscode() {
         updateTopHud();
         closeModal();
         alert(t('admin_success'));
-        if (document.getElementById('screen-world-map').classList.contains('active')) {
+        const wMap = document.getElementById('screen-worldmap');
+
+        if (wMap && wMap.classList.contains('active')) {
             openWorldMap();
         }
     } else {
@@ -7511,7 +7635,7 @@ function startCampaignBattle(chNum, stageNum, isPvp = false, onlineMode = 'none'
 
         if (BTL.mode === 'p2p_guest') {
             BTL.turn = 'enemy';
-            document.getElementById('btl-turn-owner').textContent = '🟠 Đợi lượt Chủ Phòng...';
+            setBattleTurnOwnerText('🟠 Đợi lượt Chủ Phòng...');
             focusCameraOn(BTL.enemies[0].x, BTL.enemies[0].y, true);
         } else {
             startPlayerTurn();
@@ -8296,9 +8420,9 @@ function startPlayerTurn(isPlayer2 = false) {
     if (windArrow) {
         windArrow.style.transform = BTL.wind < 0 ? 'scaleX(-1)' : 'scaleX(1)';
     }
-    document.getElementById('btl-turn-owner').textContent = isPlayer2
-        ? '🔵 Lượt Người Chơi 2 (Kéo từ Rồng để bắn)'
-        : '🟢 Lượt của bạn (Kéo từ Rồng hoặc giữ SPACE)';
+    setBattleTurnOwnerText(isPlayer2
+        ? '🔵 Lượt Người Chơi 2 (Kéo từ Rồng, bấm BẮN hoặc giữ SPACE)'
+        : '🟢 Lượt của bạn (Kéo từ Rồng, bấm BẮN hoặc giữ SPACE)');
 
     playSfx('turn');
     const banner = document.getElementById('btl-turn-banner');
@@ -8350,10 +8474,15 @@ function skipPlayerTurn() {
     if (BTL.mode === 'p2p_host' || BTL.mode === 'p2p_guest') {
         sendOnlinePacket({ type: 'sync_pass' });
         BTL.turn = 'enemy';
-        document.getElementById('btl-turn-owner').textContent = '🟠 Đợi lượt Đối Thủ Online...';
+        setBattleTurnOwnerText('🟠 Đợi lượt Đối Thủ Online...');
         return;
     }
     endPlayerShotPhase();
+}
+
+function setBattleTurnOwnerText(txt) {
+    const el = document.getElementById('btl-turn-owner');
+    if (el) el.textContent = txt;
 }
 
 function beginChargeShot() {
@@ -8366,9 +8495,10 @@ function beginChargeShot() {
         return;
     }
     BTL.charging = true;
-    p.power = 5;
+    p.power = Math.max(10, p.power || 10);
     p.action = 'shotAim';
-    document.getElementById('btl-fire-btn').classList.add('charging');
+    const fireBtn = document.getElementById('btl-fire-btn');
+    if (fireBtn) fireBtn.classList.add('charging');
     playSfx('power', 0.45);
 }
 
@@ -8376,9 +8506,12 @@ function releaseChargeShot() {
     const p = getActiveControllableActor();
     if (!BTL.charging || !p) return;
     BTL.charging = false;
-    document.getElementById('btl-fire-btn').classList.remove('charging');
-    BTL.lastPower = p.power;
-    executeActorFire(p, p.power);
+    const fireBtn = document.getElementById('btl-fire-btn');
+    if (fireBtn) fireBtn.classList.remove('charging');
+    const firePower = Math.min(100, Math.max(20, p.power || 35));
+    p.power = firePower;
+    BTL.lastPower = firePower;
+    executeActorFire(p, firePower);
 }
 
 function executeActorFire(p, powerVal) {
@@ -8690,7 +8823,7 @@ function endPlayerShotPhase(lastTurn = 'player') {
     // 1. Online P2P Mode: wait for remote player's turn
     if (BTL.mode === 'p2p_host' || BTL.mode === 'p2p_guest') {
         BTL.turn = 'enemy';
-        document.getElementById('btl-turn-owner').textContent = '🟠 Đợi lượt Đối Thủ Online...';
+        setBattleTurnOwnerText('🟠 Đợi lượt Đối Thủ Online...');
         return;
     }
 
@@ -8706,7 +8839,7 @@ function endPlayerShotPhase(lastTurn = 'player') {
 
     // 3. PVE / AI Turn using Authentic APK Lua Logic (attack_ai.lua, move_ai.lua, skill_list.lua)
     BTL.turn = 'enemy';
-    document.getElementById('btl-turn-owner').textContent = '🔴 Lượt của Địch';
+    setBattleTurnOwnerText('🔴 Lượt của Địch');
 
     let delay = 700;
     aliveEnemies.forEach((en, idx) => {
