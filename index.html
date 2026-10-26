@@ -7325,6 +7325,22 @@ function startCampaignBattle(chNum, stageNum, isPvp = false, onlineMode = 'none'
         });
     });
 
+    // Determine authentic ground surface level for this map (e.g. 537.0 on Stage 1-1)
+    let detectedGroundY = BTL.mapH - 163;
+    let foundGround = false;
+    BTL.blocks.forEach(b => {
+        if (!b.destructible && b.sid >= 29000) {
+            const top = b.y - b.h * 0.5;
+            if (top >= BTL.mapH - 240 && top <= BTL.mapH - 100) {
+                if (!foundGround || top < detectedGroundY) {
+                    detectedGroundY = top;
+                    foundGround = true;
+                }
+            }
+        }
+    });
+    BTL.groundY = Math.round(detectedGroundY);
+
     // Setup Player Dragon
     const pData = PLAYABLE_DRAGONS[STATE.selectedDragonId];
     const lvlScale = 1 + (pData.level - 1) * 0.08;
@@ -7505,23 +7521,34 @@ function getActiveControllableActor() {
 }
 
 function findSurfaceY(x, startY) {
-    const groundY = BTL.mapH - 95;
-    let bestY = groundY;
+    const baseGroundY = (BTL && BTL.groundY) ? BTL.groundY : (BTL.mapH - 163);
     const maxClimb = 18;
     const checkY = (startY !== undefined && !isNaN(startY)) ? startY : 0;
+    const candidates = [];
 
     for (const b of BTL.blocks) {
         if (b.destroyed || b.isCoin) continue;
-        const halfW = b.w * 0.44;
+        const halfW = b.w * 0.5 + 4;
         if (x >= b.x - halfW && x <= b.x + halfW) {
-            const topY = b.y - b.h * 0.44;
-            // Surface must be beneath the dragon or within allowable climb step
-            if (topY >= checkY - maxClimb && topY < bestY) {
-                bestY = topY;
+            const topY = b.y - b.h * 0.5;
+            // Only consider surfaces at or above baseGroundY (never deep underground filler soil!)
+            if (topY <= baseGroundY + 6) {
+                candidates.push(topY);
             }
         }
     }
-    return bestY;
+
+    if (candidates.length === 0) return baseGroundY;
+
+    // Filter surfaces that are beneath the dragon's feet or within allowable climb step
+    const walkable = candidates.filter(topY => topY >= checkY - maxClimb);
+
+    if (walkable.length > 0) {
+        return Math.min(...walkable);
+    }
+
+    // Safety: If actor was below all surfaces (underground), snap up to the topmost surface!
+    return Math.min(...candidates);
 }
 
 // 2D Horizontal Obstacle Collision (blocks walls, wooden planks, crates, rock pillars)
@@ -7537,8 +7564,8 @@ function resolveWalkX(actor, dir, stepDist) {
 
     for (const b of BTL.blocks) {
         if (b.destroyed || b.isCoin) continue;
-        const halfW = b.w * 0.44;
-        const halfH = b.h * 0.44;
+        const halfW = b.w * 0.5;
+        const halfH = b.h * 0.5;
         const bLeft = b.x - halfW;
         const bRight = b.x + halfW;
         const bTop = b.y - halfH;
@@ -7727,13 +7754,11 @@ function toggleCameraPanMode() {
         if (BTL.dragAiming) {
             BTL.dragAiming = false;
             const ctrl = getActiveControllableActor();
-            if (ctrl && hasAimMoved) {
+            if (ctrl) {
                 const firePower = Math.min(100, Math.max(15, ctrl.power || 35));
                 ctrl.power = firePower;
                 BTL.lastPower = firePower;
                 executeActorFire(ctrl, firePower);
-            } else if (ctrl) {
-                ctrl.action = 'default';
             }
         }
         camDragging = false;
@@ -9038,17 +9063,17 @@ function updateDestructibleBlocksPhysics(dt) {
     if (!BTL.blocks || BTL.blocks.length === 0) return;
 
     let anyMoved = false;
-    const groundY = BTL.mapH - 95;
+    const groundY = (BTL && BTL.groundY) ? BTL.groundY : (BTL.mapH - 163);
 
-    // Check blocks
+    // ONLY apply gravity to destructible props (wooden crates, stone blocks). Static terrain (SENCE-*) NEVER falls!
     for (const b of BTL.blocks) {
-        if (b.destroyed || b.isCoin) continue;
+        if (b.destroyed || b.isCoin || !b.destructible || b.sid >= 29000) continue;
 
-        const halfW = b.w * 0.44;
-        const halfH = b.h * 0.44;
+        const halfW = b.w * 0.5;
+        const halfH = b.h * 0.5;
         const bottomY = b.y + halfH;
 
-        // Ground collision
+        // Ground collision against authentic base ground
         if (bottomY >= groundY) {
             b.y = groundY - halfH;
             b.vy = 0;
@@ -9060,13 +9085,13 @@ function updateDestructibleBlocksPhysics(dt) {
         let supported = false;
         for (const other of BTL.blocks) {
             if (other === b || other.destroyed || other.isCoin) continue;
-            const otherTopY = other.y - other.h * 0.44;
-            // Vertically touching within 8px
-            if (otherTopY >= bottomY - 5 && otherTopY <= bottomY + 10) {
+            const otherTopY = other.y - other.h * 0.5;
+            // Vertically touching within 10px
+            if (otherTopY >= bottomY - 5 && otherTopY <= bottomY + 12) {
                 // Horizontal overlap
-                const minX = Math.max(b.x - halfW, other.x - other.w * 0.44);
-                const maxX = Math.min(b.x + halfW, other.x + other.w * 0.44);
-                if (maxX - minX > Math.min(b.w, other.w) * 0.22) {
+                const minX = Math.max(b.x - halfW, other.x - other.w * 0.5);
+                const maxX = Math.min(b.x + halfW, other.x + other.w * 0.5);
+                if (maxX - minX > Math.min(b.w, other.w) * 0.25) {
                     if (!other.isFalling) {
                         supported = true;
                         b.y = otherTopY - halfH;
@@ -9182,22 +9207,25 @@ function battleLoop(now) {
                     break;
                 }
             }
-            if (!hit && pr.stepCount > 1) {
-                for (const b of BTL.blocks) {
-                    if (b.destroyed) continue;
-                    if (b.isCoin) {
-                        if (Math.hypot(pr.x - b.x, pr.y - b.y) < 30) {
-                            b.destroyed = true;
-                            STATE.gold += 50;
-                            playSfx('select');
-                            spawnFloatText(b.x, b.y - 15, '🪙 +50 Vàng!', '#ffd700');
-                            updateTopHud();
+            if (!hit && pr.stepCount > 2) {
+                const distToShooter = Math.hypot(pr.x - pr.shooter.x, pr.y - (pr.shooter.y - 32));
+                if (distToShooter > 36) {
+                    for (const b of BTL.blocks) {
+                        if (b.destroyed) continue;
+                        if (b.isCoin) {
+                            if (Math.hypot(pr.x - b.x, pr.y - b.y) < 30) {
+                                b.destroyed = true;
+                                STATE.gold += 50;
+                                playSfx('select');
+                                spawnFloatText(b.x, b.y - 15, '🪙 +50 Vàng!', '#ffd700');
+                                updateTopHud();
+                            }
+                            continue;
                         }
-                        continue;
-                    }
-                    if (Math.abs(pr.x - b.x) < b.w * 0.44 && Math.abs(pr.y - b.y) < b.h * 0.42) {
-                        hit = true;
-                        break;
+                        if (Math.abs(pr.x - b.x) < b.w * 0.48 && Math.abs(pr.y - b.y) < b.h * 0.48) {
+                            hit = true;
+                            break;
+                        }
                     }
                 }
             }
