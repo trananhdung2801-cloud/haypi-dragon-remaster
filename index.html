@@ -7224,6 +7224,14 @@ function startHotseat2P(mapIdx) {
 const bCanvas = document.getElementById('battle-canvas');
 const bCtx = bCanvas.getContext('2d');
 
+let screenShakeTimer = 0;
+let screenShakeIntensity = 0;
+
+function triggerScreenShake(intensity = 8, duration = 0.35) {
+    screenShakeIntensity = intensity;
+    screenShakeTimer = duration;
+}
+
 let BTL = {
     active: false,
     mode: 'pve', // 'pve', 'pvp_ai', 'p2p_host', 'p2p_guest', 'hotseat_2p'
@@ -8714,6 +8722,7 @@ function handleProjectileImpact(proj, hitX, hitY) {
         BTL.projectiles.push(proj);
     }
 
+    triggerScreenShake(bomb.special === 'rage_critical' ? 14 : (bomb.special === 'rock_fragment' ? 10 : 8), 0.35);
     playSfx(bomb.hitEffect === 'bkbd' ? 'ice' : 'explode');
     if (bomb.hitEffect === 'stbz') {
         // Authentic Rock Bomb blast (stbz) + Shattering Fragments debris (stsl)
@@ -9394,8 +9403,16 @@ function battleLoop(now) {
             bCtx.fillRect(0, 0, bCanvas.width, bCanvas.height);
         }
 
+        let shakeX = 0, shakeY = 0;
+        if (screenShakeTimer > 0) {
+            screenShakeTimer -= dt;
+            const factor = Math.max(0, screenShakeTimer / 0.35);
+            shakeX = (Math.random() - 0.5) * 2 * screenShakeIntensity * factor;
+            shakeY = (Math.random() - 0.5) * 2 * screenShakeIntensity * factor;
+        }
+
         bCtx.save();
-        bCtx.translate(-BTL.camX, -BTL.camY);
+        bCtx.translate(-BTL.camX + shakeX, -BTL.camY + shakeY);
 
         BTL.decorBack.forEach(d => drawAptSprite(bCtx, d, false));
         BTL.blocks.forEach(b => {
