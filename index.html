@@ -5394,6 +5394,7 @@
             <div class="btl-right-wing">
                 <button id="btl-fire-btn" class="btl-fire-btn"
                         onmousedown="beginChargeShot()" onmouseup="releaseChargeShot()"
+                        onclick="handleFireButtonClick(event)"
                         ontouchstart="beginChargeShot(); event.preventDefault();" ontouchend="releaseChargeShot(); event.preventDefault();"
                         title="Giữ để nạp lực, nhả để phóng đạn (Phím Space)">
                     <span class="btl-fire-icon">🔥</span>
@@ -8493,17 +8494,40 @@ function setBattleTurnOwnerText(txt) {
     if (el) el.textContent = txt;
 }
 
+let lastFireTimestamp = 0;
+
+function closeBulletPopup() {
+    // Compatibility stub for bullet selection dialog
+}
+
+function selectBullet(idx) {
+    selectBulletByIndex(idx);
+}
+
+function checkDragonLevelUp(dragonId) {
+    if (typeof PLAYABLE_DRAGONS === 'undefined') return;
+    const d = PLAYABLE_DRAGONS[dragonId];
+    if (!d) return;
+    const nextExp = (typeof DRAGON_EXP_TABLE !== 'undefined' && DRAGON_EXP_TABLE[d.level]) || (d.level * 2500);
+    if (d.exp >= nextExp && d.level < 40) {
+        d.level++;
+        if (typeof playSfx === 'function') playSfx('levelup');
+        if (typeof saveProgress === 'function') saveProgress();
+    }
+}
+
 function beginChargeShot() {
     const p = getActiveControllableActor();
     if (!p || BTL.charging) return;
+    if (BTL.turn !== 'player' && BTL.turn !== 'online_turn') return;
     const d = getActiveDragonDef();
-    const cost = BTL.paperPlaneMode ? 40 : (BTL.selectedBombIdx >= 0 ? d.bombs[BTL.selectedBombIdx].cost : 0);
+    const cost = BTL.paperPlaneMode ? 40 : (BTL.selectedBombIdx >= 0 && d && d.bombs[BTL.selectedBombIdx] ? d.bombs[BTL.selectedBombIdx].cost : 0);
     if (p.mp < cost) {
         spawnFloatText(p.x, p.y - 60, `Không đủ MP (${cost} MP)!`, '#ff5252');
         return;
     }
     BTL.charging = true;
-    p.power = Math.max(10, p.power || 10);
+    p.power = Math.max(15, p.power || 25);
     p.action = 'shotAim';
     const fireBtn = document.getElementById('btl-fire-btn');
     if (fireBtn) fireBtn.classList.add('charging');
@@ -8512,18 +8536,38 @@ function beginChargeShot() {
 
 function releaseChargeShot() {
     const p = getActiveControllableActor();
-    if (!BTL.charging || !p) return;
-    BTL.charging = false;
     const fireBtn = document.getElementById('btl-fire-btn');
     if (fireBtn) fireBtn.classList.remove('charging');
+    if (!BTL.charging || !p) return;
+    BTL.charging = false;
     const firePower = Math.min(100, Math.max(20, p.power || 35));
     p.power = firePower;
     BTL.lastPower = firePower;
     executeActorFire(p, firePower);
 }
 
+function handleFireButtonClick(e) {
+    if (e && typeof e.preventDefault === 'function') e.preventDefault();
+    const now = Date.now();
+    if (now - lastFireTimestamp < 400) return; // Debounce if mouseup/touchend already fired
+    const p = getActiveControllableActor();
+    if (!p) return;
+    if (BTL.turn !== 'player' && BTL.turn !== 'online_turn') return;
+    if (BTL.charging) {
+        releaseChargeShot();
+        return;
+    }
+    const firePower = Math.min(100, Math.max(25, p.power || BTL.lastPower || 40));
+    p.power = firePower;
+    BTL.lastPower = firePower;
+    executeActorFire(p, firePower);
+}
+
 function executeActorFire(p, powerVal) {
-    closeBulletPopup();
+    lastFireTimestamp = Date.now();
+    if (typeof closeBulletPopup === 'function') {
+        try { closeBulletPopup(); } catch (err) {}
+    }
     const d = getActiveDragonDef();
     let bomb = null;
     let mpCost = 0;
@@ -9009,6 +9053,16 @@ window.addEventListener('keyup', e => {
         stopWalk();
     } else if (e.key === ' ' && BTL.charging) {
         e.preventDefault();
+        releaseChargeShot();
+    }
+});
+window.addEventListener('mouseup', () => {
+    if (BTL.charging) {
+        releaseChargeShot();
+    }
+});
+window.addEventListener('touchend', () => {
+    if (BTL.charging) {
         releaseChargeShot();
     }
 });
