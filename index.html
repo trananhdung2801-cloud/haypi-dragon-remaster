@@ -85,7 +85,7 @@
             letter-spacing: 0.5px;
             font-weight: 900;
         }
-        
+
         /* ==================== PWA STANDALONE & FULLSCREEN SCALING ==================== */
         @media (display-mode: standalone), (display-mode: fullscreen) {
             body { background: #000; margin: 0; padding: 0; }
@@ -442,7 +442,7 @@
             font-size: 21px;
             font-weight: 900;
             color: #ffffff;
-            text-shadow: 
+            text-shadow:
                 -1.5px -1.5px 0 #0f2c42,
                  1.5px -1.5px 0 #0f2c42,
                 -1.5px  1.5px 0 #0f2c42,
@@ -582,7 +582,7 @@
             filter: brightness(1.15) drop-shadow(0 0 12px rgba(255, 230, 110, 0.85));
             transform: translateY(-3px) scale(1.03);
         }
-        
+
         /* Authentic 3D Cutout Typography Labels from Original Haypi Dragon */
         .city-building-tag {
             position: absolute;
@@ -1011,6 +1011,482 @@
         }
         .btn-back-corner:hover { transform: scale(1.06); }
         .btn-back-corner:active { background-image: url('res/drawable-mdpi/channel_butten_back_b.png'); }
+
+        /* ==================== AUTHENTIC OFFLINE MODE (CHAPTERS & LEVELS) ==================== */
+        #screen-offline-chapters, #screen-offline-levels {
+            background: url('res/drawable-mdpi/adv_map.jpg') center / cover no-repeat;
+            position: absolute;
+            inset: 0;
+            width: 1136px;
+            height: 640px;
+            overflow: hidden;
+        }
+
+        /* Right Side Pillar Tablet (Matches 72f1e4b05485d4db8d948.jpg & 80b8a1f111c4919ac8d57.jpg) */
+        .offline-side-column {
+            position: absolute;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            width: 140px;
+            background: linear-gradient(90deg, rgba(15,20,28,0.7) 0%, rgba(20,26,38,0.95) 20%, rgba(10,14,22,0.98) 100%);
+            border-left: 3px solid rgba(80,95,120,0.6);
+            box-shadow: -8px 0 25px rgba(0,0,0,0.85);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            padding: 24px 10px 24px 10px;
+            z-index: 30;
+            box-sizing: border-box;
+        }
+
+        .offline-side-title-pillar {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            background: url('res/drawable-mdpi/channel_titlebg.png') center / contain no-repeat;
+            padding: 16px 12px;
+            width: 120px;
+        }
+
+        .offline-side-title-txt {
+            font-family: 'HaypiFont', 'Trebuchet MS', Impact, sans-serif;
+            font-size: 26px;
+            font-weight: 900;
+            color: #ffe600;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 0 4px 10px rgba(0,0,0,0.9);
+        }
+
+        .offline-side-sub-txt {
+            font-family: 'HaypiFont', Arial, sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            color: #e0e6ed;
+            text-align: center;
+            text-shadow: 1px 1px 2px #000;
+            max-width: 110px;
+            word-break: break-word;
+        }
+
+        .offline-side-back-btn {
+            width: 70px;
+            height: 54px;
+            background: url('res/drawable-mdpi/channel_butten_back_a.png') center / 100% 100% no-repeat;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.12s ease, filter 0.12s ease;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.7));
+        }
+        .offline-side-back-btn:hover {
+            filter: brightness(1.15) drop-shadow(0 4px 8px rgba(0,0,0,0.9));
+        }
+        .offline-side-back-btn:active {
+            transform: scale(0.92);
+        }
+        .offline-side-back-btn img {
+            width: 32px;
+            height: 24px;
+            pointer-events: none;
+        }
+
+        /* Chapter Cards Layout (Matches 72f1e4b05485d4db8d948.jpg) */
+        .offline-ch-cards-wrap {
+            position: absolute;
+            left: 35px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 930px;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 40px;
+            z-index: 20;
+        }
+
+        .offline-ch-card {
+            position: relative;
+            width: 260px;
+            height: 396px;
+            background: url('res/drawable-mdpi/chapter_bar.png') center / 100% 100% no-repeat;
+            cursor: pointer;
+            transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.2s ease;
+            filter: drop-shadow(0 10px 22px rgba(0,0,0,0.85));
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .offline-ch-card:hover:not(.locked) {
+            transform: translateY(-6px) scale(1.03);
+            filter: brightness(1.1) drop-shadow(0 14px 28px rgba(0,0,0,0.95));
+        }
+        .offline-ch-card.locked {
+            cursor: not-allowed;
+            filter: brightness(0.75) grayscale(0.25) drop-shadow(0 6px 12px rgba(0,0,0,0.8));
+        }
+
+        .offline-ch-thumb-wrap {
+            position: absolute;
+            top: 14px;
+            left: 14px;
+            right: 14px;
+            height: 232px;
+            border-radius: 6px;
+            overflow: hidden;
+            background: #0a0e14;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .offline-ch-thumb {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .offline-ch-card.locked .offline-ch-thumb {
+            filter: brightness(0.55) grayscale(0.5);
+        }
+
+        .offline-ch-lock-icon {
+            position: absolute;
+            width: 76px;
+            height: 96px;
+            filter: drop-shadow(0 6px 12px rgba(0,0,0,0.9));
+            pointer-events: none;
+        }
+
+        .offline-ch-info-slot {
+            position: absolute;
+            bottom: 24px;
+            left: 20px;
+            right: 20px;
+            height: 90px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .offline-ch-title {
+            font-family: 'HaypiFont', 'Trebuchet MS', Impact, sans-serif;
+            font-size: 19px;
+            font-weight: 900;
+            letter-spacing: 1px;
+            text-align: center;
+            color: #ffe600;
+            text-shadow: 2px 2px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 0 3px 6px rgba(0,0,0,0.85);
+        }
+        .offline-ch-card.locked .offline-ch-title {
+            color: #d0d7de;
+            text-shadow: 1.5px 1.5px 0 #000, -1.5px -1.5px 0 #000;
+        }
+
+        .offline-ch-stars-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+        .offline-ch-star-icon {
+            width: 22px;
+            height: 22px;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.8));
+        }
+        .offline-ch-stars-txt {
+            font-family: 'HaypiFont', 'Trebuchet MS', Impact, sans-serif;
+            font-size: 18px;
+            font-weight: 900;
+            color: #ffe600;
+            text-shadow: 1.5px 1.5px 0 #000, -1.5px -1.5px 0 #000;
+        }
+        .offline-ch-card.locked .offline-ch-stars-txt {
+            color: #90a4ae;
+        }
+
+        .offline-ch-nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 48px;
+            height: 58px;
+            border: none;
+            cursor: pointer;
+            background: transparent center / contain no-repeat;
+            z-index: 25;
+            transition: transform 0.15s ease, filter 0.15s ease;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.8));
+        }
+        .offline-ch-nav-btn:hover {
+            filter: brightness(1.2) drop-shadow(0 6px 12px rgba(0,0,0,0.9));
+            transform: translateY(-50%) scale(1.08);
+        }
+        .offline-ch-nav-btn:active {
+            transform: translateY(-50%) scale(0.92);
+        }
+        .offline-ch-nav-btn.prev {
+            left: 10px;
+            background-image: url('res/drawable-mdpi/createroom_butten_arrowl_a1.png');
+        }
+        .offline-ch-nav-btn.next {
+            right: 154px;
+            background-image: url('res/drawable-mdpi/createroom_butten_arrowr_a1.png');
+        }
+
+        /* 15 Level Grid (Matches 80b8a1f111c4919ac8d57.jpg) */
+        .offline-lvl-grid-wrap {
+            position: absolute;
+            left: 45px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 910px;
+            height: 530px;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+            row-gap: 20px;
+            column-gap: 28px;
+            align-items: center;
+            justify-items: center;
+            z-index: 20;
+        }
+
+        .offline-lvl-node {
+            position: relative;
+            width: 100px;
+            height: 125px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            cursor: pointer;
+            transition: transform 0.15s ease;
+        }
+        .offline-lvl-node:hover:not(.locked) {
+            transform: scale(1.08);
+        }
+        .offline-lvl-node.locked {
+            cursor: not-allowed;
+            opacity: 0.72;
+        }
+
+        .offline-lvl-medallion {
+            position: relative;
+            width: 76px;
+            height: 76px;
+            background: url('res/drawable-mdpi/ls_bar1.png') center / contain no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            filter: drop-shadow(0 5px 10px rgba(0,0,0,0.85));
+        }
+
+        .offline-lvl-num {
+            font-family: 'HaypiFont', 'Trebuchet MS', Impact, sans-serif;
+            font-size: 28px;
+            font-weight: 900;
+            color: #76ff03;
+            text-shadow: 2px 2px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 0 3px 6px rgba(0,0,0,0.9);
+            line-height: 1;
+            margin-top: -2px;
+        }
+
+        .offline-lvl-lock-img {
+            width: 32px;
+            height: 40px;
+            filter: drop-shadow(0 2px 5px rgba(0,0,0,0.8));
+        }
+
+        .offline-lvl-target-ring {
+            position: absolute;
+            width: 94px;
+            height: 94px;
+            pointer-events: none;
+            animation: pulseActiveRing 1.4s ease-in-out infinite alternate;
+        }
+        @keyframes pulseActiveRing {
+            0% { transform: scale(0.96); opacity: 0.82; filter: drop-shadow(0 0 6px #ffeb3b); }
+            100% { transform: scale(1.06); opacity: 1; filter: drop-shadow(0 0 16px #ffeb3b) drop-shadow(0 0 24px #ffd600); }
+        }
+
+        .offline-lvl-stars-img {
+            width: 68px;
+            height: 32px;
+            margin-top: 6px;
+            filter: drop-shadow(0 3px 6px rgba(0,0,0,0.8));
+        }
+
+        /* Battle Loading Screen (Matches 8d7a1335a300235e7a116.jpg) */
+        #screen-battle-loading {
+            background: #000000;
+            position: absolute;
+            inset: 0;
+            width: 1136px;
+            height: 640px;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            padding: 80px 60px 50px 60px;
+            box-sizing: border-box;
+            z-index: 100;
+        }
+        #screen-battle-loading.active {
+            display: flex;
+        }
+
+        .battle-loading-tip-box {
+            max-width: 760px;
+            margin-top: 100px;
+            text-align: center;
+            line-height: 1.7;
+            font-size: 20px;
+            font-weight: 700;
+            font-family: 'HaypiFont', 'Trebuchet MS', Arial, sans-serif;
+            color: #ffffff;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.9);
+        }
+
+        .battle-loading-footer {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .battle-loading-dragon-canvas {
+            width: 90px;
+            height: 90px;
+        }
+
+        .battle-loading-txt {
+            font-family: 'HaypiFont', 'Trebuchet MS', Impact, sans-serif;
+            font-size: 24px;
+            font-weight: 900;
+            color: #76ff03;
+            letter-spacing: 3px;
+            text-shadow: 0 0 12px rgba(118, 255, 3, 0.7), 2px 2px 0 #000;
+            animation: blinkLoading 1.2s infinite ease-in-out;
+        }
+        @keyframes blinkLoading {
+            0%, 100% { opacity: 0.85; }
+            50% { opacity: 1; filter: brightness(1.2); }
+        }
+
+        /* In-game Pause Menu Modal (Matches 9fa8a6d310e690b8c9f72.jpg with adv_bg.png) */
+        .btl-pause-modal-backdrop {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.72);
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 60;
+        }
+
+        .btl-pause-card {
+            position: relative;
+            width: 320px;
+            height: 360px;
+            background: url('res/drawable-mdpi/adv_bg.png') center / 100% 100% no-repeat;
+            filter: drop-shadow(0 15px 35px rgba(0,0,0,0.95));
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-sizing: border-box;
+        }
+
+        .btl-pause-title-tab {
+            position: absolute;
+            top: 36px;
+            font-family: 'HaypiFont', 'Trebuchet MS', Impact, sans-serif;
+            font-size: 22px;
+            font-weight: 900;
+            color: #ffe600;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 0 #000, -2px -2px 0 #000, 0 3px 6px rgba(0,0,0,0.85);
+        }
+
+        .btl-pause-btn-list {
+            position: absolute;
+            top: 110px;
+            width: 220px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .btl-pause-strip-btn {
+            width: 100%;
+            height: 48px;
+            background: url('res/drawable-mdpi/ingame_butten_inmenu_a.png') center / 100% 100% no-repeat;
+            border: none;
+            cursor: pointer;
+            font-family: 'HaypiFont', 'Trebuchet MS', Impact, sans-serif;
+            font-size: 18px;
+            font-weight: 900;
+            color: #ffe600;
+            letter-spacing: 1.5px;
+            text-shadow: 1.5px 1.5px 0 #000, -1.5px -1.5px 0 #000, 0 2px 4px rgba(0,0,0,0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.12s ease, filter 0.12s ease;
+        }
+        .btl-pause-strip-btn:hover {
+            background-image: url('res/drawable-mdpi/ingame_butten_inmenu_b.png');
+            filter: brightness(1.2);
+            transform: scale(1.03);
+        }
+        .btl-pause-strip-btn:active {
+            transform: scale(0.96);
+        }
+
+        .btl-pause-cancel-btn {
+            position: absolute;
+            bottom: 12px;
+            width: 160px;
+            height: 42px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            font-family: 'HaypiFont', 'Trebuchet MS', Impact, sans-serif;
+            font-size: 17px;
+            font-weight: 900;
+            color: #ffe600;
+            letter-spacing: 1.5px;
+            text-shadow: 1.5px 1.5px 0 #000, -1.5px -1.5px 0 #000;
+            transition: transform 0.12s ease;
+        }
+        .btl-pause-cancel-btn:hover {
+            filter: brightness(1.25);
+            transform: scale(1.05);
+        }
+        .btl-pause-cancel-btn:active {
+            transform: scale(0.95);
+        }
+
+        .btl-hud-score {
+            position: absolute;
+            top: 14px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'HaypiFont', 'Trebuchet MS', Impact, sans-serif;
+            font-size: 20px;
+            font-weight: 900;
+            color: #ffffff;
+            letter-spacing: 1px;
+            text-shadow: 0 0 8px #00b0ff, 2px 2px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000;
+            pointer-events: none;
+            z-index: 30;
+        }
 
         /* ==================== 4. ORIGINAL CHAPTER STAGE MAP (UNSTRETCHED + SCROLLABLE) ==================== */
         #screen-chapter {
@@ -2067,7 +2543,7 @@
             line-height: 1.35;
         }
 
-        
+
         /* ==================== AUTHENTIC TUTORIAL SYSTEM (STAGE 1-1) ==================== */
         .btl-tutorial-wrap {
             position: absolute;
@@ -2326,7 +2802,7 @@
             color: #0d2e04;
             box-shadow: 0 3px 8px rgba(0,0,0,0.45);
         }
-    
+
         /* Stage Node Stars mini icons */
         .stage-node-stars {
             display: flex;
@@ -4664,7 +5140,7 @@
             </div>
         </div>
 
-        
+
         <!-- Authentic Running Notice Bar (from media_1792747749662_e0020276.jpg) -->
         <div class="city-notice-ticker">
             <marquee scrollamount="4">Congratulations! Player sunnysun963 got item Mana stone Lv5! • Welcome to Haypi Dragon!</marquee>
@@ -5202,6 +5678,46 @@
         <button class="wmap-back-btn" onclick="exitWorldMap()" title="Quay về Thành Phố"></button>
     </div>
 
+    <!-- ==================== 3.8 AUTHENTIC OFFLINE CHAPTER SELECT (72f1e4b05485d4db8d948.jpg) ==================== -->
+    <div id="screen-offline-chapters" class="screen">
+        <button class="offline-ch-nav-btn prev" id="offline-ch-prev-btn" onclick="prevOfflineChapterPage()" title="Trang trước" style="display:none;"></button>
+        <div class="offline-ch-cards-wrap" id="offline-ch-cards-list"></div>
+        <button class="offline-ch-nav-btn next" id="offline-ch-next-btn" onclick="nextOfflineChapterPage()" title="Trang sau"></button>
+        <div class="offline-side-column">
+            <div class="offline-side-title-pillar">
+                <span class="offline-side-title-txt">CHAPTER</span>
+            </div>
+            <button class="offline-side-back-btn" onclick="exitOfflineCampaign()" title="Quay lại Màn hình Chính">
+                <img src="res/drawable-mdpi/channel_icon_back.png" alt="Back">
+            </button>
+        </div>
+    </div>
+
+    <!-- ==================== 3.9 AUTHENTIC OFFLINE LEVEL SELECT 1-15 (80b8a1f111c4919ac8d57.jpg) ==================== -->
+    <div id="screen-offline-levels" class="screen">
+        <div class="offline-lvl-grid-wrap" id="offline-lvl-grid"></div>
+        <div class="offline-side-column">
+            <div class="offline-side-title-pillar">
+                <span class="offline-side-title-txt">LEVEL</span>
+                <span class="offline-side-sub-txt" id="offline-lvl-chapter-name">Ancient Forest</span>
+            </div>
+            <button class="offline-side-back-btn" onclick="openOfflineChapters()" title="Quay lại Danh sách Chương">
+                <img src="res/drawable-mdpi/channel_icon_back.png" alt="Back">
+            </button>
+        </div>
+    </div>
+
+    <!-- ==================== 3.95 AUTHENTIC BATTLE LOADING SCREEN (8d7a1335a300235e7a116.jpg) ==================== -->
+    <div id="screen-battle-loading" class="screen">
+        <div class="battle-loading-tip-box" id="battle-loading-tip-txt">
+            "Leshy's Vine strikes at a 45° angle after being launched high into the air. It is extremely effective under certain circumstances."
+        </div>
+        <div class="battle-loading-footer">
+            <canvas id="battle-loading-dragon-canvas" class="battle-loading-dragon-canvas" width="90" height="90"></canvas>
+            <div class="battle-loading-txt">LOADING...</div>
+        </div>
+    </div>
+
     <!-- ==================== 4. ORIGINAL CHAPTER STAGE MAP (SEQUENTIAL STAGE UNLOCK) ==================== -->
     <div id="screen-chapter" class="screen">
         <div class="chapter-header-banner">
@@ -5249,13 +5765,14 @@
 
             <!-- 2. Center Controls: SKIP 1 | WIND | MENU | CHAT -->
             <div class="btl-top-center-hud">
+                <div id="btl-hud-score" class="btl-hud-score">SCORE: 0</div>
                 <button class="btl-skip-btn" onclick="skipPlayerTurn()" title="Bỏ lượt (Pass)">SKIP 1</button>
                 <div class="btl-wind-box" title="Hướng gió & Sức gió">
                     <div class="btl-wind-lbl">WIND</div>
                     <div id="btl-wind-arrow" class="btl-wind-arrow"></div>
                     <div id="btl-wind-txt" class="btl-wind-val">02</div>
                 </div>
-                <button class="btl-menu-top-btn" onclick="leaveBattle()" title="Menu / Tạm dừng">MENU</button>
+                <button class="btl-menu-top-btn" onclick="openBattlePauseMenu()" title="Menu / Tạm dừng">MENU</button>
                 <button class="btl-chat-btn" onclick="openBattleChatModal()" title="Mở khung trò chuyện"></button>
                 <div id="btl-turn-owner" class="btl-turn-owner-tag">🟢 Lượt của bạn</div>
             </div>
@@ -5404,6 +5921,18 @@
             </div>
         </div>
     </div>
+
+        <!-- Authentic In-Game Pause Modal (9fa8a6d310e690b8c9f72.jpg with adv_bg.png) -->
+        <div id="btl-pause-modal" class="btl-pause-modal-backdrop" style="display:none;">
+            <div class="btl-pause-card">
+                <div class="btl-pause-title-tab">MENU</div>
+                <div class="btl-pause-btn-list">
+                    <button class="btl-pause-strip-btn" onclick="replayCurrentBattle()">REPLAY</button>
+                    <button class="btl-pause-strip-btn" onclick="exitBattleToLevels()">EXIT</button>
+                </div>
+                <button class="btl-pause-cancel-btn" onclick="closeBattlePauseMenu()">CANCEL</button>
+            </div>
+        </div>
 
     <!-- ==================== 6. UNIVERSAL AUTHENTIC MODAL ==================== -->
     <div id="modal-backdrop">
@@ -5723,7 +6252,7 @@ function openAccountModal() {
         <div style="display:flex; flex-direction:column; gap:12px; max-height:480px; overflow-y:auto; padding:4px 10px;">
             <div class="settings-card">
                 <div style="font-size:13.5px; font-weight:800; color:#ffffff; text-shadow:0 1px 3px #000; margin-bottom:6px;">
-                    📌 ${currentLang === 'vi' ? 'Tài khoản hiện tại:' : 'Current Account:'} 
+                    📌 ${currentLang === 'vi' ? 'Tài khoản hiện tại:' : 'Current Account:'}
                     <span style="color:#d84315; font-size:15px; font-weight:900;">${current || (currentLang === 'vi' ? 'Khách (Chưa đăng nhập)' : 'Guest (Not logged in)')}</span>
                 </div>
                 ${current ? `<button class="haypi-action-btn" style="min-width:110px; height:32px; font-size:12px;" onclick="logoutAccount(); openAccountModal();">${t('logout_btn')}</button>` : ''}
@@ -5791,7 +6320,7 @@ function openAccountModal() {
                     </table>
                 `}
             </div>
-            
+
             <div style="display:flex; justify-content:center; margin-top:4px;">
                 <button class="haypi-action-btn" style="min-width:120px; height:34px; font-size:13px;" onclick="closeModal()">Đóng</button>
             </div>
@@ -5838,8 +6367,8 @@ function openSettingsModal() {
                 </div>
             </div>
 
-            
-            
+
+
             <!-- PWA App Installation Card -->
             <div class="settings-card" style="border:2px solid #0288d1; background:linear-gradient(180deg,#e1f5fe,#b3e5fc);">
                 <div class="settings-row" style="border-bottom:none;">
@@ -6702,13 +7231,219 @@ function isStageUnlocked(chNum, stageNum) {
 }
 
 // Dedicated OFFLINE Campaign Entry from Title Screen
+// ============================================================================
+// AUTHENTIC OFFLINE CAMPAIGN ENGINE (72f1e4b05485d4db8d948.jpg & 80b8a1f111c4919ac8d57.jpg)
+// ============================================================================
+const CHAPTER_DEFS = [
+    { id: 1, name: 'ANCIENT FOREST', subName: 'Ancient Forest', thumb: 'res/drawable-mdpi/room_map2.png', minStars: 0 },
+    { id: 2, name: 'ELF CITY', subName: 'Elf City', thumb: 'res/drawable-mdpi/room_map1.png', minStars: 15 },
+    { id: 3, name: 'ICE HILL', subName: 'Ice Hill', thumb: 'res/drawable-mdpi/room_map3.png', minStars: 30 },
+    { id: 4, name: 'DRAGON VALLEY', subName: 'Dragon Valley', thumb: 'res/drawable-mdpi/room_map4.png', minStars: 45 },
+    { id: 5, name: 'FIRE MOUNTAIN', subName: 'Fire Mountain', thumb: 'res/drawable-mdpi/room_map5.png', minStars: 60 },
+    { id: 6, name: 'ANCIENT RUINS', subName: 'Ancient Ruins', thumb: 'res/drawable-mdpi/room_map6.png', minStars: 75 },
+    { id: 7, name: 'DESERT OASIS', subName: 'Desert Oasis', thumb: 'res/drawable-mdpi/room_map7.png', minStars: 90 },
+    { id: 8, name: 'ENDLESS SEA', subName: 'Endless Sea', thumb: 'res/drawable-mdpi/room_map8.png', minStars: 105 }
+];
+
+const HAYPI_OFFLINE_TIPS = [
+    "Leshy's Vine strikes at a 45° angle after being launched high into the air. It is extremely effective under certain circumstances.",
+    "Roco's Rock can destroy terrain obstacles in a single turn. Use high angle shots (65°-75°) to lob over barriers!",
+    "When your Anger reaches 100%, your next attack triggers a devastating Rage Blast dealing 200% damage!",
+    "Wind directly influences projectile trajectory. Observe the wind arrow and adjust your angle and power accordingly.",
+    "Paper Plane allows you to teleport across the battlefield to reposition away from dangerous blast zones.",
+    "Collect floating gold coins in the battlefield by shooting through them or splashing nearby terrain!",
+    "Upgrade your dragons in the Eyrie and enhance Matrix gems to boost Attack, Defense, HP and Stamina."
+];
+
+let currentOfflineChapterPage = 1;
+let currentOfflineChapter = 1;
+let loadingAnimTimer = null;
+
 function enterOfflineCampaign() {
     playSfx('btn');
-    STATE.campaignSource = 'title';
-    openWorldMap();
-    const wTitle = document.getElementById('wmap-header-title');
-    if (wTitle) wTitle.textContent = currentLang === 'vi' ? '🗺️ CHIẾN DỊCH OFFLINE (PVE)' : '🗺️ OFFLINE CAMPAIGN (PVE)';
+    STATE.campaignSource = 'offline';
+    openOfflineChapters(1);
 }
+
+function openOfflineChapters(page = 1) {
+    playSfx('btn');
+    currentOfflineChapterPage = page;
+    const cardsWrap = document.getElementById('offline-ch-cards-list');
+    if (!cardsWrap) return;
+
+    cardsWrap.innerHTML = '';
+    const startIndex = (page - 1) * 3;
+    const pageChapters = CHAPTER_DEFS.slice(startIndex, startIndex + 3);
+
+    pageChapters.forEach(ch => {
+        const starsEarned = getChapterStarsEarned(ch.id);
+        const maxStars = getChapterMaxStars(ch.id);
+        const isUnlocked = ch.id === 1 || (STATE.maxUnlockedChapter >= ch.id) || (getChapterStarsEarned(ch.id - 1) >= 15);
+
+        const card = document.createElement('div');
+        card.className = `offline-ch-card ${isUnlocked ? '' : 'locked'}`;
+        card.title = isUnlocked ? `Chương ${ch.id}: ${ch.name}` : `Chương ${ch.id}: Khóa (Cần hoàn thành Chương ${ch.id - 1})`;
+        if (isUnlocked) {
+            card.onclick = () => openOfflineLevels(ch.id);
+        }
+
+        card.innerHTML = `
+            <div class="offline-ch-thumb-wrap">
+                <img class="offline-ch-thumb" src="${ch.thumb}" alt="${ch.name}">
+                ${!isUnlocked ? '<img class="offline-ch-lock-icon" src="res/drawable-mdpi/chapter_lock.png" alt="Locked">' : ''}
+            </div>
+            <div class="offline-ch-info-slot">
+                <div class="offline-ch-title">${ch.name}</div>
+                <div class="offline-ch-stars-row">
+                    <img class="offline-ch-star-icon" src="res/drawable-mdpi/result_star_1.png" alt="Star">
+                    <span class="offline-ch-stars-txt">${starsEarned}/${maxStars}</span>
+                </div>
+            </div>
+        `;
+        cardsWrap.appendChild(card);
+    });
+
+    const prevBtn = document.getElementById('offline-ch-prev-btn');
+    const nextBtn = document.getElementById('offline-ch-next-btn');
+    if (prevBtn) prevBtn.style.display = page > 1 ? 'block' : 'none';
+    if (nextBtn) nextBtn.style.display = (startIndex + 3 < CHAPTER_DEFS.length) ? 'block' : 'none';
+
+    showScreen('screen-offline-chapters');
+}
+
+function prevOfflineChapterPage() {
+    if (currentOfflineChapterPage > 1) {
+        playSfx('select');
+        openOfflineChapters(currentOfflineChapterPage - 1);
+    }
+}
+
+function nextOfflineChapterPage() {
+    if ((currentOfflineChapterPage * 3) < CHAPTER_DEFS.length) {
+        playSfx('select');
+        openOfflineChapters(currentOfflineChapterPage + 1);
+    }
+}
+
+function exitOfflineCampaign() {
+    playSfx('btn');
+    if (STATE.campaignSource === 'offline') {
+        showScreen('screen-title');
+    } else {
+        showScreen('screen-city');
+    }
+}
+
+function openOfflineLevels(chId) {
+    playSfx('btn');
+    currentOfflineChapter = chId;
+    const chDef = CHAPTER_DEFS.find(c => c.id === chId) || CHAPTER_DEFS[0];
+
+    const subTitleEl = document.getElementById('offline-lvl-chapter-name');
+    if (subTitleEl) subTitleEl.textContent = chDef.subName;
+
+    const gridWrap = document.getElementById('offline-lvl-grid');
+    if (!gridWrap) return;
+    gridWrap.innerHTML = '';
+
+    const maxUnlocked = STATE.maxUnlockedStagePerChapter[chId] || (chId === 1 ? 1 : 0);
+
+    for (let st = 1; st <= 15; st++) {
+        const isUnlocked = st <= maxUnlocked || (chId === 1 && st === 1);
+        const isActive = isUnlocked && (st === maxUnlocked);
+        const stars = STATE.clearedStages[`${chId}-${st}`] || 0;
+        const starImgSrc = `res/drawable-mdpi/ls_star${Math.min(3, Math.max(0, stars))}.png`;
+
+        const node = document.createElement('div');
+        node.className = `offline-lvl-node ${isUnlocked ? '' : 'locked'}`;
+        if (isUnlocked) {
+            node.onclick = () => startOfflineBattle(chId, st);
+        }
+
+        node.innerHTML = `
+            <div class="offline-lvl-medallion">
+                ${isActive ? '<img class="offline-lvl-target-ring" src="res/drawable-mdpi/ls_01.png" alt="Target">' : ''}
+                ${isUnlocked
+                    ? `<span class="offline-lvl-num">${st}</span>`
+                    : '<img class="offline-lvl-lock-img" src="res/drawable-mdpi/chapter_lock.png" alt="Lock">'
+                }
+            </div>
+            <img class="offline-lvl-stars-img" src="${starImgSrc}" alt="${stars} Stars">
+        `;
+        gridWrap.appendChild(node);
+    }
+
+    showScreen('screen-offline-levels');
+}
+
+function startOfflineBattle(chId, stId) {
+    playSfx('select');
+    showScreen('screen-battle-loading');
+
+    // Pick authentic tip
+    const tipEl = document.getElementById('battle-loading-tip-txt');
+    if (tipEl) {
+        const randTip = HAYPI_OFFLINE_TIPS[Math.floor(Math.random() * HAYPI_OFFLINE_TIPS.length)];
+        tipEl.textContent = `"${randTip}"`;
+    }
+
+    // Animate running green dragon on loading canvas
+    const lCanvas = document.getElementById('battle-loading-dragon-canvas');
+    if (lCanvas) {
+        const lctx = lCanvas.getContext('2d');
+        let frame = 0;
+        if (loadingAnimTimer) clearInterval(loadingAnimTimer);
+        loadingAnimTimer = setInterval(() => {
+            lctx.clearRect(0, 0, 90, 90);
+            drawUnitActor(lctx, { unitId: '102', action: 'move', frameIdx: frame % 8, dir: 1, x: 45, y: 75 }, 0.9);
+            frame++;
+        }, 90);
+    }
+
+    setTimeout(() => {
+        if (loadingAnimTimer) { clearInterval(loadingAnimTimer); loadingAnimTimer = null; }
+        startCampaignBattle(chId, stId, false, 'offline');
+    }, 1400);
+}
+
+function openBattlePauseMenu() {
+    playSfx('btn');
+    const modal = document.getElementById('btl-pause-modal');
+    if (modal) modal.style.display = 'flex';
+}
+
+function closeBattlePauseMenu() {
+    playSfx('btn');
+    const modal = document.getElementById('btl-pause-modal');
+    if (modal) modal.style.display = 'none';
+}
+
+function replayCurrentBattle() {
+    playSfx('select');
+    closeBattlePauseMenu();
+    if (BTL && BTL.chapter && BTL.stage) {
+        startOfflineBattle(BTL.chapter, BTL.stage);
+    }
+}
+
+function exitBattleToLevels() {
+    playSfx('btn');
+    closeBattlePauseMenu();
+    BTL.active = false;
+    if (BTL && BTL.chapter) {
+        openOfflineLevels(BTL.chapter);
+    } else {
+        openOfflineChapters();
+    }
+}
+
+function updateBattleScore(points) {
+    BTL.score = (BTL.score || 0) + points;
+    const scoreEl = document.getElementById('btl-hud-score');
+    if (scoreEl) scoreEl.textContent = `SCORE: ${BTL.score}`;
+}
+
+
 
 function exitWorldMap() {
     playSfx('btn');
@@ -9244,6 +9979,26 @@ function drawDragonAngleSectorAndAim(ctx, ctrl, now) {
     }
     ctx.restore();
 
+    // Authentic Active Dragon Red Cone Indicator (media_cc17ba7a0e4f8e11d75e4.jpg)
+    const activeActor = getActiveControllableActor();
+    if (activeActor && !activeActor.dead && activeActor.hp > 0 && BTL.turn !== 'busy') {
+        const bob = Math.sin(now * 0.008) * 6;
+        const ax = activeActor.x;
+        const ay = activeActor.y - 78 + bob;
+        ctx.save();
+        ctx.fillStyle = '#ff1744';
+        ctx.strokeStyle = '#ffffff';
+        ctx.lineWidth = 2.5;
+        ctx.beginPath();
+        ctx.moveTo(ax - 10, ay - 14);
+        ctx.lineTo(ax + 10, ay - 14);
+        ctx.lineTo(ax, ay);
+        ctx.closePath();
+        ctx.fill();
+        ctx.stroke();
+        ctx.restore();
+    }
+
     // 4. Live Angle, Power & Wind Indicator
     if (BTL.dragAiming || BTL.charging) {
         ctx.save();
@@ -11287,7 +12042,11 @@ function claimWheelReward() {
 
     // Transition back to Map or City
     if (wheelPostBattleContext && wheelPostBattleContext.mode === 'pve') {
-        openChapterMap(wheelPostBattleContext.chapter || 1);
+        if (STATE.campaignSource === 'offline') {
+            openOfflineLevels(wheelPostBattleContext.chapter || 1);
+        } else {
+            openChapterMap(wheelPostBattleContext.chapter || 1);
+        }
     } else {
         showScreen('screen-city');
     }
